@@ -14,13 +14,13 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
  */
 public class ChassisPID extends PIDSubsystem {
 	
-	private final CANTalon rightFront	= RobotMap.chassisPIDrightFront;
-	private final CANTalon rightRear	= RobotMap.chassisPIDrightRear;
-	private final CANTalon leftFront	= RobotMap.chassisPIDleftFront;
-	private final CANTalon leftRear		= RobotMap.chassisPIDleftRear;
-	private final RobotDrive robotDrive	= RobotMap.chassisPIDRobotDrive;
+	private final CANTalon rightFront	= RobotMap.chassisPID_rightFront;
+	private final CANTalon rightRear	= RobotMap.chassisPID_rightRear;
+	private final CANTalon leftFront	= RobotMap.chassisPID_leftFront;
+	private final CANTalon leftRear		= RobotMap.chassisPID_leftRear;
+	private final RobotDrive robotDrive	= RobotMap.chassisPID_RobotDrive;
 	
-	private final AnalogGyro analogGyro	= RobotMap.chassisPIDanalogGyro;
+	private final AnalogGyro analogGyro	= RobotMap.chassisPID_analogGyro;
 	
 	// Initialize your subsystem here
 	public ChassisPID() {
