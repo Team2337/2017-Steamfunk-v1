@@ -74,11 +74,11 @@ public class OI {
 	
 	public OI() {
 
-		driver_GreenA			.whenPressed(new _DoNothing());
-		driver_RedB				.whenPressed(new _DoNothing());
-		driver_BlueX			.whenPressed(new _DoNothing());
-		driver_YellowY			.whenPressed(new _DoNothing());
-		driver_BumperLeft		.whenPressed(new _DoNothing());
+		driver_GreenA			.whenPressed(new FuelShooter_enable(.25));
+		driver_RedB				.whenPressed(new FuelShooter_enable(.50));
+		driver_BlueX			.whenPressed(new FuelShooter_enable(.75));
+		driver_YellowY			.whenPressed(new FuelShooter_enable(.90));
+		driver_BumperLeft		.whenPressed(new FuelShooter_disable());
 		driver_BumperRight		.whenPressed(new _DoNothing());
 		driver_Back				.whenPressed(new _DoNothing());
 		driver_Start			.whenPressed(new _DoNothing());
