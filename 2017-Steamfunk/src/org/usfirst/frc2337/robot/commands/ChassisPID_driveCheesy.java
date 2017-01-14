@@ -16,9 +16,6 @@ public class ChassisPID_driveCheesy extends Command {
 	double moveSensitivity = 1;
 	double turnSensitivity = 1;
 	
-	double moveSpeed;
-	double turnSpeed;
-	
 	public ChassisPID_driveCheesy() {
 		requires(Robot.chassisPID);
 	}
@@ -30,8 +27,8 @@ public class ChassisPID_driveCheesy extends Command {
 	
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		moveSpeed = driverJoystick.getRawAxis(1); //Left Y
-		turnSpeed = driverJoystick.getRawAxis(4); //Right X
+		double moveSpeed = driverJoystick.getRawAxis(1); //Left Y
+		double turnSpeed = driverJoystick.getRawAxis(4); //Right X
 		
 		if (Math.abs(moveSpeed) < deadband) moveSpeed = 0;
 		if (Math.abs(turnSpeed) < deadband) turnSpeed = 0;

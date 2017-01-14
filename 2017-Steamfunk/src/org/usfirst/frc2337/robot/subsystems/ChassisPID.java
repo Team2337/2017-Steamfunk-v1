@@ -53,6 +53,12 @@ public class ChassisPID extends PIDSubsystem {
 		robotDrive.tankDrive(leftValue, rightValue, true);
 	}
 	
+	/**
+	 * Uses RobotDrive to move using a speed and rotation rate.
+	 * 
+	 * @param speedValue The speed at which to move.
+	 * @param turnValue The speed at which to turn.
+	 */
 	public void arcadeDrive(double speedValue, double turnValue) {
 		robotDrive.arcadeDrive(speedValue, turnValue, true);
 	}
@@ -68,6 +74,9 @@ public class ChassisPID extends PIDSubsystem {
 		leftRear.enableBrakeMode(mode);
 	}
 	
+	/**
+	 * Resets the current angle of the Gyro to 0.
+	 */
 	public void resetGyro() {
 		analogGyro.reset();
 	}
@@ -103,9 +112,5 @@ public class ChassisPID extends PIDSubsystem {
 		// Use output to drive your system, like a motor
 		// e.g. yourMotor.set(output);
 		
-		rightFront.pidWrite(output);
-		rightRear.pidWrite(output);
-		leftFront.pidWrite(output);
-		leftRear.pidWrite(output);
 	}
 }
