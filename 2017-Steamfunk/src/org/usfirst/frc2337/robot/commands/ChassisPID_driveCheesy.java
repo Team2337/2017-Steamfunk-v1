@@ -12,9 +12,9 @@ public class ChassisPID_driveCheesy extends Command {
 	
 	final Joystick driverJoystick = Robot.oi.getDriverJoystick();
 	
-	double deadband = 0;
-	double moveSensitivity = 1;
-	double turnSensitivity = 1;
+	double deadband = Robot.constants.kChassisPID_DriverDeadband;
+	double moveSensitivity = Robot.constants.kChassisPID_MoveSensitivity;
+	double turnSensitivity = Robot.constants.kChassisPID_MoveSensitivity;
 	
 	public ChassisPID_driveCheesy() {
 		requires(Robot.chassisPID);
