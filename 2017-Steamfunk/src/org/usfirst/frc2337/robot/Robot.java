@@ -30,6 +30,8 @@ public class Robot extends IterativeRobot {
 	
 	public static OI oi;
 	
+	public static Constants constants;
+	
 	public static ChassisPID chassisPID;
 	public static ChassisCamera chassisCamera;
 	public static ChassisTransmission chassisTransmission;
@@ -56,6 +58,8 @@ public class Robot extends IterativeRobot {
 	 */
 	public void robotInit() {
 		RobotMap.init();
+		
+		constants = new Constants();
 		
 		chassisPID = new ChassisPID();
 		chassisCamera = new ChassisCamera();
