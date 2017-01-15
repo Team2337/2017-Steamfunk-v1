@@ -1,5 +1,6 @@
 package org.usfirst.frc2337.robot.subsystems;
 
+import org.usfirst.frc2337.robot.Robot;
 import org.usfirst.frc2337.robot.RobotMap;
 import org.usfirst.frc2337.robot.commands.*;
 
@@ -17,7 +18,8 @@ public class FuelShooter extends Subsystem {
 	private final CANTalon motorLeft = RobotMap.fuelShooter_motorLeft;
 	private final CANTalon motorRight = RobotMap.fuelShooter_motorRight;
 	
-	private double currentSpeed = 0.8;
+	private double currentSpeed = Robot.constants.kFuelShooter_DefaultSpeed;
+	double incrementSpeed = Robot.constants.kFuelShooter_IncrementSpeed;
 	
 	public FuelShooter() {
 		motorLeft.enableBrakeMode(false);
@@ -52,11 +54,11 @@ public class FuelShooter extends Subsystem {
 	}
 	
 	public void incrementSpeed() {
-		setShooterSpeed(currentSpeed += 0.05);
+		setShooterSpeed(currentSpeed += incrementSpeed);
 	}
 	
 	public void decrementSpeed() {
-		setShooterSpeed(currentSpeed -= 0.05);
+		setShooterSpeed(currentSpeed -= incrementSpeed);
 	}
 }
 
