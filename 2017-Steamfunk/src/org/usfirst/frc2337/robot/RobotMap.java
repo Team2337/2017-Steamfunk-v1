@@ -51,8 +51,8 @@ public class RobotMap {
     public static CANTalon gearLoadergearLoader;
     public static Solenoid fuelIntakeArm_solenoidRight;
     public static Solenoid fuelIntakeArm_solenoidLeft;
-    public static CANTalon fuelIntakefuelIntakeRight;
-    public static CANTalon fuelIntakefuelIntakeLeft;
+    public static CANTalon fuelIntake_motorRight;
+    public static CANTalon fuelIntake_motorLeft;
     public static CANTalon fuelShooter_motorLeft;
     public static CANTalon fuelShooter_motorRight;
     public static CANTalon fuelLoaderfuelLoader;
@@ -135,13 +135,13 @@ public class RobotMap {
 		LiveWindow.addActuator("FuelIntakeArm", "fuelIntakeArmRightS", fuelIntakeArm_solenoidRight);
 		LiveWindow.addActuator("FuelIntakeArm", "fuelIntakeArmLeftS", fuelIntakeArm_solenoidLeft);
 		
-        // FUEL INTAKE
-        fuelIntakefuelIntakeRight = new CANTalon(10);
-        LiveWindow.addActuator("FuelIntake", "fuelIntakeRight", fuelIntakefuelIntakeRight);
-        
-        fuelIntakefuelIntakeLeft = new CANTalon(11);
-        LiveWindow.addActuator("FuelIntake", "fuelIntakeLeft", fuelIntakefuelIntakeLeft);
-        
+		// FUEL INTAKE
+		fuelIntake_motorRight = new CANTalon(10);
+		fuelIntake_motorLeft = new CANTalon(11);
+		
+		LiveWindow.addActuator("FuelIntake", "fuelIntakeRight", fuelIntake_motorRight);
+		LiveWindow.addActuator("FuelIntake", "fuelIntakeLeft", fuelIntake_motorLeft);
+		
         // FUEL SHOOTER
         fuelShooter_motorLeft = new CANTalon(12);
         fuelShooter_motorRight = new CANTalon(13);

@@ -95,13 +95,13 @@ public class OI {
 		driver_BlueX			.whenPressed(new _DoNothing());
 		driver_YellowY			.whenPressed(new _DoNothing());
 		driver_BumperLeft		.whenPressed(new FuelIntakeArm_togglePosition());
-		driver_BumperRight		.whenPressed(new _DoNothing());
+		driver_BumperRight		.whenPressed(new FuelIntake_toggle());
 		driver_Back				.whenPressed(new _DoNothing());
 		driver_Start			.whenPressed(new _DoNothing());
 		driver_LeftStick		.whenPressed(new _DoNothing());
 		driver_RightStick		.whenPressed(new _DoNothing());
 		driver_TriggerLeft		.whileHeld(new FuelIntakeArm_extendWhileHeld());
-		driver_TriggerRight		.whenPressed(new _DoNothing());
+		driver_TriggerRight		.whileHeld(new FuelIntake_runWhileHeld());
 		driver_POVUp			.whenPressed(new FuelShooter_speedIncrease()); 
 	    driver_POVUpRight		.whenPressed(new _DoNothing()); 
 	    driver_POVRight			.whenPressed(new FuelShooter_resumeShooter()); 
