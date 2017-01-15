@@ -14,4 +14,6 @@ public class Constants {
 	public final double kChassisPID_TurnSensitivity = 1.0;
 	
 	public final double kFuelShooter_DefaultSpeed = 0.7;
+	public final double kFuelShooter_IncrementSpeed = 0.05;
+	
 }
