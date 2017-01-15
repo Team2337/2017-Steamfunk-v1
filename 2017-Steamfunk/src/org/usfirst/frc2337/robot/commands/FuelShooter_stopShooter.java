@@ -7,9 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class FuelShooter_disable extends Command {
+public class FuelShooter_stopShooter extends Command {
 	
-	public FuelShooter_disable() {
+	public FuelShooter_stopShooter() {
 		requires(Robot.fuelShooter);
 	}
 
