@@ -90,11 +90,11 @@ public class OI {
 	
 	public OI() {
 
-		driver_GreenA			.whenPressed(new FuelShooter_resumeShooter());
+		driver_GreenA			.whenPressed(new _DoNothing());
 		driver_RedB				.whenPressed(new _DoNothing());
-		driver_BlueX			.whenPressed(new FuelShooter_speedDecrease());
-		driver_YellowY			.whenPressed(new FuelShooter_speedIncrease());
-		driver_BumperLeft		.whenPressed(new FuelShooter_stopShooter());
+		driver_BlueX			.whenPressed(new _DoNothing());
+		driver_YellowY			.whenPressed(new _DoNothing());
+		driver_BumperLeft		.whenPressed(new _DoNothing());
 		driver_BumperRight		.whenPressed(new _DoNothing());
 		driver_Back				.whenPressed(new _DoNothing());
 		driver_Start			.whenPressed(new _DoNothing());
@@ -102,14 +102,14 @@ public class OI {
 		driver_RightStick		.whenPressed(new _DoNothing());
 		driver_TriggerLeft		.whenPressed(new _DoNothing());
 		driver_TriggerRight		.whenPressed(new _DoNothing());
-		driver_POVUp			.whenPressed(new _DoNothing());
-		driver_POVUpRight		.whenPressed(new _DoNothing());
-		driver_POVRight			.whenPressed(new _DoNothing());
-		driver_POVDownRight		.whenPressed(new _DoNothing());
-		driver_POVDown			.whenPressed(new _DoNothing());
-		driver_POVDownLeft		.whenPressed(new _DoNothing());
-		driver_POVLeft			.whenPressed(new _DoNothing());
-		driver_POVUpLeft		.whenPressed(new _DoNothing());
+		driver_POVUp			.whenPressed(new FuelShooter_speedIncrease()); 
+	    driver_POVUpRight		.whenPressed(new _DoNothing()); 
+	    driver_POVRight			.whenPressed(new FuelShooter_resumeShooter()); 
+	    driver_POVDownRight		.whenPressed(new _DoNothing()); 
+	    driver_POVDown			.whenPressed(new FuelShooter_speedDecrease()); 
+	    driver_POVDownLeft		.whenPressed(new _DoNothing()); 
+	    driver_POVLeft			.whenPressed(new FuelShooter_stopShooter()); 
+	    driver_POVUpLeft		.whenPressed(new _DoNothing()); 
 		
 		operator_GreenA			.whenPressed(new _DoNothing());
 		operator_RedB			.whenPressed(new _DoNothing());
