@@ -56,8 +56,8 @@ public class RobotMap {
     public static AnalogPotentiometer fuelIntakeArmstringPot;
     public static CANTalon fuelIntakefuelIntakeRight;
     public static CANTalon fuelIntakefuelIntakeLeft;
-    public static CANTalon fuelShooterfuelShooterLeft;
-    public static CANTalon fuelShooterfuelShooterRight;
+    public static CANTalon fuelShooter_motorLeft;
+    public static CANTalon fuelShooter_motorRight;
     public static CANTalon fuelLoaderfuelLoader;
     public static Solenoid fuelDumperfuelDumper;
     public static CANTalon fuelAgitatorfuelDeGunker;
@@ -152,11 +152,12 @@ public class RobotMap {
         fuelIntakefuelIntakeLeft = new CANTalon(11);
         LiveWindow.addActuator("FuelIntake", "fuelIntakeLeft", fuelIntakefuelIntakeLeft);
         
-        fuelShooterfuelShooterLeft = new CANTalon(12);
-        LiveWindow.addActuator("FuelShooter", "fuelShooterLeft", fuelShooterfuelShooterLeft);
+        fuelShooter_motorLeft = new CANTalon(12);
+        LiveWindow.addActuator("FuelShooter", "fuelShooterLeft", fuelShooter_motorLeft);
         
-        fuelShooterfuelShooterRight = new CANTalon(13);
-        LiveWindow.addActuator("FuelShooter", "fuelShooterRight", fuelShooterfuelShooterRight);
+        fuelShooter_motorRight = new CANTalon(13);
+        fuelShooter_motorRight.setInverted(true);
+        LiveWindow.addActuator("FuelShooter", "fuelShooterRight", fuelShooter_motorRight);
         
         fuelLoaderfuelLoader = new CANTalon(14);
         LiveWindow.addActuator("FuelLoader", "fuelLoader", fuelLoaderfuelLoader);
