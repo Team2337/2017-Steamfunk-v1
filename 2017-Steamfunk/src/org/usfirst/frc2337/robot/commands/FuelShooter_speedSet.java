@@ -17,15 +17,15 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class FuelShooter_enable extends Command {
+public class FuelShooter_speedSet extends Command {
 	
 	double speed = Robot.constants.kFuelShooter_DefaultSpeed;
 	
-	public FuelShooter_enable() {
+	public FuelShooter_speedSet() {
 		requires(Robot.fuelShooter);
     }
 	
-    public FuelShooter_enable(double speed) {
+    public FuelShooter_speedSet(double speed) {
 		requires(Robot.fuelShooter);
 		
     	this.speed = speed;
