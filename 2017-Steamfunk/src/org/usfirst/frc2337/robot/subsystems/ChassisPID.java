@@ -34,7 +34,7 @@ public class ChassisPID extends PIDSubsystem {
 		LiveWindow.addActuator("ChassisPID", "PIDSubsystem Controller", getPIDController());
 		
 		// Disable brake mode on the motors
-		setBrakeMode(false);
+		setBrakeMode(true);
 		
 		// Use these to get going:
 		// setSetpoint() -  Sets where the PID controller should move the system to
