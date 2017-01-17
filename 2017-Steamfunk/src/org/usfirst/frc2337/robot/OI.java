@@ -64,7 +64,7 @@ public class OI {
 	JoystickPOVButton		driver_POVUpLeft		= new JoystickPOVButton(driverJoystick, 315);
 	
 	Joystick				operatorJoystick		= new Joystick(1);
-	JoystickButton			operator_GreenA			= new JoystickButton(operatorJoystick, 1);
+	/*JoystickButton			operator_GreenA			= new JoystickButton(operatorJoystick, 1);
 	JoystickButton			operator_RedB			= new JoystickButton(operatorJoystick, 2);
 	JoystickButton			operator_BlueX			= new JoystickButton(operatorJoystick, 3);
 	JoystickButton			operator_YellowY		= new JoystickButton(operatorJoystick, 4);
@@ -74,16 +74,16 @@ public class OI {
 	JoystickButton			operator_Start			= new JoystickButton(operatorJoystick, 8);
 	JoystickButton			operator_LeftStick		= new JoystickButton(operatorJoystick, 9);
 	JoystickButton			operator_RightStick		= new JoystickButton(operatorJoystick, 10);
-	//JoystickAnalogButton	operator_TriggerLeft	= new JoystickAnalogButton(operatorJoystick, 2);
-	//JoystickAnalogButton	operator_TriggerRight	= new JoystickAnalogButton(operatorJoystick, 3);
-	//JoystickPOVButton		operator_POVUp			= new JoystickPOVButton(operatorJoystick, 0);
-	//JoystickPOVButton		operator_POVUpRight		= new JoystickPOVButton(operatorJoystick, 45);
-	//JoystickPOVButton		operator_POVRight		= new JoystickPOVButton(operatorJoystick, 90);
-	//JoystickPOVButton		operator_POVDownRight	= new JoystickPOVButton(operatorJoystick, 135);
-	//JoystickPOVButton		operator_POVDown		= new JoystickPOVButton(operatorJoystick, 180);
-	//JoystickPOVButton		operator_POVDownLeft	= new JoystickPOVButton(operatorJoystick, 225);
-	//JoystickPOVButton		operator_POVLeft		= new JoystickPOVButton(operatorJoystick, 270);
-	//JoystickPOVButton		operator_POVUpLeft		= new JoystickPOVButton(operatorJoystick, 315);
+	JoystickAnalogButton	operator_TriggerLeft	= new JoystickAnalogButton(operatorJoystick, 2);
+	JoystickAnalogButton	operator_TriggerRight	= new JoystickAnalogButton(operatorJoystick, 3);
+	JoystickPOVButton		operator_POVUp			= new JoystickPOVButton(operatorJoystick, 0);
+	JoystickPOVButton		operator_POVUpRight		= new JoystickPOVButton(operatorJoystick, 45);
+	JoystickPOVButton		operator_POVRight		= new JoystickPOVButton(operatorJoystick, 90);
+	JoystickPOVButton		operator_POVDownRight	= new JoystickPOVButton(operatorJoystick, 135);
+	JoystickPOVButton		operator_POVDown		= new JoystickPOVButton(operatorJoystick, 180);
+	JoystickPOVButton		operator_POVDownLeft	= new JoystickPOVButton(operatorJoystick, 225);
+	JoystickPOVButton		operator_POVLeft		= new JoystickPOVButton(operatorJoystick, 270);
+	JoystickPOVButton		operator_POVUpLeft		= new JoystickPOVButton(operatorJoystick, 315);*/
 	
 	Joystick				operatorControls		= new Joystick(2);
 	
@@ -111,7 +111,7 @@ public class OI {
 		driver_POVLeft			.whenPressed(new _DoNothing());
 		driver_POVUpLeft		.whenPressed(new _DoNothing());
 		
-		operator_GreenA			.whenPressed(new _DoNothing());
+		/*operator_GreenA			.whenPressed(new _DoNothing());
 		operator_RedB			.whenPressed(new _DoNothing());
 		operator_BlueX			.whenPressed(new _DoNothing());
 		operator_YellowY		.whenPressed(new _DoNothing());
@@ -121,16 +121,16 @@ public class OI {
 		operator_Start			.whenPressed(new _DoNothing());
 		operator_LeftStick		.whenPressed(new _DoNothing());
 		operator_RightStick		.whenPressed(new _DoNothing());
-		//operator_TriggerLeft	.whenPressed(new _DoNothing());
-		//operator_TriggerRight	.whenPressed(new _DoNothing());
-		//operator_POVUp			.whenPressed(new _DoNothing());
-		//operator_POVUpRight		.whenPressed(new _DoNothing());
-		//operator_POVRight		.whenPressed(new _DoNothing());
-		//operator_POVDownRight	.whenPressed(new _DoNothing());
-		//operator_POVDown		.whenPressed(new _DoNothing());
-		//operator_POVDownLeft	.whenPressed(new _DoNothing());
-		//operator_POVLeft		.whenPressed(new _DoNothing());
-		//operator_POVUpLeft		.whenPressed(new _DoNothing());
+		operator_TriggerLeft	.whenPressed(new _DoNothing());
+		operator_TriggerRight	.whenPressed(new _DoNothing());
+		operator_POVUp			.whenPressed(new _DoNothing());
+		operator_POVUpRight		.whenPressed(new _DoNothing());
+		operator_POVRight		.whenPressed(new _DoNothing());
+		operator_POVDownRight	.whenPressed(new _DoNothing());
+		operator_POVDown		.whenPressed(new _DoNothing());
+		operator_POVDownLeft	.whenPressed(new _DoNothing());
+		operator_POVLeft		.whenPressed(new _DoNothing());
+		operator_POVUpLeft		.whenPressed(new _DoNothing());*/
 		
 		/*
 		// SmartDashboard Command Buttons
