@@ -11,6 +11,7 @@
 
 package org.usfirst.frc2337.robot.subsystems;
 
+import org.usfirst.frc2337.robot.Robot;
 import org.usfirst.frc2337.robot.RobotMap;
 import org.usfirst.frc2337.robot.commands.*;
 
@@ -27,6 +28,8 @@ public class FuelIntake extends Subsystem {
 	private final CANTalon motorRight = RobotMap.fuelIntake_motorRight;
 	private final CANTalon motorLeft = RobotMap.fuelIntake_motorLeft;
 	
+	double intakeSpeed = Robot.constants.kFuelIntake_IntakeSpeed;
+	
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 	
@@ -41,8 +44,8 @@ public class FuelIntake extends Subsystem {
 	}
 	
 	public void startIntake() {
-		motorRight.set(.5);
-		motorLeft.set(.5);
+		motorRight.set(intakeSpeed);
+		motorLeft.set(intakeSpeed);
 	}
 	
 	public void stopIntake() {
