@@ -91,12 +91,6 @@ public class RobotMap {
 		chassisPID_analogGyro = new AnalogGyro(0);
 		chassisPID_analogGyro.setSensitivity(0.007); //TODO: Update with actual Gyro sensitivity
 		LiveWindow.addSensor("ChassisPID", "analogGyro", chassisPID_analogGyro);
-		
-		chassisTransmissionchassisTransmissionSolenoid = new Solenoid(0, 0);
-        LiveWindow.addActuator("ChassisTransmission", "chassisTransmissionSolenoid", chassisTransmissionchassisTransmissionSolenoid);
-        
-        powerTakeOffptoSolenoid = new DoubleSolenoid(0, 1, 2);
-        LiveWindow.addActuator("PowerTakeOff", "ptoSolenoid", powerTakeOffptoSolenoid);
         
         mainLEDfeedbackLED = new Solenoid(0, 3);
         LiveWindow.addActuator("MainLED", "feedbackLED", mainLEDfeedbackLED);
@@ -119,17 +113,8 @@ public class RobotMap {
         targetingLEDtargetingFrontLED = new Solenoid(1, 0);
         LiveWindow.addActuator("TargetingLED", "targetingFrontLED", targetingLEDtargetingFrontLED);
         
-        gearIntakeintakeMaster = new CANTalon(5);
-        LiveWindow.addActuator("GearIntake", "intakeMaster", gearIntakeintakeMaster);
-        
-        gearIntakeintakeServant = new CANTalon(6);
-        LiveWindow.addActuator("GearIntake", "intakeServant", gearIntakeintakeServant);
-        
         gearLoadergearPusher = new Solenoid(1, 1);
         LiveWindow.addActuator("GearLoader", "gearPusher", gearLoadergearPusher);
-        
-        gearLoadergearLoader = new CANTalon(7);
-        LiveWindow.addActuator("GearLoader", "gearLoader", gearLoadergearLoader);
         
         fuelIntakeArmfuelIntakeArmRight = new CANTalon(8);
         LiveWindow.addActuator("FuelIntakeArm", "fuelIntakeArmRight", fuelIntakeArmfuelIntakeArmRight);
@@ -161,14 +146,8 @@ public class RobotMap {
         fuelLoaderfuelLoader = new CANTalon(14);
         LiveWindow.addActuator("FuelLoader", "fuelLoader", fuelLoaderfuelLoader);
         
-        fuelDumperfuelDumper = new Solenoid(1, 4);
-        LiveWindow.addActuator("FuelDumper", "fuelDumper", fuelDumperfuelDumper);
-        
         fuelAgitatorfuelDeGunker = new CANTalon(15);
         LiveWindow.addActuator("FuelAgitator", "fuelDeGunker", fuelAgitatorfuelDeGunker);
-        
-        fuelElevatorAcceleratorfuelElevatorAcceleratorMover = new CANTalon(16);
-        LiveWindow.addActuator("FuelElevatorAccelerator", "fuelElevatorAcceleratorMover", fuelElevatorAcceleratorfuelElevatorAcceleratorMover);
         
     }
 }

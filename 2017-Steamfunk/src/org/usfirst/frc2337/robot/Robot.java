@@ -34,21 +34,16 @@ public class Robot extends IterativeRobot {
 	
 	public static ChassisPID chassisPID;
 	public static ChassisCamera chassisCamera;
-	public static ChassisTransmission chassisTransmission;
-	public static PowerTakeOff powerTakeOff;
 	public static MainLED mainLED;
 	public static RopeClimber ropeClimber;
 	public static TargetingCamera targetingCamera;
 	public static TargetingLED targetingLED;
-	public static GearIntake gearIntake;
 	public static GearLoader gearLoader;
 	public static FuelIntakeArm fuelIntakeArm;
 	public static FuelIntake fuelIntake;
 	public static FuelShooter fuelShooter;
 	public static FuelLoader fuelLoader;
-	public static FuelDumper fuelDumper;
 	public static FuelAgitator fuelAgitator;
-	public static FuelElevatorAccelerator fuelElevatorAccelerator;
 	
 	Command autonomousCommand;
 	
@@ -63,21 +58,16 @@ public class Robot extends IterativeRobot {
 		
 		chassisPID = new ChassisPID();
 		chassisCamera = new ChassisCamera();
-		chassisTransmission = new ChassisTransmission();
-		powerTakeOff = new PowerTakeOff();
 		mainLED = new MainLED();
 		ropeClimber = new RopeClimber();
 		targetingCamera = new TargetingCamera();
 		targetingLED = new TargetingLED();
-		gearIntake = new GearIntake();
 		gearLoader = new GearLoader();
 		fuelIntakeArm = new FuelIntakeArm();
 		fuelIntake = new FuelIntake();
 		fuelShooter = new FuelShooter();
 		fuelLoader = new FuelLoader();
-		fuelDumper = new FuelDumper();
 		fuelAgitator = new FuelAgitator();
-		fuelElevatorAccelerator = new FuelElevatorAccelerator();
 		
 		// OI must be constructed after subsystems. If the OI creates Commands
 		//(which it very likely will), subsystems are not guaranteed to be
