@@ -92,7 +92,7 @@ public class OI {
 		
 		driver_GreenA			.whenPressed(new _DoNothing());
 		driver_RedB				.whenPressed(new _DoNothing());
-		driver_BlueX			.whenPressed(new _DoNothing());
+		driver_BlueX			.whenPressed(new HopperTrigger_extendWhileHeld());
 		driver_YellowY			.whenPressed(new _DoNothing());
 		driver_BumperLeft		.whenPressed(new _DoNothing());
 		driver_BumperRight		.whenPressed(new _DoNothing());
