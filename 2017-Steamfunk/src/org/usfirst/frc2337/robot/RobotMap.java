@@ -49,15 +49,10 @@ public class RobotMap {
     public static CANTalon gearIntakeintakeServant;
     public static Solenoid gearLoadergearPusher;
     public static CANTalon gearLoadergearLoader;
-    public static CANTalon fuelIntakeArmfuelIntakeArmRight;
-    public static CANTalon fuelIntakeArmfuelIntakeArmLeft;
-    public static Solenoid fuelIntakeArmfuelIntakeArmRightS;
-    public static Solenoid fuelIntakeArmfuelIntakeArmLeftS;
-    public static AnalogPotentiometer fuelIntakeArmstringPot;
-    public static CANTalon fuelIntakefuelIntakeRight;
-    public static CANTalon fuelIntakefuelIntakeLeft;
-    public static CANTalon fuelShooterfuelShooterLeft;
-    public static CANTalon fuelShooterfuelShooterRight;
+    public static Solenoid fuelIntakeArm_solenoid;
+    public static CANTalon fuelIntake_motor;
+    public static CANTalon fuelShooter_motorLeft;
+    public static CANTalon fuelShooter_motorRight;
     public static CANTalon fuelLoaderfuelLoader;
     public static Solenoid fuelDumperfuelDumper;
     public static CANTalon fuelAgitatorfuelDeGunker;
@@ -116,29 +111,17 @@ public class RobotMap {
         gearLoadergearPusher = new Solenoid(1, 1);
         LiveWindow.addActuator("GearLoader", "gearPusher", gearLoadergearPusher);
         
-        fuelIntakeArmfuelIntakeArmRight = new CANTalon(8);
-        LiveWindow.addActuator("FuelIntakeArm", "fuelIntakeArmRight", fuelIntakeArmfuelIntakeArmRight);
         
-        fuelIntakeArmfuelIntakeArmLeft = new CANTalon(9);
-        LiveWindow.addActuator("FuelIntakeArm", "fuelIntakeArmLeft", fuelIntakeArmfuelIntakeArmLeft);
-        
-        fuelIntakeArmfuelIntakeArmRightS = new Solenoid(1, 3);
-        LiveWindow.addActuator("FuelIntakeArm", "fuelIntakeArmRightS", fuelIntakeArmfuelIntakeArmRightS);
-        
-        fuelIntakeArmfuelIntakeArmLeftS = new Solenoid(1, 2);
-        LiveWindow.addActuator("FuelIntakeArm", "fuelIntakeArmLeftS", fuelIntakeArmfuelIntakeArmLeftS);
-        
-        fuelIntakeArmstringPot = new AnalogPotentiometer(1, 1.0, 0.0);
-        LiveWindow.addSensor("FuelIntakeArm", "stringPot", fuelIntakeArmstringPot);
-        
-        fuelIntakefuelIntakeRight = new CANTalon(10);
-        LiveWindow.addActuator("FuelIntake", "fuelIntakeRight", fuelIntakefuelIntakeRight);
-        
-        fuelIntakefuelIntakeLeft = new CANTalon(11);
-        LiveWindow.addActuator("FuelIntake", "fuelIntakeLeft", fuelIntakefuelIntakeLeft);
-        
-        fuelShooterfuelShooterLeft = new CANTalon(12);
-        LiveWindow.addActuator("FuelShooter", "fuelShooterLeft", fuelShooterfuelShooterLeft);
+		// FUEL INTAKE ARM
+		fuelIntakeArm_solenoid = new Solenoid(1, 3);
+		LiveWindow.addActuator("FuelIntakeArm", "fuelIntakeArmRightS", fuelIntakeArm_solenoid);
+		
+		//FUEL INTAKE
+		fuelIntake_motor = new CANTalon(10);
+		LiveWindow.addActuator("FuelIntake", "fuelIntakeLeft", fuelIntake_motor);
+		
+		// FUEL INTAKE
+		
         
         fuelShooterfuelShooterRight = new CANTalon(13);
         LiveWindow.addActuator("FuelShooter", "fuelShooterRight", fuelShooterfuelShooterRight);
