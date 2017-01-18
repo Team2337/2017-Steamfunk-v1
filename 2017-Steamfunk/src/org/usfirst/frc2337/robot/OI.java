@@ -91,7 +91,7 @@ public class OI {
 	public OI() {
 		
 		driver_GreenA			.whenPressed(new _DoNothing());
-		driver_RedB				.whenPressed(new _DoNothing());
+		driver_RedB				.whileHeld(new RopeClimber_runWhileHeld());
 		driver_BlueX			.whenPressed(new _DoNothing());
 		driver_YellowY			.whenPressed(new _DoNothing());
 		driver_BumperLeft		.whenPressed(new _DoNothing());
