@@ -25,8 +25,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class FuelIntake extends Subsystem {
 	
-	private final CANTalon motorRight = RobotMap.fuelIntake_motorRight;
-	private final CANTalon motorLeft = RobotMap.fuelIntake_motorLeft;
+	private final CANTalon motorIntake = RobotMap.fuelIntake_motor;
 	
 	double intakeSpeed = Robot.constants.kFuelIntake_IntakeSpeed;
 	
@@ -40,17 +39,15 @@ public class FuelIntake extends Subsystem {
 	}
 	
 	public boolean isRunning() {
-		return motorRight.get() != 0;
+		return motorIntake.get() != 0;
 	}
 	
 	public void startIntake() {
-		motorRight.set(intakeSpeed);
-		motorLeft.set(intakeSpeed);
+		motorIntake.set(intakeSpeed);
 	}
 	
 	public void stopIntake() {
-		motorRight.set(0);
-		motorLeft.set(0);
+		motorIntake.set(0);
 	}
 }
 
