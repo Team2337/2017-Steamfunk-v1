@@ -22,8 +22,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class FuelIntakeArm extends Subsystem {
 		
-	private final Solenoid solenRight = RobotMap.fuelIntakeArm_solenoidRight;
-	private final Solenoid solenLeft = RobotMap.fuelIntakeArm_solenoidLeft;
+	private final Solenoid solenoid = RobotMap.fuelIntakeArm_solenoid;
 
 	// Initialize your subsystem here
 	public FuelIntakeArm() {
@@ -37,16 +36,14 @@ public class FuelIntakeArm extends Subsystem {
 	}
 	
 	public boolean isExtended() {
-		return solenRight.get();
+		return solenoid.get();
 	}
 	
 	public void extendArm() {
-		solenRight.set(true);
-		solenLeft.set(true);
+		solenoid.set(true);
 	}
 	
 	public void retractArm() {
-		solenRight.set(false);
-		solenLeft.set(false);
+		solenoid.set(false);
 	}
 }
