@@ -13,4 +13,15 @@ public class Constants {
 	public final double kChassisPID_MoveSensitivity = 1.0;
 	public final double kChassisPID_TurnSensitivity = 1.0;
 	
+	
+	/* Targeting/Vision */
+	public final double kTargetingCamera_UpdaterTimeout = 5;
+	public final double kTargetingCamera_Deadband = 10;
+	public final double kTargetingCamera_TurnSpeed = 0.4;
+	
+	public final double kTargetingCamera_Kp = .003;
+	public final double kTargetingCamera_DegreeConversion = 0.04;
+	
+	public final double kTargetingCamera_CenterPoint = 172;
+	public final double kTargetingCamera_GyroConversion = 4.5;
 }
