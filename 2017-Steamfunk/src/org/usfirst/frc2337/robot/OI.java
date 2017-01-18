@@ -93,7 +93,7 @@ public class OI {
 		driver_GreenA			.whenPressed(new _DoNothing());
 		driver_RedB				.whenPressed(new _DoNothing());
 		driver_BlueX			.whenPressed(new _DoNothing());
-		driver_YellowY			.whenPressed(new _DoNothing());
+		driver_YellowY			.whileHeld(new GearLoader_extendWhileHeld());
 		driver_BumperLeft		.whenPressed(new _DoNothing());
 		driver_BumperRight		.whenPressed(new _DoNothing());
 		driver_Back				.whenPressed(new _DoNothing());

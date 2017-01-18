@@ -47,8 +47,7 @@ public class RobotMap {
     public static Solenoid targetingLEDtargetingFrontLED;
     public static CANTalon gearIntakeintakeMaster;
     public static CANTalon gearIntakeintakeServant;
-    public static Solenoid gearLoadergearPusher;
-    public static CANTalon gearLoadergearLoader;
+    public static Solenoid gearLoader_pusher;
     public static CANTalon fuelIntakeArmfuelIntakeArmRight;
     public static CANTalon fuelIntakeArmfuelIntakeArmLeft;
     public static Solenoid fuelIntakeArmfuelIntakeArmRightS;
@@ -113,9 +112,10 @@ public class RobotMap {
         targetingLEDtargetingFrontLED = new Solenoid(1, 0);
         LiveWindow.addActuator("TargetingLED", "targetingFrontLED", targetingLEDtargetingFrontLED);
         
-        gearLoadergearPusher = new Solenoid(1, 1);
-        LiveWindow.addActuator("GearLoader", "gearPusher", gearLoadergearPusher);
-        
+		// GEAR LOADER
+		gearLoader_pusher = new Solenoid(1, 1);
+		LiveWindow.addActuator("GearLoader", "gearPusher", gearLoader_pusher);
+		
         fuelIntakeArmfuelIntakeArmRight = new CANTalon(8);
         LiveWindow.addActuator("FuelIntakeArm", "fuelIntakeArmRight", fuelIntakeArmfuelIntakeArmRight);
         
