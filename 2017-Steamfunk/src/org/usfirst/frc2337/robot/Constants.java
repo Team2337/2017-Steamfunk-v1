@@ -13,4 +13,7 @@ public class Constants {
 	public final double kChassisPID_MoveSensitivity = 1.0;
 	public final double kChassisPID_TurnSensitivity = 1.0;
 	
+	//Agitator
+	public final double kFuelAgitatorSpeed = 0.5;
+	
 }
