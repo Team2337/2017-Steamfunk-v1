@@ -107,8 +107,8 @@ public class RobotMap {
         targetingLEDtargetingFrontLED = new Solenoid(1, 0);
         LiveWindow.addActuator("TargetingLED", "targetingFrontLED", targetingLEDtargetingFrontLED);
         
-        gearLoadergearPusher = new Solenoid(1, 1);
-        LiveWindow.addActuator("GearLoader", "gearPusher", gearLoadergearPusher);
+        gearLoader_pusher = new Solenoid(1, 1);
+        LiveWindow.addActuator("GearLoader", "gearPusher", gearLoader_pusher);
         
 		// FUEL INTAKE ARM
 		fuelIntakeArm_solenoid = new Solenoid(1, 3);
@@ -120,12 +120,13 @@ public class RobotMap {
 		
 		// FUEL INTAKE
 		
-        
-        fuelShooter_motorRight.setInverted(true);
-        fuelShooter_motorLeft.setInverted(true);
+       
         
         fuelShooter_motorRight = new CANTalon(13);
         fuelShooter_motorLeft = new CANTalon(12);
+        
+        fuelShooter_motorRight.setInverted(true);
+        fuelShooter_motorLeft.setInverted(true);
         // FUEL SHOOTER
         
         LiveWindow.addActuator("FuelShooter", "fuelShooterLeft", fuelShooter_motorLeft);
