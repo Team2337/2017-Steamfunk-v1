@@ -19,9 +19,7 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class RopeClimber_runWhileHeld extends Command {
-	
-	final Joystick driverJoystick = Robot.oi.getDriverJoystick();
-	
+
 	public RopeClimber_runWhileHeld() {
 		requires(Robot.ropeClimber);
 	}
