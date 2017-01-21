@@ -6,32 +6,31 @@ import org.usfirst.frc2337.robot.commands.*;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-
 /**
  *
  */
-public class GearLoader extends Subsystem {
+public class HopperTrigger extends Subsystem {
 	
-	private final Solenoid gearPusher = RobotMap.gearLoader_pusher;
+	public final Solenoid trigger = RobotMap.hopperTrigger_solenoid;
 	
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
 	public void initDefaultCommand() {
-		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
-	}
+        // Set the default command for a subsystem here.
+        //setDefaultCommand(new MySpecialCommand());
+		
+    }
 	
 	public boolean isExtended() {
-		return gearPusher.get();
+		return trigger.get();
 	}
 	
 	public void extend() {
-		gearPusher.set(true);
+		trigger.set(true);
 	}
 	
 	public void retract() {
-		gearPusher.set(false);
+		trigger.set(false);
 	}
 }
-
