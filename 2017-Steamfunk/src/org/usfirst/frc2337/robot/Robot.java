@@ -15,6 +15,8 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc2337.robot.commands.*;
 import org.usfirst.frc2337.robot.subsystems.*;
@@ -46,6 +48,7 @@ public class Robot extends IterativeRobot {
 	public static FuelAgitator fuelAgitator;
 	public static HopperTrigger hopperTrigger;
 	
+	SendableChooser<Command> autonSelector;
 	Command autonomousCommand;
 	
 	/**
@@ -77,8 +80,15 @@ public class Robot extends IterativeRobot {
 		// pointers. Bad news. Don't move it.
 		oi = new OI();
 		
-		// instantiate the command used for the autonomous period
-		autonomousCommand = new _ExampleCommand();
+		autonSelector = new SendableChooser<Command>();
+		autonSelector.addDefault("Do Nothing", new _DoNothing());
+		autonSelector.addObject("Cross The Line", new auton_crossTheLine());
+		autonSelector.addObject("Gear Left", new _DoNothing());
+		autonSelector.addObject("Gear Middle", new _DoNothing());
+		autonSelector.addObject("Gear Right", new _DoNothing());
+		autonSelector.addObject("Shoot 40 Red", new _DoNothing());
+		autonSelector.addObject("Shoot 40 Blue", new _DoNothing());
+		SmartDashboard.putData("Auton Selector", autonSelector);
 	}
 	
 	/**
@@ -98,6 +108,7 @@ public class Robot extends IterativeRobot {
 		allInit();
 		
 		// schedule the autonomous command (example)
+		autonomousCommand = autonSelector.getSelected();
 		if (autonomousCommand != null) autonomousCommand.start();
 	}
 	
