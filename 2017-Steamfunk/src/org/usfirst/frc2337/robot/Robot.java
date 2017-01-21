@@ -83,10 +83,13 @@ public class Robot extends IterativeRobot {
 		autonSelector = new SendableChooser<Command>();
 		autonSelector.addDefault("Do Nothing", new _DoNothing());
 		autonSelector.addObject("Cross The Line", new auton_crossTheLine());
-		autonSelector.addObject("Gear Left", new _DoNothing());
-		autonSelector.addObject("Gear Middle", new _DoNothing());
-		autonSelector.addObject("Gear Right", new _DoNothing());
+		autonSelector.addObject("Red Gear Left", new _DoNothing());
+		autonSelector.addObject("Red Gear Middle", new _DoNothing());
+		autonSelector.addObject("Red Gear Right", new _DoNothing());
 		autonSelector.addObject("Shoot 40 Red", new _DoNothing());
+		autonSelector.addObject("Blue Gear Left", new _DoNothing());
+		autonSelector.addObject("Blue Gear Middle", new _DoNothing());
+		autonSelector.addObject("Blue Gear Right", new _DoNothing());
 		autonSelector.addObject("Shoot 40 Blue", new _DoNothing());
 		SmartDashboard.putData("Auton Selector", autonSelector);
 	}
