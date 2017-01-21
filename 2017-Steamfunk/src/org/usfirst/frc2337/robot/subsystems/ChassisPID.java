@@ -32,7 +32,7 @@ public class ChassisPID extends PIDSubsystem {
 		setInputRange(0, 360);
 		getPIDController().setContinuous(true);
 
-		LiveWindow.addActuator("ChassisPID Gyro", "Gyro", analogGyro);
+		LiveWindow.addActuator("ChassisPID Gyro", "Gyro", gyro);
 		LiveWindow.addActuator("ChassisPID", "PIDSubsystem Controller", getPIDController());
 		
 		// Disable brake mode on the motors
