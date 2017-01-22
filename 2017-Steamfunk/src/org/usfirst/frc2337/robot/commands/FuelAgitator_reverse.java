@@ -5,23 +5,30 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc2337.robot.Robot;
 
 /**
- *
+ * This command will reverse the fuel agitator for 2 seconds and then have it continue spinning 
+ * the way it did before.
+ *@author Bryce 
  */
 public class FuelAgitator_reverse extends Command {
-	// DECLARE VARIABLES
-	 
-	
+	public double reversedSpeed = Robot.constants.kFuelAgitator_DefaultReverseSpeed;
+	public double speed = Robot.constants.kFuelAgitator_DefaultEnableSpeed;
+	public FuelAgitator_reverse(double speed, double reversedSpeed) {
+	      
+	    	requires(Robot.fuelAgitator);
+	    	this.speed = speed;
+	    	this.reversedSpeed = reversedSpeed;
+	    }
+
     public FuelAgitator_reverse() {
         // INITIALIZE VARIABLES
-    	
-    	
-        // DECLARE REQUIRES
-    	
-    	
+    	requires(Robot.fuelAgitator);
+
     }
 
 	// Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.fuelAgitator.reverseFuelDeGunker(reversedSpeed);
+    	setTimeout(0.75);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -30,11 +37,12 @@ public class FuelAgitator_reverse extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return isTimedOut();
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.fuelAgitator.startFuelDeGunker(speed);
     }
 
     // Called when another command which requires one or more of the same

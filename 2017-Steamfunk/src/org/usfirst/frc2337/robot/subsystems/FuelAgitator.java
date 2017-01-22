@@ -21,30 +21,30 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 
 /**
- *
+ *@author Bryce
  */
 public class FuelAgitator extends Subsystem {
-	
-	private final CANTalon fuelDeGunker = RobotMap.fuelAgitator_motor;
-	
-	double speed = Robot.constants.kFuelAgitatorSpeed;
-	
-	// Put methods for controlling this subsystem
-	// here. Call these from Commands.
 
-	public void initDefaultCommand() {
-		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
-		
-		setDefaultCommand(new FuelAgitator_run());
-	}
-	
-	public void startFuelDeGunker() {
-		fuelDeGunker.set(speed);
-	}
-	
-	public void stopFuelDeGunker() {
-		fuelDeGunker.set(0);
-	}
+    
+    private final CANTalon fuelDeGunker = RobotMap.fuelAgitatorfuelDeGunker;
+    double speed = Robot.constants.kFuelAgitator_DefaultEnableSpeed;
+    double reverseSpeed = Robot.constants.kFuelAgitator_DefaultReverseSpeed;
+    public void initDefaultCommand() {
+    	Robot.fuelAgitator.startFuelDeGunker(speed);
+    	
+    }
+    
+    public void startFuelDeGunker(double speed) {
+    	fuelDeGunker.set(speed);
+    }
+    
+    public void stopFuelDeGunker() {
+    	fuelDeGunker.set(0);
+    }
+    public void reverseFuelDeGunker(double reverseSpeed){
+    	
+    }
+    
+    
+   
 }
-
