@@ -161,4 +161,15 @@ public class Robot extends IterativeRobot {
 	public void allPeriodic() {
 		
 	}
+	
+	public void robotPeriodic() {
+		SmartDashboard.putNumber("Get Angle", RobotMap.chassisPID_gyro.getAngle());
+		SmartDashboard.putNumber("Get Compass Heading", RobotMap.chassisPID_gyro.getCompassHeading());
+		SmartDashboard.putNumber("Get Yaw", RobotMap.chassisPID_gyro.getYaw());
+		SmartDashboard.putNumber("Get Setpoint", Robot.chassisPID.getSetpoint());
+		SmartDashboard.putNumber("Get Output", Robot.chassisPID.getPIDController().get());
+		SmartDashboard.putNumber("Get PIDGET", RobotMap.chassisPID_gyro.pidGet());
+		SmartDashboard.putNumber("Get fused heading", RobotMap.chassisPID_gyro.getFusedHeading());
+
+	}
 }

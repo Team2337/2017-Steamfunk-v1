@@ -26,12 +26,13 @@ public class autonChassis_driveForTime extends Command {
 
 	// Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.chassisPID.arcadeDrive(speed, 0);
+
     	setTimeout(time);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.chassisPID.arcadeDrive(speed, 0);
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -29,8 +30,9 @@ public class ChassisPID extends PIDSubsystem {
 		// PID LOOP
 		super("ChassisPID", 1.0, 0.0, 0.0);
 		setAbsoluteTolerance(1); //1 degree
-		setInputRange(0, 360);
+		//setInputRange(0, 360);
 		getPIDController().setContinuous(true);
+		enable();
 
 		LiveWindow.addActuator("ChassisPID Gyro", "Gyro", gyro);
 		LiveWindow.addActuator("ChassisPID", "PIDSubsystem Controller", getPIDController());
@@ -98,14 +100,16 @@ public class ChassisPID extends PIDSubsystem {
 		// Return your input value for the PID loop
 		// e.g. a sensor, like a potentiometer:
 		// yourPot.getAverageVoltage() / kYourMaxVoltage;
-		
-		return getGyroYaw(); //Convert from continuous scale (360 -> 361) to rollover scale (360 -> 1).
+		return RobotMap.chassisPID_gyro.getFusedHeading();
+		//return getGyroYaw(); //Convert from continuous scale (360 -> 361) to rollover scale (360 -> 1).
 		
 	}
 	
 	protected void usePIDOutput(double output) {
 		// Use output to drive your system, like a motor
-		// e.g. yourMotor.set(output);
+		// e.g. yourMotor.set(output);'
+		robotDrive.arcadeDrive(0, output);
+		SmartDashboard.putNumber("PID OUTPUT", output);
 		
 	}
 }

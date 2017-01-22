@@ -17,4 +17,6 @@ public class Constants {
 	public final double kFuelShooter_IncrementSpeed = 0.05;
 	
 	public final double kFuelIntake_IntakeSpeed = 1.0;
+
+	
 }
