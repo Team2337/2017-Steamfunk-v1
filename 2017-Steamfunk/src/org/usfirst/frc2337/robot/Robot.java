@@ -74,6 +74,7 @@ public class Robot extends IterativeRobot {
 		fuelAgitator = new FuelAgitator();
 		hopperTrigger = new HopperTrigger();
 		
+		
 		// OI must be constructed after subsystems. If the OI creates Commands
 		//(which it very likely will), subsystems are not guaranteed to be
 		// constructed yet. Thus, their requires() statements may grab null
@@ -82,7 +83,8 @@ public class Robot extends IterativeRobot {
 		
 		autonSelector = new SendableChooser<Command>();
 		autonSelector.addDefault("Do Nothing", new _DoNothing());
-		autonSelector.addObject("Cross The Line", new auton_crossTheLine());
+		//autonSelector.addObject("Cross The Line", new auton_crossTheLine());
+		autonSelector.addObject("Cross The Line", new Auton_turnGyro(90));
 		autonSelector.addObject("Red Gear Left", new _DoNothing());
 		autonSelector.addObject("Red Gear Middle", new _DoNothing());
 		autonSelector.addObject("Red Gear Right", new _DoNothing());
@@ -168,6 +170,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Get Yaw", RobotMap.chassisPID_gyro.getYaw());
 		SmartDashboard.putNumber("Get Setpoint", Robot.chassisPID.getSetpoint());
 		SmartDashboard.putNumber("Get Output", Robot.chassisPID.getPIDController().get());
+		
 		SmartDashboard.putNumber("Get PIDGET", RobotMap.chassisPID_gyro.pidGet());
 		SmartDashboard.putNumber("Get fused heading", RobotMap.chassisPID_gyro.getFusedHeading());
 

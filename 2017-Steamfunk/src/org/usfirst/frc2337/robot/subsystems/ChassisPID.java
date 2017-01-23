@@ -1,5 +1,6 @@
 package org.usfirst.frc2337.robot.subsystems;
 
+import org.usfirst.frc2337.robot.Robot;
 import org.usfirst.frc2337.robot.RobotMap;
 import org.usfirst.frc2337.robot.commands.*;
 
@@ -7,6 +8,8 @@ import com.ctre.CANTalon;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
+//import edu.wpi.first.wpilibj.PIDSourceType;
+import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -28,14 +31,21 @@ public class ChassisPID extends PIDSubsystem {
 	// Initialize your subsystem here
 	public ChassisPID() {
 		// PID LOOP
-		super("ChassisPID", 1.0, 0.0, 0.0);
-		setAbsoluteTolerance(1); //1 degree
-		//setInputRange(0, 360);
+		// change p to 0.03 (from 1.0)
+		super("ChassisPID", .05, 0.0, 0.0);
+		setAbsoluteTolerance(2.0); //1 degree
+		setInputRange(-180.0f, 180.0f); // add
+		setOutputRange (-.6,.6); // add 
 		getPIDController().setContinuous(true);
 		enable();
+		//Sthis.setPIDSourceType(PIDSourceType.kRate);
+		gyro.setPIDSourceType(PIDSourceType.kRate);
 
-		LiveWindow.addActuator("ChassisPID Gyro", "Gyro", gyro);
+
+		//LiveWindow.addActuator("ChassisPID Gyro", "Gyro", gyro);
+		LiveWindow.addSensor("ChassisPID Gyro", "Gyro", gyro);
 		LiveWindow.addActuator("ChassisPID", "PIDSubsystem Controller", getPIDController());
+		
 		
 		// Disable brake mode on the motors
 		setBrakeMode(true);
@@ -100,7 +110,8 @@ public class ChassisPID extends PIDSubsystem {
 		// Return your input value for the PID loop
 		// e.g. a sensor, like a potentiometer:
 		// yourPot.getAverageVoltage() / kYourMaxVoltage;
-		return RobotMap.chassisPID_gyro.getFusedHeading();
+		//return RobotMap.chassisPID_gyro.getYaw();
+		return this.getGyroYaw();
 		//return getGyroYaw(); //Convert from continuous scale (360 -> 361) to rollover scale (360 -> 1).
 		
 	}
