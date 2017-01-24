@@ -4,7 +4,10 @@ import org.usfirst.frc2337.libraries.JoystickAnalogButton;
 import org.usfirst.frc2337.libraries.JoystickPOVButton;
 import org.usfirst.frc2337.robot.commands.*;
 
+import org.usfirst.frc2337.robot.ImprovedJoystick;
+
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -41,7 +44,9 @@ public class OI {
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
 	
-	Joystick				driverJoystick			= new Joystick(0);
+	public static ImprovedJoystick xbox;
+	
+	public static ImprovedJoystick				driverJoystick			= new ImprovedJoystick(0);
 	JoystickButton			driver_GreenA			= new JoystickButton(driverJoystick, 1);
 	JoystickButton			driver_RedB				= new JoystickButton(driverJoystick, 2);
 	JoystickButton			driver_BlueX			= new JoystickButton(driverJoystick, 3);
@@ -167,6 +172,23 @@ public class OI {
 	
 	public Joystick getOperatorControls() {
 		return operatorControls;
+	}
+	/**
+	 * <p style="color:blue;"><strong>Function enables/disables controller vibration.</strong></p>
+	 * <p style="color:blue;"><i>Call with Robot.OI.rumble(OnOff)</i></p>
+	 * @author SomeNerd
+	 * @param onOff Set true to vibrate controller, false to disable
+	 */
+	
+	public void rumble(boolean onOff){
+		if(onOff){
+			driverJoystick.setRumble(RumbleType.kLeftRumble, 1);
+			driverJoystick.setRumble(RumbleType.kRightRumble, 1);
+		}
+		else{
+			driverJoystick.setRumble(RumbleType.kLeftRumble, 0);
+			driverJoystick.setRumble(RumbleType.kRightRumble, 0);
+		}
 	}
 }
 
