@@ -8,13 +8,16 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package org.usfirst.frc2337.robot;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc2337.robot.commands.*;
 import org.usfirst.frc2337.robot.subsystems.*;
@@ -27,11 +30,11 @@ import org.usfirst.frc2337.robot.subsystems.*;
  * directory.
  */
 public class Robot extends IterativeRobot {
-	
+
 	public static OI oi;
-	
+
 	public static Constants constants;
-	
+
 	public static ChassisPID chassisPID;
 	public static ChassisCamera chassisCamera;
 	public static MainLED mainLED;
@@ -45,9 +48,9 @@ public class Robot extends IterativeRobot {
 	public static FuelLoader fuelLoader;
 	public static FuelAgitator fuelAgitator;
 	public static HopperTrigger hopperTrigger;
-	
+	public static UsbCamera cam0;
 	Command autonomousCommand;
-	
+
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -79,28 +82,43 @@ public class Robot extends IterativeRobot {
 		
 		// instantiate the command used for the autonomous period
 		autonomousCommand = new _ExampleCommand();
+		
+		
+		/* Add Camera's */
+		cam0 = CameraServer.getInstance().startAutomaticCapture("cam0", "/dev/video0");
+		int exposure = (int) constants.kTargetingCamera_Exposure;
+		int brightness = (int) constants.kTargetingCamera_Brightness;
+		System.out.println(exposure);
+		if (brightness <= 100 && brightness >=0)
+			cam0.setBrightness(brightness);
+
+		if (exposure <=100 && exposure >= 0)
+			cam0.setExposureManual(exposure);
+		
 	}
-	
+
 	/**
-	 * This function is called when the disabled button is hit.
-	 * You can use it to reset subsystems before shutting down.
+	 * This function is called when the disabled button is hit. You can use it
+	 * to reset subsystems before shutting down.
 	 */
-	public void disabledInit(){
+	public void disabledInit() {
 		allInit();
+		
 	}
-	
+
 	public void disabledPeriodic() {
 		allPeriodic();
 		Scheduler.getInstance().run();
 	}
-	
+
 	public void autonomousInit() {
 		allInit();
-		
+
 		// schedule the autonomous command (example)
-		if (autonomousCommand != null) autonomousCommand.start();
+		if (autonomousCommand != null)
+			autonomousCommand.start();
 	}
-	
+
 	/**
 	 * This function is called periodically during autonomous
 	 */
@@ -108,17 +126,18 @@ public class Robot extends IterativeRobot {
 		allPeriodic();
 		Scheduler.getInstance().run();
 	}
-	
+
 	public void teleopInit() {
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		if (autonomousCommand != null) autonomousCommand.cancel();
-		
+		if (autonomousCommand != null)
+			autonomousCommand.cancel();
+
 		allInit();
 	}
-	
+
 	/**
 	 * This function is called periodically during operator control
 	 */
@@ -126,25 +145,38 @@ public class Robot extends IterativeRobot {
 		allPeriodic();
 		Scheduler.getInstance().run();
 	}
-	
+
 	/**
 	 * This function is called periodically during test mode
 	 */
 	public void testPeriodic() {
 		LiveWindow.run();
 	}
-	
+
 	/**
 	 * This function is called during all init functions except robotInit().
 	 */
 	public void allInit() {
-		
+
 	}
-	
+
 	/**
 	 * This function is called during all periodic functions.
 	 */
 	public void allPeriodic() {
 		
+		/* Camera Exposure and Brightness 
+		 *  Testing Mode
+		 
+		
+		int exposure = Preferences.getInstance().getInt("camExposure", 50);
+		int brightness = Preferences.getInstance().getInt("camBrightness", 50);
+		System.out.println(exposure);
+		if (brightness <= 100 && brightness >=0)
+			cam0.setBrightness(brightness);
+
+		if (exposure <=100 && exposure >= 0)
+			cam0.setExposureManual(exposure);
+		*/
 	}
 }

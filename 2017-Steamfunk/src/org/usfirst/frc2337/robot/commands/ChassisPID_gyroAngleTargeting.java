@@ -32,7 +32,7 @@ public class ChassisPID_gyroAngleTargeting extends PIDCommand {
 
 
 	protected double returnPIDInput() {
-		return RobotMap.gyro.pidGet();
+		return RobotMap.chassisPID_gyro.pidGet();
 	}
 
 	protected void usePIDOutput(double output) {
@@ -53,7 +53,7 @@ public class ChassisPID_gyroAngleTargeting extends PIDCommand {
 			if (mainCenter == 0) {
 				System.out.println("[Vision] This is not the target you are looking for, Move along...");
 			} else {
-				turnValue = centerx[0]; - centerpnt;		
+				turnValue = mainCenter - centerpnt;		
 				targetAngle = turnValue/Robot.constants.kTargetingCamera_GyroConversion;
 	
 				System.out.println("[Vision] TurnValues: FirstCenter "  + mainCenter + " - " + "Centerpoint " + centerpnt + " = " + turnValue);
@@ -72,7 +72,7 @@ public class ChassisPID_gyroAngleTargeting extends PIDCommand {
 	}
 
 	protected void end() {
-		System.out.println("[Vision] Done" + RobotMap.gyro.getAngle());
+		System.out.println("[Vision] Done" + RobotMap.chassisPID_gyro.getAngle());
 		
 		
 	}

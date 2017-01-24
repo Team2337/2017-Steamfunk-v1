@@ -27,9 +27,8 @@ public class ChassisPID extends PIDSubsystem {
 	// Initialize your subsystem here
 	public ChassisPID() {
 		// PID LOOP
-		super("ChassisPID", 1.0, 0.0, 0.0);
-		setAbsoluteTolerance(1); //1 degree
-		setInputRange(0, 360);
+		super("ChassisPID", 0.03, 0.0, 0.0);
+		setAbsoluteTolerance(0.2); //1 degree
 		getPIDController().setContinuous(true);
 
 		LiveWindow.addActuator("ChassisPID Gyro", "Gyro", gyro);

@@ -91,7 +91,7 @@ public class OI {
 	public OI() {
 
 		driver_GreenA			.whenPressed(new FuelIntake_toggle());
-		driver_RedB				.whenPressed(new _DoNothing());
+		driver_RedB				.whenPressed(new ChassisPID_gyroAngleTargeting());
 		driver_BlueX			.whenPressed(new HopperTrigger_extendWhileHeld());
 		driver_YellowY			.whileHeld(new GearLoader_extendWhileHeld());
 		driver_BumperLeft		.whenPressed(new _DoNothing());
