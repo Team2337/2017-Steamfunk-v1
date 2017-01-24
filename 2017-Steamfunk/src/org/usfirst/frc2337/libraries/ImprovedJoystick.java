@@ -1,4 +1,4 @@
-package org.usfirst.frc2337.robot;
+package org.usfirst.frc2337.libraries;
 
 import edu.wpi.first.wpilibj.Joystick;
 

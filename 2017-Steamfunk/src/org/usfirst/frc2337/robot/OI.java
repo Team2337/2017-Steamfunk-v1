@@ -1,10 +1,9 @@
 package org.usfirst.frc2337.robot;
 
+import org.usfirst.frc2337.libraries.ImprovedJoystick;
 import org.usfirst.frc2337.libraries.JoystickAnalogButton;
 import org.usfirst.frc2337.libraries.JoystickPOVButton;
 import org.usfirst.frc2337.robot.commands.*;
-
-import org.usfirst.frc2337.robot.ImprovedJoystick;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
@@ -44,7 +43,6 @@ public class OI {
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
 	
-	public static ImprovedJoystick xbox;
 	
 	public static ImprovedJoystick				driverJoystick			= new ImprovedJoystick(0);
 	JoystickButton			driver_GreenA			= new JoystickButton(driverJoystick, 1);
@@ -68,7 +66,7 @@ public class OI {
 	JoystickPOVButton		driver_POVLeft			= new JoystickPOVButton(driverJoystick, 270);
 	JoystickPOVButton		driver_POVUpLeft		= new JoystickPOVButton(driverJoystick, 315);
 	
-	Joystick				operatorJoystick		= new Joystick(1);
+	Joystick				operatorJoystick		= new ImprovedJoystick(1);
 	/*JoystickButton			operator_GreenA			= new JoystickButton(operatorJoystick, 1);
 	JoystickButton			operator_RedB			= new JoystickButton(operatorJoystick, 2);
 	JoystickButton			operator_BlueX			= new JoystickButton(operatorJoystick, 3);
