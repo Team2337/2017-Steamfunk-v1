@@ -171,22 +171,5 @@ public class OI {
 	public Joystick getOperatorControls() {
 		return operatorControls;
 	}
-	/**
-	 * <p style="color:blue;"><strong>Function enables/disables controller vibration.</strong></p>
-	 * <p style="color:blue;"><i>Call with Robot.OI.rumble(OnOff)</i></p>
-	 * @author SomeNerd
-	 * @param onOff Set true to vibrate controller, false to disable
-	 */
-	
-	public void rumble(boolean onOff){
-		if(onOff){
-			driverJoystick.setRumble(RumbleType.kLeftRumble, 1);
-			driverJoystick.setRumble(RumbleType.kRightRumble, 1);
-		}
-		else{
-			driverJoystick.setRumble(RumbleType.kLeftRumble, 0);
-			driverJoystick.setRumble(RumbleType.kRightRumble, 0);
-		}
-	}
 }
 
