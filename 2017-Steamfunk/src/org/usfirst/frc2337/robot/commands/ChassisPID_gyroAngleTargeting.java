@@ -11,10 +11,11 @@ public class ChassisPID_gyroAngleTargeting extends PIDCommand {
 	public ChassisPID_gyroAngleTargeting() {
 		//chassis_TargetWithGyroPID(String name, double p, double i, double d)
 
-		super("chassis_TargetWithGyroPID", .175, 0, 0.02);
+		super("ChassisPID_gyroAngleTargeting", 0.052, 0.0025, 0.007);  //.009
+		getPIDController().setContinuous(true);
 		getPIDController().setAbsoluteTolerance(0.1);
-        getPIDController().setContinuous(false);
-        getPIDController().setOutputRange(-1, 1);
+        getPIDController().setOutputRange(-0.6, 0.6);
+        requires(Robot.chassis);
        // LiveWindow.addActuator("TargetPID", "PIDSubsystem Controller", getPIDController());
 	}
 	double[] defaultValue = new double[0];	
@@ -29,20 +30,24 @@ public class ChassisPID_gyroAngleTargeting extends PIDCommand {
 	double setPoint, turnValue, targetAngle;
 	public double mainCenter;
 
-
+	public double turnDeadband = 0.32;//32
 
 	protected double returnPIDInput() {
 		return RobotMap.chassisPID_gyro.pidGet();
 	}
 
 	protected void usePIDOutput(double output) {
-		Robot.chassisPID.arcadeDrive(0, output);
+		if(Math.abs(output) < turnDeadband) {
+			output = (output > 0 ? turnDeadband: -turnDeadband);
+		}
+		Robot.chassis.arcadeDrive(0, -output);
 		//RobotMap.chassisPIDchassisLeft1.set(-output);
 	}
 	
 	protected void initialize() {
 		this.setTimeout(timeout);
-		
+		RobotMap.chassisPID_gyro.reset();
+		/*
 		double[] centerx = RobotMap.gripTables.getNumberArray("centerX", defaultValue);
 		System.out.print("centerX: ");
 			for (double centerX : centerx) {
@@ -58,8 +63,10 @@ public class ChassisPID_gyroAngleTargeting extends PIDCommand {
 	
 				System.out.println("[Vision] TurnValues: FirstCenter "  + mainCenter + " - " + "Centerpoint " + centerpnt + " = " + turnValue);
 				System.out.println("[Vision] TargetAngle: TurnValue " + turnValue + " divided by " + Robot.constants.kTargetingCamera_GyroConversion + " equals " + targetAngle);
-				this.setSetpoint(targetAngle);
+				this.setSetpoint(15);
 			}
+		*/	
+		this.setSetpoint(20);
 		
 	}
 

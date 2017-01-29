@@ -9,12 +9,13 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 /**
  *
  */
-public class ChassisPID extends PIDSubsystem {
+public class Chassis extends Subsystem {
 	
 	private final CANTalon rightFront	= RobotMap.chassisPID_rightFront;
 	private final CANTalon rightRear	= RobotMap.chassisPID_rightRear;
@@ -25,23 +26,6 @@ public class ChassisPID extends PIDSubsystem {
 	private final AHRS gyro	= RobotMap.chassisPID_gyro;
 	
 	// Initialize your subsystem here
-	public ChassisPID() {
-		// PID LOOP
-		super("ChassisPID", 0.03, 0.0, 0.0);
-		setAbsoluteTolerance(0.2); //1 degree
-		getPIDController().setContinuous(true);
-
-		LiveWindow.addActuator("ChassisPID Gyro", "Gyro", gyro);
-		LiveWindow.addActuator("ChassisPID", "PIDSubsystem Controller", getPIDController());
-		
-		// Disable brake mode on the motors
-		setBrakeMode(true);
-		
-		// Use these to get going:
-		// setSetpoint() -  Sets where the PID controller should move the system to
-		// enable() - Enables the PID controller.
-	}
-
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 		//setDefaultCommand(new MySpecialCommand());
@@ -86,25 +70,10 @@ public class ChassisPID extends PIDSubsystem {
 	 * @return Yaw of gyro
 	 */
     public double getGyroYaw() {
-    	return gyro.getYaw();
+    	return gyro.getFusedHeading();
     }
 	
 	public void stopMotors() {
 		robotDrive.stopMotor();
-	}
-	
-	protected double returnPIDInput() {
-		// Return your input value for the PID loop
-		// e.g. a sensor, like a potentiometer:
-		// yourPot.getAverageVoltage() / kYourMaxVoltage;
-		
-		return getGyroYaw(); //Convert from continuous scale (360 -> 361) to rollover scale (360 -> 1).
-		
-	}
-	
-	protected void usePIDOutput(double output) {
-		// Use output to drive your system, like a motor
-		// e.g. yourMotor.set(output);
-		
 	}
 }

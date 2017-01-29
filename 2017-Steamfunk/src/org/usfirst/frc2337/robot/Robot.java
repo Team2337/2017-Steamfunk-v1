@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -35,7 +36,7 @@ public class Robot extends IterativeRobot {
 
 	public static Constants constants;
 
-	public static ChassisPID chassisPID;
+	public static Chassis chassis;
 	public static ChassisCamera chassisCamera;
 	public static MainLED mainLED;
 	public static RopeClimber ropeClimber;
@@ -60,7 +61,7 @@ public class Robot extends IterativeRobot {
 		
 		constants = new Constants();
 		
-		chassisPID = new ChassisPID();
+		chassis = new Chassis();
 		chassisCamera = new ChassisCamera();
 		mainLED = new MainLED();
 		ropeClimber = new RopeClimber();
@@ -168,15 +169,16 @@ public class Robot extends IterativeRobot {
 		/* Camera Exposure and Brightness 
 		 *  Testing Mode
 		 
-		
+		*/
 		int exposure = Preferences.getInstance().getInt("camExposure", 50);
 		int brightness = Preferences.getInstance().getInt("camBrightness", 50);
-		System.out.println(exposure);
+		//System.out.println(exposure);
 		if (brightness <= 100 && brightness >=0)
 			cam0.setBrightness(brightness);
 
 		if (exposure <=100 && exposure >= 0)
 			cam0.setExposureManual(exposure);
-		*/
+		SmartDashboard.putNumber("navX-fused", RobotMap.chassisPID_gyro.pidGet());
+		
 	}
 }

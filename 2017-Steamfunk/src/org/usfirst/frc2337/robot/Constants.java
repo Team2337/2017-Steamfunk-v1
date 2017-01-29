@@ -26,8 +26,8 @@ public class Constants {
 	public final double kTargetingCamera_Kp = .003;
 	public final double kTargetingCamera_DegreeConversion = 0.04;
 	
-	public final double kTargetingCamera_CenterPoint = 172;
-	public final double kTargetingCamera_GyroConversion = 4.5;
+	public final double kTargetingCamera_CenterPoint = 78;
+	public final double kTargetingCamera_GyroConversion = 3.5;
 	
 	public final double kTargetingCamera_Exposure = 1.0;
 	public final double kTargetingCamera_Brightness = 0.0;
