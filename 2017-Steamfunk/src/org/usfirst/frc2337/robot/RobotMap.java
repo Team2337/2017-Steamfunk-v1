@@ -121,10 +121,11 @@ public class RobotMap {
 		LiveWindow.addActuator("FuelIntake", "fuelIntakeLeft", fuelIntake_motor);
 		
 		// FUEL INTAKE
-		
+		fuelShooter_motorLeft = new CANTalon(13);
+        LiveWindow.addActuator("FuelShooter", "fuelShooterLeft", fuelShooter_motorLeft);
         
-        fuelShooterfuelShooterRight = new CANTalon(13);
-        LiveWindow.addActuator("FuelShooter", "fuelShooterRight", fuelShooterfuelShooterRight);
+		fuelShooter_motorRight = new CANTalon(13);
+        LiveWindow.addActuator("FuelShooter", "fuelShooterRight", fuelShooter_motorRight);
         
         fuelLoaderfuelLoader = new CANTalon(14);
         LiveWindow.addActuator("FuelLoader", "fuelLoader", fuelLoaderfuelLoader);

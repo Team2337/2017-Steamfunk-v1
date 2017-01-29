@@ -12,9 +12,12 @@ public class Constants {
 	public final double kChassisPID_DriverDeadband = 0.1;
 	public final double kChassisPID_MoveSensitivity = 1.0;
 	public final double kChassisPID_TurnSensitivity = 1.0;
+	public final double kChassisPID_ReverseDrive = -1.0;
 	
 	public final double kFuelShooter_DefaultSpeed = 0.7;
 	public final double kFuelShooter_IncrementSpeed = 0.05;
 	
 	public final double kFuelIntake_IntakeSpeed = 0.5;
+	
+	
 }

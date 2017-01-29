@@ -1,9 +1,12 @@
 package org.usfirst.frc2337.robot.subsystems;
 
+import org.usfirst.frc2337.robot.Robot;
 import org.usfirst.frc2337.robot.RobotMap;
 import org.usfirst.frc2337.robot.commands.*;
 
 import com.ctre.CANTalon;
+//import com.kauailabs.navx.frc.AHRS;
+
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
@@ -19,20 +22,19 @@ public class ChassisPID extends PIDSubsystem {
 	private final CANTalon leftFront	= RobotMap.chassisPID_leftFront;
 	private final CANTalon leftRear		= RobotMap.chassisPID_leftRear;
 	private final RobotDrive robotDrive	= RobotMap.chassisPID_RobotDrive;
-	
-	private final AnalogGyro analogGyro	= RobotMap.chassisPID_analogGyro;
+	public boolean reverse = false;
+	//private final AHRS gyro	= RobotMap.chassisPID_gyro;
 	
 	// Initialize your subsystem here
 	public ChassisPID() {
 		// PID LOOP
-		super("ChassisPID", 1.0, 0.0, 0.0);
-		setAbsoluteTolerance(1); //1 degree
-		setInputRange(0, 360);
+		super("ChassisPID", 0.03, 0.0, 0.0);
+		setAbsoluteTolerance(0.2); //1 degree
 		getPIDController().setContinuous(true);
 
-		LiveWindow.addActuator("ChassisPID Gyro", "Gyro", analogGyro);
+		//LiveWindow.addActuator("ChassisPID Gyro", "Gyro", gyro);
 		LiveWindow.addActuator("ChassisPID", "PIDSubsystem Controller", getPIDController());
-		
+	
 		// Disable brake mode on the motors
 		setBrakeMode(true);
 		
@@ -77,24 +79,17 @@ public class ChassisPID extends PIDSubsystem {
 	/**
 	 * Resets the current angle of the Gyro to 0.
 	 */
-	public void resetGyro() {
-		analogGyro.reset();
+	/*public void resetGyro() {
+		gyro.reset();
 	}
-	
 	/**
-	 * Gets the current angle of the Gyro from 0 to 360 degrees
+	 * Get yaw angle of gyro
+	 * @return Yaw of gyro
 	 */
-	public double getGyroAngle() {
-		return (analogGyro.getAngle() % 360);
-	}
-	
-	/**
-	 * Gets the current angle of the Gyro on a continuous scale (over 360 degrees)
-	 */
-	public double getGyroAngleContinuous() {
-		return analogGyro.getAngle();
-	}
-	
+   /* public double getGyroYaw() {
+    	return gyro.getYaw();
+    }
+	*/
 	public void stopMotors() {
 		robotDrive.stopMotor();
 	}
@@ -104,7 +99,7 @@ public class ChassisPID extends PIDSubsystem {
 		// e.g. a sensor, like a potentiometer:
 		// yourPot.getAverageVoltage() / kYourMaxVoltage;
 		
-		return getGyroAngle(); //Convert from continuous scale (360 -> 361) to rollover scale (360 -> 1).
+		return (0); //Convert from continuous scale (360 -> 361) to rollover scale (360 -> 1).
 		
 	}
 	
@@ -113,4 +108,16 @@ public class ChassisPID extends PIDSubsystem {
 		// e.g. yourMotor.set(output);
 		
 	}
+	 public void setReverse() {
+		 reverse = true;
+		 
+		 
+	    /*	rightFront.set(Robot.constants.kChassisPID_MoveSensitivity * reverseSpeed);
+	    	rightRear.set(Robot.constants.kChassisPID_MoveSensitivity * reverseSpeed);
+	    	leftFront.set(Robot.constants.kChassisPID_MoveSensitivity * reverseSpeed);
+	    	leftRear.set(Robot.constants.kChassisPID_MoveSensitivity * reverseSpeed);*/
+	    }
+	 public void setNormal() {
+		 reverse = false;
+	 }
 }
