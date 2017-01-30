@@ -6,6 +6,7 @@ import org.usfirst.frc2337.robot.commands.*;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
@@ -94,7 +95,7 @@ public class OI {
 		driver_RedB				.whenPressed(new _DoNothing());
 		driver_BlueX			.whenPressed(new HopperTrigger_extendWhileHeld());
 		driver_YellowY			.whileHeld(new GearLoader_extendWhileHeld());
-		driver_BumperLeft		.whenPressed(new _DoNothing());
+		driver_BumperLeft		.whenPressed(new Auton_turnGyro(45)); 
 		driver_BumperRight		.whenPressed(new _DoNothing());
 		driver_Back				.whenPressed(new _DoNothing());
 		driver_Start			.whenPressed(new _DoNothing());
@@ -110,6 +111,9 @@ public class OI {
 	    driver_POVDownLeft		.whenPressed(new _DoNothing()); 
 	    driver_POVLeft			.whenPressed(new FuelShooter_stopShooter()); 
 	    driver_POVUpLeft		.whenPressed(new _DoNothing()); 
+	    
+	    SmartDashboard.putData("ChassisPID_drive", new Auton_DriveForwardGyroWithEncoder());
+	
 		
 		/*operator_GreenA			.whenPressed(new _DoNothing());
 		operator_RedB			.whenPressed(new _DoNothing());

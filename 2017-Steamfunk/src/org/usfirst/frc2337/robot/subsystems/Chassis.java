@@ -12,13 +12,14 @@ import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class ChassisPID extends PIDSubsystem {
+public class Chassis extends Subsystem {
 	
 	private final CANTalon rightFront	= RobotMap.chassisPID_rightFront;
 	private final CANTalon rightRear	= RobotMap.chassisPID_rightRear;
@@ -27,33 +28,7 @@ public class ChassisPID extends PIDSubsystem {
 	private final RobotDrive robotDrive	= RobotMap.chassisPID_RobotDrive;
 	
 	private final AHRS gyro	= RobotMap.chassisPID_gyro;
-	
-	// Initialize your subsystem here
-	public ChassisPID() {
-		// PID LOOP
-		// change p to 0.03 (from 1.0)
-		super("ChassisPID", .05, 0.0, 0.0);
-		setAbsoluteTolerance(2.0); //1 degree
-		setInputRange(-180.0f, 180.0f); // add
-		setOutputRange (-.6,.6); // add 
-		getPIDController().setContinuous(true);
-		enable();
-		//Sthis.setPIDSourceType(PIDSourceType.kRate);
-		gyro.setPIDSourceType(PIDSourceType.kRate);
 
-
-		//LiveWindow.addActuator("ChassisPID Gyro", "Gyro", gyro);
-		LiveWindow.addSensor("ChassisPID Gyro", "Gyro", gyro);
-		LiveWindow.addActuator("ChassisPID", "PIDSubsystem Controller", getPIDController());
-		
-		
-		// Disable brake mode on the motors
-		setBrakeMode(true);
-		
-		// Use these to get going:
-		// setSetpoint() -  Sets where the PID controller should move the system to
-		// enable() - Enables the PID controller.
-	}
 
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
@@ -99,28 +74,16 @@ public class ChassisPID extends PIDSubsystem {
 	 * @return Yaw of gyro
 	 */
     public double getGyroYaw() {
-    	return gyro.getYaw();
+    	//return gyro.getYaw();
+    	return gyro.getFusedHeading();
     }
 	
 	public void stopMotors() {
-		robotDrive.stopMotor();
+		Robot.chassis.stopMotors();
 	}
 	
-	protected double returnPIDInput() {
-		// Return your input value for the PID loop
-		// e.g. a sensor, like a potentiometer:
-		// yourPot.getAverageVoltage() / kYourMaxVoltage;
-		//return RobotMap.chassisPID_gyro.getYaw();
-		return this.getGyroYaw();
-		//return getGyroYaw(); //Convert from continuous scale (360 -> 361) to rollover scale (360 -> 1).
-		
+	public boolean isStopped() {
+		return !gyro.isMoving();
 	}
 	
-	protected void usePIDOutput(double output) {
-		// Use output to drive your system, like a motor
-		// e.g. yourMotor.set(output);'
-		robotDrive.arcadeDrive(0, output);
-		SmartDashboard.putNumber("PID OUTPUT", output);
-		
-	}
 }

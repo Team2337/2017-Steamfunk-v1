@@ -13,10 +13,13 @@ package org.usfirst.frc2337.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.PIDCommand;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 
 import org.usfirst.frc2337.robot.commands.*;
 import org.usfirst.frc2337.robot.subsystems.*;
@@ -34,7 +37,7 @@ public class Robot extends IterativeRobot {
 	
 	public static Constants constants;
 	
-	public static ChassisPID chassisPID;
+	public static Chassis chassis;
 	public static ChassisCamera chassisCamera;
 	public static MainLED mainLED;
 	public static RopeClimber ropeClimber;
@@ -48,8 +51,9 @@ public class Robot extends IterativeRobot {
 	public static FuelAgitator fuelAgitator;
 	public static HopperTrigger hopperTrigger;
 	
-	SendableChooser<Command> autonSelector;
+	
 	Command autonomousCommand;
+	SendableChooser<PIDCommand> autonSelector;
 	
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -60,7 +64,7 @@ public class Robot extends IterativeRobot {
 		
 		constants = new Constants();
 		
-		chassisPID = new ChassisPID();
+		chassis = new Chassis();
 		chassisCamera = new ChassisCamera();
 		mainLED = new MainLED();
 		ropeClimber = new RopeClimber();
@@ -81,19 +85,25 @@ public class Robot extends IterativeRobot {
 		// pointers. Bad news. Don't move it.
 		oi = new OI();
 		
-		autonSelector = new SendableChooser<Command>();
-		autonSelector.addDefault("Do Nothing", new _DoNothing());
+		 ///autonomousCommand = new Auton_turnGyro3(90);
+		
+		autonSelector = new SendableChooser<PIDCommand>();
+		//autonSelector.addDefault("Do Nothing", new _DoNothing());
+	
+		autonSelector.addDefault("Turn 90", new Auton_turnGyro(90));
 		//autonSelector.addObject("Cross The Line", new auton_crossTheLine());
-		autonSelector.addObject("Cross The Line", new Auton_turnGyro(90));
-		autonSelector.addObject("Red Gear Left", new _DoNothing());
-		autonSelector.addObject("Red Gear Middle", new _DoNothing());
-		autonSelector.addObject("Red Gear Right", new _DoNothing());
-		autonSelector.addObject("Shoot 40 Red", new _DoNothing());
-		autonSelector.addObject("Blue Gear Left", new _DoNothing());
-		autonSelector.addObject("Blue Gear Middle", new _DoNothing());
-		autonSelector.addObject("Blue Gear Right", new _DoNothing());
-		autonSelector.addObject("Shoot 40 Blue", new _DoNothing());
+	//	autonSelector.addObject("Red Gear Left", new _DoNothing());
+//		autonSelector.addObject("Red Gear Middle", new _DoNothing());
+		//autonSelector.addObject("Red Gear Right", new _DoNothing());
+	//	autonSelector.addObject("Shoot 40 Red", new _DoNothing());
+//		autonSelector.addObject("Blue Gear Left", new _DoNothing());
+		//autonSelector.addObject("Blue Gear Middle", new _DoNothing());
+		//autonSelector.addObject("Blue Gear Right", new _DoNothing());
+	//	autonSelector.addObject("Shoot 40 Blue", new _DoNothing());
 		SmartDashboard.putData("Auton Selector", autonSelector);
+		
+	//	autonomousCommand = (PIDCommand) autonSelector.getSelected();
+		
 	}
 	
 	/**
@@ -113,8 +123,10 @@ public class Robot extends IterativeRobot {
 		allInit();
 		
 		// schedule the autonomous command (example)
-		autonomousCommand = autonSelector.getSelected();
+		autonomousCommand = (PIDCommand) autonSelector.getSelected();
+		//autonomousCommand= new Auton_turnGyro(90);
 		if (autonomousCommand != null) autonomousCommand.start();
+		
 	}
 	
 	/**
@@ -168,11 +180,11 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Get Angle", RobotMap.chassisPID_gyro.getAngle());
 		SmartDashboard.putNumber("Get Compass Heading", RobotMap.chassisPID_gyro.getCompassHeading());
 		SmartDashboard.putNumber("Get Yaw", RobotMap.chassisPID_gyro.getYaw());
-		SmartDashboard.putNumber("Get Setpoint", Robot.chassisPID.getSetpoint());
-		SmartDashboard.putNumber("Get Output", Robot.chassisPID.getPIDController().get());
+	
 		
 		SmartDashboard.putNumber("Get PIDGET", RobotMap.chassisPID_gyro.pidGet());
 		SmartDashboard.putNumber("Get fused heading", RobotMap.chassisPID_gyro.getFusedHeading());
+		//SmartDashboard.putData("TurnToAngle:45", new Auton_turnGyro3(45));
 
 	}
 }

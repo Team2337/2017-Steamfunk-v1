@@ -1,6 +1,7 @@
 package org.usfirst.frc2337.robot.commands;
 
 import org.usfirst.frc2337.robot.Robot;
+import org.usfirst.frc2337.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.Joystick;
@@ -17,7 +18,7 @@ public class ChassisPID_driveCheesy extends Command {
 	double turnSensitivity = Robot.constants.kChassisPID_TurnSensitivity;
 	
 	public ChassisPID_driveCheesy() {
-		requires(Robot.chassisPID);
+		requires(Robot.chassis);
 	}
 	
 	// Called just before this Command runs the first time
@@ -36,7 +37,10 @@ public class ChassisPID_driveCheesy extends Command {
 		moveSpeed *= moveSensitivity;
 		turnSpeed *= turnSensitivity;
 		
-    	Robot.chassisPID.arcadeDrive(moveSpeed, turnSpeed);
+
+    	RobotMap.chassisPID_RobotDrive.arcadeDrive(moveSpeed, turnSpeed);
+
+
 	}
 	
 	// Make this return true when this Command no longer needs to run execute()
