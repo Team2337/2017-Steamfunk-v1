@@ -3,11 +3,12 @@ package org.usfirst.frc2337.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 
 import org.usfirst.frc2337.robot.Robot;
+import org.usfirst.frc2337.robot.RobotMap;
 
 /**
  *
  */
-public class autonChassis_driveForTime extends Command {
+public class Auton_driveForTime extends Command {
 	
 	double time;
 	double speed;
@@ -17,8 +18,8 @@ public class autonChassis_driveForTime extends Command {
 	 * @param speed from -1 to 1
 	 * @param time in seconds
 	 */
-    public autonChassis_driveForTime(double speed, double time) {
-    	requires(Robot.chassisPID);
+    public Auton_driveForTime(double speed, double time) {
+    	requires(Robot.chassis);
     	
     	this.speed = speed;
     	this.time = time;
@@ -32,7 +33,7 @@ public class autonChassis_driveForTime extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.chassisPID.arcadeDrive(speed, 0);
+    	RobotMap.chassisPID_RobotDrive.arcadeDrive(speed, 0);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -42,7 +43,7 @@ public class autonChassis_driveForTime extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.chassisPID.stopMotors();
+    	RobotMap.chassisPID_RobotDrive.stopMotor();
     }
 
     // Called when another command which requires one or more of the same
