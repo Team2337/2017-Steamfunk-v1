@@ -170,6 +170,7 @@ public class Robot extends IterativeRobot {
 		 *  Testing Mode
 		 
 		*/
+		/*
 		int exposure = Preferences.getInstance().getInt("camExposure", 50);
 		int brightness = Preferences.getInstance().getInt("camBrightness", 50);
 		//System.out.println(exposure);
@@ -178,6 +179,7 @@ public class Robot extends IterativeRobot {
 
 		if (exposure <=100 && exposure >= 0)
 			cam0.setExposureManual(exposure);
+		*/
 		SmartDashboard.putNumber("navX-fused", RobotMap.chassisPID_gyro.pidGet());
 		
 	}

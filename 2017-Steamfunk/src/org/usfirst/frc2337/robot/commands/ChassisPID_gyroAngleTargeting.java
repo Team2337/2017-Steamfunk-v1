@@ -11,12 +11,13 @@ public class ChassisPID_gyroAngleTargeting extends PIDCommand {
 	public ChassisPID_gyroAngleTargeting() {
 		//chassis_TargetWithGyroPID(String name, double p, double i, double d)
 
-		super("ChassisPID_gyroAngleTargeting", 0.052, 0.0025, 0.007);  //.009
+		super("ChassisPID_gyroAngleTargeting", 0.03, 0.00002, 0.002);  //0.056, 0.00025, 0.002
 		getPIDController().setContinuous(true);
-		getPIDController().setAbsoluteTolerance(0.1);
-        getPIDController().setOutputRange(-0.6, 0.6);
+		getPIDController().setAbsoluteTolerance(0.5);//0.5
+        getPIDController().setOutputRange(-0.6, 0.6); //0.6
         requires(Robot.chassis);
        // LiveWindow.addActuator("TargetPID", "PIDSubsystem Controller", getPIDController());
+        
 	}
 	double[] defaultValue = new double[0];	
 
@@ -30,7 +31,7 @@ public class ChassisPID_gyroAngleTargeting extends PIDCommand {
 	double setPoint, turnValue, targetAngle;
 	public double mainCenter;
 
-	public double turnDeadband = 0.32;//32
+	public double turnDeadband = 0.38;//32-38-
 
 	protected double returnPIDInput() {
 		return RobotMap.chassisPID_gyro.pidGet();
@@ -66,7 +67,9 @@ public class ChassisPID_gyroAngleTargeting extends PIDCommand {
 				this.setSetpoint(15);
 			}
 		*/	
-		this.setSetpoint(20);
+		int point = 20;
+		this.setSetpoint(point);
+
 		
 	}
 
@@ -79,7 +82,7 @@ public class ChassisPID_gyroAngleTargeting extends PIDCommand {
 	}
 
 	protected void end() {
-		System.out.println("[Vision] Done" + RobotMap.chassisPID_gyro.getAngle());
+		System.out.println("[Vision] Done" + RobotMap.chassisPID_gyro.getFusedHeading());
 		
 		
 	}
