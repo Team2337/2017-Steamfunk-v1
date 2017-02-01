@@ -10,8 +10,8 @@ import org.usfirst.frc2337.robot.Robot;
  *@author Bryce 
  */
 public class FuelAgitator_reverse extends Command {
-	public double reversedSpeed = Robot.constants.kFuelAgitator_DefaultReverseSpeed;
-	public double speed = Robot.constants.kFuelAgitator_DefaultEnableSpeed;
+	public double reversedSpeed = Robot.constants.kAuger_DefaultReverseSpeed;
+	public double speed = Robot.constants.kAuger_DefaultEnableSpeed;
 	public FuelAgitator_reverse(double speed, double reversedSpeed) {
 	      
 	    	requires(Robot.fuelAgitator);

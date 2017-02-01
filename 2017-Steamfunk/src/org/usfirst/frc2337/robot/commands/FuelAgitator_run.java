@@ -10,7 +10,7 @@ import org.usfirst.frc2337.robot.Robot;
  */
 public class FuelAgitator_run extends Command {
 
-	 public double speed = Robot.constants.kFuelAgitator_DefaultEnableSpeed;
+	 public double speed = Robot.constants.kAuger_DefaultEnableSpeed;
 	 public FuelAgitator_run(double speed) {
 	        // INITIALIZE VARIABLES
 	    	requires(Robot.fuelAgitator);

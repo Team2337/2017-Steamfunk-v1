@@ -18,19 +18,20 @@ import org.usfirst.frc2337.robot.commands.*;
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
  *@author Bryce
  */
-public class FuelAgitator extends Subsystem {
+public class Auger extends Subsystem {
 
-    
     private final CANTalon fuelDeGunker = RobotMap.fuelAgitatorfuelDeGunker;
-    double speed = Robot.constants.kFuelAgitator_DefaultEnableSpeed;
-    double reverseSpeed = Robot.constants.kFuelAgitator_DefaultReverseSpeed;
+    double currentSpeed = Robot.constants.kAuger_DefaultEnableSpeed;
+    double incrementSpeed = Robot.constants.kAuger_IncrementSpeed;
+    double reverseSpeed = Robot.constants.kAuger_DefaultReverseSpeed;
     public void initDefaultCommand() {
-    	Robot.fuelAgitator.startFuelDeGunker(speed);
+    	Robot.fuelAgitator.startFuelDeGunker(currentSpeed);
     	
     }
     
@@ -44,6 +45,29 @@ public class FuelAgitator extends Subsystem {
     public void reverseFuelDeGunker(double reverseSpeed){
     	
     }
+    public void updateSpeed() {
+		fuelDeGunker.set(currentSpeed);
+		SmartDashboard.putNumber("Shooter Speed:", currentSpeed);
+	}
+	
+	public void setAugerSpeed(double speed) {
+		currentSpeed = speed;
+		if(currentSpeed > 1.0) currentSpeed = 1;
+		if(currentSpeed < 0.0) currentSpeed = 0;
+		updateSpeed();
+	}
+	
+	public void stopAuger() {
+		fuelDeGunker.set(0);
+	}
+	
+	public void incrementSpeed() {
+		setAugerSpeed(currentSpeed += incrementSpeed);
+	}
+	
+	public void decrementSpeed() {
+		setAugerSpeed(currentSpeed -= incrementSpeed);
+	}
     
     
    

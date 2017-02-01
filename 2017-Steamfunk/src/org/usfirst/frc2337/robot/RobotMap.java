@@ -43,7 +43,7 @@ public class RobotMap {
     
     
     public static RobotDrive chassisPID_RobotDrive;
-    public static AHRS chassisPID_gyro;
+    //public static AHRS chassisPID_gyro;
     public static Solenoid chassisTransmissionchassisTransmissionSolenoid;
     public static DoubleSolenoid powerTakeOffptoSolenoid;
     public static Solenoid mainLEDfeedbackLED;
@@ -111,7 +111,7 @@ public class RobotMap {
 		chassisPID_RobotDrive.setMaxOutput(1.0);
 
 
-		LiveWindow.addSensor("ChassisPID", "gyro", chassisPID_gyro);
+		//LiveWindow.addSensor("ChassisPID", "gyro", chassisPID_gyro);
         
         mainLEDfeedbackLED = new Solenoid(0, 3);
         LiveWindow.addActuator("MainLED", "feedbackLED", mainLEDfeedbackLED);
@@ -168,7 +168,7 @@ public class RobotMap {
             /* Communicate w/navX MXP via the MXP SPI Bus.                                     */
             /* Alternatively:  I2C.Port.kMXP, SerialPort.Port.kMXP or SerialPort.Port.kUSB     */
             /* See http://navx-mxp.kauailabs.com/guidance/selecting-an-interface/ for details. */
-        	chassisPID_gyro = new AHRS(SerialPort.Port.kMXP);
+        	//chassisPID_gyro = new AHRS(SerialPort.Port.kMXP);
         } catch (RuntimeException ex ) {
             DriverStation.reportError("Instantiating navX-MXP failed:  " + ex.getMessage(), true);
         }

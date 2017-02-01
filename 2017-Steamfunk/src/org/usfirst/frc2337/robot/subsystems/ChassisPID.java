@@ -20,7 +20,7 @@ public class ChassisPID extends PIDSubsystem {
 	private final CANTalon leftRear		= RobotMap.chassisPID_leftRear;
 	private final RobotDrive robotDrive	= RobotMap.chassisPID_RobotDrive;
 	
-	private final AnalogGyro analogGyro	= RobotMap.chassisPID_analogGyro;
+	//private final AnalogGyro analogGyro	= RobotMap.chassisPID_analogGyro;
 	
 	// Initialize your subsystem here
 	public ChassisPID() {
@@ -30,7 +30,7 @@ public class ChassisPID extends PIDSubsystem {
 		setInputRange(0, 360);
 		getPIDController().setContinuous(true);
 
-		LiveWindow.addActuator("ChassisPID Gyro", "Gyro", analogGyro);
+		//LiveWindow.addActuator("ChassisPID Gyro", "Gyro", analogGyro);
 		LiveWindow.addActuator("ChassisPID", "PIDSubsystem Controller", getPIDController());
 		
 		// Disable brake mode on the motors
@@ -78,21 +78,21 @@ public class ChassisPID extends PIDSubsystem {
 	 * Resets the current angle of the Gyro to 0.
 	 */
 	public void resetGyro() {
-		analogGyro.reset();
+		//analogGyro.reset();
 	}
 	
 	/**
 	 * Gets the current angle of the Gyro from 0 to 360 degrees
 	 */
 	public double getGyroAngle() {
-		return (analogGyro.getAngle() % 360);
+		return 0; //(analogGyro.getAngle() % 360);
 	}
 	
 	/**
 	 * Gets the current angle of the Gyro on a continuous scale (over 360 degrees)
 	 */
 	public double getGyroAngleContinuous() {
-		return analogGyro.getAngle();
+		return 1; //analogGyro.getAngle();
 	}
 	
 	public void stopMotors() {

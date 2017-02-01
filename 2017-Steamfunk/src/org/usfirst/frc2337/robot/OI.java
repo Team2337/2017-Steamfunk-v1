@@ -90,12 +90,12 @@ public class OI {
 	
 	public OI() {
 		
-		driver_GreenA			.whenPressed(new _DoNothing());
-		driver_RedB				.whenPressed(new _DoNothing());
-		driver_BlueX			.whenPressed(new _DoNothing());
-		driver_YellowY			.whenPressed(new _DoNothing());
-		driver_BumperLeft		.whenPressed(new _DoNothing());
-		driver_BumperRight		.whenPressed(new _DoNothing());
+		driver_GreenA			.whenPressed(new Auger_setSpeed());
+		driver_RedB				.whenPressed(new Auger_decreaseSpeed());
+		driver_BlueX			.whenPressed(new Auger_speedIncrease());
+		driver_YellowY			.whenPressed(new Auger_resumeAuger());
+		driver_BumperLeft		.whenPressed(new Auger_stopAuger());
+		driver_BumperRight		.whenPressed(new FuelAgitator_run());
 		driver_Back				.whenPressed(new _DoNothing());
 		driver_Start			.whenPressed(new _DoNothing());
 		driver_LeftStick		.whenPressed(new _DoNothing());
