@@ -1,12 +1,10 @@
 package org.usfirst.frc2337.robot;
 
-import org.usfirst.frc2337.libraries.ImprovedJoystick;
 import org.usfirst.frc2337.libraries.JoystickAnalogButton;
 import org.usfirst.frc2337.libraries.JoystickPOVButton;
 import org.usfirst.frc2337.robot.commands.*;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -43,8 +41,7 @@ public class OI {
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
 	
-	
-	public static ImprovedJoystick				driverJoystick			= new ImprovedJoystick(0);
+	Joystick				driverJoystick			= new Joystick(0);
 	JoystickButton			driver_GreenA			= new JoystickButton(driverJoystick, 1);
 	JoystickButton			driver_RedB				= new JoystickButton(driverJoystick, 2);
 	JoystickButton			driver_BlueX			= new JoystickButton(driverJoystick, 3);
@@ -66,7 +63,7 @@ public class OI {
 	JoystickPOVButton		driver_POVLeft			= new JoystickPOVButton(driverJoystick, 270);
 	JoystickPOVButton		driver_POVUpLeft		= new JoystickPOVButton(driverJoystick, 315);
 	
-	Joystick				operatorJoystick		= new ImprovedJoystick(1);
+	Joystick				operatorJoystick		= new Joystick(1);
 	/*JoystickButton			operator_GreenA			= new JoystickButton(operatorJoystick, 1);
 	JoystickButton			operator_RedB			= new JoystickButton(operatorJoystick, 2);
 	JoystickButton			operator_BlueX			= new JoystickButton(operatorJoystick, 3);
@@ -93,8 +90,8 @@ public class OI {
 	
 	public OI() {
 
-		driver_GreenA			.whenPressed(new FuelIntake_toggle());
-		driver_RedB				.whenPressed(new _DoNothing());
+		driver_GreenA			.whenPressed(new FuelIntake_start());
+		driver_RedB				.whenPressed(new FuelIntake_stop());
 		driver_BlueX			.whenPressed(new HopperTrigger_extendWhileHeld());
 		driver_YellowY			.whileHeld(new GearLoader_extendWhileHeld());
 		driver_BumperLeft		.whenPressed(new _DoNothing());
@@ -135,28 +132,6 @@ public class OI {
 		operator_POVLeft		.whenPressed(new _DoNothing());
 		operator_POVUpLeft		.whenPressed(new _DoNothing());*/
 		
-		/*
-		// SmartDashboard Command Buttons
-		SmartDashboard.putData("ChassisPID_drive", new ChassisPID_drive());
-		SmartDashboard.putData("ChassisPID_gyroForward", new ChassisPID_gyroForward());
-		SmartDashboard.putData("ChassisTransmission_low", new ChassisTransmission_low());
-		SmartDashboard.putData("ChassisTransmission_high", new ChassisTransmission_high());
-		SmartDashboard.putData("PTO_engage", new PTO_engage());
-		SmartDashboard.putData("PTO_disengage", new PTO_disengage());
-		SmartDashboard.putData("MainLED_on", new MainLED_on());
-		SmartDashboard.putData("MainLED_off", new MainLED_off());
-		SmartDashboard.putData("RopeClimber_up", new RopeClimber_up());
-		SmartDashboard.putData("RopeClimber_down", new RopeClimber_down());
-		SmartDashboard.putData("TargetingLED_default", new TargetingLED_default());
-		SmartDashboard.putData("GearIntake_enable", new GearIntake_enable());
-		SmartDashboard.putData("GearIntake_disable", new GearIntake_disable());
-		SmartDashboard.putData("GearLoader_enable", new GearLoader_enable());
-		SmartDashboard.putData("GearLoader_disable", new GearLoader_disable());
-		SmartDashboard.putData("FuelntakeArm_enable", new FuelntakeArm_enable());
-		SmartDashboard.putData("FuelIntakeArm_disable", new FuelIntakeArm_disable());
-		SmartDashboard.putData("FuelShooter_enable", new FuelShooter_enable());
-		SmartDashboard.putData("FuelShooter_disable", new FuelShooter_disable());
-		*/
 		
 	}
 	
