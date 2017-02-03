@@ -2,6 +2,8 @@ package org.usfirst.frc2337.robot;
 
 import org.usfirst.frc2337.libraries.JoystickAnalogButton;
 import org.usfirst.frc2337.libraries.JoystickPOVButton;
+//import org.usfirst.frc2337.libraries.JoystickAnalogButton;
+//import org.usfirst.frc2337.libraries.JoystickPOVButton;
 import org.usfirst.frc2337.robot.commands.*;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -90,18 +92,23 @@ public class OI {
 	
 	public OI() {
 		
-		driver_GreenA			.whenPressed(new ChassisPID_reverseDrive());
-		driver_RedB				.whenPressed(new _DoNothing());
-		driver_BlueX			.whenPressed(new _DoNothing());
-		driver_YellowY			.whenPressed(new _DoNothing());
+		driver_GreenA			.whenPressed(new FuelIntake_enable());
+		driver_GreenA			.whenReleased(new _DoNothing());
+		driver_RedB				.whenPressed(new FuelIntake_disable());
+		driver_RedB				.whenReleased(new _DoNothing());
+		driver_BlueX			.whenPressed(new FuelIntake_setSpeed());
+		driver_BlueX			.whenReleased(new _DoNothing());
+		driver_YellowY			.whenPressed(new FuelIntake_incrementSpeed());
+		driver_YellowY			.whenReleased(new _DoNothing());
 		driver_BumperLeft		.whenPressed(new _DoNothing());
-		driver_BumperRight		.whenPressed(new _DoNothing());
+		driver_BumperRight		.whenPressed(new FuelIntake_decrementSpeed());
+		driver_BumperRight		.whenReleased(new _DoNothing());
 		driver_Back				.whenPressed(new _DoNothing());
 		driver_Start			.whenPressed(new _DoNothing());
 		driver_LeftStick		.whenPressed(new _DoNothing());
 		driver_RightStick		.whenPressed(new _DoNothing());
-		driver_TriggerLeft		.whileHeld(new FuelIntakeArm_extendWhileHeld());
-		driver_TriggerRight		.whileHeld(new FuelIntake_runWhileHeld());
+		driver_TriggerLeft		.whenPressed(new _DoNothing());
+		driver_TriggerRight		.whenPressed(new _DoNothing());
 		
 		/*operator_GreenA			.whenPressed(new _DoNothing());
 		operator_RedB			.whenPressed(new _DoNothing());

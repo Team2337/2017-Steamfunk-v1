@@ -18,36 +18,48 @@ import org.usfirst.frc2337.robot.commands.*;
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
  *
  */
 public class FuelIntake extends Subsystem {
-	
-	private final CANTalon motorIntake = RobotMap.fuelIntake_motor;
-	
-	double intakeSpeed = Robot.constants.kFuelIntake_IntakeSpeed;
-	
-	// Put methods for controlling this subsystem
-	// here. Call these from Commands.
-	
-	public void initDefaultCommand() {
-		// Set the default command for a subsystem here.
-		// setDefaultCommand(new MySpecialCommand());
-		
+   private final CANTalon fuelIntake_motor = RobotMap.fuelIntake_motor;
+   double currentSpeed = Robot.constants.kFuelIntake_DefaultSpeed;
+   double speed = Robot.constants.kFuelIntake_DefaultSpeed;
+   double incrementSpeed = Robot.constants.kFuelIntake_IncrementSpeed;
+
+    private final CANTalon fuelIntake = RobotMap.fuelIntake_motor;
+
+
+    public void initDefaultCommand() {
+       
+    }
+    public void startIntake(double speed) {
+    	fuelIntake.set(speed);
+    }
+    public void stopIntake(){
+    	fuelIntake.set(0);
+    }
+    public void updateSpeed() {
+    	fuelIntake_motor.set(currentSpeed);
+		SmartDashboard.putNumber("Shooter Speed:", currentSpeed);
+    }
+    
+    public void setSpeed(double speed) {
+    	currentSpeed = speed;
+    	if(currentSpeed > speed) currentSpeed = 0.5;
+    	if(currentSpeed < speed) currentSpeed = 0;
+    	updateSpeed();
+    }
+    public void incrementSpeed() {
+		setSpeed(currentSpeed += incrementSpeed);
 	}
 	
-	public boolean isRunning() {
-		return motorIntake.get() != 0;
+	public void decrementSpeed() {
+		setSpeed(currentSpeed -= incrementSpeed);
 	}
-	
-	public void startIntake() {
-		motorIntake.set(intakeSpeed);
-	}
-	
-	public void stopIntake() {
-		motorIntake.set(0);
-	}
+    
 }
 

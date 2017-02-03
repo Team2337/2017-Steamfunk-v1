@@ -63,7 +63,7 @@ public class RobotMap {
     public static void init() {
     	
 		// CHASSIS PID
-		chassisPID_rightFront = new CANTalon(0);
+		chassisPID_rightFront = new CANTalon(44);
 		chassisPID_leftFront  = new CANTalon(1);
 		chassisPID_rightRear  = new CANTalon(14);
 		chassisPID_leftRear   = new CANTalon(15);
@@ -117,7 +117,7 @@ public class RobotMap {
 		LiveWindow.addActuator("FuelIntakeArm", "fuelIntakeArmRightS", fuelIntakeArm_solenoid);
 		
 		//FUEL INTAKE
-		fuelIntake_motor = new CANTalon(10);
+		fuelIntake_motor = new CANTalon(0);
 		LiveWindow.addActuator("FuelIntake", "fuelIntakeLeft", fuelIntake_motor);
 		
 		// FUEL INTAKE
