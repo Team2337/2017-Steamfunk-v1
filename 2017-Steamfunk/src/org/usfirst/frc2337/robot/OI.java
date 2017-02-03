@@ -95,7 +95,7 @@ public class OI {
 		driver_RedB				.whenPressed(new _DoNothing());
 		driver_BlueX			.whenPressed(new HopperTrigger_extendWhileHeld());
 		driver_YellowY			.whileHeld(new GearLoader_extendWhileHeld());
-		driver_BumperLeft		.whenPressed(new Auton_turnGyro(45)); 
+		driver_BumperLeft		.whenPressed(new _DoNothing()); 
 		driver_BumperRight		.whenPressed(new _DoNothing());
 		driver_Back				.whenPressed(new _DoNothing());
 		driver_Start			.whenPressed(new _DoNothing());

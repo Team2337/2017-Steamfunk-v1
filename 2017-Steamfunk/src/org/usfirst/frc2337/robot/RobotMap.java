@@ -80,27 +80,28 @@ public class RobotMap {
 		chassisPID_rightFront      .changeControlMode(TalonControlMode.PercentVbus);
 		chassisPID_rightFront      .reverseOutput(true);
 		chassisPID_rightFront.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+		chassisPID_rightFront.configEncoderCodesPerRev(100);
 		
 		chassisPID_rightRearMiddle = new CANTalon(1);
 		chassisPID_rightRearMiddle .changeControlMode(TalonControlMode.Follower);
 		chassisPID_rightRearMiddle .set(chassisPID_rightFront.getDeviceID());
 		 
-		chassisPID_rightRear       = new CANTalon(2);
+		chassisPID_rightRear       = new CANTalon(2);// was 2 
 		chassisPID_rightRear       .changeControlMode(TalonControlMode.Follower);
 		chassisPID_rightRear	   .set(chassisPID_rightFront.getDeviceID());
 
 		
 		/* Left Side */
-		chassisPID_leftFront       = new CANTalon(13);
+		chassisPID_leftFront       = new CANTalon(14);
 		chassisPID_leftFront       .changeControlMode(TalonControlMode.PercentVbus);
 		chassisPID_leftFront 	   .reverseOutput(true);
 		
 		
-		chassisPID_leftRearMiddle  = new CANTalon(15);
+		chassisPID_leftRearMiddle  = new CANTalon(15);// was 15
 		chassisPID_leftRearMiddle  .changeControlMode(TalonControlMode.Follower);
 		chassisPID_leftRearMiddle  .set(chassisPID_leftFront.getDeviceID());
 
-		chassisPID_leftRear        = new CANTalon(14);
+		chassisPID_leftRear        = new CANTalon(13);
 		chassisPID_leftRear		   .changeControlMode(TalonControlMode.Follower);
 		chassisPID_leftRear		   .set(chassisPID_leftFront.getDeviceID());
 	
@@ -113,7 +114,7 @@ public class RobotMap {
 	//	LiveWindow.addActuator("ChassisPID", "leftRear",   chassisPID_leftRear);
 		
 		chassisPID_RobotDrive = new RobotDrive(chassisPID_leftFront, chassisPID_rightFront);
-		chassisPID_RobotDrive.setSafetyEnabled(true);
+		chassisPID_RobotDrive.setSafetyEnabled(false);
 		chassisPID_RobotDrive.setExpiration(0.1);
 		chassisPID_RobotDrive.setSensitivity(0.5);
 		chassisPID_RobotDrive.setMaxOutput(1.0);
@@ -180,7 +181,9 @@ public class RobotMap {
             /* Alternatively:  I2C.Port.kMXP, SerialPort.Port.kMXP or SerialPort.Port.kUSB     */
             /* See http://navx-mxp.kauailabs.com/guidance/selecting-an-interface/ for details. */
         	chassisPID_gyro = new AHRS(SerialPort.Port.kMXP);
+        	//chassisPID_gyro = new AHRS(SerialPort.Port.kUSB);
         } catch (RuntimeException ex ) {
+        
             DriverStation.reportError("Instantiating navX-MXP failed:  " + ex.getMessage(), true);
         }
         

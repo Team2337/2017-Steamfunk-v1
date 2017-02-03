@@ -72,17 +72,18 @@ public class Auton_DriveForwardGyroWithEncoder extends Command {
 		setTimeout(m_timeout);
 		baseAngle = RobotMap.chassisPID_gyro.getYaw();
 		RobotMap.chassisPID_rightFront.setEncPosition(0);
-		if (m_target > 0 ){
+		/**if (m_target > 0 ){
 			m_speed = - m_speed;
 			}
-		
+		**/
+	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
     	yaw = -RobotMap.chassisPID_gyro.getYaw();
-    	Robot.chassis.arcadeDrive(m_speed, baseAngle-yaw*Kp);
+    	Robot.chassis.arcadeDrive(m_speed,0);//baseAngle-yaw*Kp);
     	
     	
     	//////////////////////find angulAr rate.........................
@@ -113,13 +114,13 @@ public class Auton_DriveForwardGyroWithEncoder extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	return (RobotMap.chassisPID_rightFront.getEncPosition() > m_target|| isTimedOut()); //|| Robot.chassis.isStopped());
-    	
+    	//return false;
     	//RobotMap.chassisPID_leftFront.getEncPosition()
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.chassis.stopMotors();
+    	//Robot.chassis.stopMotors();
     }
 
     // Called when another command which requires one or more of the same

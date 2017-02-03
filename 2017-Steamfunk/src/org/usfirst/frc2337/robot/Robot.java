@@ -53,7 +53,7 @@ public class Robot extends IterativeRobot {
 	
 	
 	Command autonomousCommand;
-	SendableChooser<PIDCommand> autonSelector;
+	SendableChooser<Command> autonSelector; //<Command> autonSelector;//
 	
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -87,11 +87,12 @@ public class Robot extends IterativeRobot {
 		
 		 ///autonomousCommand = new Auton_turnGyro3(90);
 		
-		autonSelector = new SendableChooser<PIDCommand>();
+		autonSelector = new SendableChooser <Command>();
 		//autonSelector.addDefault("Do Nothing", new _DoNothing());
 	
-		autonSelector.addDefault("Turn 90", new Auton_turnGyro(90));
-		//autonSelector.addObject("Cross The Line", new auton_crossTheLine());
+		//autonSelector.addDefault("Turn 90", new Auton_DFGwE(0.5,20000,5));
+		autonSelector.addDefault("Turn 90", new Auton_driveForwardGyro(0.5,20000));
+		autonSelector.addObject("Cross The Line", new AutonCG_crossTheLine());
 	//	autonSelector.addObject("Red Gear Left", new _DoNothing());
 //		autonSelector.addObject("Red Gear Middle", new _DoNothing());
 		//autonSelector.addObject("Red Gear Right", new _DoNothing());
@@ -120,10 +121,10 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public void autonomousInit() {
-		allInit();
+		//allInit();
 		
 		// schedule the autonomous command (example)
-		autonomousCommand = (PIDCommand) autonSelector.getSelected();
+		autonomousCommand = (Command) autonSelector.getSelected();//(Command) autonSelector.getSelected();//
 		//autonomousCommand= new Auton_turnGyro(90);
 		if (autonomousCommand != null) autonomousCommand.start();
 		
@@ -133,7 +134,7 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during autonomous
 	 */
 	public void autonomousPeriodic() {
-		allPeriodic();
+		//allPeriodic();
 		Scheduler.getInstance().run();
 	}
 	
@@ -177,6 +178,8 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public void robotPeriodic() {
+		SmartDashboard.putNumber("Encoder", RobotMap.chassisPID_rightFront.get());
+		SmartDashboard.putNumber("Encoder2", RobotMap.chassisPID_rightFront.getEncPosition());
 		SmartDashboard.putNumber("Get Angle", RobotMap.chassisPID_gyro.getAngle());
 		SmartDashboard.putNumber("Get Compass Heading", RobotMap.chassisPID_gyro.getCompassHeading());
 		SmartDashboard.putNumber("Get Yaw", RobotMap.chassisPID_gyro.getYaw());
