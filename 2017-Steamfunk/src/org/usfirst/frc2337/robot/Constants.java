@@ -20,5 +20,8 @@ public class Constants {
 	public final double kFuelIntake_DefaultSpeed = 0.5;
 	public final double kFuelIntake_IncrementSpeed = 0.05;
 	
-	
+	public final double kFuelIntakeArm_DefualtSpeed = 1.0;
+	public final double kFuelIntakeArm_RetractSpeed = -1.0;
+	public final double kFuelIntakeArm_ExtendTime = 1.0;
+	public final double kFuelIntakeArm_RetractTime = 1.0;
 }

@@ -109,6 +109,10 @@ public class OI {
 		driver_RightStick		.whenPressed(new _DoNothing());
 		driver_TriggerLeft		.whenPressed(new _DoNothing());
 		driver_TriggerRight		.whenPressed(new _DoNothing());
+		driver_POVUp			.whenPressed(new FuelIntakeArm_extend());
+		driver_POVRight			.whenPressed(new _DoNothing());
+		driver_POVLeft			.whenPressed(new _DoNothing());
+		driver_POVDown			.whenPressed(new FuelIntakeArm_retract());
 		
 		/*operator_GreenA			.whenPressed(new _DoNothing());
 		operator_RedB			.whenPressed(new _DoNothing());
