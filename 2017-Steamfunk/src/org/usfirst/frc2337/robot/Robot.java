@@ -12,9 +12,11 @@
 package org.usfirst.frc2337.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc2337.robot.commands.*;
 import org.usfirst.frc2337.robot.subsystems.*;
@@ -42,10 +44,14 @@ public class Robot extends IterativeRobot {
 	public static FuelIntakeArm fuelIntakeArm;
 	public static FuelIntake fuelIntake;
 	public static FuelShooter fuelShooter;
-	public static Auger fuelAgitator;
+	public static Auger auger;
 	
 	Command autonomousCommand;
 	
+	public Robot() {	
+		SmartDashboard.putData("Auger_resumeAuger", new Auger_resumeAuger());
+		SmartDashboard.putData("PowerDistributionPanel pdp", new PowerDistributionPanel());
+	}
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -65,7 +71,7 @@ public class Robot extends IterativeRobot {
 		fuelIntakeArm = new FuelIntakeArm();
 		fuelIntake = new FuelIntake();
 		fuelShooter = new FuelShooter();
-		fuelAgitator = new Auger();
+		auger = new Auger();
 		
 		// OI must be constructed after subsystems. If the OI creates Commands
 		//(which it very likely will), subsystems are not guaranteed to be
@@ -76,6 +82,7 @@ public class Robot extends IterativeRobot {
 		// instantiate the command used for the autonomous period
 		autonomousCommand = new _ExampleCommand();
 	}
+	
 	
 	/**
 	 * This function is called when the disabled button is hit.

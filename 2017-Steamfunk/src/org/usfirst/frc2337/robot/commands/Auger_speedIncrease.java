@@ -12,13 +12,13 @@ public class Auger_speedIncrease extends Command {
 	 
 	
     public Auger_speedIncrease() {
-       requires(Robot.fuelAgitator);
+     requires(Robot.fuelIntake);
     	
     }
 
 	// Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.fuelAgitator.incrementSpeed();
+    	Robot.auger.incrementSpeed();
     }
 
     // Called repeatedly when this Command is scheduled to run

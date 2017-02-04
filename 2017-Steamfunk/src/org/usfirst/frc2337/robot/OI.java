@@ -95,7 +95,7 @@ public class OI {
 		driver_BlueX			.whenPressed(new Auger_speedIncrease());
 		driver_YellowY			.whenPressed(new Auger_resumeAuger());
 		driver_BumperLeft		.whenPressed(new Auger_stopAuger());
-		driver_BumperRight		.whenPressed(new FuelAgitator_run());
+		driver_BumperRight		.whenPressed(new Auger_resumeAuger());
 		driver_Back				.whenPressed(new _DoNothing());
 		driver_Start			.whenPressed(new _DoNothing());
 		driver_LeftStick		.whenPressed(new _DoNothing());
@@ -110,6 +110,8 @@ public class OI {
 		driver_POVDownLeft		.whenPressed(new _DoNothing());
 		driver_POVLeft			.whenPressed(new _DoNothing());
 		driver_POVUpLeft		.whenPressed(new _DoNothing());
+		driver_RightStick		.whenPressed(new _DoNothing());
+		driver_LeftStick		.whenPressed(new _DoNothing());		
 		
 		/*operator_GreenA			.whenPressed(new _DoNothing());
 		operator_RedB			.whenPressed(new _DoNothing());

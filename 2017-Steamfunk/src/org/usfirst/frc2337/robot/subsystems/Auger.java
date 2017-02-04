@@ -22,53 +22,48 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
- *@author Bryce
+ *
  */
 public class Auger extends Subsystem {
+   private final CANTalon fuelAgitatorfuelDeGunker = RobotMap.fuelIntake_motor;
+   double currentSpeed = Robot.constants.kAuger_DefaultEnableSpeed;
+   double speed = Robot.constants.kAuger_DefaultEnableSpeed;
+   double incrementSpeed = Robot.constants.kAuger_IncrementSpeed;
+   double reverseSpeed = Robot.constants.kAuger_DefaultReverseSpeed;
 
-    private final CANTalon fuelDeGunker = RobotMap.fuelAgitatorfuelDeGunker;
-    double currentSpeed = Robot.constants.kAuger_DefaultEnableSpeed;
-    double incrementSpeed = Robot.constants.kAuger_IncrementSpeed;
-    double reverseSpeed = Robot.constants.kAuger_DefaultReverseSpeed;
+    private final CANTalon auger = RobotMap.fuelIntake_motor;
+
+
     public void initDefaultCommand() {
-    	Robot.fuelAgitator.startFuelDeGunker(currentSpeed);
-    	
+       
     }
-    
-    public void startFuelDeGunker(double speed) {
-    	fuelDeGunker.set(speed);
+    public void startAuger(double speed) {
+    	auger.set(speed);
     }
-    
-    public void stopFuelDeGunker() {
-    	fuelDeGunker.set(0);
-    }
-    public void reverseFuelDeGunker(double reverseSpeed){
-    	
+    public void reverseAuger(double reversedSpeed) {
+		auger.set(-speed);
+	}
+    public void stopAuger(){
+    	auger.set(0);
     }
     public void updateSpeed() {
-		fuelDeGunker.set(currentSpeed);
-		SmartDashboard.putNumber("Shooter Speed:", currentSpeed);
-	}
-	
-	public void setAugerSpeed(double speed) {
-		currentSpeed = speed;
-		if(currentSpeed > 1.0) currentSpeed = 1;
-		if(currentSpeed < 0.0) currentSpeed = 0;
-		updateSpeed();
-	}
-	
-	public void stopAuger() {
-		fuelDeGunker.set(0);
-	}
-	
-	public void incrementSpeed() {
-		setAugerSpeed(currentSpeed += incrementSpeed);
+    	fuelAgitatorfuelDeGunker.set(currentSpeed);
+		SmartDashboard.putNumber("Auger Speed:", currentSpeed);
+    }
+    
+    public void setSpeed(double speed) {
+    	currentSpeed = speed;
+    	if(currentSpeed > speed) currentSpeed = 0.5;
+    	if(currentSpeed < speed) currentSpeed = 0;
+    	updateSpeed();
+    }
+    public void incrementSpeed() {
+		setSpeed(currentSpeed += incrementSpeed);
 	}
 	
 	public void decrementSpeed() {
-		setAugerSpeed(currentSpeed -= incrementSpeed);
+		setSpeed(currentSpeed -= incrementSpeed);
 	}
     
-    
-   
 }
+
