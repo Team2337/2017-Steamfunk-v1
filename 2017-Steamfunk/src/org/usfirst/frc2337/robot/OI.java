@@ -135,28 +135,6 @@ public class OI {
 		operator_POVLeft		.whenPressed(new _DoNothing());
 		operator_POVUpLeft		.whenPressed(new _DoNothing());*/
 		
-		/*
-		// SmartDashboard Command Buttons
-		SmartDashboard.putData("ChassisPID_drive", new ChassisPID_drive());
-		SmartDashboard.putData("ChassisPID_gyroForward", new ChassisPID_gyroForward());
-		SmartDashboard.putData("ChassisTransmission_low", new ChassisTransmission_low());
-		SmartDashboard.putData("ChassisTransmission_high", new ChassisTransmission_high());
-		SmartDashboard.putData("PTO_engage", new PTO_engage());
-		SmartDashboard.putData("PTO_disengage", new PTO_disengage());
-		SmartDashboard.putData("MainLED_on", new MainLED_on());
-		SmartDashboard.putData("MainLED_off", new MainLED_off());
-		SmartDashboard.putData("RopeClimber_up", new RopeClimber_up());
-		SmartDashboard.putData("RopeClimber_down", new RopeClimber_down());
-		SmartDashboard.putData("TargetingLED_default", new TargetingLED_default());
-		SmartDashboard.putData("GearIntake_enable", new GearIntake_enable());
-		SmartDashboard.putData("GearIntake_disable", new GearIntake_disable());
-		SmartDashboard.putData("GearLoader_enable", new GearLoader_enable());
-		SmartDashboard.putData("GearLoader_disable", new GearLoader_disable());
-		SmartDashboard.putData("FuelntakeArm_enable", new FuelntakeArm_enable());
-		SmartDashboard.putData("FuelIntakeArm_disable", new FuelIntakeArm_disable());
-		SmartDashboard.putData("FuelShooter_enable", new FuelShooter_enable());
-		SmartDashboard.putData("FuelShooter_disable", new FuelShooter_disable());
-		*/
 		
 	}
 	

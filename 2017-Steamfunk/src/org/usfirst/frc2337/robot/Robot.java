@@ -44,6 +44,7 @@ public class Robot extends IterativeRobot {
 	public static FuelShooter fuelShooter;
 	public static FuelLoader fuelLoader;
 	public static FuelAgitator fuelAgitator;
+	public static HopperTrigger hopperTrigger;
 	
 	Command autonomousCommand;
 	
@@ -68,6 +69,7 @@ public class Robot extends IterativeRobot {
 		fuelShooter = new FuelShooter();
 		fuelLoader = new FuelLoader();
 		fuelAgitator = new FuelAgitator();
+		hopperTrigger = new HopperTrigger();
 		
 		// OI must be constructed after subsystems. If the OI creates Commands
 		//(which it very likely will), subsystems are not guaranteed to be

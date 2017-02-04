@@ -5,7 +5,7 @@ import org.usfirst.frc2337.robot.RobotMap;
 import org.usfirst.frc2337.robot.commands.*;
 
 import com.ctre.CANTalon;
-//import com.kauailabs.navx.frc.AHRS;
+import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -24,6 +24,8 @@ public class ChassisPID extends PIDSubsystem {
 	private final RobotDrive robotDrive	= RobotMap.chassisPID_RobotDrive;
 	public boolean reverse = false;
 	//private final AHRS gyro	= RobotMap.chassisPID_gyro;
+	
+	private final AHRS gyro	= RobotMap.chassisPID_gyro;
 	
 	// Initialize your subsystem here
 	public ChassisPID() {
@@ -79,17 +81,17 @@ public class ChassisPID extends PIDSubsystem {
 	/**
 	 * Resets the current angle of the Gyro to 0.
 	 */
-	/*public void resetGyro() {
+	public void resetGyro() {
 		gyro.reset();
 	}
 	/**
 	 * Get yaw angle of gyro
 	 * @return Yaw of gyro
 	 */
-   /* public double getGyroYaw() {
+    public double getGyroYaw() {
     	return gyro.getYaw();
     }
-	*/
+	
 	public void stopMotors() {
 		robotDrive.stopMotor();
 	}
@@ -99,7 +101,7 @@ public class ChassisPID extends PIDSubsystem {
 		// e.g. a sensor, like a potentiometer:
 		// yourPot.getAverageVoltage() / kYourMaxVoltage;
 		
-		return (0); //Convert from continuous scale (360 -> 361) to rollover scale (360 -> 1).
+		return getGyroYaw(); //Convert from continuous scale (360 -> 361) to rollover scale (360 -> 1).
 		
 	}
 	
