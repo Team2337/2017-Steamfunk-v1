@@ -48,7 +48,6 @@ public class FuelShooter extends Subsystem {
 		updateSpeed();
 	}
 	
-	public void stopShooter() {
 		motorLeft.set(0);
 		motorRight.set(0);
 	}
@@ -60,5 +59,6 @@ public class FuelShooter extends Subsystem {
 	public void decrementSpeed() {
 		setShooterSpeed(currentSpeed -= incrementSpeed);
 	}
+	public void stopShooter() {
 }
 

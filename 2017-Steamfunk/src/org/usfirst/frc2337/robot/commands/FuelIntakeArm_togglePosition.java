@@ -15,11 +15,11 @@ public class FuelIntakeArm_togglePosition extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		if (Robot.fuelIntakeArm.isExtended()) {
-			Robot.fuelIntakeArm.retractArm();
+		/*if (Robot.fuelIntakeArm.isExtended()) {
+			Robot.fuelIntakeArm.retractIntakeArm();
 		} else {
-			Robot.fuelIntakeArm.extendArm();
-		}
+			Robot.fuelIntakeArm.extendIntakeArm();
+		}*/
 	}
 
 	// Called repeatedly when this Command is scheduled to run

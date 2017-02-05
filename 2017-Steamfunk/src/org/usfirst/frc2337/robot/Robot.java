@@ -64,7 +64,7 @@ public class Robot extends IterativeRobot {
 		targetingCamera = new TargetingCamera();
 		targetingLED = new TargetingLED();
 		gearLoader = new GearLoader();
-		fuelIntakeArm = new FuelIntakeArm();
+		fuelIntakeArm = new FuelIntakeArm(0, 0);
 		fuelIntake = new FuelIntake();
 		fuelShooter = new FuelShooter();
 		fuelLoader = new FuelLoader();

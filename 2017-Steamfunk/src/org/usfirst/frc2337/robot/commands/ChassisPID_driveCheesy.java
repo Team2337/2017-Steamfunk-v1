@@ -29,6 +29,10 @@ public class ChassisPID_driveCheesy extends Command {
 	protected void execute() {
 		double moveSpeed = driverJoystick.getRawAxis(1); //Left Y
 		double turnSpeed = driverJoystick.getRawAxis(4); //Right X
+		if (Robot.chassisPID.reverse == true) {
+			moveSpeed = moveSpeed * -1;
+			turnSpeed = turnSpeed * -1;
+		}
 		
 		if (Math.abs(moveSpeed) < deadband) moveSpeed = 0;
 		if (Math.abs(turnSpeed) < deadband) turnSpeed = 0;

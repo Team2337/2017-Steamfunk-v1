@@ -15,7 +15,7 @@ public class FuelIntakeArm_extendWhileHeld extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Robot.fuelIntakeArm.extendArm();
+		Robot.fuelIntakeArm.extendIntakeArm();
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -29,7 +29,7 @@ public class FuelIntakeArm_extendWhileHeld extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.fuelIntakeArm.retractArm();
+		Robot.fuelIntakeArm.retractIntakeArm();
 	}
 
 	// Called when another command which requires one or more of the same
