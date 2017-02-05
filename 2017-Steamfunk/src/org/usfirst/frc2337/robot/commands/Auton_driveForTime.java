@@ -12,17 +12,20 @@ public class Auton_driveForTime extends Command {
 	
 	double time;
 	double speed;
+	double turn;
 	
 	/**
-	 * 
+	 * drive forward or forward and turn for a time 
 	 * @param speed from -1 to 1
+	 * @param turn from -1 to 1 
 	 * @param time in seconds
 	 */
-    public Auton_driveForTime(double speed, double time) {
+    public Auton_driveForTime(double speed,double turn, double time) {
     	requires(Robot.chassis);
     	
     	this.speed = speed;
     	this.time = time;
+    	this.turn = turn;
     }
 
 	// Called just before this Command runs the first time
@@ -33,7 +36,7 @@ public class Auton_driveForTime extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	RobotMap.chassisPID_RobotDrive.arcadeDrive(speed, 0);
+    	RobotMap.chassisPID_RobotDrive.arcadeDrive(speed, turn);
     }
 
     // Make this return true when this Command no longer needs to run execute()

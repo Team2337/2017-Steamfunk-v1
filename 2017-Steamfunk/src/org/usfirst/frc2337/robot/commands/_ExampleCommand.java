@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc2337.robot.Robot;
 
 /**
- *
+ * Example command
  */
 public class _ExampleCommand extends Command {
 	// DECLARE VARIABLES

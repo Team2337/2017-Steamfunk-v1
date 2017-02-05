@@ -4,7 +4,11 @@ package org.usfirst.frc2337.robot.commands;
 import org.usfirst.frc2337.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
-
+/**
+ * 
+ *  Reset the Gyro 
+ * 
+ */
 public class Auton_resetGyro  extends Command{
 
 

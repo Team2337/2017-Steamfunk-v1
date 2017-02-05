@@ -13,7 +13,11 @@ public class Auton_turnGyro extends PIDCommand {
 	double turnValue, targetAngle, leftJoystick;
 	private static double timeout = 3;
 	private static double turnDeadBand = 0.32;   ///maybe 0 for this drivetrain?
-
+	/**
+	 *  turn to an angle 
+	 *  @param angle 
+	 * 
+	 */
     public Auton_turnGyro(double angle) {
 
         super("Auton_turnGyro3", 0.009, 0.0, 0.007);

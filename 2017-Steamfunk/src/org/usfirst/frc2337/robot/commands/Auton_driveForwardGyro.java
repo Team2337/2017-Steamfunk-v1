@@ -20,8 +20,11 @@ public class Auton_driveForwardGyro extends Command {
 	double yawp;
 	public double time;
 	public double baseAngle;
-
-
+	/**
+	 * drive forward for a time with a gyro
+	 * @param speed from -1 to 1
+	 * @param time in seconds
+	 */
     public Auton_driveForwardGyro(double speed, double time) {
     	requires(Robot.chassis);
     	this.time = time;
