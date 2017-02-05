@@ -56,7 +56,7 @@ public class RobotMap {
     public static CANTalon gearIntakeintakeMaster;
     public static CANTalon gearIntakeintakeServant;
     public static Solenoid gearLoader_pusher;
-    public static Solenoid fuelIntakeArm_solenoid;
+    public static DoubleSolenoid fuelIntakeArm_solenoid;
     public static CANTalon fuelIntake_motor;
     public static CANTalon fuelShooter_motorLeft;
     public static CANTalon fuelShooter_motorRight;
@@ -90,11 +90,11 @@ public class RobotMap {
 		chassisPID_leftFront       .changeControlMode(TalonControlMode.PercentVbus);
 		chassisPID_leftFront 	   .reverseOutput(true);
 		
-		chassisPID_leftRearMiddle  = new CANTalon(15);
+		chassisPID_leftRearMiddle  = new CANTalon(14);
 		chassisPID_leftRearMiddle  .changeControlMode(TalonControlMode.Follower);
 		chassisPID_leftRearMiddle  .set(chassisPID_leftFront.getDeviceID());
 
-		chassisPID_leftRear        = new CANTalon(14);
+		chassisPID_leftRear        = new CANTalon(15);
 		chassisPID_leftRear		   .changeControlMode(TalonControlMode.Follower);
 		chassisPID_leftRear		   .set(chassisPID_leftFront.getDeviceID());
 	
@@ -115,22 +115,22 @@ public class RobotMap {
 		hopperTrigger_solenoid = new Solenoid(1, 4);
 		LiveWindow.addActuator("HopperTrigger", "solenoid", hopperTrigger_solenoid);
 		
-        mainLEDfeedbackLED = new Solenoid(0, 3);
+        mainLEDfeedbackLED = new Solenoid(1, 3);
         LiveWindow.addActuator("MainLED", "feedbackLED", mainLEDfeedbackLED);
         
         ropeClimberscaleMotor = new CANTalon(4);
         LiveWindow.addActuator("RopeClimber", "scaleMotor", ropeClimberscaleMotor);
         
-        targetingLEDtargetingLeftLED = new Solenoid(0, 4);
+        targetingLEDtargetingLeftLED = new Solenoid(1, 4);
         LiveWindow.addActuator("TargetingLED", "targetingLeftLED", targetingLEDtargetingLeftLED);
         
-        targetingLEDtargetingCenterLED = new Solenoid(0, 5);
+        targetingLEDtargetingCenterLED = new Solenoid(1, 5);
         LiveWindow.addActuator("TargetingLED", "targetingCenterLED", targetingLEDtargetingCenterLED);
         
-        targetingLEDtargetingRightLED = new Solenoid(0, 6);
+        targetingLEDtargetingRightLED = new Solenoid(1, 6);
         LiveWindow.addActuator("TargetingLED", "targetingRightLED", targetingLEDtargetingRightLED);
         
-        targetingLEDtargetingBottomLED = new Solenoid(0, 7);
+        targetingLEDtargetingBottomLED = new Solenoid(1, 7);
         LiveWindow.addActuator("TargetingLED", "targetingBottomLED", targetingLEDtargetingBottomLED);
         
         targetingLEDtargetingFrontLED = new Solenoid(1, 0);
@@ -140,27 +140,26 @@ public class RobotMap {
         LiveWindow.addActuator("GearLoader", "gearPusher", gearLoader_pusher);
         
 		// FUEL INTAKE ARM
-		fuelIntakeArm_solenoid = new Solenoid(1, 3);
+        
+        
+		fuelIntakeArm_solenoid = new DoubleSolenoid(0, 3, 4); //MODULE, FORWARD, REVERSE
 		LiveWindow.addActuator("FuelIntakeArm", "fuelIntakeArmRightS", fuelIntakeArm_solenoid);
 		
 		//FUEL INTAKE
-		fuelIntake_motor = new CANTalon(20);
+		fuelIntake_motor = new CANTalon(3);
 		LiveWindow.addActuator("FuelIntake", "fuelIntakeLeft", fuelIntake_motor);
 		
 		// FUEL INTAKE
-		
-       
-        
-        fuelShooter_motorRight = new CANTalon(23);
-        fuelShooter_motorLeft = new CANTalon(22);
+        fuelShooter_motorRight = new CANTalon(8);
+        fuelShooter_motorLeft = new CANTalon(9);
         
         fuelShooter_motorRight.setInverted(true);
         fuelShooter_motorLeft.setInverted(true);
         // FUEL SHOOTER
-        
         LiveWindow.addActuator("FuelShooter", "fuelShooterLeft", fuelShooter_motorLeft);
         LiveWindow.addActuator("FuelShooter", "fuelShooterRight", fuelShooter_motorRight);
         
+        //Will be changed later for auger
         fuelLoaderfuelLoader = new CANTalon(24);
         LiveWindow.addActuator("FuelLoader", "fuelLoader", fuelLoaderfuelLoader);
         

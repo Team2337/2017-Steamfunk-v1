@@ -90,10 +90,10 @@ public class OI {
 	
 	public OI() {
 
-		driver_GreenA			.whenPressed(new FuelIntake_start());
-		driver_RedB				.whenPressed(new FuelIntake_stop());
-		driver_BlueX			.whenPressed(new HopperTrigger_extendWhileHeld());
-		driver_YellowY			.whileHeld(new GearLoader_extendWhileHeld());
+		driver_GreenA			.whenPressed(new FuelIntake_enable());
+		driver_RedB				.whenPressed(new FuelIntake_disable());
+		driver_BlueX			.whenPressed(new FuelIntakeArm_extend());
+		driver_YellowY			.whenPressed(new FuelIntakeArm_retract());
 		driver_BumperLeft		.whenPressed(new _DoNothing());
 		driver_BumperRight		.whenPressed(new _DoNothing());
 		driver_Back				.whenPressed(new _DoNothing());
