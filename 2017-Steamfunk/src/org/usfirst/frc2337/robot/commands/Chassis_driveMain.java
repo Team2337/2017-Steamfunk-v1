@@ -6,9 +6,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.Joystick;
 
 /**
- *
+ * Chassis DRIVEMAIN - Main drive train thats based of off HALO/CHEESY drive.
  */
-public class ChassisPID_driveCheesy extends Command {
+public class Chassis_driveMain extends Command {
 	
 	final Joystick driverJoystick = Robot.oi.getDriverJoystick();
 	
@@ -16,7 +16,7 @@ public class ChassisPID_driveCheesy extends Command {
 	double moveSensitivity = Robot.constants.kChassisPID_MoveSensitivity;
 	double turnSensitivity = Robot.constants.kChassisPID_TurnSensitivity;
 	
-	public ChassisPID_driveCheesy() {
+	public Chassis_driveMain() {
 		requires(Robot.chassisPID);
 	}
 	

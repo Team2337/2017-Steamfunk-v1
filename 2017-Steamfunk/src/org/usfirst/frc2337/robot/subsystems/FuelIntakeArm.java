@@ -20,14 +20,23 @@ public class FuelIntakeArm extends Subsystem {
 
 	}
 
+	/**
+	 * Extends Intake Arm
+	 */
 	public void extendIntakeArm() {
 		fuelIntakeArm.set(DoubleSolenoid.Value.kForward);
 	}
 	
+	/**
+	 * Retracts Intake Arm
+	 */
 	public void retractIntakeArm() {
 		fuelIntakeArm.set(DoubleSolenoid.Value.kReverse);
 	}
 	
+	/**
+	 * Stops Intake Arm
+	 */
 	public void stopIntakeArm() {
 		fuelIntakeArm.set(DoubleSolenoid.Value.kOff);
 	}

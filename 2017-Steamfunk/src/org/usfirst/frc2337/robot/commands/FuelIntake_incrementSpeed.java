@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc2337.robot.Robot;
 
 /**
- *
+ * Fuel Intake INCREMENTSPEED - Increase the speed for the Intake
  */
 public class FuelIntake_incrementSpeed extends Command {
 	// DECLARE VARIABLES

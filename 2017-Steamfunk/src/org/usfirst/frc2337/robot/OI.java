@@ -91,7 +91,7 @@ public class OI {
 		driver_GreenA			.whenPressed(new FuelIntake_enable());
 		driver_RedB				.whenPressed(new FuelIntake_disable());
 		driver_BlueX			.whenPressed(new FuelIntakeArm_extend());
-		driver_YellowY			.whenPressed(new FuelIntakeArm_retract());
+		driver_YellowY			.whenPressed(new FuelIntakeArm_retractCG());
 		driver_BumperLeft		.whenPressed(new _DoNothing());
 		driver_BumperRight		.whenPressed(new _DoNothing());
 		driver_Back				.whenPressed(new _DoNothing());

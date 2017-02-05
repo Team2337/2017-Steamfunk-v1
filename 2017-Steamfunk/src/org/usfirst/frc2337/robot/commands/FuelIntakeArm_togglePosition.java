@@ -5,7 +5,7 @@ import org.usfirst.frc2337.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Fuel Intake Arm TOGGLEPOSITION - Toggles the IntakeArmss
  */
 public class FuelIntakeArm_togglePosition extends Command {
 	

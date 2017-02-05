@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc2337.robot.Robot;
 
 /**
- *
+ * Fuel Intake SETSPEED - Sets speed of Intake
  */
 public class FuelIntake_setSpeed extends Command {
 	// DECLARE VARIABLES

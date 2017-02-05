@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc2337.robot.Robot;
 
 /**
- *
+ * Fuel Intake DECREMENTSPEED - Decreases the speed for the Intake
  */
 public class FuelIntake_decrementSpeed extends Command {
 	// DECLARE VARIABLES

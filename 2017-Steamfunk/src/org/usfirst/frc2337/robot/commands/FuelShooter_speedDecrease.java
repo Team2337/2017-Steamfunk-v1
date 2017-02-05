@@ -5,10 +5,9 @@ import org.usfirst.frc2337.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Fuel Shooter SPEEDINCREASE - Decreases Speed of Shooter
  */
-public class FuelShooter_speedDecrease extends Command {
-	
+public class FuelShooter_speedDecrease extends Command {	
 	public FuelShooter_speedDecrease() {
 		requires(Robot.fuelShooter);
 	}
@@ -25,7 +24,7 @@ public class FuelShooter_speedDecrease extends Command {
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
 		return true;
-	}
+	}   
 	
 	// Called once after isFinished returns true
 	protected void end() {

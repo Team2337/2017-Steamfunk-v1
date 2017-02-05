@@ -5,7 +5,7 @@ import org.usfirst.frc2337.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Fuel Intake Arm EXTEND & RETRACT - Moves solenoid out on push of button, then back on release.
  */
 public class FuelIntakeArm_extendWhileHeld extends Command {
 	

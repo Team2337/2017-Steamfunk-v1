@@ -36,27 +36,48 @@ public class FuelIntake extends Subsystem {
     public void initDefaultCommand() {
        
     }
+    /**
+     * Starts the Intake
+     * @param speed Speed of intake
+     */
     public void startIntake(double speed) {
     	fuelIntake.set(speed);
     }
+    /**
+     * Stops the Intake
+     */
     public void stopIntake(){
     	fuelIntake.set(0);
     }
+    
+    /**
+     * Updates speed of Intake
+     */
     public void updateSpeed() {
     	fuelIntake_motor.set(currentSpeed);
 		SmartDashboard.putNumber("Shooter Speed:", currentSpeed);
     }
     
+    /**
+     * Sets the speed of Intake
+     * @param speed Speed of Intake
+     */
     public void setSpeed(double speed) {
     	currentSpeed = speed;
     	if(currentSpeed > speed) currentSpeed = 0.5;
     	if(currentSpeed < speed) currentSpeed = 0;
     	updateSpeed();
     }
+    /**
+     * Increases Speed of Intake
+     */
     public void incrementSpeed() {
 		setSpeed(currentSpeed += incrementSpeed);
 	}
 	
+    /**
+     * Decreases Speed of Intake
+     */
 	public void decrementSpeed() {
 		setSpeed(currentSpeed -= incrementSpeed);
 	}
