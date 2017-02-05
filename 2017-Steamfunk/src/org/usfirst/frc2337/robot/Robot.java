@@ -78,7 +78,7 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		
 		// instantiate the command used for the autonomous period
-		autonomousCommand = new _ExampleCommand();
+		autonomousCommand = new _DoNothing();
 	}
 	
 	/**

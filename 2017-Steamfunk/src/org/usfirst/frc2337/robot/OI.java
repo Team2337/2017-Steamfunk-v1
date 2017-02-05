@@ -3,10 +3,8 @@ package org.usfirst.frc2337.robot;
 import org.usfirst.frc2337.libraries.JoystickAnalogButton;
 import org.usfirst.frc2337.libraries.JoystickPOVButton;
 import org.usfirst.frc2337.robot.commands.*;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
