@@ -1,5 +1,6 @@
 package org.usfirst.frc2337.robot.subsystems;
 
+import org.usfirst.frc2337.robot.Robot;
 import org.usfirst.frc2337.robot.RobotMap;
 import org.usfirst.frc2337.robot.commands.*;
 
@@ -21,6 +22,8 @@ public class ChassisPID extends PIDSubsystem {
 	private final CANTalon leftFront	= RobotMap.chassisPID_leftFront;
 	private final CANTalon leftRear		= RobotMap.chassisPID_leftRear;
 	private final RobotDrive robotDrive	= RobotMap.chassisPID_RobotDrive;
+	public boolean reverse = false;
+	//private final AHRS gyro	= RobotMap.chassisPID_gyro;
 	
 	private final AHRS gyro	= RobotMap.chassisPID_gyro;
 	
@@ -31,7 +34,7 @@ public class ChassisPID extends PIDSubsystem {
 		setAbsoluteTolerance(0.2); //1 degree
 		getPIDController().setContinuous(true);
 
-		LiveWindow.addActuator("ChassisPID Gyro", "Gyro", gyro);
+		//LiveWindow.addActuator("ChassisPID Gyro", "Gyro", gyro);
 		LiveWindow.addActuator("ChassisPID", "PIDSubsystem Controller", getPIDController());
 	
 		// Disable brake mode on the motors
@@ -107,4 +110,16 @@ public class ChassisPID extends PIDSubsystem {
 		// e.g. yourMotor.set(output);
 		
 	}
+	 public void setReverse() {
+		 reverse = true;
+		 
+		 
+	    /*	rightFront.set(Robot.constants.kChassisPID_MoveSensitivity * reverseSpeed);
+	    	rightRear.set(Robot.constants.kChassisPID_MoveSensitivity * reverseSpeed);
+	    	leftFront.set(Robot.constants.kChassisPID_MoveSensitivity * reverseSpeed);
+	    	leftRear.set(Robot.constants.kChassisPID_MoveSensitivity * reverseSpeed);*/
+	    }
+	 public void setNormal() {
+		 reverse = false;
+	 }
 }

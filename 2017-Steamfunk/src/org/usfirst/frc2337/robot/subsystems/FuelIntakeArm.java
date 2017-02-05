@@ -21,7 +21,10 @@ import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.Solenoid;
 
 import edu.wpi.first.wpilibj.command.PIDSubsystem;
+<<<<<<< HEAD
 import edu.wpi.first.wpilibj.command.Subsystem;
+=======
+>>>>>>> development
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 /**

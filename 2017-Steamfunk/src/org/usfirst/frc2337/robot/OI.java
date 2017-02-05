@@ -2,6 +2,8 @@ package org.usfirst.frc2337.robot;
 
 import org.usfirst.frc2337.libraries.JoystickAnalogButton;
 import org.usfirst.frc2337.libraries.JoystickPOVButton;
+//import org.usfirst.frc2337.libraries.JoystickAnalogButton;
+//import org.usfirst.frc2337.libraries.JoystickPOVButton;
 import org.usfirst.frc2337.robot.commands.*;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -89,27 +91,36 @@ public class OI {
 	
 	
 	public OI() {
+<<<<<<< HEAD
 
 		driver_GreenA			.whenPressed(new FuelIntake_enable());
 		driver_RedB				.whenPressed(new FuelIntake_disable());
 		driver_BlueX			.whenPressed(new FuelIntakeArm_extend());
 		driver_YellowY			.whenPressed(new FuelIntakeArm_retract());
+=======
+		
+		driver_GreenA			.whenPressed(new FuelIntake_enable());
+		driver_GreenA			.whenReleased(new _DoNothing());
+		driver_RedB				.whenPressed(new FuelIntake_disable());
+		driver_RedB				.whenReleased(new _DoNothing());
+		driver_BlueX			.whenPressed(new FuelIntake_setSpeed());
+		driver_BlueX			.whenReleased(new _DoNothing());
+		driver_YellowY			.whenPressed(new FuelIntake_incrementSpeed());
+		driver_YellowY			.whenReleased(new _DoNothing());
+>>>>>>> development
 		driver_BumperLeft		.whenPressed(new _DoNothing());
-		driver_BumperRight		.whenPressed(new _DoNothing());
+		driver_BumperRight		.whenPressed(new FuelIntake_decrementSpeed());
+		driver_BumperRight		.whenReleased(new _DoNothing());
 		driver_Back				.whenPressed(new _DoNothing());
 		driver_Start			.whenPressed(new _DoNothing());
 		driver_LeftStick		.whenPressed(new _DoNothing());
 		driver_RightStick		.whenPressed(new _DoNothing());
 		driver_TriggerLeft		.whenPressed(new _DoNothing());
 		driver_TriggerRight		.whenPressed(new _DoNothing());
-		driver_POVUp			.whenPressed(new FuelShooter_speedIncrease()); 
-	    driver_POVUpRight		.whenPressed(new _DoNothing()); 
-	    driver_POVRight			.whenPressed(new FuelShooter_resumeShooter()); 
-	    driver_POVDownRight		.whenPressed(new _DoNothing()); 
-	    driver_POVDown			.whenPressed(new FuelShooter_speedDecrease()); 
-	    driver_POVDownLeft		.whenPressed(new _DoNothing()); 
-	    driver_POVLeft			.whenPressed(new FuelShooter_stopShooter()); 
-	    driver_POVUpLeft		.whenPressed(new _DoNothing()); 
+		driver_POVUp			.whenPressed(new FuelIntakeArm_extend());
+		driver_POVRight			.whenPressed(new _DoNothing());
+		driver_POVLeft			.whenPressed(new _DoNothing());
+		driver_POVDown			.whenPressed(new FuelIntakeArm_retract());
 		
 		/*operator_GreenA			.whenPressed(new _DoNothing());
 		operator_RedB			.whenPressed(new _DoNothing());
