@@ -72,23 +72,27 @@ public class RobotMap {
     	
 		// CHASSIS PID
     	/* Right Side */
-		chassisPID_rightFront      = new CANTalon(0);
+		chassisPID_rightFront      = new CANTalon(2);
 		chassisPID_rightFront      .changeControlMode(TalonControlMode.PercentVbus);
 		chassisPID_rightFront      .reverseOutput(true);
+		chassisPID_rightFront	   .enableBrakeMode(true);
+		LiveWindow.addActuator("ChassisPID", "rightFront", chassisPID_rightFront);
 		
 		chassisPID_rightRearMiddle = new CANTalon(1);
 		chassisPID_rightRearMiddle .changeControlMode(TalonControlMode.Follower);
 		chassisPID_rightRearMiddle .set(chassisPID_rightFront.getDeviceID());
 		 
-		chassisPID_rightRear       = new CANTalon(2);
+		chassisPID_rightRear       = new CANTalon(0);
 		chassisPID_rightRear       .changeControlMode(TalonControlMode.Follower);
 		chassisPID_rightRear	   .set(chassisPID_rightFront.getDeviceID());
-
+		LiveWindow.addActuator("ChassisPID", "rightRear",  chassisPID_rightRear);
 		
 		/* Left Side */
 		chassisPID_leftFront       = new CANTalon(13);
 		chassisPID_leftFront       .changeControlMode(TalonControlMode.PercentVbus);
 		chassisPID_leftFront 	   .reverseOutput(true);
+		chassisPID_leftFront	   .enableBrakeMode(true);
+		LiveWindow.addActuator("ChassisPID", "leftFront",  chassisPID_leftFront);
 		
 		chassisPID_leftRearMiddle  = new CANTalon(14);
 		chassisPID_leftRearMiddle  .changeControlMode(TalonControlMode.Follower);
@@ -97,67 +101,51 @@ public class RobotMap {
 		chassisPID_leftRear        = new CANTalon(15);
 		chassisPID_leftRear		   .changeControlMode(TalonControlMode.Follower);
 		chassisPID_leftRear		   .set(chassisPID_leftFront.getDeviceID());
-	
-		
-	
-		
-		LiveWindow.addActuator("ChassisPID", "rightFront", chassisPID_rightFront);
-		LiveWindow.addActuator("ChassisPID", "leftFront",  chassisPID_leftFront);
-		LiveWindow.addActuator("ChassisPID", "rightRear",  chassisPID_rightRear);
 		LiveWindow.addActuator("ChassisPID", "leftRear",   chassisPID_leftRear);
-		
+
 		chassisPID_RobotDrive = new RobotDrive(chassisPID_leftFront, chassisPID_rightFront);
 		chassisPID_RobotDrive.setSafetyEnabled(true);
 		chassisPID_RobotDrive.setExpiration(0.1);
 		chassisPID_RobotDrive.setMaxOutput(1.0);
-
-		// HOPPER TRIGGER
-		hopperTrigger_solenoid = new Solenoid(1, 4);
-		LiveWindow.addActuator("HopperTrigger", "solenoid", hopperTrigger_solenoid);
 		
-        mainLEDfeedbackLED = new Solenoid(1, 3);
-        LiveWindow.addActuator("MainLED", "feedbackLED", mainLEDfeedbackLED);
-        
-        ropeClimberscaleMotor = new CANTalon(4);
-        LiveWindow.addActuator("RopeClimber", "scaleMotor", ropeClimberscaleMotor);
-        
-        targetingLEDtargetingLeftLED = new Solenoid(1, 4);
-        LiveWindow.addActuator("TargetingLED", "targetingLeftLED", targetingLEDtargetingLeftLED);
-        
-        targetingLEDtargetingCenterLED = new Solenoid(1, 5);
-        LiveWindow.addActuator("TargetingLED", "targetingCenterLED", targetingLEDtargetingCenterLED);
-        
-        targetingLEDtargetingRightLED = new Solenoid(1, 6);
-        LiveWindow.addActuator("TargetingLED", "targetingRightLED", targetingLEDtargetingRightLED);
-        
-        targetingLEDtargetingBottomLED = new Solenoid(1, 7);
-        LiveWindow.addActuator("TargetingLED", "targetingBottomLED", targetingLEDtargetingBottomLED);
-        
-        targetingLEDtargetingFrontLED = new Solenoid(1, 0);
-        LiveWindow.addActuator("TargetingLED", "targetingFrontLED", targetingLEDtargetingFrontLED);
-        
-        gearLoader_pusher = new Solenoid(1, 1);
-        LiveWindow.addActuator("GearLoader", "gearPusher", gearLoader_pusher);
+		// HOPPER TRIGGER
+        targetingLEDtargetingFrontLED = new Solenoid(0, 0);
+        gearLoader_pusher = new Solenoid(0, 1);
+        hopperTrigger_solenoid = new Solenoid(0, 2);
+		fuelIntakeArm_solenoid = new DoubleSolenoid(0, 3, 4); 
+		/*
+        mainLEDfeedbackLED = new Solenoid(0, 3);
+		targetingLEDtargetingCenterLED = new Solenoid(0, 5);
+		targetingLEDtargetingRightLED = new Solenoid(0, 6);
+		targetingLEDtargetingBottomLED = new Solenoid(0, 7);
+		targetingLEDtargetingLeftLED = new Solenoid(0, 8);
+		*/
+		
+		
+        ropeClimberscaleMotor = new CANTalon(10);
+
         
 		// FUEL INTAKE ARM
         
         
-		fuelIntakeArm_solenoid = new DoubleSolenoid(0, 3, 4); //MODULE, FORWARD, REVERSE
-		LiveWindow.addActuator("FuelIntakeArm", "fuelIntakeArmRightS", fuelIntakeArm_solenoid);
+//MODULE, FORWARD, REVERSE
+
 		
 		//FUEL INTAKE
 		fuelIntake_motor = new CANTalon(3);
-		LiveWindow.addActuator("FuelIntake", "fuelIntakeLeft", fuelIntake_motor);
 		
-		// FUEL INTAKE
-        fuelShooter_motorRight = new CANTalon(8);
-        fuelShooter_motorLeft = new CANTalon(9);
-        
-        fuelShooter_motorRight.setInverted(true);
-        fuelShooter_motorLeft.setInverted(true);
+		
         // FUEL SHOOTER
-        LiveWindow.addActuator("FuelShooter", "fuelShooterLeft", fuelShooter_motorLeft);
+		fuelShooter_motorLeft = new CANTalon(8);
+		fuelShooter_motorLeft.setInverted(true);
+		LiveWindow.addActuator("FuelShooter", "fuelShooterLeft", fuelShooter_motorLeft);
+		
+        fuelShooter_motorRight = new CANTalon(9);
+        fuelShooter_motorRight.setInverted(true);
         LiveWindow.addActuator("FuelShooter", "fuelShooterRight", fuelShooter_motorRight);
+        
+        
+        
         
         //Will be changed later for auger
         fuelLoaderfuelLoader = new CANTalon(24);
