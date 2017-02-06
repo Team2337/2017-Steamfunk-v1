@@ -1,19 +1,24 @@
 package org.usfirst.frc2337.robot.commands;
-import org.usfirst.frc2337.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+import org.usfirst.frc2337.robot.Robot;
+
 /**
- * MAIN LED - Turn on
+ * Fuel Intake INCREMENTSPEED - Increase the speed for the Intake
  */
-public class MainLED_on extends Command {
-
-    public MainLED_on() {
-
+public class FuelIntake_incrementSpeed extends Command {
+	// DECLARE VARIABLES
+	 
+	
+    public FuelIntake_incrementSpeed() {
+     requires(Robot.fuelIntake);
+    	
     }
 
-    // Called just before this Command runs the first time
+	// Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.fuelIntake.incrementSpeed();
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -22,7 +27,7 @@ public class MainLED_on extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

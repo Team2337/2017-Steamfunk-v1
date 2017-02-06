@@ -1,5 +1,4 @@
 package org.usfirst.frc2337.robot.subsystems;
-
 import org.usfirst.frc2337.robot.Robot;
 import org.usfirst.frc2337.robot.RobotMap;
 import org.usfirst.frc2337.robot.commands.*;
@@ -11,7 +10,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
- *
+ * FUEL SHOOTER
+ * - BEING IMPROVED BY GUS (RPM)
  */
 public class FuelShooter extends Subsystem {
 	
@@ -35,12 +35,18 @@ public class FuelShooter extends Subsystem {
 		
 	}
 	
+	/**
+	 * Updates Speed via SmartDashboard
+	 */
 	public void updateSpeed() {
 		motorLeft.set(currentSpeed);
 		motorRight.set(currentSpeed);
 		SmartDashboard.putNumber("Shooter Speed:", currentSpeed);
 	}
-	
+	/**
+	 * Set speeds of shooter
+	 * @param speed Sets speed of shooter
+	 */
 	public void setShooterSpeed(double speed) {
 		currentSpeed = speed;
 		if(currentSpeed > 1.0) currentSpeed = 1;
@@ -48,15 +54,24 @@ public class FuelShooter extends Subsystem {
 		updateSpeed();
 	}
 	
+	/**
+	 * Stopps Shooter
+	 */
 	public void stopShooter() {
 		motorLeft.set(0);
 		motorRight.set(0);
 	}
 	
+	/**
+	 * Increases Shooter speed
+	 */
 	public void incrementSpeed() {
 		setShooterSpeed(currentSpeed += incrementSpeed);
 	}
 	
+	/**
+	 * Decreases Shooter speed
+	 */
 	public void decrementSpeed() {
 		setShooterSpeed(currentSpeed -= incrementSpeed);
 	}

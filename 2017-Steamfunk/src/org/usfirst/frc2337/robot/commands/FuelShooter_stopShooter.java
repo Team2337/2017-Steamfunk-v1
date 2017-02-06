@@ -5,7 +5,7 @@ import org.usfirst.frc2337.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Fuel Shooter STOPSHOOTER - Disables Shooter
  */
 public class FuelShooter_stopShooter extends Command {
 	

@@ -21,15 +21,22 @@ public class GearLoader extends Subsystem {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
 	}
-	
+	/**
+	 * Is pushed extended?
+	 * @return
+	 */
 	public boolean isExtended() {
 		return gearPusher.get();
 	}
-	
+	/**
+	 * Extend the Pusher
+	 */
 	public void extend() {
 		gearPusher.set(true);
 	}
-	
+	/**
+	 * Retrat the Pusher
+	 */
 	public void retract() {
 		gearPusher.set(false);
 	}

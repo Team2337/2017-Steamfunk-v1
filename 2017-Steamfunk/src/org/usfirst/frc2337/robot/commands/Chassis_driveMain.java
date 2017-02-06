@@ -1,15 +1,14 @@
 package org.usfirst.frc2337.robot.commands;
 
 import org.usfirst.frc2337.robot.Robot;
-import org.usfirst.frc2337.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.Joystick;
 
 /**
- *
+ * Chassis DRIVEMAIN - Main drive train thats based of off HALO/CHEESY drive.
  */
-public class ChassisPID_driveCheesy extends Command {
+public class Chassis_driveMain extends Command {
 	
 	final Joystick driverJoystick = Robot.oi.getDriverJoystick();
 	
@@ -17,8 +16,8 @@ public class ChassisPID_driveCheesy extends Command {
 	double moveSensitivity = Robot.constants.kChassisPID_MoveSensitivity;
 	double turnSensitivity = Robot.constants.kChassisPID_TurnSensitivity;
 	
-	public ChassisPID_driveCheesy() {
-		requires(Robot.chassis);
+	public Chassis_driveMain() {
+		requires(Robot.chassisPID);
 	}
 	
 	// Called just before this Command runs the first time
@@ -37,10 +36,7 @@ public class ChassisPID_driveCheesy extends Command {
 		moveSpeed *= moveSensitivity;
 		turnSpeed *= turnSensitivity;
 		
-
-    	RobotMap.chassisPID_RobotDrive.arcadeDrive(moveSpeed, turnSpeed);
-
-
+    	Robot.chassisPID.arcadeDrive(moveSpeed, turnSpeed);
 	}
 	
 	// Make this return true when this Command no longer needs to run execute()

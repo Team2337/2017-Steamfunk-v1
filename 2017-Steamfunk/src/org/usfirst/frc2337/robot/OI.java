@@ -3,11 +3,8 @@ package org.usfirst.frc2337.robot;
 import org.usfirst.frc2337.libraries.JoystickAnalogButton;
 import org.usfirst.frc2337.libraries.JoystickPOVButton;
 import org.usfirst.frc2337.robot.commands.*;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-//import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
@@ -91,11 +88,11 @@ public class OI {
 	
 	public OI() {
 
-		driver_GreenA			.whenPressed(new FuelIntake_toggle());
-		driver_RedB				.whenPressed(new _DoNothing());
-		driver_BlueX			.whenPressed(new HopperTrigger_extendWhileHeld());
-		driver_YellowY			.whileHeld(new GearLoader_extendWhileHeld());
-		driver_BumperLeft		.whenPressed(new _DoNothing()); 
+		driver_GreenA			.whenPressed(new FuelIntake_enable());
+		driver_RedB				.whenPressed(new FuelIntake_disable());
+		driver_BlueX			.whenPressed(new FuelIntakeArm_extend());
+		driver_YellowY			.whenPressed(new FuelIntakeArm_retractCG());
+		driver_BumperLeft		.whenPressed(new _DoNothing());
 		driver_BumperRight		.whenPressed(new _DoNothing());
 		driver_Back				.whenPressed(new _DoNothing());
 		driver_Start			.whenPressed(new _DoNothing());
@@ -136,28 +133,6 @@ public class OI {
 		operator_POVLeft		.whenPressed(new _DoNothing());
 		operator_POVUpLeft		.whenPressed(new _DoNothing());*/
 		
-		/*
-		// SmartDashboard Command Buttons
-		SmartDashboard.putData("ChassisPID_drive", new ChassisPID_drive());
-		SmartDashboard.putData("ChassisPID_gyroForward", new ChassisPID_gyroForward());
-		SmartDashboard.putData("ChassisTransmission_low", new ChassisTransmission_low());
-		SmartDashboard.putData("ChassisTransmission_high", new ChassisTransmission_high());
-		SmartDashboard.putData("PTO_engage", new PTO_engage());
-		SmartDashboard.putData("PTO_disengage", new PTO_disengage());
-		SmartDashboard.putData("MainLED_on", new MainLED_on());
-		SmartDashboard.putData("MainLED_off", new MainLED_off());
-		SmartDashboard.putData("RopeClimber_up", new RopeClimber_up());
-		SmartDashboard.putData("RopeClimber_down", new RopeClimber_down());
-		SmartDashboard.putData("TargetingLED_default", new TargetingLED_default());
-		SmartDashboard.putData("GearIntake_enable", new GearIntake_enable());
-		SmartDashboard.putData("GearIntake_disable", new GearIntake_disable());
-		SmartDashboard.putData("GearLoader_enable", new GearLoader_enable());
-		SmartDashboard.putData("GearLoader_disable", new GearLoader_disable());
-		SmartDashboard.putData("FuelntakeArm_enable", new FuelntakeArm_enable());
-		SmartDashboard.putData("FuelIntakeArm_disable", new FuelIntakeArm_disable());
-		SmartDashboard.putData("FuelShooter_enable", new FuelShooter_enable());
-		SmartDashboard.putData("FuelShooter_disable", new FuelShooter_disable());
-		*/
 		
 	}
 	
