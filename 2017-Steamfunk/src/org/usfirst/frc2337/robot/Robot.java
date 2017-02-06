@@ -39,6 +39,7 @@ public class Robot extends IterativeRobot {
 	public static FuelLoader fuelLoader;
 	public static FuelAgitator fuelAgitator;
 	public static HopperTrigger hopperTrigger;
+	public static UsbCamera cam0;
 	
 	Command autonomousCommand;
 	SendableChooser<Command> autonSelector; //<Command> autonSelector;//
