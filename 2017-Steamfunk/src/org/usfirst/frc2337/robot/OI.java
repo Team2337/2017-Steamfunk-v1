@@ -91,14 +91,12 @@ public class OI {
 	
 	
 	public OI() {
-<<<<<<< HEAD
+
 
 		driver_GreenA			.whenPressed(new FuelIntake_enable());
 		driver_RedB				.whenPressed(new FuelIntake_disable());
 		driver_BlueX			.whenPressed(new FuelIntakeArm_extend());
 		driver_YellowY			.whenPressed(new FuelIntakeArm_retract());
-=======
-		
 		driver_GreenA			.whenPressed(new FuelIntake_enable());
 		driver_GreenA			.whenReleased(new _DoNothing());
 		driver_RedB				.whenPressed(new FuelIntake_disable());
@@ -107,7 +105,6 @@ public class OI {
 		driver_BlueX			.whenReleased(new _DoNothing());
 		driver_YellowY			.whenPressed(new FuelIntake_incrementSpeed());
 		driver_YellowY			.whenReleased(new _DoNothing());
->>>>>>> development
 		driver_BumperLeft		.whenPressed(new _DoNothing());
 		driver_BumperRight		.whenPressed(new FuelIntake_decrementSpeed());
 		driver_BumperRight		.whenReleased(new _DoNothing());

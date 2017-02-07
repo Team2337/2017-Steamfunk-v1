@@ -5,7 +5,7 @@ package org.usfirst.frc2337.robot;
  * the drive sensitivity, (maybe) PID values, or other such overall
  * constants.
  */
-public class Constants {
+public class Constants extends Robot{
 	// Insert global variables in the following format:
 	// public final double kSUBSYSTEM_VARIABLE = VALUE;
 	
@@ -24,4 +24,6 @@ public class Constants {
 	public final double kFuelIntakeArm_RetractSpeed = -1.0;
 	public final double kFuelIntakeArm_ExtendTime = 1.0;
 	public final double kFuelIntakeArm_RetractTime = 1.0;
+	
 }
+
