@@ -49,8 +49,8 @@ public class Robot extends IterativeRobot {
 	Command autonomousCommand;
 	
 	public Robot() {	
-		SmartDashboard.putData("Auger_resumeAuger", new Auger_resumeAuger());
 		SmartDashboard.putData("PowerDistributionPanel pdp", new PowerDistributionPanel());
+		SmartDashboard.putData("Auger_resumeAuger", new Auger_resumeAuger());
 	}
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -134,7 +134,7 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during test mode
 	 */
 	public void testPeriodic() {
-		LiveWindow.run();
+		//LiveWindow.run();
 	}
 	
 	/**

@@ -7,35 +7,32 @@ import org.usfirst.frc2337.robot.Robot;
 /**
  *
  */
-public class Auger_resumeAuger extends Command {
-
-	 public double speed = Robot.constants.kFuelIntake_DefaultSpeed;
-	 public Auger_resumeAuger(double speed){
-		 requires(Robot.auger);
-		 this.speed = speed;
-	 }
+public class Auger_emptyHopper extends Command {
+	// DECLARE VARIABLES
 	 
 	
-    public Auger_resumeAuger() {
-      requires(Robot.auger);
+    public Auger_emptyHopper() {
+        // INITIALIZE VARIABLES
+    	
+    	
+        // DECLARE REQUIRES
+    	
     	
     }
 
 	// Called just before this Command runs the first time
     protected void initialize() {
-    
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.auger.startAuger(speed);
-    	Robot.auger.updateSpeed();
-    	Robot.auger.getVoltage();
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true
@@ -46,5 +43,4 @@ public class Auger_resumeAuger extends Command {
     // subsystems is scheduled to run
     protected void interrupted() {
     }
-
 }
