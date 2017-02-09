@@ -1,21 +1,21 @@
 package org.usfirst.frc2337.robot.commands;
 
 
+import org.usfirst.frc2337.robot.Robot;
 import org.usfirst.frc2337.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 /**
  * 
- *  Reset the Gyro 
+ *  Reset the Encoders
  * 
  */
-public class Auton_resetGyro  extends Command{
+public class Auton_resetEncoders  extends Command{
 
 
 	// Called just before this Command runs the first time
     protected void initialize() {
-    	RobotMap.chassisPID_gyro.reset();
-    	RobotMap.chassisPID_gyro.reset();
+    	Robot.chassis.resetEncoders();
     
     }
 

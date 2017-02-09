@@ -77,12 +77,12 @@ public class RobotMap {
 		LiveWindow.addActuator("ChassisPID", "rightRear",  chassisPID_rightRear);
 		
 		/* Left Side */
-		chassisPID_leftFront       = new CANTalon(14);
+		chassisPID_leftFront       = new CANTalon(13);
 		chassisPID_leftFront       .changeControlMode(TalonControlMode.PercentVbus);
 		chassisPID_leftFront 	   .reverseOutput(true);
 		chassisPID_leftFront	   .enableBrakeMode(true);
 		chassisPID_leftFront.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
-		//chassisPID_leftFront.reverseSensor(flip);
+		chassisPID_leftFront.reverseSensor(true);
 		LiveWindow.addActuator("ChassisPID", "leftFront",  chassisPID_leftFront);
 		
 		chassisPID_leftRearMiddle  = new CANTalon(14);

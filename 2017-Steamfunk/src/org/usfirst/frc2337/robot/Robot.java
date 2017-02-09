@@ -90,7 +90,7 @@ public class Robot extends IterativeRobot {
 		//autonSelector.addDefault("Do Nothing", new _DoNothing());
 	
 		//autonSelector.addDefault("Turn 90", new Auton_DFGwE(0.5,20000,5));
-		autonSelector.addDefault("Turn 90", new Auton_driveForwardGyro(0.5,20000));
+		autonSelector.addDefault("Turn -46 with forward", new Auton_driveForwardTurn(0,10000,-46,5));
 		autonSelector.addObject("Cross The Line", new AutonCG_crossTheLine());
 	//	autonSelector.addObject("Red Gear Left", new _DoNothing());
 //		autonSelector.addObject("Red Gear Middle", new _DoNothing());
@@ -115,7 +115,7 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public void disabledPeriodic() {
-		allPeriodic();
+		robotPeriodic();
 		Scheduler.getInstance().run();
 	}
 	
@@ -133,7 +133,7 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during autonomous
 	 */
 	public void autonomousPeriodic() {
-		//allPeriodic();
+		robotPeriodic();
 		Scheduler.getInstance().run();
 	}
 	
@@ -151,7 +151,7 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during operator control
 	 */
 	public void teleopPeriodic() {
-		allPeriodic();
+		robotPeriodic();
 		Scheduler.getInstance().run();
 	}
 	
@@ -172,14 +172,14 @@ public class Robot extends IterativeRobot {
 	/**
 	 * This function is called during all periodic functions.
 	 */
-	public void allPeriodic() {
+/**	public void allPeriodic() {
 		SmartDashboard.putNumber("leftEncoder", RobotMap.chassisPID_leftFront.getEncPosition());
 		SmartDashboard.putNumber("rightEncoder", RobotMap.chassisPID_rightFront.getEncPosition());
-	}
+	}**/
 	
 	public void robotPeriodic() {
-		SmartDashboard.putNumber("Encoder", RobotMap.chassisPID_rightFront.get());
-		SmartDashboard.putNumber("Encoder2", RobotMap.chassisPID_rightFront.getEncPosition());
+		SmartDashboard.putNumber("Encoder Lt", RobotMap.chassisPID_leftFront.getEncPosition());
+		SmartDashboard.putNumber("Encoder Rt", RobotMap.chassisPID_rightFront.getEncPosition());
 		SmartDashboard.putNumber("Get Angle", RobotMap.chassisPID_gyro.getAngle());
 		SmartDashboard.putNumber("Get Compass Heading", RobotMap.chassisPID_gyro.getCompassHeading());
 		SmartDashboard.putNumber("Get Yaw", RobotMap.chassisPID_gyro.getYaw());

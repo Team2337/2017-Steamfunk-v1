@@ -1,21 +1,28 @@
 package org.usfirst.frc2337.robot.commands;
 
 
+import org.usfirst.frc2337.robot.Robot;
 import org.usfirst.frc2337.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 /**
  * 
- *  Reset the Gyro 
+ *  Wait
  * 
  */
-public class Auton_resetGyro  extends Command{
+public class Auton_wait  extends Command{
+	
+	public double m_timeout;
+	
+	public Auton_wait(double time){
+		
+		m_timeout = time;
+	}
 
 
 	// Called just before this Command runs the first time
     protected void initialize() {
-    	RobotMap.chassisPID_gyro.reset();
-    	RobotMap.chassisPID_gyro.reset();
+    	setTimeout(m_timeout);
     
     }
 
@@ -25,7 +32,7 @@ public class Auton_resetGyro  extends Command{
     }
 	protected boolean isFinished() {
 		
-		return true;
+		return (isTimedOut());
 	}
 
     // Called once after isFinished returns true

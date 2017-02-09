@@ -11,6 +11,8 @@ import org.usfirst.frc2337.robot.Robot;
 public class AutonCG_blueSide40ball extends CommandGroup {
 	
     public AutonCG_blueSide40ball() {
+    	// reset gyro 
+    	addSequential (new Auton_resetGyro());
     	// turn 46
     	addSequential (new Auton_turnGyro(-46));
     	//move forward 

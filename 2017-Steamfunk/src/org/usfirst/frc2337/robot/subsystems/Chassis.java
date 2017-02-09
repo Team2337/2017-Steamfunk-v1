@@ -74,4 +74,9 @@ public class Chassis extends Subsystem {
 		robotDrive.stopMotor();
 	}
 	
+	public void resetEncoders() {
+		RobotMap.chassisPID_leftFront.setEncPosition(0);
+		RobotMap.chassisPID_rightFront.setEncPosition(0);
+	}
+	
 }

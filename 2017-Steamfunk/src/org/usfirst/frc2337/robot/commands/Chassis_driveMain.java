@@ -17,7 +17,7 @@ public class Chassis_driveMain extends Command {
 	double turnSensitivity = Robot.constants.kChassisPID_TurnSensitivity;
 	
 	public Chassis_driveMain() {
-		requires(Robot.chassisPID);
+		requires(Robot.chassis);
 	}
 	
 	// Called just before this Command runs the first time
@@ -36,7 +36,7 @@ public class Chassis_driveMain extends Command {
 		moveSpeed *= moveSensitivity;
 		turnSpeed *= turnSensitivity;
 		
-    	Robot.chassisPID.arcadeDrive(moveSpeed, turnSpeed);
+    	Robot.chassis.arcadeDrive(moveSpeed, turnSpeed);
 	}
 	
 	// Make this return true when this Command no longer needs to run execute()
