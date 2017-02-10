@@ -42,4 +42,5 @@ public class Constants {
 	
 	public final double kTargetingCamera_Exposure = 1.0;
 	public final double kTargetingCamera_Brightness = 0.0;
+	public final double kRopeClimber_defaultSpeed = 1.0;
 }

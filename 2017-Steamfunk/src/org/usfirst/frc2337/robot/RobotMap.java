@@ -32,7 +32,6 @@ public class RobotMap {
     public static Solenoid chassisTransmissionchassisTransmissionSolenoid;
     public static DoubleSolenoid powerTakeOffptoSolenoid;
     public static Solenoid mainLEDfeedbackLED;
-    public static CANTalon ropeClimberscaleMotor;
     public static Solenoid targetingLEDtargetingLeftLED;
     public static Solenoid targetingLEDtargetingCenterLED;
     public static Solenoid targetingLEDtargetingRightLED;
@@ -50,6 +49,8 @@ public class RobotMap {
     public static CANTalon fuelAgitatorfuelDeGunker;
     public static CANTalon fuelElevatorAcceleratorfuelElevatorAcceleratorMover;
     public static Solenoid hopperTrigger_solenoid;
+    public static CANTalon ropeClimberscaleMotor;
+    public static DigitalInput ropeClimberLimit;
 
     public static void init() {
     	
@@ -130,6 +131,7 @@ public class RobotMap {
         fuelShooter_motorRight = new CANTalon(9);
         fuelShooter_motorRight.setInverted(true);
         LiveWindow.addActuator("FuelShooter", "fuelShooterRight", fuelShooter_motorRight);
+        ropeClimberLimit = new DigitalInput(0);
         
         
         
