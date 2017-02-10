@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  *ROPE CLIMBER
- *@author Jack E. 
+ *@author Jack E
  */
 public class RopeClimber extends Subsystem {
 

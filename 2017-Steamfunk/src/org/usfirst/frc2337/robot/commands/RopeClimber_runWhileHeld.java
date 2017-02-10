@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Rope Climber RUN WHILE HELD - Runs the climber forward while held, stops when released. 
+ * Rope Climber RUN WHILE HELD - Runs the climber forward while held, stops when released
  * @author Jack E.
  */
 public class RopeClimber_runWhileHeld extends Command {
