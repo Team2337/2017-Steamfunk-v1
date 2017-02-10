@@ -55,7 +55,6 @@ public class FuelIntake extends Subsystem {
      */
     public void updateSpeed() {
     	fuelIntake_motor.set(currentSpeed);
-		SmartDashboard.putNumber("Shooter Speed:", currentSpeed);
     }
     
     /**

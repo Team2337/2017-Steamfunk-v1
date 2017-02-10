@@ -7,17 +7,17 @@ import org.usfirst.frc2337.robot.Robot;
 /**
  * Fuel Intake ENABLE - Turns on the Intake
  */
-public class FuelIntake_enabledForward extends Command {
+public class FuelIntake_enabledReverse extends Command {
 
 	 public double speed = Robot.constants.kFuelIntake_DefaultSpeed;
 
-    public FuelIntake_enabledForward() {
+    public FuelIntake_enabledReverse() {
       requires(Robot.fuelIntake);   	
     }
 
 	// Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.fuelIntake.startIntake(speed);
+    	Robot.fuelIntake.startIntake(-speed);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -27,7 +27,7 @@ public class FuelIntake_enabledForward extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+    	return false;
     }
 
     // Called once after isFinished returns true

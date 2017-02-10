@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
  * @author Jack E.
  */
 public class RopeClimber_runWhileHeld extends Command {
-	boolean isPressed = false;
+	//boolean isPressed = false;
 
 	public RopeClimber_runWhileHeld() {
 		requires(Robot.ropeClimber);

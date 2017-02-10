@@ -24,7 +24,7 @@ public class Robot extends IterativeRobot {
 	
 	public static Constants constants;
 	
-	public static Chassis chassisPID;
+	public static Chassis chassis;
 	public static MainLED mainLED;
 	public static RopeClimber ropeClimber;
 	public static TargetingLED targetingLED;
@@ -47,7 +47,7 @@ public class Robot extends IterativeRobot {
 		
 		constants = new Constants();
 		
-		chassisPID = new Chassis();
+		chassis = new Chassis();
 		mainLED = new MainLED();
 		ropeClimber = new RopeClimber();
 		targetingLED = new TargetingLED();
