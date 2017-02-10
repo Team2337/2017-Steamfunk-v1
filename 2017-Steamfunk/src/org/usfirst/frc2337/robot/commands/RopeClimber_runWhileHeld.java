@@ -1,5 +1,6 @@
 package org.usfirst.frc2337.robot.commands;
 import org.usfirst.frc2337.robot.Robot;
+import org.usfirst.frc2337.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
@@ -9,6 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
  * @author Jack E.
  */
 public class RopeClimber_runWhileHeld extends Command {
+	boolean isPressed = false;
 
 	public RopeClimber_runWhileHeld() {
 		requires(Robot.ropeClimber);

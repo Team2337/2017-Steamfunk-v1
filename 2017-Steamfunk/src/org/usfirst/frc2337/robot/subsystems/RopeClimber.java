@@ -26,13 +26,14 @@ public class RopeClimber extends Subsystem {
      * Starts the climber
      */
     public void startClimber(){
-    	scaleMotor.set(speed);
+    	//Robot.chassisPID.arcadeDrive(1, 0);
+    	climbMotor.set(1);
     }
     /**
      * Stops the climber
      */
     public void stopClimber(){
-    	scaleMotor.set(0);
+    	climbMotor.set(0);
     }
 }
 

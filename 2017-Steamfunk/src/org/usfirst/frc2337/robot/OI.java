@@ -41,7 +41,9 @@ public class OI {
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
 	
-	Joystick				driverJoystick			= new Joystick(0);
+	public static ImprovedJoystick improvedJoystick;
+	
+	public static ImprovedJoystick				driverJoystick			= new ImprovedJoystick(0);
 	JoystickButton			driver_GreenA			= new JoystickButton(driverJoystick, 1);
 	JoystickButton			driver_RedB				= new JoystickButton(driverJoystick, 2);
 	JoystickButton			driver_BlueX			= new JoystickButton(driverJoystick, 3);
