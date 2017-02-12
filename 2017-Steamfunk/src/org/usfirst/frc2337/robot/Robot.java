@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc2337.robot.commands.*;
 import org.usfirst.frc2337.robot.subsystems.*;
+import org.usfirst.frc2337.robot.subsystems.Auger;
 
 /**
  * The VM is configured to automatically run this class, and to call the
