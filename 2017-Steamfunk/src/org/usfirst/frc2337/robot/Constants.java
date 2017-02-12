@@ -20,7 +20,6 @@ public class Constants {
 	public final double kAuger_DefaultEnableSpeed = 1;
 	public final double kAuger_incrementSpeed = 0.05; 
 	public final double kAuger_DefaultReverseSpeed = -1; 
-	public final double kAuger_BallSensor = 1;
 	
 	public final double kFuelIntake_DefaultSpeed = 0.5;
 	public final double kFuelIntake_IncrementSpeed = 0.05;

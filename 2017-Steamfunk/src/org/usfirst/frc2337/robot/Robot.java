@@ -49,8 +49,8 @@ public class Robot extends IterativeRobot {
 	Command autonomousCommand;
 	
 	public Robot() {	
-		SmartDashboard.putData("PowerDistributionPanel pdp", new PowerDistributionPanel());
-		SmartDashboard.putData("Auger_resumeAuger", new Auger_resumeAuger());
+		//SmartDashboard.putData("PowerDistributionPanel pdp", new PowerDistributionPanel());
+	//	SmartDashboard.putData("Auger_resumeAuger", new Auger_resumeAuger());
 	}
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -93,8 +93,8 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public void disabledPeriodic() {
-		allPeriodic();
 		Scheduler.getInstance().run();
+		allPeriodic();
 	}
 	
 	public void autonomousInit() {
@@ -108,8 +108,8 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during autonomous
 	 */
 	public void autonomousPeriodic() {
-		allPeriodic();
 		Scheduler.getInstance().run();
+		allPeriodic();
 	}
 	
 	public void teleopInit() {
@@ -126,8 +126,8 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during operator control
 	 */
 	public void teleopPeriodic() {
-		allPeriodic();
 		Scheduler.getInstance().run();
+		allPeriodic();
 	}
 	
 	/**
@@ -148,6 +148,13 @@ public class Robot extends IterativeRobot {
 	 * This function is called during all periodic functions.
 	 */
 	public void allPeriodic() {
-		
+		//Right side auger
+		SmartDashboard.putBoolean("Ball is ready to be shot", RobotMap.limitSwitchFrontRight.get());
+		SmartDashboard.putBoolean("Ball is in the middle on the right", RobotMap.limitSwitchMiddleRight.get());
+		SmartDashboard.putBoolean("The ball is near the end", RobotMap.limitSwitchEndRight.get());
+		// Left side auger
+		SmartDashboard.putBoolean("Ball is near shooter", RobotMap.limitSwitchFrontLeft.get());
+		SmartDashboard.putBoolean("Ball is in the middle on the left", RobotMap.limitSwitchMiddleLeft.get());
+		SmartDashboard.putBoolean("The ball is at the end", RobotMap.limitSwitchEndLeft.get());
 	}
 }

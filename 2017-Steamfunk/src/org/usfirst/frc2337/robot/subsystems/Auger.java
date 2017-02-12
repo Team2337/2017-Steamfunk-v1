@@ -17,6 +17,7 @@ import org.usfirst.frc2337.robot.commands.*;
 
 import com.ctre.CANTalon;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -27,13 +28,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Auger extends Subsystem {
    private final CANTalon fuelAgitatorfuelDeGunker = RobotMap.fuelIntake_motor;
-   private final Solenoid augerS = RobotMap.augerS;
+   private final CANTalon auger = RobotMap.fuelIntake_motor;
+   
    double currentSpeed = Robot.constants.kAuger_DefaultEnableSpeed;
    double speed = Robot.constants.kAuger_DefaultEnableSpeed;
    double incrementSpeed = Robot.constants.kAuger_incrementSpeed;
    double reverseSpeed = Robot.constants.kAuger_DefaultReverseSpeed;
-   double ballSensor = Robot.constants.kAuger_BallSensor;
-    private final CANTalon auger = RobotMap.fuelIntake_motor;
+   
 
     
     public void initDefaultCommand() {
@@ -66,19 +67,8 @@ public class Auger extends Subsystem {
 		setSpeed(currentSpeed -= incrementSpeed);
 	}
 	
-	public void  emptyHopper (){
-		augerS.set(true);
-	}
-	public void notEmptyHopper() {
-		augerS.set(false);
-	}
-	
 	public void getVoltage() {
 		auger.getBusVoltage();
-	}
-	
-	public boolean getHopperSolenoid() {
-		return augerS.get();		
 	}
 }
 

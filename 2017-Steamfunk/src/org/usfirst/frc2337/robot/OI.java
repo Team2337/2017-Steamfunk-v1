@@ -102,7 +102,7 @@ public class OI {
 		driver_RightStick		.whenPressed(new _DoNothing());
 		driver_TriggerLeft		.whenPressed(new _DoNothing());
 		driver_TriggerRight		.whenPressed(new _DoNothing());
-		driver_POVUp			.whenPressed(new _DoNothing());
+		driver_POVUp			.whenPressed(new  _DoNothing());
 		driver_POVUpRight		.whenPressed(new _DoNothing());
 		driver_POVRight			.whenPressed(new _DoNothing());
 		driver_POVDownRight		.whenPressed(new _DoNothing());
