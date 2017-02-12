@@ -95,8 +95,8 @@ public class OI {
 		driver_YellowY			.whenPressed(new FuelIntakeArm_retractCG());
 		driver_BumperLeft		.whenPressed(new _DoNothing());
 		driver_BumperRight		.whenPressed(new _DoNothing());
-		driver_Back				.whenPressed(new _DoNothing());
-		driver_Start			.whenPressed(new _DoNothing());
+		driver_Back				.whenPressed(new AutonCGT_loadGearBallRight());
+		driver_Start			.whenPressed(new AutonCGT_loadGearBallLeft());
 		driver_LeftStick		.whenPressed(new _DoNothing());
 		driver_RightStick		.whenPressed(new _DoNothing());
 		driver_TriggerLeft		.whenPressed(new _DoNothing());
@@ -110,7 +110,7 @@ public class OI {
 	    driver_POVLeft			.whenPressed(new FuelShooter_stopShooter()); 
 	    driver_POVUpLeft		.whenPressed(new _DoNothing()); 
 	    
-	    SmartDashboard.putData("ChassisPID_drive", new Auton_DriveForwardGyroWithEncoder());
+	    
 	
 		
 		/*operator_GreenA			.whenPressed(new _DoNothing());

@@ -13,12 +13,12 @@ public class AutonCG_blueSide40ball extends CommandGroup {
     public AutonCG_blueSide40ball() {
     	// reset gyro 
     	addSequential (new Auton_resetGyro());
-    	// turn 46
-    	addSequential (new Auton_turnGyro(-46));
+    	// turn -46
+    	addSequential (new Auton_turnGyro(-46));//-Robot.constants.K40Ball));
     	//move forward 
     	addSequential(new Auton_driveForwardGyro(1.0,3));
-    	// turn -46 
-    	addSequential (new Auton_turnGyro(46));
+    	// turn 46 
+    	addSequential (new Auton_turnGyro(46));//Robot.constants.K40Ball));
     	// move forward 
     	addSequential(new Auton_driveForwardGyro(1.0,2));
     	//addparallel(new start shooter) code still need

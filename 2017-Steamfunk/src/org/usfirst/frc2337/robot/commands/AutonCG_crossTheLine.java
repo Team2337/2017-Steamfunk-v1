@@ -17,7 +17,10 @@ public class AutonCG_crossTheLine extends CommandGroup {
     	addSequential(new Auton_resetGyro());
     	//addSequential(new Auton_turnGyro(90));
     	//addSequential(new Auton_wait(0.00));
-    addSequential(new Auton_driveForwardTurn(0,10000,46,5));
+    addSequential(new Auton_driveForwardTurnEncoder(-.6,11000,30,10));
+    addSequential(new Auton_wait(0));
+    addSequential(new Auton_driveForwardTurnEncoder(-.6,26000,0,10));
+    addSequential(new HopperTrigger_extend());
     	//addSequential(new Auton_driveForwardGyro(-1.0,0.1));
     //	addSequential(new Auton_DriveForwardGyroWithEncoder());
     addSequential(new _DoNothing());

@@ -90,8 +90,9 @@ public class Robot extends IterativeRobot {
 		//autonSelector.addDefault("Do Nothing", new _DoNothing());
 	
 		//autonSelector.addDefault("Turn 90", new Auton_DFGwE(0.5,20000,5));
-		autonSelector.addDefault("Turn -46 with forward", new Auton_driveForwardTurn(0,10000,-46,5));
+		autonSelector.addDefault("Turn -46 with forward", new Auton_driveForwardTurnEncoder(0,10000,-46,5));
 		autonSelector.addObject("Cross The Line", new AutonCG_crossTheLine());
+		autonSelector.addObject("mid gear",new AutonCG_midGear());
 	//	autonSelector.addObject("Red Gear Left", new _DoNothing());
 //		autonSelector.addObject("Red Gear Middle", new _DoNothing());
 		//autonSelector.addObject("Red Gear Right", new _DoNothing());
@@ -183,11 +184,12 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Get Angle", RobotMap.chassisPID_gyro.getAngle());
 		SmartDashboard.putNumber("Get Compass Heading", RobotMap.chassisPID_gyro.getCompassHeading());
 		SmartDashboard.putNumber("Get Yaw", RobotMap.chassisPID_gyro.getYaw());
-	
+		
 		
 		SmartDashboard.putNumber("Get PIDGET", RobotMap.chassisPID_gyro.pidGet());
 		SmartDashboard.putNumber("Get fused heading", RobotMap.chassisPID_gyro.getFusedHeading());
 		//SmartDashboard.putData("TurnToAngle:45", new Auton_turnGyro3(45));
-
+		
+		SmartDashboard.putNumber("Current for RightChassis", RobotMap.chassisPID_rightFront.getOutputCurrent());
 	}
 }

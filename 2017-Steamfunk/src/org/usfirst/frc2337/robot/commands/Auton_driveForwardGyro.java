@@ -15,8 +15,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 	
 public class Auton_driveForwardGyro extends Command {
 
-	public double speed;
-	double Kpp = 0.05;			//was 1. this is what a cpomment looks like
+	public double speed; 
+	double Kpp = 0.30;			//was 0.05 this is what a comment looks like
 	double yawp;
 	public double time;
 	public double baseAngle;
@@ -46,9 +46,9 @@ public class Auton_driveForwardGyro extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	yawp = RobotMap.chassisPID_gyro.getYaw();
+    	yawp = RobotMap.chassisPID_gyro.getYaw(); 
     	//RobotMap.chassisPID_RobotDrive.drive(-speed,  -yaw*Kp);    //(baseAngle-yaw)*Kp);
-    	Robot.chassis.arcadeDrive(.6,  -yawp*Kpp); //-RobotMap.chassisPID_gyro.getYaw()
+    	Robot.chassis.arcadeDrive(speed,  yawp*Kpp); //-RobotMap.chassisPID_gyro.getYaw() //Change the -yawp to yawp
     	//SmartDashboard.putBoolean("collision", RobotMap.chassisPID_gyro.isMoving());
     	    	
     } 
@@ -59,6 +59,7 @@ public class Auton_driveForwardGyro extends Command {
 	}
 	 // Called once after isFinished returns true
     protected void end() {
+    	Robot.chassis.arcadeDrive(0,0);
     }
 
     // Called when another command which requires one or more of the same

@@ -78,5 +78,9 @@ public class Chassis extends Subsystem {
 		RobotMap.chassisPID_leftFront.setEncPosition(0);
 		RobotMap.chassisPID_rightFront.setEncPosition(0);
 	}
+	public boolean isStopped(){
+		return !gyro.isMoving();
+		
+	}
 	
 }
