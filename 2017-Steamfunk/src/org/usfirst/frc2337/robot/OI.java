@@ -116,8 +116,8 @@ public class OI {
 	    driver_POVLeft			.whenPressed(new FuelShooter_stopShooter()); //Stop Fuel Shooter
 	    driver_POVUpLeft		.whenPressed(new _DoNothing()); 
 		/* =========================================================*/
-		operator_GreenA			.whenPressed(new RopeClimber_runWhileHeld()); //Climber run
-		operator_RedB			.whenPressed(new _DoNothing()); //Raise Gear fingers
+		operator_GreenA			.whileHeld(new RopeClimber_runWhileHeld()); //Climber run
+		operator_RedB			.whileHeld(new GearLoader_extendWhileHeld()); //Raise Gear fingers
 		operator_BlueX			.whenPressed(new _DoNothing()); //Far shot
 		operator_YellowY		.whenPressed(new _DoNothing()); //Boiling shot
 		
