@@ -90,7 +90,7 @@ public class OI {
 	
 	public OI() {
 		
-		driver_GreenA			.whenPressed(new Auger_setSpeed());
+		driver_GreenA			.whileHeld(new Auger_Testing());
 		driver_RedB				.whenPressed(new Auger_decreaseSpeed());
 		driver_BlueX			.whenPressed(new Auger_speedIncrease());
 		driver_YellowY			.whenPressed(new Auger_resumeAuger());

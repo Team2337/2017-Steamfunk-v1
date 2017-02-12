@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc2337.robot.commands.*;
 import org.usfirst.frc2337.robot.subsystems.*;
+import org.usfirst.frc2337.robot.subsystems.Auger;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -49,7 +50,7 @@ public class Robot extends IterativeRobot {
 	Command autonomousCommand;
 	
 	public Robot() {	
-		SmartDashboard.putData("Auger_resumeAuger", new Auger_resumeAuger());
+		//SmartDashboard.putData("Auger_resumeAuger", new Auger_resumeAuger());
 		SmartDashboard.putData("PowerDistributionPanel pdp", new PowerDistributionPanel());
 	}
 	/**
@@ -93,7 +94,7 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public void disabledPeriodic() {
-		allPeriodic();
+		//allPeriodic();
 		Scheduler.getInstance().run();
 	}
 	
@@ -108,7 +109,7 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during autonomous
 	 */
 	public void autonomousPeriodic() {
-		allPeriodic();
+		//allPeriodic();
 		Scheduler.getInstance().run();
 	}
 	
