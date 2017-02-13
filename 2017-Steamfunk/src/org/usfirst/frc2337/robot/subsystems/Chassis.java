@@ -6,14 +6,12 @@ import org.usfirst.frc2337.robot.commands.*;
 import com.ctre.CANTalon;
 import com.kauailabs.navx.frc.AHRS;
 
-import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.command.PIDSubsystem;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+
 
 /**
- *
+ * CHASSIS - Drives the robot
  */
 public class Chassis extends Subsystem {
 	
@@ -26,13 +24,12 @@ public class Chassis extends Subsystem {
 	private final AHRS gyro	= RobotMap.chassisPID_gyro;
 	
 	// Initialize your subsystem here
-	public void initDefaultCommand() {
-		// Set the default command for a subsystem here.
-		//setDefaultCommand(new MySpecialCommand());
-		
-		setDefaultCommand(new ChassisPID_driveCheesy());
-		
+	
+    public void initDefaultCommand() {
+		setDefaultCommand(new Chassis_driveMain());
 	}
+	
+
 
 	public void tankDrive(double leftValue, double rightValue) {
 		robotDrive.tankDrive(leftValue, rightValue, true);
@@ -70,10 +67,11 @@ public class Chassis extends Subsystem {
 	 * @return Yaw of gyro
 	 */
     public double getGyroYaw() {
-    	return gyro.getFusedHeading();
+    	return gyro.getYaw();
     }
 	
 	public void stopMotors() {
 		robotDrive.stopMotor();
 	}
+	
 }

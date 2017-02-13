@@ -5,7 +5,7 @@ import org.usfirst.frc2337.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Fuel Shooter SPEEDDECREASE - Resumes Speed of Shooter
  */
 public class FuelShooter_resumeShooter extends Command {
 	

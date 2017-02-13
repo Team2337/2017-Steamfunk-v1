@@ -1,38 +1,54 @@
 package org.usfirst.frc2337.robot.commands;
-
 import org.usfirst.frc2337.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Fuel Intake Arm RETRACT - Moves back the Arm
  */
 public class FuelIntakeArm_retract extends Command {
 	
-	public FuelIntakeArm_retract() {
-		
-	}
+	double retractSpeed = Robot.constants.kFuelIntakeArm_RetractSpeed;
+	double retractTime = Robot.constants.kFuelIntakeArm_RetractTime;
+	double time = retractTime;
 
-	// Called just before this Command runs the first time
-	protected void initialize() {
-		Robot.fuelIntakeArm.retractArm();
+	public FuelIntakeArm_retract(double retractSpeed) {
+	    	requires(Robot.fuelIntakeArm);
+	    	this.retractSpeed = retractSpeed;
+	    	
 	}
+    public FuelIntakeArm_retract() {
 
-	// Called repeatedly when this Command is scheduled to run
-	protected void execute() {
-	}
+    requires(Robot.fuelIntakeArm);
+    }
 
-	// Make this return true when this Command no longer needs to run execute()
-	protected boolean isFinished() {
-		return true;
-	}
+    // Called just before this Command runs the first time
+    protected void initialize() {
+    	Robot.fuelIntakeArm.retractIntakeArm();
 
-	// Called once after isFinished returns true
-	protected void end() {
-	}
+    	//Robot.fuelIntakeArm.retractIntakeArm(retractSpeed);
+    	//setTimeout(time);
+    	//Robot.fuelIntakeArm.stopIntakeArm();
+    }
 
-	// Called when another command which requires one or more of the same
-	// subsystems is scheduled to run
-	protected void interrupted() {
-	}
+    // Called repeatedly when this Command is scheduled to run
+    protected void execute() {
+    	
+    }
+
+    // Make this return true when this Command no longer needs to run execute()
+    protected boolean isFinished() {
+        return true;
+    }
+
+    // Called once after isFinished returns true
+    protected void end() {
+    
+    }
+
+    // Called when another command which requires one or more of the same
+    // subsystems is scheduled to run
+    protected void interrupted() {
+    
+    }
 }
