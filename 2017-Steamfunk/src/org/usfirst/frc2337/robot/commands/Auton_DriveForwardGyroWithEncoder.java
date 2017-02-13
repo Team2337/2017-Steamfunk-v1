@@ -16,12 +16,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Auton_DriveForwardGyroWithEncoder extends Command {
 
 	public double speed; 
-	double Kpp = 0.3;			//was 0.05 this is what a cpomment looks like 
+	double Kpp = .3;			//was 0.05 this is what a cpomment looks like 
 	double yawp;
 	public double time;
 	public double encodertarget;
 	/**
-	 * drive forward for a time with a gyro
+	 * drive forward for a time with a gyro.
+	 * If encoder is not reset before you run this command twice, in opposite speeds, the second command 
+	 * will no run if the magnitude of the encoder value is less than, at, or near the first encoder target 
+	 * value (I.E within 100 ticks)
 	 * @param speed from -1 to 1
 	 * @param Encoder target
 	 * @param time in seconds
@@ -31,7 +34,6 @@ public class Auton_DriveForwardGyroWithEncoder extends Command {
     	this.time = time;
     	this.speed = speed;
     	this.encodertarget = encoderTarget;
-    	setTimeout(time);
 
     }
 
@@ -39,7 +41,7 @@ public class Auton_DriveForwardGyroWithEncoder extends Command {
     protected void initialize() {
     	setTimeout(time);
     	//baseAngle = RobotMap.chassisPID_gyro.getYaw();
-    	RobotMap.chassisPID_gyro.reset();
+    	//RobotMap.chassisPID_gyro.reset();
     	
     	//for(int i = 0; i<=50000; i++) { int i2=1+i;}  //time waster
     	
@@ -57,8 +59,11 @@ public class Auton_DriveForwardGyroWithEncoder extends Command {
     
 	protected boolean isFinished() {
 
-		return (isTimedOut() || RobotMap.chassisPID_leftFront.getEncPosition() > encodertarget);
+		return (isTimedOut() || Math.abs(RobotMap.chassisPID_leftFront.getEncPosition()) > Math.abs(encodertarget));
+	
+	
 	}
+	
 	 // Called once after isFinished returns true
     protected void end() {
     	Robot.chassis.arcadeDrive(0,0);

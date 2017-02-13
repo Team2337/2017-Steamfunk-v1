@@ -15,7 +15,9 @@ public class Auton_resetEncoders  extends Command{
 
 	// Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.chassis.resetEncoders();
+    	RobotMap.chassisPID_leftFront.setEncPosition(0);
+		RobotMap.chassisPID_rightFront.setEncPosition(0);
+    	//Robot.chassis.resetEncoders();
     
     }
 
