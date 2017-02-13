@@ -96,7 +96,7 @@ public class OI {
 		driver_BlueX			.whenPressed(new _DoNothing()); 
 		driver_YellowY			.whenPressed(new _DoNothing()); 
 		
-		driver_BumperLeft		.whenPressed(new _DoNothing()); //Turn Reduction
+		driver_BumperLeft		.whenPressed(new _DoNothing()); //Turn Reduction, don't use, reads inside command.
 		driver_BumperRight		.whenPressed(new _DoNothing()); //Vision Align
 		
 		driver_Back				.whenPressed(new _DoNothing()); 

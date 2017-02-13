@@ -32,7 +32,7 @@ public class AutonCG_midGear extends CommandGroup {
     	// code still need 
     	addSequential(new Auton_DriveForwardGyroWithEncoder(.7, 6000,3));  //was 1.0 speed
     	// open doors 
-    	// code still need 
+    	addSequential(new GearLoader_extend()); 
     	//back a little 
     	addSequential(new Auton_wait(.5));
     	addSequential(new Auton_resetEncoders());
