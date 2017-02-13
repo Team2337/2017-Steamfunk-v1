@@ -4,6 +4,8 @@ import com.ctre.CANTalon;
 import com.kauailabs.navx.frc.AHRS;
 import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
+
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
@@ -35,7 +37,6 @@ public class RobotMap {
     public static Solenoid chassisTransmissionchassisTransmissionSolenoid;
     public static DoubleSolenoid powerTakeOffptoSolenoid;
     public static Solenoid mainLEDfeedbackLED;
-    public static CANTalon ropeClimberscaleMotor;
     public static Solenoid targetingLEDtargetingLeftLED;
     public static Solenoid targetingLEDtargetingCenterLED;
     public static Solenoid targetingLEDtargetingRightLED;
@@ -53,6 +54,8 @@ public class RobotMap {
     public static CANTalon fuelAgitatorfuelDeGunker;
     public static CANTalon fuelElevatorAcceleratorfuelElevatorAcceleratorMover;
     public static Solenoid hopperTrigger_solenoid;
+    public static CANTalon ropeClimberscaleMotor;
+    public static DigitalInput ropeClimberLimit;
 
     public static void init() {
     	
@@ -104,6 +107,8 @@ public class RobotMap {
         targetingLEDtargetingFrontLED = new Solenoid(0, 0);
         gearLoader_pusher = new Solenoid(0, 1);
         hopperTrigger_solenoid = new Solenoid(0, 2);
+        
+        // FUEL INTAKE ARM
 		fuelIntakeArm_solenoid = new DoubleSolenoid(0, 3, 4); 
 		/*
         mainLEDfeedbackLED = new Solenoid(0, 3);
@@ -115,13 +120,9 @@ public class RobotMap {
 		
 		
         ropeClimberscaleMotor = new CANTalon(10);
-
+        ropeClimberscaleMotor.enableBrakeMode(true);
+        ropeClimberLimit = new DigitalInput(0);
         
-		// FUEL INTAKE ARM
-        
-        
-//MODULE, FORWARD, REVERSE
-
 		
 		//FUEL INTAKE
 		fuelIntake_motor = new CANTalon(3);
@@ -135,6 +136,7 @@ public class RobotMap {
         fuelShooter_motorRight = new CANTalon(9);
         fuelShooter_motorRight.setInverted(true);
         LiveWindow.addActuator("FuelShooter", "fuelShooterRight", fuelShooter_motorRight);
+
         
         
         

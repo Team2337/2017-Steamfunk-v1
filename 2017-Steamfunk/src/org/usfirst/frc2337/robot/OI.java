@@ -40,7 +40,9 @@ public class OI {
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
 	
-	Joystick				driverJoystick			= new Joystick(0);
+	public static Joystick improvedJoystick;
+	
+	public static Joystick				driverJoystick			= new Joystick(0);
 	JoystickButton			driver_GreenA			= new JoystickButton(driverJoystick, 1);
 	JoystickButton			driver_RedB				= new JoystickButton(driverJoystick, 2);
 	JoystickButton			driver_BlueX			= new JoystickButton(driverJoystick, 3);
@@ -63,7 +65,7 @@ public class OI {
 	JoystickPOVButton		driver_POVUpLeft		= new JoystickPOVButton(driverJoystick, 315);
 	
 	Joystick				operatorJoystick		= new Joystick(1);
-	/*JoystickButton			operator_GreenA			= new JoystickButton(operatorJoystick, 1);
+	JoystickButton			operator_GreenA			= new JoystickButton(operatorJoystick, 1);
 	JoystickButton			operator_RedB			= new JoystickButton(operatorJoystick, 2);
 	JoystickButton			operator_BlueX			= new JoystickButton(operatorJoystick, 3);
 	JoystickButton			operator_YellowY		= new JoystickButton(operatorJoystick, 4);
@@ -82,57 +84,64 @@ public class OI {
 	JoystickPOVButton		operator_POVDown		= new JoystickPOVButton(operatorJoystick, 180);
 	JoystickPOVButton		operator_POVDownLeft	= new JoystickPOVButton(operatorJoystick, 225);
 	JoystickPOVButton		operator_POVLeft		= new JoystickPOVButton(operatorJoystick, 270);
-	JoystickPOVButton		operator_POVUpLeft		= new JoystickPOVButton(operatorJoystick, 315);*/
+	JoystickPOVButton		operator_POVUpLeft		= new JoystickPOVButton(operatorJoystick, 315);
 	
 	Joystick				operatorControls		= new Joystick(2);
 	
 	
 	public OI() {
 
-		driver_GreenA			.whenPressed(new FuelIntake_enable());
-		driver_RedB				.whenPressed(new FuelIntake_disable());
-		driver_BlueX			.whenPressed(new FuelIntakeArm_extend());
-		driver_YellowY			.whenPressed(new FuelIntakeArm_retractCG());
-		driver_BumperLeft		.whenPressed(new _DoNothing());
-		driver_BumperRight		.whenPressed(new _DoNothing());
-		driver_Back				.whenPressed(new AutonCGT_loadGearBallRight());
-		driver_Start			.whenPressed(new AutonCGT_loadGearBallLeft());
-		driver_LeftStick		.whenPressed(new _DoNothing());
-		driver_RightStick		.whenPressed(new _DoNothing());
-		driver_TriggerLeft		.whenPressed(new _DoNothing());
-		driver_TriggerRight		.whenPressed(new _DoNothing());
-		driver_POVUp			.whenPressed(new FuelShooter_speedIncrease()); 
-	    driver_POVUpRight		.whenPressed(new _DoNothing()); 
-	    driver_POVRight			.whenPressed(new FuelShooter_resumeShooter()); 
-	    driver_POVDownRight		.whenPressed(new _DoNothing()); 
-	    driver_POVDown			.whenPressed(new FuelShooter_speedDecrease()); 
-	    driver_POVDownLeft		.whenPressed(new _DoNothing()); 
-	    driver_POVLeft			.whenPressed(new FuelShooter_stopShooter()); 
-	    driver_POVUpLeft		.whenPressed(new _DoNothing()); 
-	    
-	    
-	
+		driver_GreenA			.whenPressed(new _DoNothing()); //Near give maneuver
+		driver_RedB				.whenPressed(new _DoNothing()); //Far gear maneuver
+		driver_BlueX			.whenPressed(new _DoNothing()); 
+		driver_YellowY			.whenPressed(new _DoNothing()); 
 		
-		/*operator_GreenA			.whenPressed(new _DoNothing());
-		operator_RedB			.whenPressed(new _DoNothing());
-		operator_BlueX			.whenPressed(new _DoNothing());
-		operator_YellowY		.whenPressed(new _DoNothing());
-		operator_BumperLeft		.whenPressed(new _DoNothing());
-		operator_BumperRight	.whenPressed(new _DoNothing());
+		driver_BumperLeft		.whenPressed(new _DoNothing()); //Turn Reduction
+		driver_BumperRight		.whenPressed(new _DoNothing()); //Vision Align
+		
+		driver_Back				.whenPressed(new _DoNothing()); 
+		driver_Start			.whenPressed(new _DoNothing());
+		
+		driver_LeftStick		.whenPressed(new _DoNothing());
+		driver_RightStick		.whenPressed(new _DoNothing()); 
+		
+		driver_TriggerLeft		.whenPressed(new _DoNothing()); //Shoot all Fuel
+		driver_TriggerRight		.whenPressed(new _DoNothing()); //Shoot one Fuel
+		
+		driver_POVUp			.whenPressed(new FuelShooter_speedIncrease());  //Increase Fuel Shooter speed
+	    driver_POVUpRight		.whenPressed(new _DoNothing()); 
+	    driver_POVRight			.whenPressed(new FuelShooter_resumeShooter());  //Start Fuel Shooter
+	    driver_POVDownRight		.whenPressed(new _DoNothing()); 
+	    driver_POVDown			.whenPressed(new FuelShooter_speedDecrease()); //Decrease Fuel Shooter speed
+	    driver_POVDownLeft		.whenPressed(new _DoNothing()); 
+	    driver_POVLeft			.whenPressed(new FuelShooter_stopShooter()); //Stop Fuel Shooter
+	    driver_POVUpLeft		.whenPressed(new _DoNothing()); 
+		/* =========================================================*/
+		operator_GreenA			.whileHeld(new RopeClimber_runWhileHeld()); //Climber run
+		operator_RedB			.whileHeld(new GearLoader_extendWhileHeld()); //Raise Gear fingers
+		operator_BlueX			.whenPressed(new _DoNothing()); //Far shot
+		operator_YellowY		.whenPressed(new _DoNothing()); //Boiling shot
+		
+		operator_BumperLeft		.whenPressed(new FuelIntakeArm_extend());
+		operator_BumperRight	.whileHeld(new FuelIntake_enabledReverse());
+		
 		operator_Back			.whenPressed(new _DoNothing());
 		operator_Start			.whenPressed(new _DoNothing());
+		
 		operator_LeftStick		.whenPressed(new _DoNothing());
 		operator_RightStick		.whenPressed(new _DoNothing());
-		operator_TriggerLeft	.whenPressed(new _DoNothing());
-		operator_TriggerRight	.whenPressed(new _DoNothing());
+		
+		operator_TriggerLeft	.whenPressed(new FuelIntakeArm_retract());
+		operator_TriggerRight	.whileHeld(new FuelIntake_enabledForward());
+		
 		operator_POVUp			.whenPressed(new _DoNothing());
 		operator_POVUpRight		.whenPressed(new _DoNothing());
-		operator_POVRight		.whenPressed(new _DoNothing());
+		operator_POVRight		.whenPressed(new _DoNothing()); //Right Wings
 		operator_POVDownRight	.whenPressed(new _DoNothing());
 		operator_POVDown		.whenPressed(new _DoNothing());
 		operator_POVDownLeft	.whenPressed(new _DoNothing());
-		operator_POVLeft		.whenPressed(new _DoNothing());
-		operator_POVUpLeft		.whenPressed(new _DoNothing());*/
+		operator_POVLeft		.whenPressed(new _DoNothing()); //Left Wings
+		operator_POVUpLeft		.whenPressed(new _DoNothing());
 		
 		
 	}

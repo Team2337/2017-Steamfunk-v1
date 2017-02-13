@@ -1,25 +1,47 @@
 package org.usfirst.frc2337.robot.subsystems;
 
+import org.usfirst.frc2337.robot.Robot;
 import org.usfirst.frc2337.robot.RobotMap;
+import org.usfirst.frc2337.robot.commands.*;
+
 import com.ctre.CANTalon;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
+
+
 /**
- * ROPECLIMBER
- *  - BEING IMPROVED BY JACK
+ *ROPE CLIMBER
+ *@author Jack E
  */
 public class RopeClimber extends Subsystem {
 
-    private final CANTalon scaleMotor = RobotMap.ropeClimberscaleMotor;
+    private final CANTalon climbMotor = RobotMap.ropeClimberscaleMotor;
 
-
-
-
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
+    double speed = Robot.constants.kRopeClimber_defaultSpeed;
 
     public void initDefaultCommand() {
-
-        // setDefaultCommand(new MySpecialCommand());
+    
+    }
+    
+    /**
+     * Starts the climber
+     */
+    public void startClimber(){
+    	//Robot.chassisPID.arcadeDrive(1, 0);
+    	climbMotor.set(-1.0);
+    }
+    /**
+     * Stops the climber
+     */
+    public void stopClimber(){
+    	climbMotor.set(0);
+    }
+    /**
+     * Enable Brake Mode
+     */
+    public void enableBrakeMode() {
+    	climbMotor.enableBrakeMode(true);
+    	
     }
 }
 

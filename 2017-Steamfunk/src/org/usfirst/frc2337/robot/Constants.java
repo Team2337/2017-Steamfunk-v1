@@ -43,7 +43,6 @@ public class Constants {
 	public final double kTargetingCamera_Exposure = 1.0;
 	public final double kTargetingCamera_Brightness = 0.0;
 	
-	
-	// Auton Code don't change 
-	//public final double K40Ball = 46;
+	/* Rope Climber */
+	public final double kRopeClimber_defaultSpeed = 1.0;
 }

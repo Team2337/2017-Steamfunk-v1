@@ -6,7 +6,7 @@ public class FuelIntakeArm_retractCG extends CommandGroup {
 
 	public FuelIntakeArm_retractCG() {
 		addParallel(new FuelIntakeArm_retract());
-		addParallel(new FuelIntake_disable(0.3));
+		addParallel(new FuelIntake_disable());
 	}
 
 }

@@ -1,23 +1,28 @@
 package org.usfirst.frc2337.robot.commands;
-import org.usfirst.frc2337.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-/**
- * ROPE CLIMBER - Moves DOWM
- */
-public class RopeClimber_down extends Command {
+import org.usfirst.frc2337.robot.Robot;
 
-  
-    public RopeClimber_down() {
+/**
+ * Fuel Intake ENABLE - Turns on the Intake
+ */
+public class FuelIntake_enabledForward extends Command {
+
+	 public double speed = Robot.constants.kFuelIntake_DefaultSpeed;
+
+    public FuelIntake_enabledForward() {
+      requires(Robot.fuelIntake);   	
     }
 
-    // Called just before this Command runs the first time
+	// Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.fuelIntake.startIntake(speed);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -27,10 +32,12 @@ public class RopeClimber_down extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.fuelIntake.stopIntake();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end() ;
     }
 }

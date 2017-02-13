@@ -37,7 +37,7 @@ public class FuelIntakeArm extends Subsystem {
 	/**
 	 * Stops Intake Arm
 	 */
-	public void stopIntakeArm() {
+	public void neutralIntakeArm() {
 		fuelIntakeArm.set(DoubleSolenoid.Value.kOff);
 	}
 	

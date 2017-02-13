@@ -36,6 +36,12 @@ public class Chassis_driveMain extends Command {
 		moveSpeed *= moveSensitivity;
 		turnSpeed *= turnSensitivity;
 		
+		
+		if (driverJoystick.getRawButton(3)) {
+			moveSpeed = moveSpeed/2;
+			turnSpeed = turnSpeed/2;
+		}
+		
     	Robot.chassis.arcadeDrive(moveSpeed, turnSpeed);
 	}
 	
