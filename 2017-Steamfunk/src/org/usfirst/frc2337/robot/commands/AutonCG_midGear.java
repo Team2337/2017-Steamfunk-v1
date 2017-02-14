@@ -12,43 +12,43 @@ public class AutonCG_midGear extends CommandGroup {
 	
     public AutonCG_midGear() {
     	
-    	//move forward 
-    //	addSequential(new Auton_driveForwardGyro(1.0,3));
-    	// line up 
-    	//code still need 
-    	// move forward 
-    //	addSequential(new Auton_driveForwardGyro(1.0,2));
-    	// put gear on time !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    	
-    	//addSequential(new Auton_driveForwardGyro(.6,3));  //was 2 seconds
-    	
     	
     	
     	addSequential(new Auton_resetGyro());
     	addSequential(new Auton_wait(0));
+    	addSequential(new GearLoader_retract());
     	addSequential(new Auton_resetEncoders());
-    	addSequential(new Auton_wait(.5));
+    	addSequential(new Auton_wait(.1));
+    	
     	//forward a little 
-    	// code still need 
-    	addSequential(new Auton_DriveForwardGyroWithEncoder(.7, 6000,3));  //was 1.0 speed
+    	addSequential(new Auton_DriveForwardGyroWithEncoder(.55, 20000,4.5));  //was 1.0 speed
+    	addSequential(new Auton_resetEncoders());
+    	addSequential(new Auton_wait(.1));
+    	
+    	//forward a little 
+    	addSequential(new Auton_DriveForwardGyroWithEncoder(.5, 5000,1));  //was 1.0 speed
+    	
     	// open doors 
-    	addSequential(new GearLoader_extend()); 
+ 
+    	addSequential(new GearLoader_extend());
+    	
+    	
     	//back a little 
-    	addSequential(new Auton_wait(.5));
+    	addSequential(new Auton_wait(.4));
     	addSequential(new Auton_resetEncoders());
-    	addSequential(new Auton_wait(.5));
-    	addSequential(new Auton_DriveForwardGyroWithEncoder(-.7,2000,3));
+    	addSequential(new Auton_wait(.1));
+    	addSequential(new Auton_DriveForwardGyroWithEncoder(-.6,1000,2));
     	
     	//forward a little 
     	
     	addSequential(new Auton_resetEncoders());
-    	addSequential(new Auton_wait(.5));
-    	addSequential(new Auton_DriveForwardGyroWithEncoder(.7,3000,3));
+    	addSequential(new Auton_wait(.1));
+    	addSequential(new Auton_DriveForwardGyroWithEncoder(.6,3000,1));
     	
     	//back a little 
     	addSequential(new Auton_resetEncoders());
-    	addSequential(new Auton_wait(.5));
-    	addSequential(new Auton_DriveForwardGyroWithEncoder(-.7,4000,3));
+    	addSequential(new Auton_wait(.1));
+    	addSequential(new Auton_DriveForwardGyroWithEncoder(-.6,2000,2));
     	/*
     	// code still need 
     	// move backward 

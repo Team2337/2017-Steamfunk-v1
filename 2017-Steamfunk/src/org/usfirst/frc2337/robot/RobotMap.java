@@ -56,6 +56,7 @@ public class RobotMap {
     public static Solenoid hopperTrigger_solenoid;
     public static CANTalon ropeClimberscaleMotor;
     public static DigitalInput ropeClimberLimit;
+    public static DigitalInput ballSensor;
 
     public static void init() {
     	
@@ -136,6 +137,10 @@ public class RobotMap {
         fuelShooter_motorRight = new CANTalon(9);
         fuelShooter_motorRight.setInverted(true);
         LiveWindow.addActuator("FuelShooter", "fuelShooterRight", fuelShooter_motorRight);
+        
+        
+        //Fuel Sensor
+        ballSensor = new DigitalInput(1);
 
         
         
