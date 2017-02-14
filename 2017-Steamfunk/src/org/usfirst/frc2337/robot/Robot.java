@@ -150,12 +150,6 @@ public class Robot extends IterativeRobot {
 	 */
 	public void allPeriodic() {
 		//Right side auger
-		SmartDashboard.putBoolean("Ball is ready to be shot", RobotMap.limitSwitchFrontRight.get());
-		SmartDashboard.putBoolean("Ball is in the middle on the right", RobotMap.limitSwitchMiddleRight.get());
-		SmartDashboard.putBoolean("The ball is near the end", RobotMap.limitSwitchEndRight.get());
-		// Left side auger
-		SmartDashboard.putBoolean("Ball is near shooter", RobotMap.limitSwitchFrontLeft.get());
-		SmartDashboard.putBoolean("Ball is in the middle on the left", RobotMap.limitSwitchMiddleLeft.get());
-		SmartDashboard.putBoolean("The ball is at the end", RobotMap.limitSwitchEndLeft.get());
+		SmartDashboard.putBoolean("Ball is ready to be shot", RobotMap.limitSwitchFront.get());
 	}
 }
