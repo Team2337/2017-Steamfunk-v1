@@ -13,6 +13,7 @@ package org.usfirst.frc2337.robot;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -20,7 +21,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc2337.robot.commands.*;
 import org.usfirst.frc2337.robot.subsystems.*;
-import org.usfirst.frc2337.robot.subsystems.Auger;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -46,7 +46,7 @@ public class Robot extends IterativeRobot {
 	public static FuelIntake fuelIntake;
 	public static FuelShooter fuelShooter;
 	public static Auger auger;
-	
+	public static UltraSonicSensor ultrasonic;
 	Command autonomousCommand;
 	
 	public Robot() {	
@@ -73,6 +73,7 @@ public class Robot extends IterativeRobot {
 		fuelIntake = new FuelIntake();
 		fuelShooter = new FuelShooter();
 		auger = new Auger();
+		ultrasonic = new UltraSonicSensor();
 		
 		// OI must be constructed after subsystems. If the OI creates Commands
 		//(which it very likely will), subsystems are not guaranteed to be
