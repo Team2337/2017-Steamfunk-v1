@@ -5,17 +5,17 @@ import org.usfirst.frc2337.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Fuel Shooter SPEEDINCREASE - Increases Speed of Shooter
+ * Fuel Shooter STOPSHOOTER - Disables Shooter
  */
-public class FuelShooter_speedIncrease extends Command {
+public class FuelShooter_stopShooters extends Command {
 	
-	public FuelShooter_speedIncrease() {
+	public FuelShooter_stopShooters() {
 		requires(Robot.fuelShooter);
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Robot.fuelShooter.incrementSpeed();
+		Robot.fuelShooter.zeroRPM();
 	}
 		
 	// Called repeatedly when this Command is scheduled to run

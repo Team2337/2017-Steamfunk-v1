@@ -1,30 +1,25 @@
 package org.usfirst.frc2337.robot.commands;
+
 import org.usfirst.frc2337.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Fuel Shooter SPEEDSET - Sets speed of shooter
+ * Fuel Shooter SPEEDINCREASE - Increases Speed of Shooter
  */
-public class FuelShooter_speedSet extends Command {
-	
-	double speedLeft;
-	double speedRight;
-	
-	public FuelShooter_speedSet() {
-		requires(Robot.fuelShooter);
-    }
-	
-    public FuelShooter_speedSet(double speedLeft, double speedRight) {
-		requires(Robot.fuelShooter);
-		
-    	this.speedLeft = speedLeft;
-    	this.speedRight = speedRight;
+public class FuelShooterRight_speedIncrease extends Command {
+
+    public FuelShooterRight_speedIncrease() {
+
+        requires(Robot.fuelShooter);
+
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.fuelShooter.setRPM(speedLeft, speedRight);
+    	
+    Robot.fuelShooter.increaseRPMRight();
+    
     }
 
     // Called repeatedly when this Command is scheduled to run

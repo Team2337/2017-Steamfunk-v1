@@ -16,8 +16,11 @@ public class Constants {
 	public final double kChassisPID_ReverseDrive = -1.0;
 	
 	/* Fuel Shooter */
-	public final double kFuelShooter_DefaultSpeed = 0.7;
-	public final double kFuelShooter_IncrementSpeed = 0.05;
+	public final double kFuelShooter_longShotSpeedLeft = 8.9;
+	public final double kFuelShooter_longShotSpeedRight = 9.4;
+	
+	public final double kFuelShooter_airshipShotSpeedLeft = 10.15;
+	public final double kFuelShooter_airshipShotSpeedRight = 10.45;
 	
 	/* Fuel Intake */
 	public final double kFuelIntake_DefaultSpeed = 1.0;

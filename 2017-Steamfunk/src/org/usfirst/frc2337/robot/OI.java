@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
+	//JoystickButton 		  BlackButton 			= new JoystickButton(operatorJoystick, 11);
+    
 	//// CREATING BUTTONS
 	// One type of button is a joystick button which is any button on a joystick.
 	// You create one by telling it which joystick it's on and which button
@@ -38,6 +40,9 @@ public class OI {
 	// Start the command when the button is released  and let it run the command
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
+	
+	static double longShotSpeedLeft = Robot.constants.kFuelShooter_longShotSpeedLeft;
+	static double longShotSpeedRight = Robot.constants.kFuelShooter_longShotSpeedRight;
 	
 	public static Joystick improvedJoystick;
 	
@@ -84,13 +89,24 @@ public class OI {
 	JoystickPOVButton		operator_POVDownLeft	= new JoystickPOVButton(operatorJoystick, 225);
 	JoystickPOVButton		operator_POVLeft		= new JoystickPOVButton(operatorJoystick, 270);
 	JoystickPOVButton		operator_POVUpLeft		= new JoystickPOVButton(operatorJoystick, 315);
+	JoystickButton 			BlackButton 			= new JoystickButton(operatorJoystick, 11);
+	JoystickButton 			BlueButton				= new JoystickButton(operatorJoystick, 12);
+    JoystickButton 			yellowButton			= new JoystickButton(operatorJoystick, 13);
+    JoystickButton 			whiteButton				= new JoystickButton(operatorJoystick, 14);
+    JoystickButton 			clearSwitch				= new JoystickButton(operatorJoystick, 15);
+    JoystickButton 			blueSwitch				= new JoystickButton(operatorJoystick, 16);
+    JoystickButton 			blackSwitch				= new JoystickButton(operatorJoystick, 17);
+    JoystickButton 			yellowSwitch			= new JoystickButton(operatorJoystick, 18);
+	
+	//drivers station
+	
 	
 	Joystick				operatorControls		= new Joystick(2);
 	
 	
 	public OI() {
 
-		driver_GreenA			.whenPressed(new _DoNothing()); //Near give maneuver
+		driver_GreenA			.whileHeld(new VisionProc()); //Near give maneuver
 		driver_RedB				.whenPressed(new _DoNothing()); //Far gear maneuver
 		driver_BlueX			.whenPressed(new _DoNothing()); 
 		driver_YellowY			.whenPressed(new _DoNothing()); 
@@ -107,19 +123,20 @@ public class OI {
 		driver_TriggerLeft		.whenPressed(new _DoNothing()); //Shoot all Fuel
 		driver_TriggerRight		.whenPressed(new _DoNothing()); //Shoot one Fuel
 		
-		driver_POVUp			.whenPressed(new FuelShooter_speedIncrease());  //Increase Fuel Shooter speed
-	    driver_POVUpRight		.whenPressed(new _DoNothing()); 
-	    driver_POVRight			.whenPressed(new FuelShooter_resumeShooter());  //Start Fuel Shooter
-	    driver_POVDownRight		.whenPressed(new _DoNothing()); 
-	    driver_POVDown			.whenPressed(new FuelShooter_speedDecrease()); //Decrease Fuel Shooter speed
-	    driver_POVDownLeft		.whenPressed(new _DoNothing()); 
-	    driver_POVLeft			.whenPressed(new FuelShooter_stopShooter()); //Stop Fuel Shooter
-	    driver_POVUpLeft		.whenPressed(new _DoNothing()); 
+		driver_POVUp			.whenPressed(new _DoNothing());  
+	   // driver_POVUpRight		.whenPressed(new _DoNothing()); 
+	    driver_POVRight			.whenPressed(new _DoNothing()); 
+	   // driver_POVDownRight		.whenPressed(new _DoNothing()); 
+	    driver_POVDown			.whenPressed(new _DoNothing()); 
+	   // driver_POVDownLeft		.whenPressed(new _DoNothing()); 
+	    driver_POVLeft			.whenPressed(new _DoNothing()); 
+	   // driver_POVUpLeft		.whenPressed(new _DoNothing()); 
+	    
 		/* =========================================================*/
 		operator_GreenA			.whileHeld(new RopeClimber_runWhileHeld()); //Climber run
 		operator_RedB			.whileHeld(new GearLoader_extendWhileHeld()); //Raise Gear fingers
-		operator_BlueX			.whenPressed(new _DoNothing()); //Far shot
-		operator_YellowY		.whenPressed(new _DoNothing()); //Boiling shot
+		operator_BlueX			.whenPressed(new FuelShooter_speedSet(longShotSpeedLeft, longShotSpeedRight)); //Far shot
+		operator_YellowY		.whenPressed(new _DoNothing()); //Boiler shot
 		
 		operator_BumperLeft		.whenPressed(new FuelIntakeArm_extend());
 		operator_BumperRight	.whileHeld(new FuelIntake_enabledReverse());
@@ -133,14 +150,25 @@ public class OI {
 		operator_TriggerLeft	.whenPressed(new FuelIntakeArm_retract());
 		operator_TriggerRight	.whileHeld(new FuelIntake_enabledForward());
 		
-		operator_POVUp			.whenPressed(new _DoNothing());
-		operator_POVUpRight		.whenPressed(new _DoNothing());
-		operator_POVRight		.whenPressed(new _DoNothing()); //Right Wings
-		operator_POVDownRight	.whenPressed(new _DoNothing());
-		operator_POVDown		.whenPressed(new _DoNothing());
-		operator_POVDownLeft	.whenPressed(new _DoNothing());
-		operator_POVLeft		.whenPressed(new _DoNothing()); //Left Wings
-		operator_POVUpLeft		.whenPressed(new _DoNothing());
+		operator_POVUp			.whenPressed(new FuelShooterLeft_speedIncrease());
+		//operator_POVUpRight		.whenPressed(new _DoNothing());
+		operator_POVRight		.whenPressed(new FuelShooterRight_speedIncrease()); 
+		//operator_POVDownRight	.whenPressed(new _DoNothing());
+		operator_POVDown		.whenPressed(new FuelShooterRight_speedDecrease());
+		//operator_POVDownLeft	.whenPressed(new _DoNothing());
+		operator_POVLeft		.whenPressed(new FuelShooterLeft_speedDecrease());
+		//operator_POVUpLeft		.whenPressed(new _DoNothing());
+		
+		/* =========================================================*/
+		BlackButton				.whenPressed(new _DoNothing()); //Right Wings
+		BlueButton				.whenPressed(new _DoNothing());	//Left Wings
+		yellowButton			.whenPressed(new _DoNothing());
+		whiteButton				.whenPressed(new _DoNothing());
+		clearSwitch				.whenPressed(new _DoNothing());
+		blueSwitch				.whenPressed(new _DoNothing());
+		blackSwitch				.whenPressed(new _DoNothing());
+		yellowSwitch			.whenPressed(new _DoNothing());
+		
 		
 		
 	}

@@ -28,6 +28,9 @@ public class RobotMap {
     public static CANTalon chassisPID_leftRear;
     public static CANTalon chassisPID_leftRearMiddle;
     
+    public static CANTalon shooterCANTalonLeft;		 	
+    public static CANTalon shooterCANTalonRight;		//CANtalon 2 in separate shooter project
+    
     
     public static RobotDrive chassisPID_RobotDrive;
     public static AHRS chassisPID_gyro;
@@ -98,6 +101,21 @@ public class RobotMap {
 		chassisPID_RobotDrive.setExpiration(0.1);
 		chassisPID_RobotDrive.setMaxOutput(1.0);
 		
+		
+		//Shooters
+		shooterCANTalonLeft = new CANTalon(8);  //8 
+		shooterCANTalonLeft.changeControlMode(TalonControlMode.Voltage);
+		shooterCANTalonLeft.setVoltageCompensationRampRate(24.0);
+		shooterCANTalonLeft.reverseOutput(true);
+		shooterCANTalonLeft.getBusVoltage();
+        
+        shooterCANTalonRight = new CANTalon(9);
+        shooterCANTalonRight.changeControlMode(TalonControlMode.Voltage);
+        shooterCANTalonRight.setVoltageCompensationRampRate(24.0);
+        shooterCANTalonRight.getBusVoltage();
+        shooterCANTalonRight.reverseOutput(false);
+        
+		
 		// HOPPER TRIGGER
         targetingLEDtargetingFrontLED = new Solenoid(0, 0);
         gearLoader_pusher = new Solenoid(0, 1);
@@ -122,19 +140,6 @@ public class RobotMap {
 		//FUEL INTAKE
 		fuelIntake_motor = new CANTalon(3);
 		
-		
-        // FUEL SHOOTER
-		fuelShooter_motorLeft = new CANTalon(8);
-		fuelShooter_motorLeft.setInverted(true);
-		LiveWindow.addActuator("FuelShooter", "fuelShooterLeft", fuelShooter_motorLeft);
-		
-        fuelShooter_motorRight = new CANTalon(9);
-        fuelShooter_motorRight.setInverted(true);
-        LiveWindow.addActuator("FuelShooter", "fuelShooterRight", fuelShooter_motorRight);
-
-        
-        
-        
         
         //Will be changed later for auger
         fuelLoaderfuelLoader = new CANTalon(24);
