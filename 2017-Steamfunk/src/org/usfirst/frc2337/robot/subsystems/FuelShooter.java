@@ -23,8 +23,8 @@ public class FuelShooter extends Subsystem {
 	//double incrementSpeed = Robot.constants.kFuelShooter_IncrementSpeed;
 	
 	double halfSpeed = 6.0;
-    double longShotSpeedLeft = 8.9;		//8.9
-    double longShotSpeedRight = 9.4;		//9.4
+    double hopperShotSpeedLeft = 8.9;		//8.9
+    double hopperShotSpeedRight = 9.4;		//9.4
     double airshipShotSpeedLeft = 10.15;
     double airshipShotSpeedRight = 10.45;
     double maxSpeed = 12.0;  //???
@@ -78,8 +78,8 @@ public class FuelShooter extends Subsystem {
 	}
 	    
 	public void longShotRPM() {
-		shooterMotorLeft.setSetpoint(longShotSpeedLeft);
-		shooterMotorRight.setSetpoint(longShotSpeedRight);
+		shooterMotorLeft.setSetpoint(hopperShotSpeedLeft);
+		shooterMotorRight.setSetpoint(hopperShotSpeedRight);
 	}
 	
 	public void airshipShotRPM() {

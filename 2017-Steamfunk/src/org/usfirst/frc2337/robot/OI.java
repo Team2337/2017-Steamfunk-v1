@@ -41,8 +41,10 @@ public class OI {
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
 	
-	static double longShotSpeedLeft = Robot.constants.kFuelShooter_longShotSpeedLeft;
-	static double longShotSpeedRight = Robot.constants.kFuelShooter_longShotSpeedRight;
+	static double hopperShotSpeedLeft = Robot.constants.kFuelShooter_hopperShotSpeedLeft;
+	static double hopperShotSpeedRight = Robot.constants.kFuelShooter_hopperShotSpeedRight;
+	static double airshipShotSpeedLeft = Robot.constants.kFuelShooter_airshipShotSpeedLeft;
+	static double airshipShotSpeedRight = Robot.constants.kFuelShooter_airshipShotSpeedRight;
 	
 	public static Joystick improvedJoystick;
 	
@@ -135,8 +137,8 @@ public class OI {
 		/* =========================================================*/
 		operator_GreenA			.whileHeld(new RopeClimber_runWhileHeld()); //Climber run
 		operator_RedB			.whileHeld(new GearLoader_extendWhileHeld()); //Raise Gear fingers
-		operator_BlueX			.whenPressed(new FuelShooter_speedSet(longShotSpeedLeft, longShotSpeedRight)); //Far shot
-		operator_YellowY		.whenPressed(new _DoNothing()); //Boiler shot
+		operator_BlueX			.whenPressed(new FuelShooter_speedSet(hopperShotSpeedLeft, hopperShotSpeedRight)); //Far shot
+		operator_YellowY		.whenPressed(new FuelShooter_speedSet(airshipShotSpeedLeft, airshipShotSpeedRight)); //Boiler shot
 		
 		operator_BumperLeft		.whenPressed(new FuelIntakeArm_extend());
 		operator_BumperRight	.whileHeld(new FuelIntake_enabledReverse());
