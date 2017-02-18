@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.opencv.core.Mat;
 import org.opencv.videoio.VideoCapture;
-import org.usfirst.frc2337.FlyWheelwithcounter.RobotMap;
+import org.usfirst.frc2337.robot.RobotMap;
 import org.usfirst.frc2337.libraries.GripPipeline;
 import org.usfirst.frc2337.robot.commands.*;
 import org.usfirst.frc2337.robot.subsystems.*;

@@ -20,7 +20,7 @@ public class FuelShooter extends Subsystem {
 	private final CANTalon shooterMotorRight = RobotMap.shooterCANTalonRight;
 	
 	private double currentSpeed = Robot.constants.kFuelShooter_DefaultSpeed;
-	double incrementSpeed = Robot.constants.kFuelShooter_IncrementSpeed;
+	//double incrementSpeed = Robot.constants.kFuelShooter_IncrementSpeed;
 	
 	double halfSpeed = 6.0;
     double longShotSpeedLeft = 8.9;		//8.9

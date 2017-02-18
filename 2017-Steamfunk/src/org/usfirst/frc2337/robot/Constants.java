@@ -9,6 +9,7 @@ public class Constants {
 	// Insert global variables in the following format:
 	// public final double kSUBSYSTEM_VARIABLE = VALUE;
 	
+	public static final double kFuelShooter_DefaultSpeed = 0;
 	/* Chassis */
 	public final double kChassisPID_DriverDeadband = 0.1;
 	public final double kChassisPID_MoveSensitivity = 1.0;
@@ -21,6 +22,9 @@ public class Constants {
 	
 	public final double kFuelShooter_airshipShotSpeedLeft = 10.15;
 	public final double kFuelShooter_airshipShotSpeedRight = 10.45;
+	
+	public final double kFuelShooter_halfSpeed = 6.0;
+    public final double kFuelShooter_maxSpeed = 12.0;  //???
 	
 	/* Fuel Intake */
 	public final double kFuelIntake_DefaultSpeed = 1.0;
