@@ -79,7 +79,8 @@ public class RobotMap {
     
     public static Solenoid fuelDumperfuelDumper;
     
-    public static CANTalon auger;
+    public static CANTalon fuelFeederLeft;
+    public static CANTalon fuelFeederRight;
     public static Solenoid augerS;
     //Right side auger limit switches
     public static DigitalInput limitSwitchFront;
@@ -129,13 +130,13 @@ public class RobotMap {
 		chassisPID_RobotDrive.setExpiration(0.1);
 		chassisPID_RobotDrive.setMaxOutput(1.0);
 
-
-		
-        
-        mainLEDfeedbackLED = new Solenoid(0, 3);
    
-        
+        //Rope Climber
         ropeClimberscaleMotor = new CANTalon(4);
+        
+        
+        //LEDs
+        mainLEDfeedbackLED = new Solenoid(0, 3);
   
         targetingLEDtargetingLeftLED = new Solenoid(0, 4);
   
@@ -147,6 +148,8 @@ public class RobotMap {
     
         targetingLEDtargetingFrontLED = new Solenoid(1, 0);
     
+        
+        //Gear Loader
         gearLoader_pusher = new Solenoid(1, 1);
      
 		// FUEL INTAKE ARM
@@ -157,25 +160,31 @@ public class RobotMap {
 		fuelIntake_motor = new CANTalon(14);
 		LiveWindow.addActuator("FuelIntake", "fuelIntakeLeft", fuelIntake_motor);
 		
-		// FUEL INTAKE
 		
-       
-        
+        // FUEL SHOOTER
         fuelShooter_motorRight = new CANTalon(23);
         fuelShooter_motorLeft = new CANTalon(22);
         
         fuelShooter_motorRight.setInverted(true);
         fuelShooter_motorLeft.setInverted(true);
-        // FUEL SHOOTER
         
-     
+
+        //Fuel Loader
         fuelLoaderfuelLoader = new CANTalon(24);
-      
-        auger = new CANTalon(25);
-        LiveWindow.addActuator("FuelAgitator", "auger", auger);
+        
+        //Fuel Feeder
+        fuelFeederLeft = new CANTalon(25);
+        fuelFeederLeft.changeControlMode(TalonControlMode.Follower);
+        LiveWindow.addActuator("FuelAgitator", "auger", fuelFeederLeft);
+       
+        fuelFeederRight = new CANTalon(26);
+        fuelFeederRight.changeControlMode(TalonControlMode.PercentVbus);
+        LiveWindow.addActuator("FuelAgitator", "auger", fuelFeederRight);
+        
         augerS = new Solenoid(0, 1);
-        LiveWindow.addActuator("FuelAgitator", "auger", auger);
+        LiveWindow.addActuator("FuelAgitator", "auger", augerS);
         limitSwitchFront = new DigitalInput(0);
+        
         
         try {
             /* Communicate w/navX MXP via the MXP SPI Bus.                                     */

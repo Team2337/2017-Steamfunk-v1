@@ -12,7 +12,7 @@ public class Auger_stopAuger extends Command {
 	 
 	
     public Auger_stopAuger() {
-       
+       requires(Robot.auger);
     	
     }
 

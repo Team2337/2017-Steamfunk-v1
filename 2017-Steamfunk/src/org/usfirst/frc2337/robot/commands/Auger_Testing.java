@@ -16,12 +16,12 @@ public class Auger_Testing extends Command {
 	public int i;
 
 	public Auger_Testing(double speed) {
-		requires(Robot.fuelIntake);
+		requires(Robot.auger);
 		this.speed = speed;
 	}
 
 	public Auger_Testing() {
-		requires(Robot.fuelIntake);
+		requires(Robot.auger);
 	}
 
 	// Called just before this Command runs the first time

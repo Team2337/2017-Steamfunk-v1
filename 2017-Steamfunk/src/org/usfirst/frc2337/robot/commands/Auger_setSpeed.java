@@ -12,11 +12,11 @@ public class Auger_setSpeed extends Command {
 	 double speed = Robot.constants.kFuelIntake_DefaultSpeed;
 	
     public Auger_setSpeed() {
-       requires(Robot.fuelIntake);
+       requires(Robot.auger);
     }
     
     public Auger_setSpeed(double speed) {
-    	requires(Robot.fuelIntake);
+    	requires(Robot.auger);
     	this.speed = speed;
     }
 

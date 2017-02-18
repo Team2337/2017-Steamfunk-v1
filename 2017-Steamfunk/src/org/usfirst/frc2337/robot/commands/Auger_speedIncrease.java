@@ -12,7 +12,7 @@ public class Auger_speedIncrease extends Command {
 	 
 	
     public Auger_speedIncrease() {
-     requires(Robot.fuelIntake);
+     requires(Robot.auger);
     	
     }
 

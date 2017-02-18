@@ -27,8 +27,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *
  */
 public class Auger extends Subsystem {
-   private final CANTalon fuelAgitatorfuelDeGunker = RobotMap.fuelIntake_motor;
-   private final CANTalon auger = RobotMap.fuelIntake_motor;
+   private final CANTalon fuelFeederLeft = RobotMap.fuelFeederLeft;
+   private final CANTalon fuelFeederRight = RobotMap.fuelFeederRight;
    
    double currentSpeed = Robot.constants.kAuger_DefaultEnableSpeed;
    double speed = Robot.constants.kAuger_DefaultEnableSpeed;
@@ -41,16 +41,20 @@ public class Auger extends Subsystem {
 		
     }
     public void startAuger(double speed) {
-    	auger.set(speed);
+    	fuelFeederLeft.set(speed);
+    	fuelFeederRight.set(-speed);
     }
     public void reverseAuger(double reversedSpeed) {
-		auger.set(-speed);
+    	fuelFeederLeft.set(-speed);
+    	fuelFeederRight.set(speed);
 	}
     public void stopAuger(){
-    	auger.set(0);
+    	fuelFeederLeft.set(0);
+    	fuelFeederRight.set(0);
     }
     public void updateSpeed() {
-    	fuelAgitatorfuelDeGunker.set(currentSpeed);
+    	fuelFeederLeft.set(currentSpeed);
+    	fuelFeederRight.set(currentSpeed);
     }
     
     public void setSpeed(double speed) {
@@ -68,7 +72,8 @@ public class Auger extends Subsystem {
 	}
 	
 	public void getVoltage() {
-		auger.getBusVoltage();
+		fuelFeederLeft.getBusVoltage();
+    	fuelFeederRight.getBusVoltage();
 	}
 }
 
