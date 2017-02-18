@@ -5,6 +5,7 @@ import com.kauailabs.navx.frc.AHRS;
 import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -53,8 +54,11 @@ public class RobotMap {
     public static Solenoid hopperTrigger_solenoid;
     public static CANTalon ropeClimberscaleMotor;
     public static DigitalInput ropeClimberLimit;
+    public static Compressor compressor;
 
     public static void init() {
+    	
+    	compressor = new Compressor(0);
     	
 		// CHASSIS PID
     	/* Right Side */
