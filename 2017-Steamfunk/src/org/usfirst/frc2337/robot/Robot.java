@@ -122,11 +122,14 @@ public class Robot extends IterativeRobot {
 	
 	public void autonomousInit() {
 		//allInit();
-		
+		RobotMap.chassisPID_gyro.reset();
+		RobotMap.chassisPID_leftFront.setEncPosition(0);
+		RobotMap.chassisPID_rightFront.setEncPosition(0);
 		// schedule the autonomous command (example)
 		autonomousCommand = (Command) autonSelector.getSelected();//(Command) autonSelector.getSelected();//
 		//autonomousCommand= new Auton_turnGyro(90);
 		if (autonomousCommand != null) autonomousCommand.start();
+		
 		
 	}
 	

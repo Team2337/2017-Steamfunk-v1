@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 	
-public class Auton_DriveForwardGyroWithEncoder extends Command {
+public class Auton_driveForwardGyroWithEncoder extends Command {
 
 	public double speed; 
 	double Kpp = .7;			//was 0.05 this is what a cpomment looks like 
@@ -29,7 +29,7 @@ public class Auton_DriveForwardGyroWithEncoder extends Command {
 	 * @param Encoder target
 	 * @param time in seconds
 	 */
-    public Auton_DriveForwardGyroWithEncoder(double speed, int encoderTarget, double time) {
+    public Auton_driveForwardGyroWithEncoder(double speed, int encoderTarget, double time) {
     	requires(Robot.chassis);
     	this.time = time;
     	this.speed = speed;
@@ -51,7 +51,7 @@ public class Auton_DriveForwardGyroWithEncoder extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	//yawp = RobotMap.chassisPID_gyro.getYaw();
+    	yawp = RobotMap.chassisPID_gyro.getYaw();// added yawp back no test
 
     	Robot.chassis.arcadeDrive(speed, -yawp*Kpp); //-RobotMap.chassisPID_gyro.getYaw()   //Was -yawp
 

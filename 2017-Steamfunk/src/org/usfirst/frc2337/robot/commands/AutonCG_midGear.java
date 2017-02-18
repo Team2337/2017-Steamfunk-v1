@@ -21,12 +21,13 @@ public class AutonCG_midGear extends CommandGroup {
     	addSequential(new Auton_wait(.1));
     	
     	//forward a little 
-    	addSequential(new Auton_DriveForwardGyroWithEncoder(.55, 20000,4.5));  //was 1.0 speed
+    	addSequential(new Auton_driveForwardGyroWithEncoder(.55, 24000,4.5));  //was 1.0 speed
+    	// addSequential(new Auton_driveForwardGyroWithEncoderPID(20000,6));
     	addSequential(new Auton_resetEncoders());
     	addSequential(new Auton_wait(.1));
     	
     	//forward a little 
-    	addSequential(new Auton_DriveForwardGyroWithEncoder(.5, 5000,1));  //was 1.0 speed
+    	//addSequential(new Auton_driveForwardGyroWithEncoder(.5, 5000,1));  //was 1.0 speed
     	
     	// open doors 
  
@@ -37,18 +38,18 @@ public class AutonCG_midGear extends CommandGroup {
     	addSequential(new Auton_wait(.4));
     	addSequential(new Auton_resetEncoders());
     	addSequential(new Auton_wait(.1));
-    	addSequential(new Auton_DriveForwardGyroWithEncoder(-.6,1000,2));
+    	addSequential(new Auton_driveForwardGyroWithEncoder(-.6,1000,2));
     	
     	//forward a little 
     	
     	addSequential(new Auton_resetEncoders());
     	addSequential(new Auton_wait(.1));
-    	addSequential(new Auton_DriveForwardGyroWithEncoder(.6,3000,1));
+    	addSequential(new Auton_driveForwardGyroWithEncoder(.6,3000,1));
     	
     	//back a little 
     	addSequential(new Auton_resetEncoders());
     	addSequential(new Auton_wait(.1));
-    	addSequential(new Auton_DriveForwardGyroWithEncoder(-.6,2000,2));
+    	addSequential(new Auton_driveForwardGyroWithEncoder(-.6,2000,2));
     	/*
     	// code still need 
     	// move backward 
