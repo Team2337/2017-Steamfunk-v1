@@ -17,9 +17,9 @@ public class Constants {
 	public final double kFuelShooter_DefaultSpeed = 0.7;
 	public final double kFuelShooter_IncrementSpeed = 0.05;
 	
-	public final double kAuger_DefaultEnableSpeed = 1;
+	public final double kAuger_DefaultEnableSpeed = 1.0;
 	public final double kAuger_incrementSpeed = 0.05; 
-	public final double kAuger_DefaultReverseSpeed = -1; 
+	public final double kAuger_DefaultReverseSpeed = 1.0; //Speed is reversed later in code, set absolute value of desired speed.
 	
 	public final double kFuelIntake_DefaultSpeed = 0.5;
 	public final double kFuelIntake_IncrementSpeed = 0.05;

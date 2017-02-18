@@ -81,7 +81,6 @@ public class RobotMap {
     
     public static CANTalon fuelFeederLeft;
     public static CANTalon fuelFeederRight;
-    public static Solenoid augerS;
     //Right side auger limit switches
     public static DigitalInput limitSwitchFront;
     //Left side auger limit switches
@@ -98,7 +97,7 @@ public class RobotMap {
 		chassisPID_rightFront      .changeControlMode(TalonControlMode.PercentVbus);
 		chassisPID_rightFront      .reverseOutput(true);
 		
-		chassisPID_rightRearMiddle = new CANTalon(1);
+		chassisPID_rightRearMiddle = new CANTalon(111);
 		chassisPID_rightRearMiddle .changeControlMode(TalonControlMode.Follower);
 		chassisPID_rightRearMiddle .set(chassisPID_rightFront.getDeviceID());
 		 
@@ -108,11 +107,11 @@ public class RobotMap {
 
 		
 		/* Left Side */
-		chassisPID_leftFront       = new CANTalon(13);
+		chassisPID_leftFront       = new CANTalon(113);
 		chassisPID_leftFront       .changeControlMode(TalonControlMode.PercentVbus);
 		chassisPID_leftFront 	   .reverseOutput(true);
 		
-		chassisPID_leftRearMiddle  = new CANTalon(15);
+		chassisPID_leftRearMiddle  = new CANTalon(115);
 		chassisPID_leftRearMiddle  .changeControlMode(TalonControlMode.Follower);
 		chassisPID_leftRearMiddle  .set(chassisPID_leftFront.getDeviceID());
 
@@ -173,16 +172,15 @@ public class RobotMap {
         fuelLoaderfuelLoader = new CANTalon(24);
         
         //Fuel Feeder
-        fuelFeederLeft = new CANTalon(25);
-        fuelFeederLeft.changeControlMode(TalonControlMode.Follower);
-        LiveWindow.addActuator("FuelAgitator", "auger", fuelFeederLeft);
+        fuelFeederLeft = new CANTalon(1);	//Change to 4
+        fuelFeederLeft.changeControlMode(TalonControlMode.PercentVbus);
+        LiveWindow.addActuator("FuelAgitator", "fuelFeederLeft", fuelFeederLeft);
        
-        fuelFeederRight = new CANTalon(26);
+        fuelFeederRight = new CANTalon(15);	//5
         fuelFeederRight.changeControlMode(TalonControlMode.PercentVbus);
-        LiveWindow.addActuator("FuelAgitator", "auger", fuelFeederRight);
+        //fuelFeederRight.set(fuelFeederLeft.getDeviceID());
+        LiveWindow.addActuator("FuelAgitator", "FuelFeederRight", fuelFeederRight);
         
-        augerS = new Solenoid(0, 1);
-        LiveWindow.addActuator("FuelAgitator", "auger", augerS);
         limitSwitchFront = new DigitalInput(0);
         
         
@@ -191,12 +189,13 @@ public class RobotMap {
             /* Alternatively:  I2C.Port.kMXP, SerialPort.Port.kMXP or SerialPort.Port.kUSB     */
             /* See http://navx-mxp.kauailabs.com/guidance/selecting-an-interface/ for details. */
         	//chassisPID_gyro = new AHRS(SerialPort.Port.kMXP);
+        
         } 
         catch (RuntimeException ex ) {
             DriverStation.reportError("Instantiating navX-MXP failed:  " + ex.getMessage(), true);
         }
         distanceSensor1 = new Ultrasonic(1, 2, Unit.kInches);
-        distanceSensor2 = new Ultrasonic(1, 2, Unit.kInches);
+        //distanceSensor2 = new Ultrasonic(1, 2, Unit.kInches);
         
     }
 }

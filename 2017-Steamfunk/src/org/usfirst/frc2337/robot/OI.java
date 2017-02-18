@@ -100,8 +100,8 @@ public class OI {
 		driver_Start			.whenPressed(new _DoNothing());
 		driver_LeftStick		.whenPressed(new _DoNothing());
 		driver_RightStick		.whenPressed(new _DoNothing());
-		driver_TriggerLeft		.whenPressed(new _DoNothing());
-		driver_TriggerRight		.whenPressed(new _DoNothing());
+		driver_TriggerLeft		.whileHeld(new Auger_reverse());
+		driver_TriggerRight		.whileHeld(new Auger_setSpeed());
 		driver_POVUp			.whenPressed(new  _DoNothing());
 		driver_POVUpRight		.whenPressed(new _DoNothing());
 		driver_POVRight			.whenPressed(new _DoNothing());

@@ -9,7 +9,7 @@ import org.usfirst.frc2337.robot.Robot;
  */
 public class Auger_setSpeed extends Command {
 	// DECLARE VARIABLES
-	 double speed = Robot.constants.kFuelIntake_DefaultSpeed;
+	 double speed = Robot.constants.kAuger_DefaultEnableSpeed;
 	
     public Auger_setSpeed() {
        requires(Robot.auger);
@@ -31,15 +31,17 @@ public class Auger_setSpeed extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.auger.setSpeed(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }

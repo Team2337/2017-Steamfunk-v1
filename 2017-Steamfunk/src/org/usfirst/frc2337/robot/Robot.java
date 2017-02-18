@@ -73,7 +73,7 @@ public class Robot extends IterativeRobot {
 		fuelIntake = new FuelIntake();
 		fuelShooter = new FuelShooter();
 		auger = new Auger();
-		ultrasonic = new UltraSonicSensor();
+		//ultrasonic = new UltraSonicSensor();
 		
 		// OI must be constructed after subsystems. If the OI creates Commands
 		//(which it very likely will), subsystems are not guaranteed to be
