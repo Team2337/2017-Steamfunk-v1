@@ -28,7 +28,7 @@ public class UltraSonicSensor extends Subsystem {
 	}
 	
 	public double[] getDistance() {
-		double[]ultraSonicSensorRange= new double[2];
+		double[]ultraSonicSensorRange = new double[2];
 		
 		ultraSonicSensorRange[0]=sensor1.getRangeInches() ;
 		ultraSonicSensorRange[1]=sensor2.getRangeInches() ;
