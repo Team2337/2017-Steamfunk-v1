@@ -57,6 +57,8 @@ public class RobotMap {
     public static CANTalon ropeClimberscaleMotor;
     public static DigitalInput ropeClimberLimit;
     public static DigitalInput ballSensor;
+    public static MotionProfileManagerLeft leftManager;
+    public static MotionProfileManagerRight rightManager;
 
     public static void init() {
     	
@@ -103,6 +105,9 @@ public class RobotMap {
 		chassisPID_RobotDrive.setExpiration(0.1);
 		chassisPID_RobotDrive.setSensitivity(0.5);
 		chassisPID_RobotDrive.setMaxOutput(1.0);
+		
+		rightManager = new MotionProfileManagerRight(chassisPID_rightFront);
+		leftManager = new MotionProfileManagerLeft(chassisPID_leftFront);
 		
 		// HOPPER TRIGGER
         targetingLEDtargetingFrontLED = new Solenoid(0, 0);
