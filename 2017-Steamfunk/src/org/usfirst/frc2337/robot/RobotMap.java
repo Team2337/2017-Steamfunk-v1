@@ -64,6 +64,8 @@ public class RobotMap {
     public static Thread t;
     public static Thread t2;
     public static FeedbackDeviceStatus status;
+    public static CANTalon fuelFeederRight;
+    public static CANTalon fuelFeederLeft;
 
     public static void init() {
     	
@@ -166,9 +168,15 @@ public class RobotMap {
 		fuelIntake_motor = new CANTalon(3);
 		
         
-        //Will be changed later for auger
-        fuelLoaderfuelLoader = new CANTalon(24);
-        LiveWindow.addActuator("FuelLoader", "fuelLoader", fuelLoaderfuelLoader);
+        //Fuel Feeder
+        fuelFeederLeft = new CANTalon(1);	//Change to 4
+        fuelFeederLeft.changeControlMode(TalonControlMode.PercentVbus);
+        LiveWindow.addActuator("FuelAgitator", "fuelFeederLeft", fuelFeederLeft);
+       
+        fuelFeederRight = new CANTalon(15);	//5
+        fuelFeederRight.changeControlMode(TalonControlMode.PercentVbus);
+        //fuelFeederRight.set(fuelFeederLeft.getDeviceID());
+        LiveWindow.addActuator("FuelAgitator", "FuelFeederRight", fuelFeederRight);
         
         fuelAgitator_motorRight = new CANTalon(11);
         LiveWindow.addActuator("FuelFeederRight", "fuelDeGunker", fuelAgitator_motorRight);
@@ -176,11 +184,12 @@ public class RobotMap {
         fuelAgitator_motorLeft = new CANTalon(12);
         fuelAgitator_motorLeft.reverseOutput(false);
         LiveWindow.addActuator("FuelFeederLeft", "fuelDeGunker", fuelAgitator_motorRight);
+        
         try {
             /* Communicate w/navX MXP via the MXP SPI Bus.                                     */
             /* Alternatively:  I2C.Port.kMXP, SerialPort.Port.kMXP or SerialPort.Port.kUSB     */
             /* See http://navx-mxp.kauailabs.com/guidance/selecting-an-interface/ for details. */
-        	chassisPID_gyro = new AHRS(SerialPort.Port.kMXP);
+        	//chassisPID_gyro = new AHRS(SerialPort.Port.kMXP);
         } catch (RuntimeException ex ) {
             DriverStation.reportError("Instantiating navX-MXP failed:  " + ex.getMessage(), true);
         }
