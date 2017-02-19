@@ -26,7 +26,7 @@ public class BangRPMRight extends Command {
 	         	if (RobotMap.shooterCANTalonRight.getOutputVoltage() < (Robot.constants.VoltageLimitRight - .1))  {
 	        		RobotMap.shooterCANTalonRight.set(12);
 	         	} else {
-	         		RobotMap.shooterCANTalonRight.set(0);
+	         		RobotMap.shooterCANTalonRight.set(Robot.constants.VoltageLimitRight);
 	         	}
     		}
     		try {

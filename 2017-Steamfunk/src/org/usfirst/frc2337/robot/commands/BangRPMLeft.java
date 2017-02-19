@@ -25,13 +25,13 @@ public class BangRPMLeft extends Command {
     	{
     		while (!Thread.interrupted()) 
     		{
-    			if (RobotMap.shooterCANTalonLeft.getOutputVoltage() < (Robot.constants.VoltageLimitRight - .1))  
+    			if (RobotMap.shooterCANTalonLeft.getOutputVoltage() < (Robot.constants.VoltageLimitLeft - .1))  
     			{
     				RobotMap.shooterCANTalonLeft.set(12);
     			} 
     			else 
     			{
-    				RobotMap.shooterCANTalonLeft.set(0);
+    				RobotMap.shooterCANTalonLeft.set(Robot.constants.VoltageLimitLeft);
     			}
     		}
     		try 

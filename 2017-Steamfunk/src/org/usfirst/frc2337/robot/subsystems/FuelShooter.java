@@ -20,14 +20,12 @@ public class FuelShooter extends Subsystem {
 	private final CANTalon shooterMotorRight = RobotMap.shooterCANTalonRight;
 	
 	
-	 double currentSpeed = -700;
-	    double halfSpeed = 6;
-	    //double maxSpeed = 2500;  //???
-	    public double maxSpeed = 12;
-	   	//close boiler shot: 8;    far shot: 9.6;
-	    public double RPMLimit = 3650;			//was  9.60
-	    double curRPM;
-	    public boolean shooterPos;
+	double currentSpeed = -700;		//double maxSpeed = 2500;  //???
+	double halfSpeed = 6;
+	public double maxSpeed = 12;	//close boiler shot: 8;    far shot: 9.6;
+	double curRPM;
+	public boolean shooterPos;
+	public double adjustment = .10;
 	
 	
 	public FuelShooter() {
@@ -65,12 +63,12 @@ public class FuelShooter extends Subsystem {
 	    
 	public void increaseRPMLeft() {
 	    	//currentSpeed =+100;
-		Robot.constants.VoltageLimitLeft += .15;
+		Robot.constants.VoltageLimitLeft += adjustment;
 	}
 	    
 	public void decreaseRPMLeft() {
 	    	//currentSpeed =-100;
-		Robot.constants.VoltageLimitLeft -= .15;
+		Robot.constants.VoltageLimitLeft -= adjustment;
 	}
 	/*
 	public void maxRPM() {
@@ -96,17 +94,20 @@ public class FuelShooter extends Subsystem {
 	    
 	public void increaseRPMRight() {
 	    	//currentSpeed =+100;
-		Robot.constants.VoltageLimitRight += .15;
+		Robot.constants.VoltageLimitRight += adjustment;
 	}
 	    
 	public void decreaseRPMRight() {
 	    	//currentSpeed =-100;
-		Robot.constants.VoltageLimitRight -= .15;
+		Robot.constants.VoltageLimitRight -= adjustment;
 	}
 	
 	public void zeroRPM() {
-		shooterMotorLeft.setSetpoint(0);
-		shooterMotorRight.setSetpoint(0);
+		RobotMap.t.stop();
+		RobotMap.t.interrupt();
+		
+		RobotMap.t2.stop();
+		RobotMap.t2.interrupt();
 	}
 }
 
