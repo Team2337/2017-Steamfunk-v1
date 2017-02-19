@@ -25,7 +25,8 @@ public class Chassis_driveMain extends Command {
 		
 	}
 	
-	// Called repeatedly when this Command is scheduled to run
+	/* When the command is executed, this will constantly check the deadband to update the speed
+	 according to the deadband. */
 	protected void execute() {
 		double moveSpeed = driverJoystick.getRawAxis(1); //Left Y
 		double turnSpeed = driverJoystick.getRawAxis(4); //Right X

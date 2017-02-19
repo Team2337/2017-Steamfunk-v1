@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * CHASSIS - Drives the robot
  */
 public class Chassis extends Subsystem {
-	
+	// Chassis drive motors
 	private final CANTalon rightFront	= RobotMap.chassisPID_rightFront;
 	private final CANTalon rightRear	= RobotMap.chassisPID_rightRear;
 	private final CANTalon leftFront	= RobotMap.chassisPID_leftFront;

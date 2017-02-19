@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *
+ * INTKAE ARM - Bar that extends and the Intake is attached to 
  */
 public class FuelIntakeArm extends Subsystem {
 

@@ -22,7 +22,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
- *
+ * FUEL INTAKE - Picks the balls up off the floor
  */
 public class FuelIntake extends Subsystem {
    private final CANTalon fuelIntake_motor = RobotMap.fuelIntake_motor;

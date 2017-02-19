@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 
 /**
- *
+ * GEAR LOADER - Loads the gear onto the peg
  */
 public class GearLoader extends Subsystem {
 	

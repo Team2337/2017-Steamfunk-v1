@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 
 /**
- *ROPE CLIMBER
+ *ROPE CLIMBER - Allows us to climb up the rope @ the end of the match
  *@author Jack E
  */
 public class RopeClimber extends Subsystem {

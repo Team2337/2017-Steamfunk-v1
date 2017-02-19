@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 
 /**
- * BEING REPLACED BY AUGER
+ * BEING REPLACED BY FUEL FEEDER
  */
 public class FuelAgitator extends Subsystem {
     private final CANTalon fuelDeGunker = RobotMap.fuelAgitatorfuelDeGunker; 
