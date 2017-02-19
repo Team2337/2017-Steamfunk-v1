@@ -30,9 +30,9 @@ public class Feeder extends Subsystem {
    private final CANTalon fuelFeederLeft = RobotMap.fuelFeederLeft;
    private final CANTalon fuelFeederRight = RobotMap.fuelFeederRight;
    
-   double currentSpeed = Robot.constants.kAuger_DefaultEnableSpeed;
-   double speed = Robot.constants.kAuger_DefaultEnableSpeed;
-   double reverseSpeed = Robot.constants.kAuger_DefaultReverseSpeed;
+   double currentSpeed = Robot.constants.kFeeder_DefaultEnableSpeed;
+   double speed = Robot.constants.kFeeder_DefaultEnableSpeed;
+   double reverseSpeed = Robot.constants.kFeeder_DefaultReverseSpeed;
    
 
     

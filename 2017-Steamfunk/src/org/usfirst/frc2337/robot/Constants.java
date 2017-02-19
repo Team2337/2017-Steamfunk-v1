@@ -50,8 +50,8 @@ public class Constants {
 	public final double kTargetingCamera_Exposure = 1.0;
 	public final double kTargetingCamera_Brightness = 0.0;
 	
-	public final double kAuger_DefaultEnableSpeed = 1.0;
-	public final double kAuger_DefaultReverseSpeed = 1.0; //Speed is reversed later in code, set absolute value of desired speed.
+	public final double kFeeder_DefaultEnableSpeed = 1.0;
+	public final double kFeeder_DefaultReverseSpeed = 1.0; //Speed is reversed later in code, set absolute value of desired speed.
 	
 	
 	/* Rope Climber */

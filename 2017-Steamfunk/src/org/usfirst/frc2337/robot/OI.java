@@ -123,7 +123,7 @@ public class OI {
 		driver_RightStick		.whenPressed(new _DoNothing()); 
 		
 		driver_TriggerLeft		.whileHeld(new Feeder_reverse()); //Shoot all Fuel
-		driver_TriggerRight		.whileHeld(new Feeder_forward()); //Shoot one Fuel 
+		driver_TriggerRight		.whileHeld(new Feeder_setSpeed()); //Shoot one Fuel 
 		
 		driver_POVUp			.whenPressed(new _DoNothing());  
 	   // driver_POVUpRight		.whenPressed(new _DoNothing()); 
