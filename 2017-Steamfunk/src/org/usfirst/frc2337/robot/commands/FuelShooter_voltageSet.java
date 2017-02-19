@@ -17,23 +17,23 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class FuelShooter_speedSet extends Command {
+public class FuelShooter_voltageSet extends Command {
 	
-	double speed = Robot.constants.kFuelShooter_DefaultSpeed;
+	double voltage = Robot.constants.kFuelShooter_DefaultVoltage;
 	
-	public FuelShooter_speedSet() {
+	public FuelShooter_voltageSet() {
 		requires(Robot.fuelShooter);
     }
 	
-    public FuelShooter_speedSet(double speed) {
+    public FuelShooter_voltageSet(double voltage) {
 		requires(Robot.fuelShooter);
 		
-    	this.speed = speed;
+    	this.voltage = voltage;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.fuelShooter.setShooterSpeed(speed);
+    	Robot.fuelShooter.setShooterVoltage(voltage);
     }
 
     // Called repeatedly when this Command is scheduled to run

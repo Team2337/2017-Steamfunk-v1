@@ -18,8 +18,8 @@ public class FuelShooter extends Subsystem {
 	private final CANTalon motorLeft = RobotMap.fuelShooter_motorLeft;
 	private final CANTalon motorRight = RobotMap.fuelShooter_motorRight;
 	
-	private double currentSpeed = Robot.constants.kFuelShooter_DefaultSpeed;
-	double incrementSpeed = Robot.constants.kFuelShooter_IncrementSpeed;
+	private double currentVoltage = Robot.constants.kFuelShooter_DefaultVoltage;
+	double incrementVoltage = Robot.constants.kFuelShooter_IncrementVoltage;
 	
 	public FuelShooter() {
 		motorLeft.enableBrakeMode(false);
@@ -35,17 +35,17 @@ public class FuelShooter extends Subsystem {
 		
 	}
 	
-	public void updateSpeed() {
-		motorLeft.set(currentSpeed);
-		motorRight.set(currentSpeed);
-		SmartDashboard.putNumber("Shooter Speed:", currentSpeed);
+	public void updateVoltage(){
+		motorLeft.set(currentVoltage);
+		motorRight.set(currentVoltage);
+		SmartDashboard.putNumber("Shooter Voltage:", currentVoltage);
 	}
 	
-	public void setShooterSpeed(double speed) {
-		currentSpeed = speed;
-		if(currentSpeed > 1.0) currentSpeed = 1;
-		if(currentSpeed < 0.0) currentSpeed = 0;
-		updateSpeed();
+	public void setShooterVoltage(double voltage) {
+		currentVoltage = voltage;
+		if(currentVoltage > 1.0) currentVoltage = 1;
+		if(currentVoltage < 0.0) currentVoltage = 0;
+		updateVoltage();
 	}
 	
 	public void stopShooter() {
@@ -53,12 +53,13 @@ public class FuelShooter extends Subsystem {
 		motorRight.set(0);
 	}
 	
-	public void incrementSpeed() {
-		setShooterSpeed(currentSpeed += incrementSpeed);
+	public void incrementVoltage() {
+		setShooterVoltage(currentVoltage += incrementVoltage);
 	}
 	
-	public void decrementSpeed() {
-		setShooterSpeed(currentSpeed -= incrementSpeed);
+	public void decrementVoltage() {
+		setShooterVoltage(currentVoltage -= incrementVoltage);
 	}
+	
 }
 

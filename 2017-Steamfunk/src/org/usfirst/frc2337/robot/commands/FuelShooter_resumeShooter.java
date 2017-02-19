@@ -15,7 +15,7 @@ public class FuelShooter_resumeShooter extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Robot.fuelShooter.updateSpeed();
+		Robot.fuelShooter.updateVoltage();
 	}
 		
 	// Called repeatedly when this Command is scheduled to run
