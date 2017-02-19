@@ -7,22 +7,22 @@ import org.usfirst.frc2337.robot.Robot;
 /**
  *
  */
-public class Feeder_reverse extends Command {
+public class Feeder_setSpeed extends Command {
 	// DECLARE VARIABLES
-	 double speed = Robot.constants.kFeeder_DefaultReverseSpeed;
+	 double speed = Robot.constants.kFeeder_DefaultEnableSpeed;
 	
-    public Feeder_reverse() {
+    public Feeder_setSpeed() {
        requires(Robot.feeder);
     }
     
-    public Feeder_reverse(double speed) {
+    public Feeder_setSpeed(double speed) {
     	requires(Robot.feeder);
     	this.speed = speed;
     }
 
 	// Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.feeder.reverseAuger(speed);
+    	Robot.feeder.setSpeed(speed);
     }
 
     // Called repeatedly when this Command is scheduled to run
