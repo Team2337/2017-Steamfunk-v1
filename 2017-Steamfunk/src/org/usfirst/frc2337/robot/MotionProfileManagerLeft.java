@@ -239,7 +239,7 @@ public class MotionProfileManagerLeft {
 	/** Start filling the MPs to all of the involved Talons. */
 	private void startFilling() {
 		/* since this example only has one talon, just update that one */
-		startFilling(MotionProfilePointsLeftStraight102.Points, MotionProfilePointsLeftStraight102.kNumPoints);
+		startFilling(MotionProfilePointsLeft.Points, MotionProfilePointsLeft.kNumPoints);
 	}
 
 	private void startFilling(double[][] profile, int totalCnt) {

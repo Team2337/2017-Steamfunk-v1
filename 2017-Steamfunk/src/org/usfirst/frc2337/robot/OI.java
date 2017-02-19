@@ -91,7 +91,7 @@ public class OI {
 	
 	public OI() {
 
-		driver_GreenA			.whenPressed(new _DoNothing()); //Near give maneuver
+		driver_GreenA			.whenPressed(new ControlProfile()); //Near give maneuver
 		driver_RedB				.whenPressed(new _DoNothing()); //Far gear maneuver
 		driver_BlueX			.whenPressed(new _DoNothing()); 
 		driver_YellowY			.whenPressed(new _DoNothing()); 

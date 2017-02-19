@@ -66,10 +66,10 @@ public class RobotMap {
     	/* Right Side */
 		chassisPID_rightFront      = new CANTalon(2);
 		chassisPID_rightFront      .changeControlMode(TalonControlMode.PercentVbus);
-		chassisPID_rightFront      .reverseOutput(true);
+		chassisPID_rightFront      .reverseOutput(false);  ///true
 		chassisPID_rightFront	   .enableBrakeMode(true);
 		chassisPID_rightFront.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
-		chassisPID_rightFront.configEncoderCodesPerRev(100);
+		//chassisPID_rightFront.configEncoderCodesPerRev(100);
 		
 		LiveWindow.addActuator("Chassis", "rightFront", chassisPID_rightFront);
 		

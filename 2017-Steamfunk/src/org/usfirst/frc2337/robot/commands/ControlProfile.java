@@ -45,6 +45,7 @@ public class ControlProfile extends Command {
     	
     	
     	talonRight.changeControlMode(TalonControlMode.MotionProfile);
+    	
     	rightTalonManager.startMotionProfile();
     	talonRight.setF(0.1023);
 	
@@ -77,13 +78,13 @@ public class ControlProfile extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	//RobotMap.shooterCANTalon1.set(0);
-    	//talonLeft.changeControlMode(TalonControlMode.Voltage);
-    	//talonLeft.setVoltageCompensationRampRate(24.0);
+    	talonLeft.changeControlMode(TalonControlMode.PercentVbus);
+    	talonLeft.setVoltageCompensationRampRate(24.0);
     	talonLeft.set(-.20);
     	talonLeft.enableBrakeMode(true);
     	
-    	//talonRight.changeControlMode(TalonControlMode.Voltage);
-    	//talonRight.setVoltageCompensationRampRate(24.0);
+    	talonRight.changeControlMode(TalonControlMode.PercentVbus);
+    	talonRight.setVoltageCompensationRampRate(24.0);
     	talonRight.set(-.20);
     	talonRight.enableBrakeMode(true);
     }
