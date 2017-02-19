@@ -70,7 +70,7 @@ public class OI {
 	JoystickPOVButton		driver_POVLeft			= new JoystickPOVButton(driverJoystick, 270);
 	JoystickPOVButton		driver_POVUpLeft		= new JoystickPOVButton(driverJoystick, 315);
 	
-	Joystick				operatorJoystick		= new Joystick(1);
+	public static Joystick				operatorJoystick		= new Joystick(1);
 	JoystickButton			operator_GreenA			= new JoystickButton(operatorJoystick, 1);
 	JoystickButton			operator_RedB			= new JoystickButton(operatorJoystick, 2);
 	JoystickButton			operator_BlueX			= new JoystickButton(operatorJoystick, 3);
@@ -135,7 +135,7 @@ public class OI {
 	   // driver_POVUpLeft		.whenPressed(new _DoNothing()); 
 	    
 		/* =========================================================*/
-		operator_GreenA			.whileHeld(new RopeClimber_runWhileHeld()); //Climber run
+		operator_GreenA			.whileHeld(new FuelAgitator_speedSet(.7)); //Climber run
 		operator_RedB			.whileHeld(new GearLoader_extendWhileHeld()); //Raise Gear fingers
 		operator_BlueX			.whenPressed(new FuelShooter_speedSet(hopperShotSpeedLeft, hopperShotSpeedRight)); //Far shot
 		operator_YellowY		.whenPressed(new FuelShooter_speedSet(airshipShotSpeedLeft, airshipShotSpeedRight)); //Boiler shot
@@ -143,8 +143,8 @@ public class OI {
 		operator_BumperLeft		.whenPressed(new FuelIntakeArm_extend());
 		operator_BumperRight	.whileHeld(new FuelIntake_enabledReverse());
 		
-		operator_Back			.whenPressed(new _DoNothing());
-		operator_Start			.whenPressed(new _DoNothing());
+		operator_Back			.whenPressed(new FuelShooter_stopShooters());
+		operator_Start			.whileHeld(new FuelAgitator_speedSet(-.4));
 		
 		operator_LeftStick		.whenPressed(new _DoNothing());
 		operator_RightStick		.whenPressed(new _DoNothing());

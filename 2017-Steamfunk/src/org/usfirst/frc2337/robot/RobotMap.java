@@ -51,7 +51,8 @@ public class RobotMap {
     public static CANTalon fuelShooter_motorRight;
     public static CANTalon fuelLoaderfuelLoader;
     public static Solenoid fuelDumperfuelDumper;
-    public static CANTalon fuelAgitatorfuelDeGunker;
+    public static CANTalon fuelAgitator_motorRight;
+    public static CANTalon fuelAgitator_motorLeft;
     public static CANTalon fuelElevatorAcceleratorfuelElevatorAcceleratorMover;
     public static Solenoid hopperTrigger_solenoid;
     public static CANTalon ropeClimberscaleMotor;
@@ -145,8 +146,12 @@ public class RobotMap {
         fuelLoaderfuelLoader = new CANTalon(24);
         LiveWindow.addActuator("FuelLoader", "fuelLoader", fuelLoaderfuelLoader);
         
-        fuelAgitatorfuelDeGunker = new CANTalon(25);
-        LiveWindow.addActuator("FuelAgitator", "fuelDeGunker", fuelAgitatorfuelDeGunker);
+        fuelAgitator_motorRight = new CANTalon(11);
+        LiveWindow.addActuator("FuelFeederRight", "fuelDeGunker", fuelAgitator_motorRight);
+        
+        fuelAgitator_motorLeft = new CANTalon(12);
+        fuelAgitator_motorLeft.reverseOutput(false);
+        LiveWindow.addActuator("FuelFeederLeft", "fuelDeGunker", fuelAgitator_motorRight);
         try {
             /* Communicate w/navX MXP via the MXP SPI Bus.                                     */
             /* Alternatively:  I2C.Port.kMXP, SerialPort.Port.kMXP or SerialPort.Port.kUSB     */
