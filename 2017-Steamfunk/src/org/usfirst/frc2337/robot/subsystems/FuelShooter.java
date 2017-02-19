@@ -19,17 +19,16 @@ public class FuelShooter extends Subsystem {
 	private final CANTalon shooterMotorLeft = RobotMap.shooterCANTalonLeft;
 	private final CANTalon shooterMotorRight = RobotMap.shooterCANTalonRight;
 	
-	private double currentSpeed = Robot.constants.kFuelShooter_DefaultSpeed;
-	//double incrementSpeed = Robot.constants.kFuelShooter_IncrementSpeed;
 	
-	double halfSpeed = 6.0;
-    double hopperShotSpeedLeft = 8.9;		//8.9
-    double hopperShotSpeedRight = 9.4;		//9.4
-    double airshipShotSpeedLeft = 10.15;
-    double airshipShotSpeedRight = 10.45;
-    double maxSpeed = 12.0;  //???
-    double curRPM;
-    double speed;
+	 double currentSpeed = -700;
+	    double halfSpeed = 6;
+	    //double maxSpeed = 2500;  //???
+	    public double maxSpeed = 12;
+	   	//close boiler shot: 8;    far shot: 9.6;
+	    public double RPMLimit = 3650;			//was  9.60
+	    double curRPM;
+	    public boolean shooterPos;
+	
 	
 	public FuelShooter() {
 		shooterMotorLeft.enableBrakeMode(false);
@@ -57,21 +56,23 @@ public class FuelShooter extends Subsystem {
 	 * Set speeds of shooter
 	 * @param speed Sets speed of shooter
 	 */
-	public void setRPM(double speedLeft, double speedRight) {
-		shooterMotorLeft.setSetpoint(speedLeft);
-		shooterMotorRight.setSetpoint(speedRight);
-	}
+	public void setRPM() {
+		shooterMotorLeft.setSetpoint(currentSpeed);
+    	
+		shooterMotorRight.setSetpoint(currentSpeed);		//Second shooter
+    	
+    }
 	    
 	public void increaseRPMLeft() {
 	    	//currentSpeed =+100;
-		shooterMotorLeft.setSetpoint(shooterMotorLeft.getSetpoint() + .15);
+		Robot.constants.VoltageLimitLeft += .15;
 	}
 	    
 	public void decreaseRPMLeft() {
 	    	//currentSpeed =-100;
-		shooterMotorLeft.setSetpoint(shooterMotorLeft.getSetpoint() - .15);
+		Robot.constants.VoltageLimitLeft -= .15;
 	}
-	          
+	/*
 	public void maxRPM() {
 		shooterMotorLeft.setSetpoint(maxSpeed);
 		shooterMotorRight.setSetpoint(maxSpeed);
@@ -91,20 +92,21 @@ public class FuelShooter extends Subsystem {
 		shooterMotorLeft.setSetpoint(halfSpeed);
 		shooterMotorRight.setSetpoint(halfSpeed);
 	}
-	     
-	public void zeroRPM() {
-		shooterMotorLeft.setSetpoint(0);
-		shooterMotorRight.setSetpoint(0);
-	}
+	     */
 	    
 	public void increaseRPMRight() {
 	    	//currentSpeed =+100;
-		shooterMotorRight.setSetpoint(shooterMotorRight.getSetpoint() + .25);
+		Robot.constants.VoltageLimitRight += .15;
 	}
 	    
 	public void decreaseRPMRight() {
 	    	//currentSpeed =-100;
-		shooterMotorRight.setSetpoint(shooterMotorRight.getSetpoint() - .25);
+		Robot.constants.VoltageLimitRight -= .15;
+	}
+	
+	public void zeroRPM() {
+		shooterMotorLeft.setSetpoint(0);
+		shooterMotorRight.setSetpoint(0);
 	}
 }
 

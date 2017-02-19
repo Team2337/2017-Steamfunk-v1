@@ -24,7 +24,7 @@ public class FuelShooter_speedSet extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.fuelShooter.setRPM(speedLeft, speedRight);
+    	Robot.fuelShooter.setRPM();
     }
 
     // Called repeatedly when this Command is scheduled to run

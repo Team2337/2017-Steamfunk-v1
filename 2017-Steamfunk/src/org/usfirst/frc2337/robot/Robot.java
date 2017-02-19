@@ -44,7 +44,7 @@ public class Robot extends IterativeRobot {
 	public static VideoCapture videoCapture;
 	public static Mat matOriginalObj;
 	public static FuelAgitator agitator;
-	Command autonomousCommand;
+	public static Command autonomousCommand;
 	
 	/**
 	 * This function is run when the robot is first started up and should be

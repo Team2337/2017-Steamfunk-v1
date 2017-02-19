@@ -137,7 +137,8 @@ public class OI {
 		/* =========================================================*/
 		operator_GreenA			.whileHeld(new FuelAgitator_speedSet(.7)); //Climber run
 		operator_RedB			.whileHeld(new GearLoader_extendWhileHeld()); //Raise Gear fingers
-		operator_BlueX			.whenPressed(new FuelShooter_speedSet(hopperShotSpeedLeft, hopperShotSpeedRight)); //Far shot
+		operator_BlueX			.whenPressed(new BangRPMLeft()); 	//BANG BANG LEFT
+		operator_BlueX			.whenPressed(new _DoNothing()); 
 		operator_YellowY		.whenPressed(new FuelShooter_speedSet(airshipShotSpeedLeft, airshipShotSpeedRight)); //Boiler shot
 		
 		operator_BumperLeft		.whenPressed(new FuelIntakeArm_extend());
@@ -147,7 +148,7 @@ public class OI {
 		operator_Start			.whileHeld(new FuelAgitator_speedSet(-.4));
 		
 		operator_LeftStick		.whenPressed(new _DoNothing());
-		operator_RightStick		.whenPressed(new _DoNothing());
+		operator_RightStick		.whenPressed(new BangRPMRight());		//BANG BANG RIGHT
 		
 		operator_TriggerLeft	.whenPressed(new FuelIntakeArm_retract());
 		operator_TriggerRight	.whileHeld(new FuelIntake_enabledForward());

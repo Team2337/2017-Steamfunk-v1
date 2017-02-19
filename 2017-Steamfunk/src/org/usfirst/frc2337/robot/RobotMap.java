@@ -3,8 +3,11 @@ package org.usfirst.frc2337.robot;
 import com.ctre.CANTalon;
 import com.kauailabs.navx.frc.AHRS;
 import com.ctre.CANTalon.FeedbackDevice;
+import com.ctre.CANTalon.FeedbackDeviceStatus;
 import com.ctre.CANTalon.TalonControlMode;
 
+import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.Counter;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -57,6 +60,10 @@ public class RobotMap {
     public static Solenoid hopperTrigger_solenoid;
     public static CANTalon ropeClimberscaleMotor;
     public static DigitalInput ropeClimberLimit;
+    
+    public static Thread t;
+    public static Thread t2;
+    public static FeedbackDeviceStatus status;
 
     public static void init() {
     	
@@ -104,19 +111,36 @@ public class RobotMap {
 		
 		
 		//Shooters
-		shooterCANTalonLeft = new CANTalon(8);  //8 
-		shooterCANTalonLeft.changeControlMode(TalonControlMode.Voltage);
-		shooterCANTalonLeft.setVoltageCompensationRampRate(24.0);
-		shooterCANTalonLeft.reverseOutput(true);
-		shooterCANTalonLeft.getBusVoltage();
-        
+     
         shooterCANTalonRight = new CANTalon(9);
+        LiveWindow.addActuator("Shooter", "CAN Talon 1", shooterCANTalonRight);
         shooterCANTalonRight.changeControlMode(TalonControlMode.Voltage);
         shooterCANTalonRight.setVoltageCompensationRampRate(24.0);
-        shooterCANTalonRight.getBusVoltage();
-        shooterCANTalonRight.reverseOutput(false);
+        //shooterCANTalon1.changeControlMode(TalonControlMode.PercentVbus);
+        shooterCANTalonRight.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+        shooterCANTalonRight.reverseSensor(true);  
+        shooterCANTalonRight.setInverted(false);    //uncommented
+        shooterCANTalonRight.configNominalOutputVoltage(0, -9);  //changed from 9, 0
+        shooterCANTalonRight.configPeakOutputVoltage(0, -12);  //changed from 12, 0
+        shooterCANTalonRight.configEncoderCodesPerRev(1);
+        shooterCANTalonRight.enableBrakeMode(false);
         
+        shooterCANTalonLeft = new CANTalon(8);
+        shooterCANTalonLeft.changeControlMode(TalonControlMode.Voltage);
+        shooterCANTalonLeft.setVoltageCompensationRampRate(24.0);
+        shooterCANTalonLeft.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+        shooterCANTalonLeft.reverseSensor(true);  
+        shooterCANTalonLeft.setInverted(false);    //uncommented
+        shooterCANTalonLeft.configNominalOutputVoltage(0, -9);  //changed from 9, 0
+        shooterCANTalonLeft.configPeakOutputVoltage(0, -12);  //changed from 12, 0
+        shooterCANTalonLeft.configEncoderCodesPerRev(1);
+        shooterCANTalonLeft.enableBrakeMode(false);
+        
+        
+        //BANG BANG DRIVE CODE
+
 		
+        
 		// HOPPER TRIGGER
         targetingLEDtargetingFrontLED = new Solenoid(0, 0);
         gearLoader_pusher = new Solenoid(0, 1);

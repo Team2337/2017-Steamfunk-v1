@@ -25,6 +25,10 @@ public class Constants {
 	
 	public final double kFuelShooter_halfSpeed = 6.0;
     public final double kFuelShooter_maxSpeed = 12.0;  //???
+    
+    public double VoltageLimitRight = 9.6;
+    public double VoltageLimitLeft = 9.6;
+    
 	
 	/* Fuel Intake */
 	public final double kFuelIntake_DefaultSpeed = 1.0;
