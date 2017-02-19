@@ -122,8 +122,8 @@ public class OI {
 		driver_LeftStick		.whenPressed(new _DoNothing());
 		driver_RightStick		.whenPressed(new _DoNothing()); 
 		
-		driver_TriggerLeft		.whenPressed(new _DoNothing()); //Shoot all Fuel
-		driver_TriggerRight		.whenPressed(new _DoNothing()); //Shoot one Fuel
+		driver_TriggerLeft		.whileHeld(new Feeder_reverse()); //Shoot all Fuel
+		driver_TriggerRight		.whileHeld(new Feeder_forward()); //Shoot one Fuel 
 		
 		driver_POVUp			.whenPressed(new _DoNothing());  
 	   // driver_POVUpRight		.whenPressed(new _DoNothing()); 

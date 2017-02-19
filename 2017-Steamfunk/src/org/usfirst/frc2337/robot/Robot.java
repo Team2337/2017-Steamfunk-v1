@@ -43,6 +43,7 @@ public class Robot extends IterativeRobot {
 	public static GripPipeline trackerObj;
 	public static VideoCapture videoCapture;
 	public static Mat matOriginalObj;
+	public static Feeder feeder;
 	Command autonomousCommand;
 	
 	/**
@@ -69,6 +70,7 @@ public class Robot extends IterativeRobot {
 		videoCapture = new VideoCapture();
 		trackerObj = new GripPipeline();
 		matOriginalObj = new Mat();
+		feeder = new Feeder();
 		
 		// OI must be constructed after subsystems. If the OI creates Commands
 		//(which it very likely will), subsystems are not guaranteed to be
