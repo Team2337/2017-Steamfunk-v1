@@ -144,14 +144,19 @@ public class RobotMap {
 		
         
         //Fuel Feeder
-        fuelFeederLeft = new CANTalon(11);	//Change to 4
+        fuelFeederLeft = new CANTalon(12);	//Change to 4
+        fuelFeederLeft.reverseOutput(false);
         fuelFeederLeft.changeControlMode(TalonControlMode.PercentVbus);
+        
         LiveWindow.addActuator("FuelAgitator", "fuelFeederLeft", fuelFeederLeft);
        
-        fuelFeederRight = new CANTalon(12);	//5
+        fuelFeederRight = new CANTalon(11);	//5
         fuelFeederRight.changeControlMode(TalonControlMode.PercentVbus);
         //fuelFeederRight.set(fuelFeederLeft.getDeviceID());
         LiveWindow.addActuator("FuelAgitator", "FuelFeederRight", fuelFeederRight);
+        
+       // fuelAgitator_motorLeft = new CANTalon(12);
+       // fuelAgitator_motorLeft.reverseOutput(false);
         
         
         try {
