@@ -9,19 +9,21 @@ import org.usfirst.frc2337.robot.RobotMap;
 import com.ctre.CANTalon;
 
 public class Feeder_forward extends Command {
-	final CANTalon auger = RobotMap.fuelIntake_motor;
+	final CANTalon augerLeft = RobotMap.fuelFeederLeft;
+	final CANTalon augerRight = RobotMap.fuelFeederRight;
 
-	public double speed = Robot.constants.kFuelIntake_DefaultSpeed;
+	public double speed = Robot.constants.kFeeder_DefaultEnableSpeed;
 
 	private boolean detectJams = Robot.constants.kFeeder_Detectjams;
 	private double preventJamCurrentTolerance = Robot.constants.kFeeder_ReverseVoltageTolerance;
 	private double preventJamSpeed = -Robot.constants.kFeeder_ReverseSpeed;
 	private double preventJamDuration = Robot.constants.kFeeder_ReverseDuration;
-	
-	
-	public boolean noJams = true;
+
+	public boolean noJamsLeft = true;
+	public boolean noJamsRight = true;
 	boolean isDone = false;
 	public int i;
+	public int f;
 
 	public Feeder_forward(double speed) {
 		requires(Robot.feeder);
@@ -34,41 +36,62 @@ public class Feeder_forward extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		auger.set(speed);
+		augerRight.set(speed);
+		augerLeft.set(speed);
 		isDone = false;
-		noJams = true;
+		noJamsLeft = true;
+		noJamsRight = true;
 	}
 
 	// Called repeatedly when this Command is scheduled to run
-	
+
 	/**
-	 * If constant to detect jams is true, run jam prevention. 
-	 * If not, run normally.
+	 * If constant to detect jams is true, run jam prevention. If not, run
+	 * normally.
 	 */
 	protected void execute() {
 		if (detectJams) {
 			if (timeSinceInitialized() >= 1) {
-				if (noJams) {
-					auger.set(speed);
+				if (noJamsLeft) {
+					System.out.println(i + "\t I'M JAMMED");
+					augerLeft.set(speed);
 
-					if (auger.getOutputCurrent() > preventJamCurrentTolerance) {
-						noJams = false;
+					if (augerLeft.getOutputCurrent() > preventJamCurrentTolerance) {
+						noJamsLeft = false;
 						i = 0;
 					}
 				} else {
-					auger.set(preventJamSpeed);
+					augerLeft.set(preventJamSpeed);
 					// System.out.println(i + "\t I'M JAMMED");
 					if (i > (50 * preventJamDuration)) {
-						noJams = true;
+						noJamsLeft = true;
 						isDone = true;
 					}
 					i++;
 				}
-				// System.out.println(feeder.getOutputCurrent());	//Uncomment to output the current
+
+				if (noJamsRight) {
+					augerRight.set(speed);
+
+					if (augerRight.getOutputCurrent() > preventJamCurrentTolerance) {
+						noJamsRight = false;
+						f = 0;
+					}
+				} else {
+					augerRight.set(preventJamSpeed);
+					// System.out.println(i + "\t I'M JAMMED");
+					if (f > (50 * preventJamDuration)) {
+						noJamsRight = true;
+						isDone = true;
+					}
+					f++;
+				}
+				// System.out.println(feeder.getOutputCurrent()); //Uncomment to
+				// output the current
 			}
-		}
-		else{
-			auger.set(speed);
+		} else {
+			augerRight.set(speed);
+			augerLeft.set(speed);
 		}
 	}
 
@@ -79,7 +102,8 @@ public class Feeder_forward extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		auger.set(0);
+		augerLeft.set(0);
+		augerRight.set(0);
 	}
 
 	// Called when another command which requires one or more of the same
