@@ -122,8 +122,8 @@ public class OI {
 		driver_LeftStick		.whenPressed(new _DoNothing());
 		driver_RightStick		.whenPressed(new _DoNothing()); 
 		
-		driver_TriggerLeft		.whileHeld(new Feeder_reverse()); //Shoot all Fuel
-		driver_TriggerRight		.whileHeld(new Feeder_setSpeed()); //Shoot one Fuel 
+		driver_TriggerLeft		.whenPressed(new _DoNothing()); //Shoot all Fuel
+		driver_TriggerRight		.whenPressed(new _DoNothing()); //Shoot one Fuel 
 		
 		driver_POVUp			.whenPressed(new _DoNothing());  
 	   // driver_POVUpRight		.whenPressed(new _DoNothing()); 
@@ -143,8 +143,8 @@ public class OI {
 		operator_BumperLeft		.whenPressed(new FuelIntakeArm_extend());
 		operator_BumperRight	.whileHeld(new FuelIntake_enabledReverse());
 		
-		operator_Back			.whenPressed(new _DoNothing());
-		operator_Start			.whenPressed(new _DoNothing());
+		operator_Back			.whileHeld(new Feeder_reverse());
+		operator_Start			.whileHeld(new Feeder_forward());
 		
 		operator_LeftStick		.whenPressed(new _DoNothing());
 		operator_RightStick		.whenPressed(new _DoNothing());

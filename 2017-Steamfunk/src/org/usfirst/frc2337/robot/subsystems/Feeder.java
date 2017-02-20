@@ -44,10 +44,12 @@ public class Feeder extends Subsystem {
     	fuelFeederLeft.set(-speed);
     	fuelFeederRight.set(-speed);
 	}
+    
     public void stopAuger(){
     	fuelFeederLeft.set(0);
     	fuelFeederRight.set(0);
     }
+    
     public void updateSpeed() {
     	fuelFeederLeft.set(currentSpeed);
     	fuelFeederRight.set(currentSpeed);
@@ -59,6 +61,7 @@ public class Feeder extends Subsystem {
     	//if(currentSpeed < speed) currentSpeed = 0;
     	updateSpeed();
     }
+    
 	public void getVoltage() {
 		fuelFeederLeft.getBusVoltage();
     	fuelFeederRight.getBusVoltage();
