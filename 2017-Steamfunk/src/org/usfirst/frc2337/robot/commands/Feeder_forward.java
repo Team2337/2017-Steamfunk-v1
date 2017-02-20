@@ -37,7 +37,7 @@ public class Feeder_forward extends Command {
 	// Called just before this Command runs the first time
 	protected void initialize() {
 		augerRight.set(speed);
-		augerLeft.set(speed);
+		augerLeft.set(-speed);
 		isDone = false;
 		noJamsLeft = true;
 		noJamsRight = true;
@@ -53,16 +53,17 @@ public class Feeder_forward extends Command {
 		if (detectJams) {
 			if (timeSinceInitialized() >= 1) {
 				if (noJamsLeft) {
-					System.out.println(i + "\t I'M JAMMED");
-					augerLeft.set(speed);
+					augerLeft.set(-speed);
 
 					if (augerLeft.getOutputCurrent() > preventJamCurrentTolerance) {
+						//System.out.println("LEFT === I'M JAMMED");
 						noJamsLeft = false;
 						i = 0;
 					}
 				} else {
-					augerLeft.set(preventJamSpeed);
-					// System.out.println(i + "\t I'M JAMMED");
+					augerLeft.set(-
+							preventJamSpeed);
+					System.out.println(i + "\t I'M JAMMED");
 					if (i > (50 * preventJamDuration)) {
 						noJamsLeft = true;
 						isDone = true;
@@ -74,12 +75,13 @@ public class Feeder_forward extends Command {
 					augerRight.set(speed);
 
 					if (augerRight.getOutputCurrent() > preventJamCurrentTolerance) {
+						//System.out.println("RIGHT === I'M JAMMED");
 						noJamsRight = false;
 						f = 0;
 					}
 				} else {
 					augerRight.set(preventJamSpeed);
-					// System.out.println(i + "\t I'M JAMMED");
+					System.out.println(f + "\t I'M JAMMED");
 					if (f > (50 * preventJamDuration)) {
 						noJamsRight = true;
 						isDone = true;
@@ -91,7 +93,7 @@ public class Feeder_forward extends Command {
 			}
 		} else {
 			augerRight.set(speed);
-			augerLeft.set(speed);
+			augerLeft.set(-speed);
 		}
 	}
 

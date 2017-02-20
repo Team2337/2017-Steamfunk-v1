@@ -165,5 +165,8 @@ public class Robot extends IterativeRobot {
 		//Displays the voltage values for both shooters
 		SmartDashboard.putNumber("Output Voltage Left", RobotMap.shooterCANTalonLeft.getOutputVoltage());
         SmartDashboard.putNumber("Output Voltage RIght", RobotMap.shooterCANTalonRight.getOutputVoltage());
+
+		SmartDashboard.putNumber("Current of left feeder", RobotMap.fuelFeederLeft.getOutputCurrent());
+		SmartDashboard.putNumber("Current of right feeder", RobotMap.fuelFeederRight.getOutputCurrent());
 	}
 }

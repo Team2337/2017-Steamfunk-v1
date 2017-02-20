@@ -41,8 +41,8 @@ public class Feeder extends Subsystem {
     }
     
     public void reverseAuger(double reversedSpeed) {
-    	fuelFeederLeft.set(-speed);
-    	fuelFeederRight.set(-speed);
+    	fuelFeederLeft.set(speed);
+    	fuelFeederRight.set(-speed);		//reversed
 	}
     
     public void stopAuger(){
@@ -52,7 +52,7 @@ public class Feeder extends Subsystem {
     
     public void updateSpeed() {
     	fuelFeederLeft.set(currentSpeed);
-    	fuelFeederRight.set(currentSpeed);
+    	fuelFeederRight.set(-currentSpeed);
     }
     
     public void setSpeed(double speed) {
