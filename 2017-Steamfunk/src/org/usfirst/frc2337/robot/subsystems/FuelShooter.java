@@ -12,18 +12,28 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  * FUEL SHOOTER
  * - BEING IMPROVED BY GUS (RPM)
+ * Best code ever.
  */
 public class FuelShooter extends Subsystem {
 	
-	private final CANTalon motorLeft = RobotMap.fuelShooter_motorLeft;
-	private final CANTalon motorRight = RobotMap.fuelShooter_motorRight;
+	private final CANTalon shooterMotorLeft = RobotMap.shooterCANTalonLeft;
+	private final CANTalon shooterMotorRight = RobotMap.shooterCANTalonRight;
 	
 	private double currentSpeed = Robot.constants.kFuelShooter_DefaultSpeed;
-	double incrementSpeed = Robot.constants.kFuelShooter_IncrementSpeed;
+	//double incrementSpeed = Robot.constants.kFuelShooter_IncrementSpeed;
+	
+	double halfSpeed = 6.0;
+    double hopperShotSpeedLeft = 8.9;		//8.9
+    double hopperShotSpeedRight = 9.4;		//9.4
+    double airshipShotSpeedLeft = 10.15;
+    double airshipShotSpeedRight = 10.45;
+    double maxSpeed = 12.0;  //???
+    double curRPM;
+    double speed;
 	
 	public FuelShooter() {
-		motorLeft.enableBrakeMode(false);
-		motorRight.enableBrakeMode(false);
+		shooterMotorLeft.enableBrakeMode(false);
+		shooterMotorRight.enableBrakeMode(false);
 	}
 	
 	// Put methods for controlling this subsystem
@@ -39,41 +49,62 @@ public class FuelShooter extends Subsystem {
 	 * Updates Speed via SmartDashboard
 	 */
 	public void updateSpeed() {
-		motorLeft.set(currentSpeed);
-		motorRight.set(currentSpeed);
+		shooterMotorLeft.set(currentSpeed);
+		shooterMotorRight.set(currentSpeed);
 		SmartDashboard.putNumber("Shooter Speed:", currentSpeed);
 	}
 	/**
 	 * Set speeds of shooter
 	 * @param speed Sets speed of shooter
 	 */
-	public void setShooterSpeed(double speed) {
-		currentSpeed = speed;
-		if(currentSpeed > 1.0) currentSpeed = 1;
-		if(currentSpeed < 0.0) currentSpeed = 0;
-		updateSpeed();
+	public void setRPM(double speedLeft, double speedRight) {
+		shooterMotorLeft.setSetpoint(speedLeft);
+		shooterMotorRight.setSetpoint(speedRight);
+	}
+	    
+	public void increaseRPMLeft() {
+	    	//currentSpeed =+100;
+		shooterMotorLeft.setSetpoint(shooterMotorLeft.getSetpoint() + .25);
+	}
+	    
+	public void decreaseRPMLeft() {
+	    	//currentSpeed =-100;
+		shooterMotorLeft.setSetpoint(shooterMotorLeft.getSetpoint() - .25);
+	}
+	          
+	public void maxRPM() {
+		shooterMotorLeft.setSetpoint(maxSpeed);
+		shooterMotorRight.setSetpoint(maxSpeed);
+	}
+	    
+	public void longShotRPM() {
+		shooterMotorLeft.setSetpoint(hopperShotSpeedLeft);
+		shooterMotorRight.setSetpoint(hopperShotSpeedRight);
 	}
 	
-	/**
-	 * Stopps Shooter
-	 */
-	public void stopShooter() {
-		motorLeft.set(0);
-		motorRight.set(0);
+	public void airshipShotRPM() {
+		shooterMotorLeft.setSetpoint(airshipShotSpeedLeft);
+		shooterMotorRight.setSetpoint(airshipShotSpeedRight);
 	}
 	
-	/**
-	 * Increases Shooter speed
-	 */
-	public void incrementSpeed() {
-		setShooterSpeed(currentSpeed += incrementSpeed);
+	public void halfRPM() {
+		shooterMotorLeft.setSetpoint(halfSpeed);
+		shooterMotorRight.setSetpoint(halfSpeed);
 	}
-	
-	/**
-	 * Decreases Shooter speed
-	 */
-	public void decrementSpeed() {
-		setShooterSpeed(currentSpeed -= incrementSpeed);
+	     
+	public void zeroRPM() {
+		shooterMotorLeft.setSetpoint(0);
+		shooterMotorRight.setSetpoint(0);
+	}
+	    
+	public void increaseRPMRight() {
+	    	//currentSpeed =+100;
+		shooterMotorRight.setSetpoint(shooterMotorRight.getSetpoint() + .25);
+	}
+	    
+	public void decreaseRPMRight() {
+	    	//currentSpeed =-100;
+		shooterMotorRight.setSetpoint(shooterMotorRight.getSetpoint() - .25);
 	}
 }
 

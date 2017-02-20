@@ -1,30 +1,28 @@
 package org.usfirst.frc2337.robot.commands;
-import org.usfirst.frc2337.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+import org.usfirst.frc2337.robot.Robot;
+
 /**
- * Fuel Shooter SPEEDSET - Sets speed of shooter
+ *
  */
-public class FuelShooter_speedSet extends Command {
+public class Feeder_setSpeed extends Command {
+	// DECLARE VARIABLES
+	 double speed = Robot.constants.kFeeder_DefaultEnableSpeed;
 	
-	double speedLeft;
-	double speedRight;
-	
-	public FuelShooter_speedSet() {
-		requires(Robot.fuelShooter);
+    public Feeder_setSpeed() {
+       requires(Robot.feeder);
     }
-	
-    public FuelShooter_speedSet(double speedLeft, double speedRight) {
-		requires(Robot.fuelShooter);
-		
-    	this.speedLeft = speedLeft;
-    	this.speedRight = speedRight;
+    
+    public Feeder_setSpeed(double speed) {
+    	requires(Robot.feeder);
+    	this.speed = speed;
     }
 
-    // Called just before this Command runs the first time
+	// Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.fuelShooter.setRPM(speedLeft, speedRight);
+    	Robot.feeder.setSpeed(speed);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -33,15 +31,17 @@ public class FuelShooter_speedSet extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return false;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.feeder.setSpeed(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }

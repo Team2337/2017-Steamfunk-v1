@@ -8,6 +8,10 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.opencv.core.Mat;
+import org.opencv.videoio.VideoCapture;
+import org.usfirst.frc2337.robot.RobotMap;
+import org.usfirst.frc2337.libraries.GripPipeline;
 import org.usfirst.frc2337.robot.commands.*;
 import org.usfirst.frc2337.robot.subsystems.*;
 
@@ -36,6 +40,10 @@ public class Robot extends IterativeRobot {
 	public static FuelAgitator fuelAgitator;
 	public static HopperTrigger hopperTrigger;
 	public static UsbCamera cam0;
+	public static GripPipeline trackerObj;
+	public static VideoCapture videoCapture;
+	public static Mat matOriginalObj;
+	public static Feeder feeder;
 	Command autonomousCommand;
 	
 	/**
@@ -58,6 +66,11 @@ public class Robot extends IterativeRobot {
 		fuelLoader = new FuelLoader();
 		fuelAgitator = new FuelAgitator();
 		hopperTrigger = new HopperTrigger();
+		fuelShooter = new FuelShooter();
+		videoCapture = new VideoCapture();
+		trackerObj = new GripPipeline();
+		matOriginalObj = new Mat();
+		feeder = new Feeder();
 		
 		// OI must be constructed after subsystems. If the OI creates Commands
 		//(which it very likely will), subsystems are not guaranteed to be
@@ -69,6 +82,7 @@ public class Robot extends IterativeRobot {
 		autonomousCommand = new _DoNothing();
 		
 		/* Add Camera's */
+		/*
 		cam0 = CameraServer.getInstance().startAutomaticCapture("cam0", "/dev/video0");
 		int exposure = (int) constants.kTargetingCamera_Exposure;
 		int brightness = (int) constants.kTargetingCamera_Brightness;
@@ -78,6 +92,7 @@ public class Robot extends IterativeRobot {
 
 		if (exposure <=100 && exposure >= 0)
 			cam0.setExposureManual(exposure);
+	*/
 	}
 	
 	/**
@@ -146,5 +161,12 @@ public class Robot extends IterativeRobot {
 	public void allPeriodic() {
 		SmartDashboard.putNumber("leftEncoder", RobotMap.chassisPID_leftFront.getEncPosition());
 		SmartDashboard.putNumber("rightEncoder", RobotMap.chassisPID_rightFront.getEncPosition());
+		
+		//Displays the voltage values for both shooters
+		SmartDashboard.putNumber("Output Voltage Left", RobotMap.shooterCANTalonLeft.getOutputVoltage());
+        SmartDashboard.putNumber("Output Voltage RIght", RobotMap.shooterCANTalonRight.getOutputVoltage());
+
+		SmartDashboard.putNumber("Current of left feeder", RobotMap.fuelFeederLeft.getOutputCurrent());
+		SmartDashboard.putNumber("Current of right feeder", RobotMap.fuelFeederRight.getOutputCurrent());
 	}
 }
