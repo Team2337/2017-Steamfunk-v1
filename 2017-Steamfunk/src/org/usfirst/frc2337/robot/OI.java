@@ -147,7 +147,7 @@ public class OI {
 		operator_Start			.whileHeld(new Feeder_forward());
 		
 		operator_LeftStick		.whenPressed(new _DoNothing());
-		operator_RightStick		.whenPressed(new _DoNothing());
+		operator_RightStick		.whenPressed(new FuelShooter_speedSet(0,0));		//Turns off shooter
 		
 		operator_TriggerLeft	.whenPressed(new FuelIntakeArm_retract());
 		operator_TriggerRight	.whileHeld(new FuelIntake_enabledForward());

@@ -51,11 +51,11 @@ public class Constants {
 	public final double kTargetingCamera_Brightness = 0.0;
 	
 	/* Fuel Feeder */
-	public final double kFeeder_DefaultEnableSpeed = .7;
+	public final double kFeeder_DefaultEnableSpeed = .5;
 	public final double kFeeder_DefaultReverseSpeed = .7; //Speed is reversed later in code, set absolute value of desired speed.
 	
 	public final boolean kFeeder_Detectjams = true;		// Determines whether or not to use jam prevention
-	public final double kFeeder_ReverseVoltageTolerance = 18.0; //When this current is reached, reverse the motors. This is in Amps. Higher numbers means more resistance needed to trigger reverse.
+	public final double kFeeder_ReverseVoltageTolerance = 14.0; //When this current is reached, reverse the motors. This is in Amps. Higher numbers means more resistance needed to trigger reverse.
 	public final double kFeeder_ReverseDuration = 5;	//Amount of time (seconds) to reverse once a jam is detected
 	public final double kFeeder_ReverseSpeed = 0.7;		//Speed is reversed later in code, set absolute value of desired speed.		//Speed to reverse at once a jam is detected
 	

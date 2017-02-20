@@ -57,6 +57,9 @@ public class Feeder extends Subsystem {
     
     public void setSpeed(double speed) {
     	currentSpeed = speed;
+    	//RobotMap.fuelFeederLeft.set(speed);
+    	//RobotMap.fuelFeederLeft.set(-speed);
+    	
     	//if(currentSpeed > speed) currentSpeed = 0.5;
     	//if(currentSpeed < speed) currentSpeed = 0;
     	updateSpeed();
