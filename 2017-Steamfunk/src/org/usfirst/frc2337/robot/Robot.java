@@ -49,13 +49,13 @@ public class Robot extends IterativeRobot {
 	 * used for any initialization code.
 	 */
 	public void robotInit() {
+		/*Create Constants*/
 		constants = new Constants();
+
+		/* Create all robot components*/
 		RobotMap.init();
 		
-		
-		
-
-		
+		/* Create all Subsystems */
 		chassis = new Chassis();
 		ropeClimber = new RopeClimber();
 		gearLoader = new GearLoader();
@@ -69,16 +69,16 @@ public class Robot extends IterativeRobot {
 		matOriginalObj = new Mat();
 		fuelFeeder = new FuelFeeder();
 		
-		// OI must be constructed after subsystems. If the OI creates Commands
-		//(which it very likely will), subsystems are not guaranteed to be
-		// constructed yet. Thus, their requires() statements may grab null
-		// pointers. Bad news. Don't move it.
+		/* Create OI
+		 * - Must be done after ALL subsystems are init'ed, because they might use a commands
+		 *  (which is refrenced by a subsystem)
+		 */
 		oi = new OI();
 		
-		// instantiate the command used for the autonomous period
+		/* Make the auton commands (even if you are using a selector) */
 		autonomousCommand = new _DoNothing();
 		
-		
+		/* Create Camera (for vision) */
 		cam0 = CameraServer.getInstance().startAutomaticCapture("cam0", "/dev/video0");
 		int exposure = (int) constants.kTargetingCamera_Exposure;
 		int brightness = (int) constants.kTargetingCamera_Brightness;
@@ -164,6 +164,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("leftEncoder", RobotMap.chassisPID_leftFront.getEncPosition());
 		SmartDashboard.putNumber("rightEncoder", RobotMap.chassisPID_rightFront.getEncPosition());
 		
+		/* All vision SmartDashboard numbers*/
 		SmartDashboard.putNumber("angle", RobotMap.boilerVision.getAngle());
 		SmartDashboard.putNumber("lengthFromWall",  RobotMap.boilerVision.getDistanceFromWall());
 		SmartDashboard.putNumber("lengthFromTape",  RobotMap.boilerVision.getDistanceFromTarget());

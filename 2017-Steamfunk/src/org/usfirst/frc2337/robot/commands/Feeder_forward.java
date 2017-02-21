@@ -8,6 +8,9 @@ import org.usfirst.frc2337.robot.RobotMap;
 
 import com.ctre.CANTalon;
 
+/**
+ * Fuel Feeder FORWARD - Forwards the feeder
+ */
 public class Feeder_forward extends Command {
 	final CANTalon augerLeft = RobotMap.fuelFeederLeft;
 	final CANTalon augerRight = RobotMap.fuelFeederRight;

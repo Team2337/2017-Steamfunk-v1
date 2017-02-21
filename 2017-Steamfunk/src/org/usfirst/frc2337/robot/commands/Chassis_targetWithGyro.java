@@ -8,6 +8,11 @@ import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+/**
+ * Chassiss TARGETWITHGYRO - Targets the Retro-reflective tape using VisionProcessing class.
+ * @author Team 2337
+ *
+ */
 public class Chassis_targetWithGyro extends PIDCommand {
 	double[] defaultValue = new double[0];	
 

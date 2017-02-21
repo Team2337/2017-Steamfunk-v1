@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc2337.robot.Robot;
 
 /**
- *
+ * Fuel Feeder REVERSE - Reverses the feeder
  */
 public class Feeder_reverse extends Command {
 	// DECLARE VARIABLES

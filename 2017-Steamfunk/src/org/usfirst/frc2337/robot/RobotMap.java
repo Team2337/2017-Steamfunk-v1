@@ -33,7 +33,6 @@ public class RobotMap {
     public static CANTalon shooterCANTalonLeft;		 	
     public static CANTalon shooterCANTalonRight;		//CANtalon 2 in separate shooter project
     
-    
     public static RobotDrive chassisPID_RobotDrive;
     public static AHRS chassisPID_gyro;
     
@@ -51,10 +50,8 @@ public class RobotMap {
     public static CANTalon fuelShooter_motorLeft;
     public static CANTalon fuelShooter_motorRight;
     
-    
     public static Solenoid hopperTrigger_solenoid;
     public static CANTalon ropeClimberscaleMotor;
-    
     
     public static CANTalon fuelFeederRight;
     public static CANTalon fuelFeederLeft;
