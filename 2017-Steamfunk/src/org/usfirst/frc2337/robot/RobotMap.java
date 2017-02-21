@@ -1,5 +1,7 @@
 package org.usfirst.frc2337.robot;
 
+import org.usfirst.frc2337.libraries.VisionProcessing;
+
 import com.ctre.CANTalon;
 import com.kauailabs.navx.frc.AHRS;
 import com.ctre.CANTalon.FeedbackDevice;
@@ -34,33 +36,34 @@ public class RobotMap {
     
     public static RobotDrive chassisPID_RobotDrive;
     public static AHRS chassisPID_gyro;
-    public static Solenoid chassisTransmissionchassisTransmissionSolenoid;
-    public static DoubleSolenoid powerTakeOffptoSolenoid;
-    public static Solenoid mainLEDfeedbackLED;
-    public static Solenoid targetingLEDtargetingLeftLED;
-    public static Solenoid targetingLEDtargetingCenterLED;
-    public static Solenoid targetingLEDtargetingRightLED;
-    public static Solenoid targetingLEDtargetingBottomLED;
-    public static Solenoid targetingLEDtargetingFrontLED;
-    public static CANTalon gearIntakeintakeMaster;
-    public static CANTalon gearIntakeintakeServant;
+    
+    public static Solenoid visionLED;
+      
+    public static Solenoid leftLed;
+    public static Solenoid centerLed;
+    public static Solenoid rightLed;
+    
     public static Solenoid gearLoader_pusher;
+    
     public static DoubleSolenoid fuelIntakeArm_solenoid;
+    
     public static CANTalon fuelIntake_motor;
     public static CANTalon fuelShooter_motorLeft;
     public static CANTalon fuelShooter_motorRight;
-    public static CANTalon fuelLoaderfuelLoader;
-    public static Solenoid fuelDumperfuelDumper;
-    public static CANTalon fuelAgitatorfuelDeGunker;
-    public static CANTalon fuelElevatorAcceleratorfuelElevatorAcceleratorMover;
+    
+    
     public static Solenoid hopperTrigger_solenoid;
     public static CANTalon ropeClimberscaleMotor;
-    public static DigitalInput ropeClimberLimit;
+    
+    
     public static CANTalon fuelFeederRight;
     public static CANTalon fuelFeederLeft;
-
+    
+	public static VisionProcessing boilerVision;
+	
     public static void init() {
-    	
+    	//CONSTANTS FILE
+    	Constants con = Robot.constants;
 		// CHASSIS PID
     	/* Right Side */
 		chassisPID_rightFront      = new CANTalon(2);
@@ -69,7 +72,6 @@ public class RobotMap {
 		chassisPID_rightFront	   .enableBrakeMode(true);
 		chassisPID_rightFront.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 		
-		LiveWindow.addActuator("Chassis", "rightFront", chassisPID_rightFront);
 		
 		chassisPID_rightRearMiddle = new CANTalon(1);
 		chassisPID_rightRearMiddle .changeControlMode(TalonControlMode.Follower);
@@ -78,8 +80,7 @@ public class RobotMap {
 		chassisPID_rightRear       = new CANTalon(0);
 		chassisPID_rightRear       .changeControlMode(TalonControlMode.Follower);
 		chassisPID_rightRear	   .set(chassisPID_rightFront.getDeviceID());
-		LiveWindow.addActuator("ChassisPID", "rightRear",  chassisPID_rightRear);
-		
+
 		/* Left Side */
 		chassisPID_leftFront       = new CANTalon(13);
 		chassisPID_leftFront       .changeControlMode(TalonControlMode.PercentVbus);
@@ -87,7 +88,7 @@ public class RobotMap {
 		chassisPID_leftFront	   .enableBrakeMode(true);
 		chassisPID_leftFront.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 		//chassisPID_leftFront.reverseSensor(flip);
-		LiveWindow.addActuator("ChassisPID", "leftFront",  chassisPID_leftFront);
+
 		
 		chassisPID_leftRearMiddle  = new CANTalon(14);
 		chassisPID_leftRearMiddle  .changeControlMode(TalonControlMode.Follower);
@@ -96,7 +97,7 @@ public class RobotMap {
 		chassisPID_leftRear        = new CANTalon(15);
 		chassisPID_leftRear		   .changeControlMode(TalonControlMode.Follower);
 		chassisPID_leftRear		   .set(chassisPID_leftFront.getDeviceID());
-		LiveWindow.addActuator("ChassisPID", "leftRear",   chassisPID_leftRear);
+
 
 		chassisPID_RobotDrive = new RobotDrive(chassisPID_leftFront, chassisPID_rightFront);
 		chassisPID_RobotDrive.setSafetyEnabled(true);
@@ -104,7 +105,7 @@ public class RobotMap {
 		chassisPID_RobotDrive.setMaxOutput(1.0);
 		
 		
-		//Shooters
+		//FUEL SHOOTERS
 		shooterCANTalonLeft = new CANTalon(8);  //8 
 		shooterCANTalonLeft.changeControlMode(TalonControlMode.Voltage);
 		shooterCANTalonLeft.setVoltageCompensationRampRate(24.0);
@@ -118,52 +119,60 @@ public class RobotMap {
         shooterCANTalonRight.reverseOutput(false);
         
 		
-		// HOPPER TRIGGER
-        targetingLEDtargetingFrontLED = new Solenoid(0, 0);
+		//VISION LED
+        visionLED = new Solenoid(0, 0);
+        
+        //GEAR WINGS
         gearLoader_pusher = new Solenoid(0, 1);
+        
+        // HOPPER TRIGGER
         hopperTrigger_solenoid = new Solenoid(0, 2);
         
         // FUEL INTAKE ARM
 		fuelIntakeArm_solenoid = new DoubleSolenoid(0, 3, 4); 
-		/*
-        mainLEDfeedbackLED = new Solenoid(0, 3);
-		targetingLEDtargetingCenterLED = new Solenoid(0, 5);
-		targetingLEDtargetingRightLED = new Solenoid(0, 6);
-		targetingLEDtargetingBottomLED = new Solenoid(0, 7);
-		targetingLEDtargetingLeftLED = new Solenoid(0, 8);
-		*/
 		
+		//ON-TARGET LED's
+		leftLed = new Solenoid(1, 0);
+		centerLed = new Solenoid(1, 1);
+		rightLed = new Solenoid(1, 2);
 		
+		//ROPE CLIMBER
         ropeClimberscaleMotor = new CANTalon(10);
         ropeClimberscaleMotor.enableBrakeMode(true);
-        ropeClimberLimit = new DigitalInput(0);
-        
+
 		
 		//FUEL INTAKE
 		fuelIntake_motor = new CANTalon(3);
 		
         
-        //Fuel Feeder
+        //FUEL FEEDER's
         fuelFeederLeft = new CANTalon(12);	//Change to 4
         fuelFeederLeft.reverseOutput(false);
         fuelFeederLeft.changeControlMode(TalonControlMode.PercentVbus);
         
-        LiveWindow.addActuator("FuelAgitator", "fuelFeederLeft", fuelFeederLeft);
-       
+     
+
         fuelFeederRight = new CANTalon(11);	//5
         fuelFeederRight.changeControlMode(TalonControlMode.PercentVbus);
-        //fuelFeederRight.set(fuelFeederLeft.getDeviceID());
-        LiveWindow.addActuator("FuelAgitator", "FuelFeederRight", fuelFeederRight);
-        
-       // fuelAgitator_motorLeft = new CANTalon(12);
-       // fuelAgitator_motorLeft.reverseOutput(false);
-        
-        
+
+        //VISION PROCESSING
+		boilerVision = new VisionProcessing("GRIP/vision");
+		boilerVision.setCameraVerticalOffset(con.kTargetingCamera_VerticalOffset); //Offset from front of robot
+		boilerVision.setCameraHorizontalOffset(con.kTargetingCamera_HorizontalOffset); //Offset from front of robot
+		boilerVision.setCameraWidth(con.kTargetingCamera_CameraWidth); //Camera's width
+		boilerVision.setObjectHeight(con.kTargetingCamera_ObjectHeight);  //In inches, height of the tap from the ground (eg Gear);
+		boilerVision.setWidthBetweenTarget(con.kTargetingCamera_WidthBetweenTarget); //Amount in inches of how far apart the two contours are (or retoreflective tap)
+		boilerVision.setAngleConstant(con.kTargetingCamera_AngleConstant);
+		boilerVision.setCenterConstant(con.kTargetingCamera_CenterConstant);
+		boilerVision.setDistances(con.kTargetingCamera_DistanceInchesMin, con.kTargetingCamera_DistanceInchesMax);
+		boilerVision.setAreas(con.kTargetingCamera_AreaMin, con.kTargetingCamera_AreaMax);
+	
+        //NAV-X MXP
         try {
             /* Communicate w/navX MXP via the MXP SPI Bus.                                     */
             /* Alternatively:  I2C.Port.kMXP, SerialPort.Port.kMXP or SerialPort.Port.kUSB     */
             /* See http://navx-mxp.kauailabs.com/guidance/selecting-an-interface/ for details. */
-        	//chassisPID_gyro = new AHRS(SerialPort.Port.kMXP);
+        	chassisPID_gyro = new AHRS(SerialPort.Port.kMXP);
         } catch (RuntimeException ex ) {
             DriverStation.reportError("Instantiating navX-MXP failed:  " + ex.getMessage(), true);
         }

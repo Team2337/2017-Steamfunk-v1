@@ -26,7 +26,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class Feeder extends Subsystem {
+public class FuelFeeder extends Subsystem {
    private final CANTalon fuelFeederLeft = RobotMap.fuelFeederLeft;
    private final CANTalon fuelFeederRight = RobotMap.fuelFeederRight;
    

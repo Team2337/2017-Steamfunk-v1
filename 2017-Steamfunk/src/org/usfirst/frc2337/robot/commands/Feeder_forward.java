@@ -26,12 +26,12 @@ public class Feeder_forward extends Command {
 	public int f;
 
 	public Feeder_forward(double speed) {
-		requires(Robot.feeder);
+		requires(Robot.fuelFeeder);
 		this.speed = speed;
 	}
 
 	public Feeder_forward() {
-		requires(Robot.feeder);
+		requires(Robot.fuelFeeder);
 	}
 
 	// Called just before this Command runs the first time

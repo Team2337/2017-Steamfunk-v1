@@ -12,17 +12,17 @@ public class Feeder_setSpeed extends Command {
 	 double speed = Robot.constants.kFeeder_DefaultEnableSpeed;
 	
     public Feeder_setSpeed() {
-       requires(Robot.feeder);
+       requires(Robot.fuelFeeder);
     }
     
     public Feeder_setSpeed(double speed) {
-    	requires(Robot.feeder);
+    	requires(Robot.fuelFeeder);
     	this.speed = speed;
     }
 
 	// Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.feeder.setSpeed(speed);
+    	Robot.fuelFeeder.setSpeed(speed);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -36,7 +36,7 @@ public class Feeder_setSpeed extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.feeder.setSpeed(0);
+    	Robot.fuelFeeder.setSpeed(0);
     }
 
     // Called when another command which requires one or more of the same

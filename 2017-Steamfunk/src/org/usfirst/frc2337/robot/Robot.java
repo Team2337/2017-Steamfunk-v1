@@ -12,6 +12,7 @@ import org.opencv.core.Mat;
 import org.opencv.videoio.VideoCapture;
 import org.usfirst.frc2337.robot.RobotMap;
 import org.usfirst.frc2337.libraries.GripPipeline;
+import org.usfirst.frc2337.libraries.VisionProcessing;
 import org.usfirst.frc2337.robot.commands.*;
 import org.usfirst.frc2337.robot.subsystems.*;
 
@@ -29,48 +30,44 @@ public class Robot extends IterativeRobot {
 	public static Constants constants;
 	
 	public static Chassis chassis;
-	public static MainLED mainLED;
 	public static RopeClimber ropeClimber;
-	public static TargetingLED targetingLED;
 	public static GearLoader gearLoader;
 	public static FuelIntakeArm fuelIntakeArm;
 	public static FuelIntake fuelIntake;
 	public static FuelShooter fuelShooter;
-	public static FuelLoader fuelLoader;
-	public static FuelAgitator fuelAgitator;
 	public static HopperTrigger hopperTrigger;
 	public static UsbCamera cam0;
 	public static GripPipeline trackerObj;
 	public static VideoCapture videoCapture;
 	public static Mat matOriginalObj;
-	public static Feeder feeder;
+	public static FuelFeeder fuelFeeder;
 	Command autonomousCommand;
+
 	
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
 	public void robotInit() {
+		constants = new Constants();
 		RobotMap.init();
 		
-		constants = new Constants();
+		
+		
+
 		
 		chassis = new Chassis();
-		mainLED = new MainLED();
 		ropeClimber = new RopeClimber();
-		targetingLED = new TargetingLED();
 		gearLoader = new GearLoader();
 		fuelIntakeArm = new FuelIntakeArm();
 		fuelIntake = new FuelIntake();
 		fuelShooter = new FuelShooter();
-		fuelLoader = new FuelLoader();
-		fuelAgitator = new FuelAgitator();
 		hopperTrigger = new HopperTrigger();
 		fuelShooter = new FuelShooter();
 		videoCapture = new VideoCapture();
 		trackerObj = new GripPipeline();
 		matOriginalObj = new Mat();
-		feeder = new Feeder();
+		fuelFeeder = new FuelFeeder();
 		
 		// OI must be constructed after subsystems. If the OI creates Commands
 		//(which it very likely will), subsystems are not guaranteed to be
@@ -81,18 +78,13 @@ public class Robot extends IterativeRobot {
 		// instantiate the command used for the autonomous period
 		autonomousCommand = new _DoNothing();
 		
-		/* Add Camera's */
-		/*
+		
 		cam0 = CameraServer.getInstance().startAutomaticCapture("cam0", "/dev/video0");
 		int exposure = (int) constants.kTargetingCamera_Exposure;
 		int brightness = (int) constants.kTargetingCamera_Brightness;
-		System.out.println(exposure);
-		if (brightness <= 100 && brightness >=0)
-			cam0.setBrightness(brightness);
-
-		if (exposure <=100 && exposure >= 0)
-			cam0.setExposureManual(exposure);
-	*/
+		cam0.setBrightness(brightness);
+		cam0.setExposureManual(exposure);
+	
 	}
 	
 	/**
@@ -168,5 +160,26 @@ public class Robot extends IterativeRobot {
 
 		SmartDashboard.putNumber("Current of left feeder", RobotMap.fuelFeederLeft.getOutputCurrent());
 		SmartDashboard.putNumber("Current of right feeder", RobotMap.fuelFeederRight.getOutputCurrent());
+
+		SmartDashboard.putNumber("leftEncoder", RobotMap.chassisPID_leftFront.getEncPosition());
+		SmartDashboard.putNumber("rightEncoder", RobotMap.chassisPID_rightFront.getEncPosition());
+		
+		SmartDashboard.putNumber("angle", RobotMap.boilerVision.getAngle());
+		SmartDashboard.putNumber("lengthFromWall",  RobotMap.boilerVision.getDistanceFromWall());
+		SmartDashboard.putNumber("lengthFromTape",  RobotMap.boilerVision.getDistanceFromTarget());
+		SmartDashboard.putNumber("constant",  RobotMap.boilerVision.DISTANCE_CONSTANT);
+		SmartDashboard.putNumber("AverageCenter",  RobotMap.boilerVision.getAverageCenter());
+		SmartDashboard.putNumber("AverageArea",  RobotMap.boilerVision.getAverageArea());
+		
+		SmartDashboard.putNumber("yaw", RobotMap.chassisPID_gyro.getYaw());
+		if (OI.driverJoystick.getRawButton(3)) {
+			RobotMap.chassisPID_gyro.reset();
+		}
+		if (RobotMap.boilerVision.getAverageCenter() > 76 && RobotMap.boilerVision.getAverageCenter() < 81) {
+			SmartDashboard.putBoolean("onTarget", true);
+		} else {
+			SmartDashboard.putBoolean("onTarget", false);
+		}
+	
 	}
 }

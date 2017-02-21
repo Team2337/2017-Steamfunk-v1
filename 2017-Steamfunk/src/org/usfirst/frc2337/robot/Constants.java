@@ -50,6 +50,20 @@ public class Constants {
 	public final double kTargetingCamera_Exposure = 1.0;
 	public final double kTargetingCamera_Brightness = 0.0;
 	
+	public final double kTargetingCamera_VerticalOffset = 23; 
+	public final double kTargetingCamera_HorizontalOffset = 28;
+	public final double kTargetingCamera_CameraWidth = 640;
+	public final double kTargetingCamera_ObjectHeight = 82;
+	public final double kTargetingCamera_WidthBetweenTarget = 8.4;
+	public final double kTargetingCamera_AngleConstant = 3.4;
+	public final double kTargetingCamera_CenterConstant = 78;		
+	
+	public final double kTargetingCamera_DistanceInchesMax = 75;
+	public final double kTargetingCamera_DistanceInchesMin = 131;
+	
+	public final double kTargetingCamera_AreaMax = 24;
+	public final double kTargetingCamera_AreaMin = 7;
+	
 	/* Fuel Feeder */
 	public final double kFeeder_DefaultEnableSpeed = .5;
 	public final double kFeeder_DefaultReverseSpeed = .7; //Speed is reversed later in code, set absolute value of desired speed.
@@ -58,8 +72,6 @@ public class Constants {
 	public final double kFeeder_ReverseVoltageTolerance = 14.0; //When this current is reached, reverse the motors. This is in Amps. Higher numbers means more resistance needed to trigger reverse.
 	public final double kFeeder_ReverseDuration = 5;	//Amount of time (seconds) to reverse once a jam is detected
 	public final double kFeeder_ReverseSpeed = 0.7;		//Speed is reversed later in code, set absolute value of desired speed.		//Speed to reverse at once a jam is detected
-	
-	
 	
 	/* Rope Climber */
 	public final double kRopeClimber_defaultSpeed = 1.0;
