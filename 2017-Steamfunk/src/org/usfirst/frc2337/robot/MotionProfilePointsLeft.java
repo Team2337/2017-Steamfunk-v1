@@ -1,6 +1,6 @@
 package org.usfirst.frc2337.robot;
-public class MotionProfilePointsRight {
-	public static final int kNumPoints =141;
+public class MotionProfilePointsLeft {
+public static final int kNumPoints =141;
 	public static double [][]Points = new double[][]{
 { -7.368275087670092E-5, -0.8841930105204111, 10.0},
 { -3.6841375438350456E-4, -1.7683860210408218, 10.0},

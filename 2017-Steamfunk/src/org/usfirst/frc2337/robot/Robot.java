@@ -90,7 +90,7 @@ public class Robot extends IterativeRobot {
 		//autonSelector.addDefault("Do Nothing", new _DoNothing());
 	
 		//autonSelector.addDefault("Turn 90", new Auton_DFGwE(0.5,20000,5));
-		autonSelector.addDefault("Turn -46 with forward", new Auton_driveForwardTurnEncoder(0,10000,-46,5));
+		autonSelector.addDefault("Turn -46 with forward", new AutonCG_midGear());
 		autonSelector.addObject("Cross The Line", new AutonCG_crossTheLine());
 		autonSelector.addObject("mid gear",new AutonCG_midGear());
 	//	autonSelector.addObject("Red Gear Left", new _DoNothing());
@@ -125,6 +125,8 @@ public class Robot extends IterativeRobot {
 		RobotMap.chassisPID_gyro.reset();
 		RobotMap.chassisPID_leftFront.setEncPosition(0);
 		RobotMap.chassisPID_rightFront.setEncPosition(0);
+		RobotMap.leftManager.reset();
+		RobotMap.rightManager.reset();
 		// schedule the autonomous command (example)
 		autonomousCommand = (Command) autonSelector.getSelected();//(Command) autonSelector.getSelected();//
 		//autonomousCommand= new Auton_turnGyro(90);
@@ -139,6 +141,8 @@ public class Robot extends IterativeRobot {
 	public void autonomousPeriodic() {
 		robotPeriodic();
 		Scheduler.getInstance().run();
+		RobotMap.leftManager.control();
+		RobotMap.rightManager.control();
 	}
 	
 	public void teleopInit() {
@@ -197,5 +201,8 @@ public class Robot extends IterativeRobot {
 		//SmartDashboard.putData("TurnToAngle:45", new Auton_turnGyro3(45));
 		
 		SmartDashboard.putNumber("Current for RightChassis", RobotMap.chassisPID_rightFront.getOutputCurrent());
+		SmartDashboard.putNumber("Encoder position1", RobotMap.chassisPID_leftFront.getPosition());
+		SmartDashboard.putNumber("Encoder position2", RobotMap.chassisPID_rightFront.getPosition());
+		
 	}
 }

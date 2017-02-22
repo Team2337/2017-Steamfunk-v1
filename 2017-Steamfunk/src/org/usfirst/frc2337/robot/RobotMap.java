@@ -68,11 +68,13 @@ public class RobotMap {
 		chassisPID_rightFront      .changeControlMode(TalonControlMode.PercentVbus);
 		chassisPID_rightFront      .reverseOutput(false);  ///true
 		chassisPID_rightFront	   .enableBrakeMode(true);
+		chassisPID_rightFront.reverseSensor(false);
 		chassisPID_rightFront.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 		//chassisPID_rightFront.configEncoderCodesPerRev(100);
 		
-		LiveWindow.addActuator("Chassis", "rightFront", chassisPID_rightFront);
 		
+		LiveWindow.addActuator("Chassis", "rightFront", chassisPID_rightFront);
+		/*
 		chassisPID_rightRearMiddle = new CANTalon(1);
 		chassisPID_rightRearMiddle .changeControlMode(TalonControlMode.Follower);
 		chassisPID_rightRearMiddle .set(chassisPID_rightFront.getDeviceID());
@@ -81,7 +83,7 @@ public class RobotMap {
 		chassisPID_rightRear       .changeControlMode(TalonControlMode.Follower);
 		chassisPID_rightRear	   .set(chassisPID_rightFront.getDeviceID());
 		LiveWindow.addActuator("ChassisPID", "rightRear",  chassisPID_rightRear);
-		
+		*/
 		/* Left Side */
 		chassisPID_leftFront       = new CANTalon(13);
 		chassisPID_leftFront       .changeControlMode(TalonControlMode.PercentVbus);
@@ -90,7 +92,7 @@ public class RobotMap {
 		chassisPID_leftFront.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 		chassisPID_leftFront.reverseSensor(true);
 		LiveWindow.addActuator("ChassisPID", "leftFront",  chassisPID_leftFront);
-		
+		/*
 		chassisPID_leftRearMiddle  = new CANTalon(14);
 		chassisPID_leftRearMiddle  .changeControlMode(TalonControlMode.Follower);
 		chassisPID_leftRearMiddle  .set(chassisPID_leftFront.getDeviceID());
@@ -99,7 +101,7 @@ public class RobotMap {
 		chassisPID_leftRear		   .changeControlMode(TalonControlMode.Follower);
 		chassisPID_leftRear		   .set(chassisPID_leftFront.getDeviceID());
 		LiveWindow.addActuator("ChassisPID", "leftRear",   chassisPID_leftRear);
-
+*/
 		chassisPID_RobotDrive = new RobotDrive(chassisPID_leftFront, chassisPID_rightFront);
 		chassisPID_RobotDrive.setSafetyEnabled(false);
 		chassisPID_RobotDrive.setExpiration(0.1);
@@ -111,8 +113,8 @@ public class RobotMap {
 		
 		// HOPPER TRIGGER
         targetingLEDtargetingFrontLED = new Solenoid(0, 0);
-        gearLoader_pusher = new Solenoid(0, 1);
-        hopperTrigger_solenoid = new Solenoid(0, 2);
+        gearLoader_pusher = new Solenoid(0, 2);
+        hopperTrigger_solenoid = new Solenoid(0, 1);
         
         // FUEL INTAKE ARM
 		fuelIntakeArm_solenoid = new DoubleSolenoid(0, 3, 4); 
