@@ -11,7 +11,7 @@ import com.ctre.CANTalon;
 /**
  * Fuel Feeder FORWARD - Forwards the feeder
  */
-public class Feeder_forward extends Command {
+public class FuelFeeder_forward extends Command {
 	final CANTalon augerLeft = RobotMap.fuelFeederLeft;
 	final CANTalon augerRight = RobotMap.fuelFeederRight;
 
@@ -28,12 +28,12 @@ public class Feeder_forward extends Command {
 	public int i;
 	public int f;
 
-	public Feeder_forward(double speed) {
+	public FuelFeeder_forward(double speed) {
 		requires(Robot.fuelFeeder);
 		this.speed = speed;
 	}
 
-	public Feeder_forward() {
+	public FuelFeeder_forward() {
 		requires(Robot.fuelFeeder);
 	}
 

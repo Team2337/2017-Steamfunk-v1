@@ -116,22 +116,22 @@ public class RobotMap {
         shooterCANTalonRight.reverseOutput(false);
         
 		
-		//VISION LED
-        visionLED = new Solenoid(0, 0);
         
         //GEAR WINGS
-        gearLoader_pusher = new Solenoid(0, 1);
+        gearLoader_pusher = new Solenoid(0, 2);
         
         // HOPPER TRIGGER
-        hopperTrigger_solenoid = new Solenoid(0, 2);
+        hopperTrigger_solenoid = new Solenoid(0, 6);
         
         // FUEL INTAKE ARM
-		fuelIntakeArm_solenoid = new DoubleSolenoid(0, 3, 4); 
+		fuelIntakeArm_solenoid = new DoubleSolenoid(0, 0, 1); 
 		
 		//ON-TARGET LED's
-		leftLed = new Solenoid(1, 0);
-		centerLed = new Solenoid(1, 1);
-		rightLed = new Solenoid(1, 2);
+		//VISION LED
+        visionLED = new Solenoid(1, 0);
+		leftLed = new Solenoid(1, 1);
+		centerLed = new Solenoid(1, 2);
+		rightLed = new Solenoid(1, 3);
 		
 		//ROPE CLIMBER
         ropeClimberscaleMotor = new CANTalon(10);
@@ -143,13 +143,13 @@ public class RobotMap {
 		
         
         //FUEL FEEDER's
-        fuelFeederLeft = new CANTalon(12);	//Change to 4
+        fuelFeederLeft = new CANTalon(5);	//Change to 4
         fuelFeederLeft.reverseOutput(false);
         fuelFeederLeft.changeControlMode(TalonControlMode.PercentVbus);
         
      
 
-        fuelFeederRight = new CANTalon(11);	//5
+        fuelFeederRight = new CANTalon(4);	//5
         fuelFeederRight.changeControlMode(TalonControlMode.PercentVbus);
 
         //VISION PROCESSING

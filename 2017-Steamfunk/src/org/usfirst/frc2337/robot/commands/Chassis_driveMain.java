@@ -38,7 +38,7 @@ public class Chassis_driveMain extends Command {
 		turnSpeed *= turnSensitivity;
 		
 		
-		if (driverJoystick.getRawButton(3)) {
+		if (driverJoystick.getRawButton(5)) {
 			moveSpeed = moveSpeed/2;
 			turnSpeed = turnSpeed/2;
 		}

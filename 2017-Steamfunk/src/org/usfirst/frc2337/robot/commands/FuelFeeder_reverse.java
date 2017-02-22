@@ -7,15 +7,15 @@ import org.usfirst.frc2337.robot.Robot;
 /**
  * Fuel Feeder REVERSE - Reverses the feeder
  */
-public class Feeder_reverse extends Command {
+public class FuelFeeder_reverse extends Command {
 	// DECLARE VARIABLES
 	 double speed = Robot.constants.kFeeder_DefaultReverseSpeed;
 	
-    public Feeder_reverse() {
+    public FuelFeeder_reverse() {
        requires(Robot.fuelFeeder);
     }
     
-    public Feeder_reverse(double speed) {
+    public FuelFeeder_reverse(double speed) {
     	requires(Robot.fuelFeeder);
     	this.speed = speed;
     }

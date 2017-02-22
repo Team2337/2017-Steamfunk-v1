@@ -7,15 +7,15 @@ import org.usfirst.frc2337.robot.Robot;
 /**
  * Hopper Trigger EXTEND - Moves out the solenoid
  */
-public class HopperTrigger_extend extends Command {
+public class HopperWings_extend extends Command {
 	
-	public HopperTrigger_extend() {
-		requires(Robot.hopperTrigger);
+	public HopperWings_extend() {
+		requires(Robot.hopperWings);
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Robot.hopperTrigger.extend(); //Calls 'retract' method form hopperTrigger subsystem
+		Robot.hopperWings.extend(); //Calls 'retract' method form hopperTrigger subsystem
 	}
 
 	// Called repeatedly when this Command is scheduled to run

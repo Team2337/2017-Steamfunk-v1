@@ -108,59 +108,55 @@ public class OI {
 	
 	public OI() {
 
-		driver_GreenA			.whenPressed(new Chassis_targetWithGyro()); //Near give maneuver
+		driver_GreenA			.whenPressed(new _DoNothing()); //Near give maneuver
 		driver_RedB				.whenPressed(new _DoNothing()); //Far gear maneuver
 		driver_BlueX			.whenPressed(new _DoNothing()); 
-		driver_YellowY			.whenPressed(new _DoNothing()); 
+		driver_YellowY			.whenPressed(new _DoNothing()); //THIS NEEDS TO REVERT THE SHOOTER AND THE AUGER FOR X SECONDS
 		
-		driver_BumperLeft		.whenPressed(new _DoNothing()); //Turn Reduction
-		driver_BumperRight		.whenPressed(new _DoNothing()); //Vision Align
+		//driver_BumperLeft		.whenPressed(new _DoNothing()); //DONE IN CHASSIS DRIVE 
+		driver_BumperRight		.whenPressed(new Chassis_targetWithGyro()); //Vision Align
 		
-		driver_Back				.whenPressed(new _DoNothing()); 
+		driver_Back				.whenPressed(new FuelFeeder_reverse()); 
 		driver_Start			.whenPressed(new _DoNothing());
 		
-		driver_LeftStick		.whenPressed(new _DoNothing());
+		driver_LeftStick		.whenPressed(new _DoNothing()); 
 		driver_RightStick		.whenPressed(new _DoNothing()); 
 		
-		driver_TriggerLeft		.whenPressed(new _DoNothing()); //Shoot all Fuel
-		driver_TriggerRight		.whenPressed(new _DoNothing()); //Shoot one Fuel 
+		driver_TriggerLeft		.whileHeld(new FuelFeeder_forward(Robot.constants.kFeeder_DefaultSlowSpeed)); //Shoot all Fuel
+		driver_TriggerRight		.whileHeld(new FuelFeeder_forward(Robot.constants.kFeeder_DefaultEnableSpeed)); //Shoot one Fuel 
 		
-		driver_POVUp			.whenPressed(new _DoNothing());  
+		driver_POVUp			.whenPressed(new FuelShooterLeft_speedIncrease());  
 	   // driver_POVUpRight		.whenPressed(new _DoNothing()); 
-	    driver_POVRight			.whenPressed(new _DoNothing()); 
+	    driver_POVRight			.whenPressed(new FuelShooterRight_speedIncrease()); 
 	   // driver_POVDownRight		.whenPressed(new _DoNothing()); 
-	    driver_POVDown			.whenPressed(new _DoNothing()); 
+	    driver_POVDown			.whenPressed(new FuelShooterRight_speedDecrease()); 
 	   // driver_POVDownLeft		.whenPressed(new _DoNothing()); 
-	    driver_POVLeft			.whenPressed(new _DoNothing()); 
+	    driver_POVLeft			.whenPressed(new FuelShooterLeft_speedDecrease()); 
 	   // driver_POVUpLeft		.whenPressed(new _DoNothing()); 
 	    
 		/* =========================================================*/
 		operator_GreenA			.whileHeld(new RopeClimber_runWhileHeld()); //Climber run
 		operator_RedB			.whileHeld(new GearLoader_extendWhileHeld()); //Raise Gear fingers
-		operator_BlueX			.whenPressed(new FuelShooter_speedSet(hopperShotSpeedLeft, hopperShotSpeedRight)); //Far shot
-		operator_YellowY		.whenPressed(new FuelShooter_speedSet(airshipShotSpeedLeft, airshipShotSpeedRight)); //Boiler shot
+		operator_BlueX			.whenPressed(new FuelShooter_speedSet(hopperShotSpeedLeft, -hopperShotSpeedRight)); //Far shot
+		operator_YellowY		.whenPressed(new FuelShooter_speedSet(airshipShotSpeedLeft, -airshipShotSpeedRight)); //Boiler shot
 		
 		operator_BumperLeft		.whenPressed(new FuelIntakeArm_extend());
-		operator_BumperRight	.whileHeld(new FuelIntake_enabledReverse());
+		operator_BumperRight	.whileHeld(new FuelIntake_enabledForward());
 		
-		operator_Back			.whileHeld(new Feeder_reverse());
-		operator_Start			.whileHeld(new Feeder_forward());
+		operator_Back			.whileHeld(new FuelShooter_speedSet(0,0));
+		operator_Start			.whileHeld(new _DoNothing());
 		
 		operator_LeftStick		.whenPressed(new _DoNothing());
-		operator_RightStick		.whenPressed(new FuelShooter_speedSet(0,0));		//Turns off shooter
+		operator_RightStick		.whenPressed(new _DoNothing());		//Turns off shooter
 		
 		operator_TriggerLeft	.whenPressed(new FuelIntakeArm_retract());
-		operator_TriggerRight	.whileHeld(new FuelIntake_enabledForward());
+		operator_TriggerRight	.whileHeld(new FuelIntake_enabledReverse());
 		
-		operator_POVUp			.whenPressed(new FuelShooterLeft_speedIncrease());
-		//operator_POVUpRight		.whenPressed(new _DoNothing());
-		operator_POVRight		.whenPressed(new FuelShooterRight_speedIncrease()); 
-		//operator_POVDownRight	.whenPressed(new _DoNothing());
-		operator_POVDown		.whenPressed(new FuelShooterRight_speedDecrease());
-		//operator_POVDownLeft	.whenPressed(new _DoNothing());
-		operator_POVLeft		.whenPressed(new FuelShooterLeft_speedDecrease());
-		//operator_POVUpLeft		.whenPressed(new _DoNothing());
-		
+		operator_POVUp			.whileHeld(new HopperWings_extendWhileHeld());
+		operator_POVRight		.whenPressed(new _DoNothing()); 
+		operator_POVDown		.whenPressed(new _DoNothing());
+		operator_POVLeft		.whenPressed(new _DoNothing());
+	
 		/* =========================================================*/
 		BlackButton				.whenPressed(new _DoNothing()); //Right Wings
 		BlueButton				.whenPressed(new _DoNothing());	//Left Wings

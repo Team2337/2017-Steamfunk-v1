@@ -7,15 +7,15 @@ import org.usfirst.frc2337.robot.Robot;
 /**
  * Fuel Feeder SETSPEED - Sets speed of feeder
  */
-public class Feeder_setSpeed extends Command {
+public class FuelFeeder_setSpeed extends Command {
 	// DECLARE VARIABLES
 	 double speed = Robot.constants.kFeeder_DefaultEnableSpeed;
 	
-    public Feeder_setSpeed() {
+    public FuelFeeder_setSpeed() {
        requires(Robot.fuelFeeder);
     }
     
-    public Feeder_setSpeed(double speed) {
+    public FuelFeeder_setSpeed(double speed) {
     	requires(Robot.fuelFeeder);
     	this.speed = speed;
     }

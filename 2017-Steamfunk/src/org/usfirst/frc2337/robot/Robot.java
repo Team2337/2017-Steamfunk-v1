@@ -35,7 +35,7 @@ public class Robot extends IterativeRobot {
 	public static FuelIntakeArm fuelIntakeArm;
 	public static FuelIntake fuelIntake;
 	public static FuelShooter fuelShooter;
-	public static HopperTrigger hopperTrigger;
+	public static HopperWings hopperWings;
 	public static UsbCamera cam0;
 	public static GripPipeline trackerObj;
 	public static VideoCapture videoCapture;
@@ -62,7 +62,7 @@ public class Robot extends IterativeRobot {
 		fuelIntakeArm = new FuelIntakeArm();
 		fuelIntake = new FuelIntake();
 		fuelShooter = new FuelShooter();
-		hopperTrigger = new HopperTrigger();
+		hopperWings = new HopperWings();
 		fuelShooter = new FuelShooter();
 		videoCapture = new VideoCapture();
 		trackerObj = new GripPipeline();

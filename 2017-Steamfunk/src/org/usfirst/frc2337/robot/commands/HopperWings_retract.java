@@ -7,15 +7,15 @@ import org.usfirst.frc2337.robot.Robot;
 /**
  * Hopper Trigger RETRACT - Moves back the solenoid
  */
-public class HopperTrigger_retract extends Command {
+public class HopperWings_retract extends Command {
 	
-	public HopperTrigger_retract() {
-		requires(Robot.hopperTrigger);
+	public HopperWings_retract() {
+		requires(Robot.hopperWings);
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Robot.hopperTrigger.retract(); //Calls 'retract' method form hopperTrigger subsystem
+		Robot.hopperWings.retract(); //Calls 'retract' method form hopperTrigger subsystem
 	}
 	
 	// Called repeatedly when this Command is scheduled to run

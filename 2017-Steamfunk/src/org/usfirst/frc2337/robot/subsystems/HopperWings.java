@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  * HOPPER TRIGGER - Dumps hopper on field
  */
-public class HopperTrigger extends Subsystem {
+public class HopperWings extends Subsystem {
 	
 	
 	public final Solenoid trigger = RobotMap.hopperTrigger_solenoid;

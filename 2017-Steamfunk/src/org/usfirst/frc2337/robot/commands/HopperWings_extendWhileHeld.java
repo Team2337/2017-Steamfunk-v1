@@ -7,15 +7,15 @@ import org.usfirst.frc2337.robot.Robot;
 /**
  * Hopper Trigger EXTEND & RETRACT - Moves solenoid out on push of button, then back on release.
  */
-public class HopperTrigger_extendWhileHeld extends Command {
+public class HopperWings_extendWhileHeld extends Command {
 	
-	public HopperTrigger_extendWhileHeld() {
-		requires(Robot.hopperTrigger);
+	public HopperWings_extendWhileHeld() {
+		requires(Robot.hopperWings);
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Robot.hopperTrigger.extend(); //Calls 'extend' method form hopperTrigger subsystem
+		Robot.hopperWings.extend(); //Calls 'extend' method form hopperTrigger subsystem
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -29,7 +29,7 @@ public class HopperTrigger_extendWhileHeld extends Command {
 
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.hopperTrigger.retract(); //Calls 'retract' method form hopperTrigger subsystem
+		Robot.hopperWings.retract(); //Calls 'retract' method form hopperTrigger subsystem
 	}
 
 	// Called when another command which requires one or more of the same

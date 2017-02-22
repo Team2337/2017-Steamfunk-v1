@@ -18,7 +18,7 @@ public class Constants {
 	
 	/* Fuel Shooter */
 	public final double kFuelShooter_hopperShotSpeedLeft = 8.9;
-	public final double kFuelShooter_hopperShotSpeedRight = 9.4;
+	public final double kFuelShooter_hopperShotSpeedRight = 9.25; //9.4
 	
 	public final double kFuelShooter_airshipShotSpeedLeft = 10.15;
 	public final double kFuelShooter_airshipShotSpeedRight = 10.45;
@@ -73,6 +73,7 @@ public class Constants {
 	public final double kFeeder_ReverseDuration = 0.5;	//Amount of time (seconds) to reverse once a jam is detected
 	public final double kFeeder_ReverseSpeed = 0.7;		//Speed is reversed later in code, set absolute value of desired speed.		//Speed to reverse at once a jam is detected
 	
+	public final double kFeeder_DefaultSlowSpeed = 0.3;
 	/* Rope Climber */
 	public final double kRopeClimber_defaultSpeed = 1.0;
 }
