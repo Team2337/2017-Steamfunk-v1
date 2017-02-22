@@ -137,8 +137,8 @@ public class OI {
 		/* =========================================================*/
 		operator_GreenA			.whileHeld(new RopeClimber_runWhileHeld()); //Climber run
 		operator_RedB			.whileHeld(new GearLoader_extendWhileHeld()); //Raise Gear fingers
-		operator_BlueX			.whenPressed(new FuelShooter_speedSet(hopperShotSpeedLeft, -hopperShotSpeedRight)); //Far shot
-		operator_YellowY		.whenPressed(new FuelShooter_speedSet(airshipShotSpeedLeft, -airshipShotSpeedRight)); //Boiler shot
+		operator_BlueX			.whenPressed(new FuelShooter_speedSet(-hopperShotSpeedLeft, hopperShotSpeedRight)); //Far shot
+		operator_YellowY		.whenPressed(new FuelShooter_speedSet(-airshipShotSpeedLeft, airshipShotSpeedRight)); //Boiler shot
 		
 		operator_BumperLeft		.whenPressed(new FuelIntakeArm_extend());
 		operator_BumperRight	.whileHeld(new FuelIntake_enabledForward());
