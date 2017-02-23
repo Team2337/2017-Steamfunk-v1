@@ -9,5 +9,6 @@
 	<classpathentry kind="var" path="USERLIBS_DIR/TalonSRXLibJava.jar"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="var" path="USERLIBS_DIR/navx_frc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/EngiNERD1/wpilib/user/java/lib/navx_frc.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
