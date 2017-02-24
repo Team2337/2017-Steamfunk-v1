@@ -64,12 +64,12 @@ public class FuelShooter extends Subsystem {
 	    
 	public void increaseRPMLeft() {
 	    	//currentSpeed =+100;
-		shooterMotorLeft.setSetpoint(shooterMotorLeft.getSetpoint() + .25);
+		shooterMotorLeft.setSetpoint(shooterMotorLeft.getSetpoint() + .1);
 	}
 	    
 	public void decreaseRPMLeft() {
 	    	//currentSpeed =-100;
-		shooterMotorLeft.setSetpoint(shooterMotorLeft.getSetpoint() - .25);
+		shooterMotorLeft.setSetpoint(shooterMotorLeft.getSetpoint() - .1);
 	}
 	          
 	public void maxRPM() {

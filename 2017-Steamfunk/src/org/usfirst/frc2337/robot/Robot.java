@@ -84,6 +84,7 @@ public class Robot extends IterativeRobot {
 		int brightness = (int) constants.kTargetingCamera_Brightness;
 		cam0.setBrightness(brightness);
 		cam0.setExposureManual(exposure);
+
 	
 	}
 	
