@@ -9,16 +9,23 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class FlushShooter extends Command {
 	
+	double speed = 0.5;
+	
     public FlushShooter() {
     	requires(Robot.fuelShooter);
+    }
+    
+    public FlushShooter(double speed) {
+    	requires(Robot.fuelShooter);
+    	this.speed = speed;
     }
 
 	// Called just before this Command runs the first time
     protected void initialize() {
     	RobotMap.shooterCANTalonLeft.changeControlMode(TalonControlMode.PercentVbus);
     	RobotMap.shooterCANTalonRight.changeControlMode(TalonControlMode.PercentVbus);
-    	RobotMap.shooterCANTalonLeft.set(-0.3);
-    	RobotMap.shooterCANTalonRight.set(0.3);
+    	RobotMap.shooterCANTalonLeft.set(-speed);
+    	RobotMap.shooterCANTalonRight.set(speed);
     }
 
     // Called repeatedly when this Command is scheduled to run
