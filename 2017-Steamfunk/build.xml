@@ -20,8 +20,8 @@
   <!-- <property name="target" value=""/> -->
 
   <!-- Any other property in build.properties can also be overridden. -->
-	<!--<property name="target" value="10.23.37.20"/> -->
-	<property file="${user.home}/wpilib/wpilib.properties"/>
+	<!-- <property name="target" value="roborio-2337-frc.local"/>-->
+  <property file="${user.home}/wpilib/wpilib.properties"/>
   <property file="build.properties"/>
   <property file="${user.home}/wpilib/java/${version}/ant/build.properties"/>
 

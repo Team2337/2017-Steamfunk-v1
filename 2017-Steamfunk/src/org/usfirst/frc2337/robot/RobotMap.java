@@ -10,6 +10,8 @@ import com.ctre.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SerialPort;
@@ -65,9 +67,11 @@ public class RobotMap {
     	/* Right Side */
 		chassisPID_rightFront      = new CANTalon(2);
 		chassisPID_rightFront      .changeControlMode(TalonControlMode.PercentVbus);
-		chassisPID_rightFront      .reverseOutput(true);
+		chassisPID_rightFront      .reverseOutput(false);  ///true
 		chassisPID_rightFront	   .enableBrakeMode(true);
+		chassisPID_rightFront.reverseSensor(false);
 		chassisPID_rightFront.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+		//chassisPID_rightFront.configEncoderCodesPerRev(100);
 		
 		
 		chassisPID_rightRearMiddle = new CANTalon(1);
@@ -87,6 +91,9 @@ public class RobotMap {
 		//chassisPID_leftFront.reverseSensor(flip);
 
 		
+		chassisPID_leftFront.reverseSensor(true);
+		LiveWindow.addActuator("ChassisPID", "leftFront",  chassisPID_leftFront);
+		/*
 		chassisPID_leftRearMiddle  = new CANTalon(14);
 		chassisPID_leftRearMiddle  .changeControlMode(TalonControlMode.Follower);
 		chassisPID_leftRearMiddle  .set(chassisPID_leftFront.getDeviceID());
@@ -97,8 +104,9 @@ public class RobotMap {
 
 
 		chassisPID_RobotDrive = new RobotDrive(chassisPID_leftFront, chassisPID_rightFront);
-		chassisPID_RobotDrive.setSafetyEnabled(true);
+		chassisPID_RobotDrive.setSafetyEnabled(false);
 		chassisPID_RobotDrive.setExpiration(0.1);
+		chassisPID_RobotDrive.setSensitivity(0.5);
 		chassisPID_RobotDrive.setMaxOutput(1.0);
 		
 		
@@ -108,6 +116,8 @@ public class RobotMap {
 		shooterCANTalonLeft.setVoltageCompensationRampRate(24.0);
 		shooterCANTalonLeft.reverseOutput(true);
 		shooterCANTalonLeft.getBusVoltage();
+		leftManager = new MotionProfileManagerLeft(chassisPID_leftFront);
+		rightManager = new MotionProfileManagerRight(chassisPID_rightFront);
         
         shooterCANTalonRight = new CANTalon(9);
         shooterCANTalonRight.changeControlMode(TalonControlMode.Voltage);
@@ -170,9 +180,14 @@ public class RobotMap {
             /* Alternatively:  I2C.Port.kMXP, SerialPort.Port.kMXP or SerialPort.Port.kUSB     */
             /* See http://navx-mxp.kauailabs.com/guidance/selecting-an-interface/ for details. */
         	chassisPID_gyro = new AHRS(SerialPort.Port.kMXP);
+        	//chassisPID_gyro = new AHRS(SerialPort.Port.kUSB);
         } catch (RuntimeException ex ) {
+        
             DriverStation.reportError("Instantiating navX-MXP failed:  " + ex.getMessage(), true);
         }
+        
+		//Chassis PID Gyro
+		//chassisPID_gyro.setPIDSourceType(PIDSourceType.kRate);
         
     }
 }

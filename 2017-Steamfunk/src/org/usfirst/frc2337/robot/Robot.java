@@ -4,8 +4,11 @@ import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.PIDCommand;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.opencv.core.Mat;
@@ -42,6 +45,7 @@ public class Robot extends IterativeRobot {
 	public static Mat matOriginalObj;
 	public static FuelFeeder fuelFeeder;
 	Command autonomousCommand;
+	SendableChooser<Command> autonSelector; //<Command> autonSelector;//
 
 	
 	/**
@@ -85,6 +89,29 @@ public class Robot extends IterativeRobot {
 		cam0.setBrightness(brightness);
 		cam0.setExposureManual(exposure);
 
+		if (exposure <=100 && exposure >= 0)
+			cam0.setExposureManual(exposure);
+		 ///autonomousCommand = new Auton_turnGyro3(90);
+		
+		autonSelector = new SendableChooser <Command>();
+		//autonSelector.addDefault("Do Nothing", new _DoNothing());
+	
+		//autonSelector.addDefault("Turn 90", new Auton_DFGwE(0.5,20000,5));
+		autonSelector.addDefault("Turn -46 with forward", new AutonCG_midGear());
+		autonSelector.addObject("Cross The Line", new AutonCG_crossTheLine());
+		autonSelector.addObject("mid gear",new AutonCG_midGear());
+	//	autonSelector.addObject("Red Gear Left", new _DoNothing());
+//		autonSelector.addObject("Red Gear Middle", new _DoNothing());
+		//autonSelector.addObject("Red Gear Right", new _DoNothing());
+	//	autonSelector.addObject("Shoot 40 Red", new _DoNothing());
+//		autonSelector.addObject("Blue Gear Left", new _DoNothing());
+		//autonSelector.addObject("Blue Gear Middle", new _DoNothing());
+		//autonSelector.addObject("Blue Gear Right", new _DoNothing());
+	//	autonSelector.addObject("Shoot 40 Blue", new _DoNothing());
+		SmartDashboard.putData("Auton Selector", autonSelector);
+		
+	//	autonomousCommand = (PIDCommand) autonSelector.getSelected();
+		
 	
 	}
 	
@@ -97,23 +124,33 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public void disabledPeriodic() {
-		allPeriodic();
+		robotPeriodic();
 		Scheduler.getInstance().run();
 	}
 	
 	public void autonomousInit() {
-		allInit();
-		
+		//allInit();
+		RobotMap.chassisPID_gyro.reset();
+		RobotMap.chassisPID_leftFront.setEncPosition(0);
+		RobotMap.chassisPID_rightFront.setEncPosition(0);
+		RobotMap.leftManager.reset();
+		RobotMap.rightManager.reset();
 		// schedule the autonomous command (example)
+		autonomousCommand = (Command) autonSelector.getSelected();//(Command) autonSelector.getSelected();//
+		//autonomousCommand= new Auton_turnGyro(90);
 		if (autonomousCommand != null) autonomousCommand.start();
+		
+		
 	}
 	
 	/**
 	 * This function is called periodically during autonomous
 	 */
 	public void autonomousPeriodic() {
-		allPeriodic();
+		robotPeriodic();
 		Scheduler.getInstance().run();
+		RobotMap.leftManager.control();
+		RobotMap.rightManager.control();
 	}
 	
 	public void teleopInit() {
@@ -121,6 +158,7 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
+		
 		if (autonomousCommand != null) autonomousCommand.cancel();
 		
 		allInit();
@@ -130,10 +168,12 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during operator control
 	 */
 	public void teleopPeriodic() {
-		allPeriodic();
+		
+		robotPeriodic();
 		Scheduler.getInstance().run();
+		RobotMap.leftManager.control();
+		RobotMap.rightManager.control();
 	}
-	
 	/**
 	 * This function is called periodically during test mode
 	 */
@@ -151,7 +191,7 @@ public class Robot extends IterativeRobot {
 	/**
 	 * This function is called during all periodic functions.
 	 */
-	public void allPeriodic() {
+/**	public void allPeriodic() {
 		SmartDashboard.putNumber("leftEncoder", RobotMap.chassisPID_leftFront.getEncPosition());
 		SmartDashboard.putNumber("rightEncoder", RobotMap.chassisPID_rightFront.getEncPosition());
 		
