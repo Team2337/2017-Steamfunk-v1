@@ -80,7 +80,7 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		
 		/* Make the auton commands (even if you are using a selector) */
-		autonomousCommand = new _DoNothing();
+		//autonomousCommand = new _DoNothing();
 		
 		/* Create Camera (for vision) */
 		cam0 = CameraServer.getInstance().startAutomaticCapture("cam0", "/dev/video0");
@@ -88,18 +88,19 @@ public class Robot extends IterativeRobot {
 		int brightness = (int) constants.kTargetingCamera_Brightness;
 		cam0.setBrightness(brightness);
 		cam0.setExposureManual(exposure);
-
-		if (exposure <=100 && exposure >= 0)
-			cam0.setExposureManual(exposure);
+		
 		 ///autonomousCommand = new Auton_turnGyro3(90);
 		
 		autonSelector = new SendableChooser <Command>();
-		//autonSelector.addDefault("Do Nothing", new _DoNothing());
+		autonSelector.addObject("Do Nothing", new _DoNothing());
+		autonSelector.addDefault("Shoot from wall", new AutonCG_Shootfromwall());
+		autonSelector.addObject("Mid gear with encoder", new AutonCG_midGearencoder());
 	
 		//autonSelector.addDefault("Turn 90", new Auton_DFGwE(0.5,20000,5));
-		autonSelector.addDefault("Turn -46 with forward", new AutonCG_midGear());
-		autonSelector.addObject("Cross The Line", new AutonCG_crossTheLine());
-		autonSelector.addObject("mid gear",new AutonCG_midGear());
+		autonSelector.addObject("mid Gear with motion pro ", new AutonCG_midGear());
+		autonSelector.addObject("40 ball red ", new AutonCG_40Baller());
+	//	autonSelector.addObject("Cross The Line", new AutonCG_crossTheLine());
+		//autonSelector.addObject("mid gear",new AutonCG_midGear());
 	//	autonSelector.addObject("Red Gear Left", new _DoNothing());
 //		autonSelector.addObject("Red Gear Middle", new _DoNothing());
 		//autonSelector.addObject("Red Gear Right", new _DoNothing());
@@ -108,7 +109,7 @@ public class Robot extends IterativeRobot {
 		//autonSelector.addObject("Blue Gear Middle", new _DoNothing());
 		//autonSelector.addObject("Blue Gear Right", new _DoNothing());
 	//	autonSelector.addObject("Shoot 40 Blue", new _DoNothing());
-		SmartDashboard.putData("Auton Selector", autonSelector);
+		
 		
 	//	autonomousCommand = (PIDCommand) autonSelector.getSelected();
 		
@@ -124,6 +125,7 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public void disabledPeriodic() {
+		allPeriodic();
 		robotPeriodic();
 		Scheduler.getInstance().run();
 	}
@@ -135,6 +137,8 @@ public class Robot extends IterativeRobot {
 		RobotMap.chassisPID_rightFront.setEncPosition(0);
 		RobotMap.leftManager.reset();
 		RobotMap.rightManager.reset();
+		RobotMap.leftManager40ball.reset();
+		RobotMap.rightManager40ball.reset();
 		// schedule the autonomous command (example)
 		autonomousCommand = (Command) autonSelector.getSelected();//(Command) autonSelector.getSelected();//
 		//autonomousCommand= new Auton_turnGyro(90);
@@ -147,10 +151,13 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during autonomous
 	 */
 	public void autonomousPeriodic() {
+		allPeriodic();
 		robotPeriodic();
 		Scheduler.getInstance().run();
 		RobotMap.leftManager.control();
 		RobotMap.rightManager.control();
+		RobotMap.leftManager40ball.control();
+		RobotMap.rightManager40ball.control();
 	}
 	
 	public void teleopInit() {
@@ -168,7 +175,7 @@ public class Robot extends IterativeRobot {
 	 * This function is called periodically during operator control
 	 */
 	public void teleopPeriodic() {
-		
+		allPeriodic();
 		robotPeriodic();
 		Scheduler.getInstance().run();
 		RobotMap.leftManager.control();
@@ -186,14 +193,16 @@ public class Robot extends IterativeRobot {
 	 */
 	public void allInit() {
 		
+
 	}
-	
 	/**
 	 * This function is called during all periodic functions.
 	 */
-/**	public void allPeriodic() {
+	public void allPeriodic() {
 		SmartDashboard.putNumber("leftEncoder", RobotMap.chassisPID_leftFront.getEncPosition());
 		SmartDashboard.putNumber("rightEncoder", RobotMap.chassisPID_rightFront.getEncPosition());
+		SmartDashboard.putNumber("leftEncoderPOS", RobotMap.chassisPID_leftFront.getPosition());
+		SmartDashboard.putNumber("rightEncoderPOS", RobotMap.chassisPID_rightFront.getPosition());
 		
 		//Displays the voltage values for both shooters
 		SmartDashboard.putNumber("Output Voltage Left", RobotMap.shooterCANTalonLeft.getOutputVoltage());
@@ -205,7 +214,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("leftEncoder", RobotMap.chassisPID_leftFront.getEncPosition());
 		SmartDashboard.putNumber("rightEncoder", RobotMap.chassisPID_rightFront.getEncPosition());
 		
-		/* All vision SmartDashboard numbers*/
+		/* All vision SmartDashboard numbers */
 		SmartDashboard.putNumber("angle", RobotMap.boilerVision.getAngle());
 		SmartDashboard.putNumber("lengthFromWall",  RobotMap.boilerVision.getDistanceFromWall());
 		SmartDashboard.putNumber("lengthFromTape",  RobotMap.boilerVision.getDistanceFromTarget());
@@ -222,6 +231,7 @@ public class Robot extends IterativeRobot {
 		} else {
 			SmartDashboard.putBoolean("onTarget", false);
 		}
-	
+		SmartDashboard.putData("Auton Selector", autonSelector);
 	}
 }
+

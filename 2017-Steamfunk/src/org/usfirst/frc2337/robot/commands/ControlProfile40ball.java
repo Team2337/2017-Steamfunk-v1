@@ -3,7 +3,9 @@ package org.usfirst.frc2337.robot.commands;
 
 
 import org.usfirst.frc2337.robot.MotionProfileManagerLeft;
+import org.usfirst.frc2337.robot.MotionProfileManagerLeft40ball;
 import org.usfirst.frc2337.robot.MotionProfileManagerRight;
+import org.usfirst.frc2337.robot.MotionProfileManagerRight40ball;
 import org.usfirst.frc2337.robot.Robot;
 import org.usfirst.frc2337.robot.RobotMap;
 
@@ -16,7 +18,7 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class ControlProfile extends Command {
+public class ControlProfile40ball extends Command {
 
 	 public CANTalon talonLeft = RobotMap.chassisPID_leftFront;
 	 public CANTalon talonRight = RobotMap.chassisPID_rightFront;
@@ -24,11 +26,11 @@ public class ControlProfile extends Command {
 	 public CANTalon talonRightMiddle = RobotMap.chassisPID_rightRearMiddle;
 	 public CANTalon talonLeftRear = RobotMap.chassisPID_leftRear;
 	 public CANTalon talonRightRear = RobotMap.chassisPID_rightRear;
-	 public MotionProfileManagerLeft leftTalonManager = RobotMap.leftManager;
-	 public MotionProfileManagerRight rightTalonManager = RobotMap.rightManager;
+	 public MotionProfileManagerLeft40ball leftTalonManager = RobotMap.leftManager40ball;
+	 public MotionProfileManagerRight40ball rightTalonManager = RobotMap.rightManager40ball;
 	 double timeout = 4;
 
-    public ControlProfile() {
+    public ControlProfile40ball() {
 
         requires(Robot.chassis);
         
@@ -56,14 +58,14 @@ public class ControlProfile extends Command {
     	talonLeft.changeControlMode(TalonControlMode.MotionProfile);
     	leftTalonManager.startMotionProfile();
     	talonLeft.setF(0.1023);
-    	talonLeft.setP(.2);
+    	talonLeft.setP(.1);
     	
     	
     	
     	talonRight.changeControlMode(TalonControlMode.MotionProfile);
     	rightTalonManager.startMotionProfile();
     	talonRight.setF(0.1023);
-    	talonRight.setP(.2);
+    	talonRight.setP(.1);
 	
 
     	
@@ -96,12 +98,12 @@ public class ControlProfile extends Command {
     	//RobotMap.shooterCANTalon1.set(0);
     	talonLeft.changeControlMode(TalonControlMode.PercentVbus);
     	talonLeft.setVoltageCompensationRampRate(24.0);
-    	talonLeft.set(0);// change for - .20
+    	talonLeft.set(-.20);
     	talonLeft.enableBrakeMode(true);
     	
     	talonRight.changeControlMode(TalonControlMode.PercentVbus);
     	talonRight.setVoltageCompensationRampRate(24.0);
-    	talonRight.set(0);// change for - .20
+    	talonRight.set(-.20);
     	talonRight.enableBrakeMode(true);
     	talonLeftMiddle.changeControlMode(TalonControlMode.Follower);
     	talonLeftMiddle.set(talonLeft.getDeviceID());

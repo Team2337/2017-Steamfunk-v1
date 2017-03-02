@@ -28,7 +28,7 @@ import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.Notifier;
 import com.ctre.CANTalon.TalonControlMode;
 
-public class MotionProfileManagerLeftAndRight {
+public class MotionProfileManagerLeft40ball {
 
 	/**
 	 * The status of the motion profile executer and buffer inside the Talon.
@@ -36,8 +36,6 @@ public class MotionProfileManagerLeftAndRight {
 	 * keep one copy.
 	 */
 	private CANTalon.MotionProfileStatus _status = new CANTalon.MotionProfileStatus();
-	
-	private CANTalon.MotionProfileStatus _statusRight = new CANTalon.MotionProfileStatus();
 
 	/**
 	 * reference to the talon we plan on manipulating. We will not changeMode()
@@ -45,8 +43,6 @@ public class MotionProfileManagerLeftAndRight {
 	 * motion profile.
 	 */
 	private CANTalon _talon;
-	//second CANTalon 
-	private CANTalon _talonRight;
 	/**
 	 * State machine to make sure we let enough of the motion profile stream to
 	 * talon before we fire it.
@@ -94,17 +90,9 @@ public class MotionProfileManagerLeftAndRight {
 	 * every 10ms.
 	 */
 	class PeriodicRunnable implements java.lang.Runnable {
-	    public void run() { 
-	    	_talon.processMotionProfileBuffer();   
-	    }
-	}
-	class PeriodicRunnableRight implements java.lang.Runnable {
-	    public void run() { 
-	    	_talonRight.processMotionProfileBuffer();
-	    }
+	    public void run() {  _talon.processMotionProfileBuffer();    }
 	}
 	Notifier _notifer = new Notifier(new PeriodicRunnable());
-	Notifier _notiferRight = new Notifier(new PeriodicRunnableRight());
 	
 
 	/**
@@ -113,18 +101,14 @@ public class MotionProfileManagerLeftAndRight {
 	 * @param talon
 	 *            reference to Talon object to fetch motion profile status from.
 	 */
-	public MotionProfileManagerLeftAndRight(CANTalon talon, CANTalon talonRight) {
+	public MotionProfileManagerLeft40ball(CANTalon talon) {
 		_talon = talon;
-
 		/*
 		 * since our MP is 10ms per point, set the control frame rate and the
 		 * notifer to half that
 		 */
 		_talon.changeMotionControlFramePeriod(5);
 		_notifer.startPeriodic(0.005);
-		_talonRight = talonRight;
-		_talonRight.changeMotionControlFramePeriod(5);
-		_notiferRight.startPeriodic(0.005);			
 	}
 
 	/**
@@ -138,7 +122,6 @@ public class MotionProfileManagerLeftAndRight {
 		 * sitting in memory.
 		 */
 		_talon.clearMotionProfileTrajectories();
-		_talonRight.clearMotionProfileTrajectories();
 		/* When we do re-enter motionProfile control mode, stay disabled. */
 		_setValue = CANTalon.SetValueMotionProfile.Disable;
 		/* When we do start running our state machine start at the beginning. */
@@ -157,7 +140,6 @@ public class MotionProfileManagerLeftAndRight {
 	public void control() {
 		/* Get the motion profile status every loop */
 		_talon.getMotionProfileStatus(_status);
-		_talonRight.getMotionProfileStatus(_statusRight);
 
 		/*
 		 * track time, this is rudimentary but that's okay, we just want to make
@@ -257,16 +239,13 @@ public class MotionProfileManagerLeftAndRight {
 	/** Start filling the MPs to all of the involved Talons. */
 	private void startFilling() {
 		/* since this example only has one talon, just update that one */
-		
-		//this is the two different point arrays of left and right talons
-		startFilling(MotionProfilePointsLeftAndRight.Points, MotionProfilePointsLeftAndRight.kNumPoints);
+		startFilling(MotionProfilePointsLeft40ball.Points, MotionProfilePointsLeft40ball.kNumPoints);
 	}
 
 	private void startFilling(double[][] profile, int totalCnt) {
 
 		/* create an empty point */
 		CANTalon.TrajectoryPoint point = new CANTalon.TrajectoryPoint();
-		CANTalon.TrajectoryPoint pointRight = new CANTalon.TrajectoryPoint();
 
 		/* did we get an underrun condition since last time we checked ? */
 		if (_status.hasUnderrun) {
@@ -277,51 +256,31 @@ public class MotionProfileManagerLeftAndRight {
 			 * we never miss logging it.
 			 */
 			_talon.clearMotionProfileHasUnderrun();
-			_talonRight.clearMotionProfileHasUnderrun();
 		}
 		/*
 		 * just in case we are interrupting another MP and there is still buffer
 		 * points in memory, clear it.
 		 */
 		_talon.clearMotionProfileTrajectories();
-		_talonRight.clearMotionProfileTrajectories();
 
 		/* This is fast since it's just into our TOP buffer */
 		for (int i = 0; i < totalCnt; ++i) {
 			/* for each point, fill our structure and pass it to API */
 			point.position = profile[i][0];
 			point.velocity = profile[i][1];
-			pointRight.position = profile[i][2];
-			pointRight.velocity = profile[i][3];
-			
-			point.timeDurMs = (int) profile[i][4];
+			point.timeDurMs = (int) profile[i][2];
 			point.profileSlotSelect = 0; /* which set of gains would you like to use? */
 			point.velocityOnly = false; /* set true to not do any position
 										 * servo, just velocity feedforward
 										 */
-			pointRight.timeDurMs = (int) profile[i][4];
-			pointRight.profileSlotSelect = 0; /* which set of gains would you like to use? */
-			pointRight.velocityOnly = false; /* set true to not do any position
-										 * servo, just velocity feedforward
-										 */
 			point.zeroPos = false;
-			
-			pointRight.zeroPos = false;
-			
-										/*
-										 * servo, just velocity feedforward
-										 */
 			if (i == 0)
 				point.zeroPos = true; /* set this to true on the first point */
-				pointRight.zeroPos = true; /* set this to true on the first point */
 
 			point.isLastPoint = false;
-			pointRight.isLastPoint = false;
 			if ((i + 1) == totalCnt)
 				point.isLastPoint = true; /* set this to true on the last point  */
-				pointRight.isLastPoint = true; /* set this to true on the last point  */
 			_talon.pushMotionProfileTrajectory(point);
-			_talonRight.pushMotionProfileTrajectory(pointRight);
 		}
 	}
 

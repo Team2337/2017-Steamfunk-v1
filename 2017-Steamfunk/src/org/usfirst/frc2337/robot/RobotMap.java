@@ -60,6 +60,12 @@ public class RobotMap {
     
 	public static VisionProcessing boilerVision;
 	
+	public static MotionProfileManagerRight rightManager;
+	public static MotionProfileManagerLeft leftManager;
+	public static MotionProfileManagerRight40ball rightManager40ball;
+	public static MotionProfileManagerLeft40ball leftManager40ball;
+	public static DriverStation.Alliance AllianceColor;
+	
     public static void init() {
     	//CONSTANTS FILE
     	Constants con = Robot.constants;
@@ -93,7 +99,7 @@ public class RobotMap {
 		
 		chassisPID_leftFront.reverseSensor(true);
 		LiveWindow.addActuator("ChassisPID", "leftFront",  chassisPID_leftFront);
-		/*
+		
 		chassisPID_leftRearMiddle  = new CANTalon(14);
 		chassisPID_leftRearMiddle  .changeControlMode(TalonControlMode.Follower);
 		chassisPID_leftRearMiddle  .set(chassisPID_leftFront.getDeviceID());
@@ -109,6 +115,11 @@ public class RobotMap {
 		chassisPID_RobotDrive.setSensitivity(0.5);
 		chassisPID_RobotDrive.setMaxOutput(1.0);
 		
+		leftManager = new MotionProfileManagerLeft(chassisPID_leftFront);
+		rightManager = new MotionProfileManagerRight(chassisPID_rightFront);
+		
+		leftManager40ball = new MotionProfileManagerLeft40ball(chassisPID_leftFront);
+		rightManager40ball = new MotionProfileManagerRight40ball(chassisPID_rightFront);
 		
 		//FUEL SHOOTERS
 		shooterCANTalonLeft = new CANTalon(8);  //8 
@@ -116,9 +127,7 @@ public class RobotMap {
 		shooterCANTalonLeft.setVoltageCompensationRampRate(24.0);
 		shooterCANTalonLeft.reverseOutput(true);
 		shooterCANTalonLeft.getBusVoltage();
-		leftManager = new MotionProfileManagerLeft(chassisPID_leftFront);
-		rightManager = new MotionProfileManagerRight(chassisPID_rightFront);
-        
+				
         shooterCANTalonRight = new CANTalon(9);
         shooterCANTalonRight.changeControlMode(TalonControlMode.Voltage);
         shooterCANTalonRight.setVoltageCompensationRampRate(24.0);
@@ -174,6 +183,11 @@ public class RobotMap {
 		boilerVision.setDistances(con.kTargetingCamera_DistanceInchesMin, con.kTargetingCamera_DistanceInchesMax);
 		boilerVision.setAreas(con.kTargetingCamera_AreaMin, con.kTargetingCamera_AreaMax);
 	
+		AllianceColor = DriverStation.getInstance().getAlliance();
+		
+		
+		
+		
         //NAV-X MXP
         try {
             /* Communicate w/navX MXP via the MXP SPI Bus.                                     */

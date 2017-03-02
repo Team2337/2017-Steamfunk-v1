@@ -55,7 +55,7 @@ public class Chassis_targetWithGyro extends PIDCommand {
 		this.setTimeout(timeout);
 		RobotMap.chassisPID_gyro.reset();
 		//System.out.println(Robot.gearVision.getAngle());
-		double angle = boilerVision.getAngle();
+		double angle = -boilerVision.getAngle();
 		if (Math.abs(angle) <  7 ) {
 			this.getPIDController().setPID(0.08, 0.00025, 0.002);
 			System.out.println("in 7");

@@ -11,11 +11,18 @@ import org.usfirst.frc2337.robot.Robot;
 public class AutonCG_blueSidekeyshootandKeyGear extends CommandGroup {
 	
     public AutonCG_blueSidekeyshootandKeyGear() {
+    	addParallel(new FuelShooter_speedSet(-Robot.constants.kFuelShooter_hopperShotSpeedLeft, Robot.constants.kFuelShooter_hopperShotSpeedRight));
+    	addSequential(new Auton_wait(1));
+    	addParallel(new FuelFeeder_setSpeedTimed(-Robot.constants.kFeeder_DefaultEnableSpeed,10));
+   
+    	addSequential(new Auton_wait(10));
+    	addSequential(new FuelShooter_stopShooters());
     	// target 
     	//addSequential(new ) code still need
     	// shoot 
     	//addparallel(new ) code still need
     	// move forward and turn 
+    	/*
     	addSequential (new Auton_driveForTime(.5,1.0,4));
     	// turn 90
     	addSequential (new Auton_turnGyro(90));
@@ -35,7 +42,7 @@ public class AutonCG_blueSidekeyshootandKeyGear extends CommandGroup {
     	addSequential(new Auton_driveForwardGyro(-1.0,1));
     	
     	
-    	
+    	*/
     	
     	
     	

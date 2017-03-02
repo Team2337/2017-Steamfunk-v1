@@ -20,10 +20,10 @@ public class Auton_turnGyro extends PIDCommand {
 	 */
     public Auton_turnGyro(double angle) {
 
-        super("Auton_turnGyro3", 0.009, 0.0, 0.007);
+        super("Auton_turnGyro3", 0.015, 0.0, 0.007);
         getPIDController().setContinuous(true);
-        getPIDController().setAbsoluteTolerance(.1);
-        getPIDController().setOutputRange(-.4, .4);
+        getPIDController().setAbsoluteTolerance(1);
+        getPIDController().setOutputRange(-.7, .7);
 
        requires(Robot.chassis);
        
@@ -31,6 +31,24 @@ public class Auton_turnGyro extends PIDCommand {
        if (targetAngle > 360) {
     	   targetAngle = targetAngle - 360;
        }
+
+    }
+    
+    public Auton_turnGyro(double angle, double time) {
+
+        super("Auton_turnGyro3", 0.009, 0.0, 0.007);
+        getPIDController().setContinuous(true);
+        getPIDController().setAbsoluteTolerance(.1);
+        getPIDController().setOutputRange(-.5, .5);
+
+       requires(Robot.chassis);
+       
+       targetAngle = RobotMap.chassisPID_gyro.getYaw()+angle;
+       if (targetAngle > 360) {
+    	   targetAngle = targetAngle - 360;
+       }
+       
+       this.timeout = time;
 
     }
 

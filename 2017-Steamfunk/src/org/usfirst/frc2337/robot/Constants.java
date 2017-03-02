@@ -17,8 +17,8 @@ public class Constants {
 	public final double kChassisPID_ReverseDrive = -1.0;
 	
 	/* Fuel Shooter */
-	public final double kFuelShooter_hopperShotSpeedLeft = 8.7;  //8.9  comp
-	public final double kFuelShooter_hopperShotSpeedRight = 9.25; //9.25 comp
+	public final double kFuelShooter_hopperShotSpeedLeft = 9.0;  //8.9  comp  //8.7 prac
+	public final double kFuelShooter_hopperShotSpeedRight = 9.5; //9.25 comp  //9.25 prac
 	
 	public final double kFuelShooter_airshipShotSpeedLeft = 10.15;
 	public final double kFuelShooter_airshipShotSpeedRight = 10.45;
@@ -56,7 +56,7 @@ public class Constants {
 	public final double kTargetingCamera_ObjectHeight = 82;
 	public final double kTargetingCamera_WidthBetweenTarget = 8.4;
 	public final double kTargetingCamera_AngleConstant = 3.4;
-	public final double kTargetingCamera_CenterConstant = 78;		
+	public final double kTargetingCamera_CenterConstant = 78; //36		
 	
 	public final double kTargetingCamera_DistanceInchesMax = 75;
 	public final double kTargetingCamera_DistanceInchesMin = 131;

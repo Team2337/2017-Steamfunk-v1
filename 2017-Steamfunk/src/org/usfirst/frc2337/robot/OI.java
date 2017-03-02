@@ -92,6 +92,7 @@ public class OI {
 	JoystickPOVButton		operator_POVDownLeft	= new JoystickPOVButton(operatorJoystick, 225);
 	JoystickPOVButton		operator_POVLeft		= new JoystickPOVButton(operatorJoystick, 270);
 	JoystickPOVButton		operator_POVUpLeft		= new JoystickPOVButton(operatorJoystick, 315);
+	/*
 	JoystickButton 			BlackButton 			= new JoystickButton(operatorJoystick, 11);
 	JoystickButton 			BlueButton				= new JoystickButton(operatorJoystick, 12);
     JoystickButton 			yellowButton			= new JoystickButton(operatorJoystick, 13);
@@ -99,8 +100,8 @@ public class OI {
     JoystickButton 			clearSwitch				= new JoystickButton(operatorJoystick, 15);
     JoystickButton 			blueSwitch				= new JoystickButton(operatorJoystick, 16);
     JoystickButton 			blackSwitch				= new JoystickButton(operatorJoystick, 17);
-    JoystickButton 			yellowSwitch			= new JoystickButton(operatorJoystick, 18);
-	
+  //  JoystickButton 			yellowSwitch			= new JoystickButton(operatorJoystick, 18);
+	*/
 	//drivers station
 	
 	
@@ -118,7 +119,7 @@ public class OI {
 		driver_BumperRight		.whenPressed(new Chassis_targetWithGyro()); //Vision Align
 		
 		driver_Back				.whenPressed(new FuelFeeder_reverse()); 
-		driver_Start			.whenPressed(new _DoNothing());
+		driver_Start			.whileHeld(new _DoNothing());
 		
 		driver_LeftStick		.whenPressed(new _DoNothing()); 
 		driver_RightStick		.whenPressed(new _DoNothing()); 
@@ -156,9 +157,10 @@ public class OI {
 		operator_POVUp			.whileHeld(new HopperWings_extendWhileHeld());
 		operator_POVRight		.whenPressed(new _DoNothing()); 
 		operator_POVDown		.whenPressed(new _DoNothing());
-		operator_POVLeft		.whenPressed(new _DoNothing());
+		operator_POVLeft		.whenPressed(new FuelFeeder_setSpeedTimed(Robot.constants.kFeeder_DefaultEnableSpeed, 3));
 	
 		/* =========================================================*/
+		/*
 		BlackButton				.whenPressed(new _DoNothing()); //Right Wings
 		BlueButton				.whenPressed(new _DoNothing());	//Left Wings
 		yellowButton			.whenPressed(new _DoNothing());
@@ -166,8 +168,8 @@ public class OI {
 		clearSwitch				.whenPressed(new _DoNothing());
 		blueSwitch				.whenPressed(new _DoNothing());
 		blackSwitch				.whenPressed(new _DoNothing());
-		yellowSwitch			.whenPressed(new _DoNothing());
-		
+		//yellowSwitch			.whenPressed(new _DoNothing());
+		*/
 		
 		
 	}

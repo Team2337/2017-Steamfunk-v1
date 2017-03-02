@@ -4,6 +4,7 @@ import org.usfirst.frc2337.robot.RobotMap;
 import org.usfirst.frc2337.robot.commands.*;
 
 import com.ctre.CANTalon;
+import com.ctre.CANTalon.TalonControlMode;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -73,5 +74,28 @@ public class Chassis extends Subsystem {
 	public void stopMotors() {
 		robotDrive.stopMotor();
 	}
+	
+	public void changeFollowerToVbus(){
+		
+		RobotMap.chassisPID_leftRearMiddle.changeControlMode(TalonControlMode.PercentVbus);
+		RobotMap.chassisPID_rightRearMiddle.changeControlMode(TalonControlMode.PercentVbus);
+		RobotMap.chassisPID_leftRear.changeControlMode(TalonControlMode.PercentVbus);
+		RobotMap.chassisPID_rightRear.changeControlMode(TalonControlMode.PercentVbus);
+
+	}
+	public void changeVbusToFollower() {
+		
+		
+		RobotMap.chassisPID_leftRearMiddle.changeControlMode(TalonControlMode.Follower);
+		RobotMap.chassisPID_leftRearMiddle.set(RobotMap.chassisPID_leftFront.getDeviceID());
+		RobotMap.chassisPID_rightRearMiddle.changeControlMode(TalonControlMode.Follower);
+		RobotMap.chassisPID_rightRearMiddle.set(RobotMap.chassisPID_rightFront.getDeviceID());
+		
+		RobotMap.chassisPID_leftRear.changeControlMode(TalonControlMode.Follower);
+		RobotMap.chassisPID_leftRear.set(RobotMap.chassisPID_leftFront.getDeviceID());
+		RobotMap.chassisPID_rightRear.changeControlMode(TalonControlMode.Follower);
+		RobotMap.chassisPID_rightRear.set(RobotMap.chassisPID_rightFront.getDeviceID());
+	}
+	
 	
 }

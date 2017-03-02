@@ -60,7 +60,7 @@ public class Auton_driveForwardGyroWithEncoder extends Command {
     
 	protected boolean isFinished() {
 
-		return (isTimedOut() || Math.abs(RobotMap.chassisPID_leftFront.getEncPosition()) > Math.abs(encodertarget));
+		return (isTimedOut() || Math.abs(RobotMap.chassisPID_rightFront.getEncPosition()) > Math.abs(encodertarget));
 	
 	
 	}
