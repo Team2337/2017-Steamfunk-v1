@@ -23,6 +23,7 @@ public class AutonCG_midGear extends CommandGroup {
     
     	addSequential(new Auton_wait(1));
     	addSequential(new Auton_driveForTime(-.6,0,.5)); // was 1.5
+    	
     	addParallel(new FuelShooter_speedSet(-Robot.constants.kFuelShooter_hopperShotSpeedLeft, Robot.constants.kFuelShooter_hopperShotSpeedRight));
     	addSequential(new Auton_turnGyro(-75));
     	//addParallel(new Chassis_targetWithGyro()); no target rn

@@ -99,6 +99,8 @@ public class Robot extends IterativeRobot {
 		//autonSelector.addDefault("Turn 90", new Auton_DFGwE(0.5,20000,5));
 		autonSelector.addObject("mid Gear with motion pro ", new AutonCG_midGear());
 		autonSelector.addObject("40 ball red ", new AutonCG_40Baller());
+		autonSelector.addObject("shoot 10 and mid gear  ", new AutonCG_Shoot10MidGearRed());
+		
 	//	autonSelector.addObject("Cross The Line", new AutonCG_crossTheLine());
 		//autonSelector.addObject("mid gear",new AutonCG_midGear());
 	//	autonSelector.addObject("Red Gear Left", new _DoNothing());
@@ -165,7 +167,7 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		
+	
 		if (autonomousCommand != null) autonomousCommand.cancel();
 		
 		allInit();
@@ -232,6 +234,8 @@ public class Robot extends IterativeRobot {
 			SmartDashboard.putBoolean("onTarget", false);
 		}
 		SmartDashboard.putData("Auton Selector", autonSelector);
+		
+		
 	}
 }
 
