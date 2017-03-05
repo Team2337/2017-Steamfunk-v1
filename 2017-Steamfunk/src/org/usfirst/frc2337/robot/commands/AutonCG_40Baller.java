@@ -20,24 +20,28 @@ public class AutonCG_40Baller extends CommandGroup {
     	addParallel(new FuelShooter_speedSet(-Robot.constants.kFuelShooter_hopperShotSpeedLeft, Robot.constants.kFuelShooter_hopperShotSpeedRight));
     	//Driverstation.Alliance CurrentSide = ;
     	if (RobotMap.AllianceColor == DriverStation.Alliance.Blue) {
-    		addParallel(new Auton_driveRightWheel(-.8, 1));
+    		addSequential(new Auton_driveRightWheel(-.8, 2));
     		System.out.println("Blue");
     	} else { 
-    		addParallel(new Auton_driveLeftWheel(.8, 1));
+    		addSequential(new Auton_driveLeftWheel(.8, 2));
     		System.out.println("Red");
     	}
     	
     	//addParallel(new Auton_driveRightWheel(.8, 1));
     	addSequential(new Auton_wait(.8));
     	addSequential(new HopperWings_extend());
-    	addSequential(new Auton_wait(.5));
-    	addParallel(new Chassis_targetWithGyro());
+    	addSequential(new Auton_wait(.2));
+    	
+    	addSequential(new Auton_driveForTime(-.5,0, .5));
+    	addSequential(new Auton_wait(.2));
+    	//addParallel(new Chassis_targetWithGyro()); // need 
     	
     	addSequential(new Auton_wait(.5));
+    	addParallel(new FuelIntake_enabledReverse()); //XXX using Reverse on practicerobot, switch back to Forward
+    	addParallel(new FuelFeeder_setSpeedTimed(-Robot.constants.kFeeder_DefaultEnableSpeed,7));
+    	//addSequential(new FuelIntakeArm_retract());   //XXX add later
     	
-    	addParallel(new FuelFeeder_setSpeedTimed(-Robot.constants.kFeeder_DefaultEnableSpeed,10));
-    	
-    	addSequential(new Auton_wait(8));
+    	addSequential(new Auton_wait(7));
     	addSequential(new FuelShooter_stopShooters());
     	
     	
