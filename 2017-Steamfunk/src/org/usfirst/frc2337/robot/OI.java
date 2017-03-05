@@ -161,7 +161,7 @@ public class OI {
 		BlackButton				.whenPressed(new _DoNothing()); //Right Wings
 		BlueButton				.whenPressed(new _DoNothing());	//Left Wings
 		yellowButton			.whenPressed(new _DoNothing());
-		whiteButton				.whenPressed(new _DoNothing());
+		whiteButton				.whileHeld(new RopeClimber_reverse()); //Reverses Climber
 		clearSwitch				.whenPressed(new _DoNothing());
 		blueSwitch				.whenPressed(new _DoNothing());
 		blackSwitch				.whenPressed(new _DoNothing());

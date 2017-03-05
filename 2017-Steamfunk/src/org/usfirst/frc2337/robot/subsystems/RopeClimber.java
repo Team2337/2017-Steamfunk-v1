@@ -37,6 +37,13 @@ public class RopeClimber extends Subsystem {
     	climbMotor.set(0);
     }
     /**
+     * Reverses the climber - useful when the ratchet is not reset, allowing us to climb
+     */
+    public void reverseClimber(){
+    	//Robot.chassisPID.arcadeDrive(1, 0);
+    	climbMotor.set(1.0);
+    }
+    /**
      * Enable Brake Mode
      */
     public void enableBrakeMode() {
