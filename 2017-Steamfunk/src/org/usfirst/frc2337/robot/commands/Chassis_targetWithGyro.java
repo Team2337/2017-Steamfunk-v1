@@ -24,8 +24,11 @@ public class Chassis_targetWithGyro extends PIDCommand {
 	double setPoint, turnValue, targetAngle;
 	public double mainCenter;
 
+	
 	public double turnDeadband = 0.4;//32-38-
 	public VisionProcessing boilerVision = RobotMap.boilerVision;
+	public boolean hasCon = false;
+	
 	public Chassis_targetWithGyro() {
 		//chassis_TargetWithGyroPID(String name, double p, double i, double d)
 		
@@ -51,19 +54,22 @@ public class Chassis_targetWithGyro extends PIDCommand {
 	}
 	
 	protected void initialize() {
+		this.hasCon = false; //Set hasContours to false
+		this.setTimeout(timeout); //Set the defined timeout from Constants
 		
-		this.setTimeout(timeout);
-		RobotMap.chassisPID_gyro.reset();
-		//System.out.println(Robot.gearVision.getAngle());
-		double angle = -boilerVision.getAngle();
-		if (Math.abs(angle) <  7 ) {
+		RobotMap.chassisPID_gyro.reset(); //Reset the gyro
+
+		double angle = -boilerVision.getAngle(); //Get angle from VisionProcessing class (with defined object)
+		this.hasCon = boilerVision.hasContours(); //Does it have any contours? (just making sure so we don't in circles)
+		if (Math.abs(angle) <  7 ) { //Change pid because lower angle needs more power
 			this.getPIDController().setPID(0.08, 0.00025, 0.002);
 			System.out.println("in 7");
 		} else {
-			this.getPIDController().setPID(0.035, 0.00025, 0.002);
+			this.getPIDController().setPID(0.035, 0.00025, 0.002); 
 		}
-		this.setSetpoint(angle);	
-		SmartDashboard.putNumber("thisisholycraplong02020202020202020202020202_PIDP", this.getPIDController().getP());
+		this.setSetpoint(angle); //Go to that angle
+		//Use smartdashboard for P (to see)
+		SmartDashboard.putNumber("VISION:PID_P", this.getPIDController().getP());
 	
 	}
 
@@ -72,11 +78,16 @@ public class Chassis_targetWithGyro extends PIDCommand {
 	}
 
 	protected boolean isFinished() {
-		return (isTimedOut() || getPIDController().onTarget());
+		//If it times out, gets on target or has NO contours, we end it
+		return (isTimedOut() || getPIDController().onTarget() || !hasCon);
 	}
 
 	protected void end() {
-		System.out.println("[Vision] Done" + RobotMap.chassisPID_gyro.getYaw());
+		if (!hasCon) {
+			System.out.println("[Vision] Failed: No contours");
+		} else {
+			System.out.println("[Vision] Done" + RobotMap.chassisPID_gyro.getYaw());	
+		}
 		
 		
 	}

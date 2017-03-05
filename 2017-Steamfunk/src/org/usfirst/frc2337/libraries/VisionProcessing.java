@@ -152,7 +152,7 @@ public class VisionProcessing {
 		double[] contoursAREA = table.getNumberArray("area", defaultValue);
 		double area = 0;
 		if (hasContours()) {
-			if(contoursAREA.length >= 2) {
+			if(contoursAREA.length >= 2) { //TODO Remove: DUPLICATE STATMENT AS hasContours()
 			 area = (contoursAREA[0] + contoursAREA[1]) / 2;
 			}
 		}
@@ -167,7 +167,7 @@ public class VisionProcessing {
 		double[] contoursX = table.getNumberArray("centerX", defaultValue);
 		double center = 0;
 		if (hasContours()) {
-			if(contoursX.length >= 2) {
+			if(contoursX.length >= 2) { //TODO Remove: DUPLICATE STATMENT AS hasContours()
 				center = (contoursX[0] + contoursX[1]) / 2;
 			}
 		}
@@ -203,7 +203,7 @@ public class VisionProcessing {
 		//If GRIP hasContours
 		if(hasContours()){
 			//Do we have two contours? (top/bottom or left/right)
-			if(center.length == 2){
+			if(center.length == 2){ 
 				double turnAngle;
 				if (getAverageCenter() > CENTER_OF_CONTOURS) {
 				 turnAngle = (getAverageCenter() - CENTER_OF_CONTOURS) * -1;			

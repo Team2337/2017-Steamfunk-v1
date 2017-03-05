@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDSourceType;
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SerialPort;
@@ -42,9 +43,9 @@ public class RobotMap {
     
     public static Solenoid visionLED;
       
-    public static Solenoid leftLed;
-    public static Solenoid centerLed;
-    public static Solenoid rightLed;
+    public static Solenoid shooterLeftLed;
+    public static Solenoid shooterCenterLed;
+    public static Solenoid shooterRightLed;
     
     public static Solenoid gearLoader_pusher;
     
@@ -64,6 +65,7 @@ public class RobotMap {
     
 	public static UsbCamera cam0;
 	public static VisionProcessing boilerVision;
+	public static Relay shooterLight;
 	
 	
 	public static MotionProfileManagerRight rightManager;
@@ -140,13 +142,14 @@ public class RobotMap {
         shooterCANTalonRight.getBusVoltage();
         shooterCANTalonRight.reverseOutput(false);
         
-		
+		//SHOOTER LIGHT
+        shooterLight = new Relay(0, Relay.Direction.kForward);
         
         //GEAR WINGS
-        gearLoader_pusher = new Solenoid(0, 6); //needs to be 2
+        gearLoader_pusher = new Solenoid(0, 2); //needs to be 2
         
         // HOPPER TRIGGER
-        hopperTrigger_solenoid = new Solenoid(0, 2);  // needs to be 6
+        hopperTrigger_solenoid = new Solenoid(0, 6);  // needs to be 6
         
         // FUEL INTAKE ARM
 		fuelIntakeArm_solenoid = new DoubleSolenoid(0, 0, 1); 
@@ -154,9 +157,9 @@ public class RobotMap {
 		//ON-TARGET LED's
 		//VISION LED
         visionLED = new Solenoid(1, 0);
-		leftLed = new Solenoid(1, 1);
-		centerLed = new Solenoid(1, 2);
-		rightLed = new Solenoid(1, 3);
+		shooterLeftLed = new Solenoid(1, 1);
+		shooterCenterLed = new Solenoid(1, 2);
+		shooterRightLed = new Solenoid(1, 3);
 		
 		//ROPE CLIMBER
         ropeClimberscaleMotorLeft = new CANTalon(10);
@@ -165,7 +168,7 @@ public class RobotMap {
 
         ropeClimberscaleMotorRight = new CANTalon(11);
         ropeClimberscaleMotorRight.enableBrakeMode(true);
-        ropeClimberscaleMotorRight.reverseOutput(true);
+        
 
 		
 		
@@ -195,8 +198,6 @@ public class RobotMap {
 		boilerVision.setDistances(con.kTargetingCamera_DistanceInchesMin, con.kTargetingCamera_DistanceInchesMax);
 		boilerVision.setAreas(con.kTargetingCamera_AreaMin, con.kTargetingCamera_AreaMax);
 	
-		AllianceColor = DriverStation.getInstance().getAlliance();
-		
 		
 		
 		

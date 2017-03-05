@@ -13,7 +13,7 @@ public class Constants {
 	/* Chassis */
 	public final double kChassisPID_DriverDeadband = 0.1;
 	public final double kChassisPID_MoveSensitivity = 1.0;
-	public final double kChassisPID_TurnSensitivity = 1.0;
+	public final double kChassisPID_TurnSensitivity = 0.9;
 	public final double kChassisPID_ReverseDrive = -1.0;
 	
 	/* Fuel Shooter */

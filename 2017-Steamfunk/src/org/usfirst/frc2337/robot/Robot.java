@@ -2,6 +2,8 @@ package org.usfirst.frc2337.robot;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.PIDCommand;
@@ -38,6 +40,7 @@ public class Robot extends IterativeRobot {
 	public static FuelIntakeArm fuelIntakeArm;
 	public static FuelIntake fuelIntake;
 	public static FuelShooter fuelShooter;
+	public static FuelShooterLED fuelShooterLED;
 	public static HopperWings hopperWings;
 	public static GripPipeline trackerObj;
 	public static Mat matOriginalObj;
@@ -45,7 +48,7 @@ public class Robot extends IterativeRobot {
 	Command autonomousCommand;
 	SendableChooser<Command> autonSelector; //<Command> autonSelector;//
 
-	
+	public static Alliance AllianceColor;
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -65,6 +68,7 @@ public class Robot extends IterativeRobot {
 		fuelIntakeArm = new FuelIntakeArm();
 		fuelIntake = new FuelIntake();
 		fuelShooter = new FuelShooter();
+		fuelShooterLED = new FuelShooterLED();
 		hopperWings = new HopperWings();
 		fuelShooter = new FuelShooter();
 		trackerObj = new GripPipeline();
@@ -93,7 +97,7 @@ public class Robot extends IterativeRobot {
 		autonSelector.addObject("40 ball red ", new AutonCG_40Baller());
 		autonSelector.addObject("shoot 10 and mid gear  ", new AutonCG_Shoot10MidGearRed());
 		
-	//	autonSelector.addObject("Cross The Line", new AutonCG_crossTheLine());
+	autonSelector.addObject("Cross The Line", new AutonCG_crossTheLine());
 		//autonSelector.addObject("mid gear",new AutonCG_midGear());
 	//	autonSelector.addObject("Red Gear Left", new _DoNothing());
 //		autonSelector.addObject("Red Gear Middle", new _DoNothing());
@@ -126,6 +130,7 @@ public class Robot extends IterativeRobot {
 	
 	public void autonomousInit() {
 		//allInit();
+		AllianceColor = DriverStation.getInstance().getAlliance();
 		RobotMap.chassisPID_gyro.reset();
 		RobotMap.chassisPID_leftFront.setEncPosition(0);
 		RobotMap.chassisPID_rightFront.setEncPosition(0);

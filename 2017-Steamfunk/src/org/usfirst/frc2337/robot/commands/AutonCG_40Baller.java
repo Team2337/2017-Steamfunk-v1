@@ -19,7 +19,7 @@ public class AutonCG_40Baller extends CommandGroup {
     	addSequential(new FuelIntakeArm_extend());
     	addParallel(new FuelShooter_speedSet(-Robot.constants.kFuelShooter_hopperShotSpeedLeft, Robot.constants.kFuelShooter_hopperShotSpeedRight));
     	//Driverstation.Alliance CurrentSide = ;
-    	if (RobotMap.AllianceColor == DriverStation.Alliance.Blue) {
+    	if (Robot.AllianceColor == DriverStation.Alliance.Blue) {
     		addSequential(new Auton_driveRightWheel(-.8, 2));
     		System.out.println("Blue");
     	} else { 
