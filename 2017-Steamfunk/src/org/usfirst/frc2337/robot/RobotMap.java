@@ -137,10 +137,10 @@ public class RobotMap {
 		
         
         //GEAR WINGS
-        gearLoader_pusher = new Solenoid(0, 2);
+        gearLoader_pusher = new Solenoid(0, 6); //needs to be 2
         
         // HOPPER TRIGGER
-        hopperTrigger_solenoid = new Solenoid(0, 6);
+        hopperTrigger_solenoid = new Solenoid(0, 2);  // needs to be 6
         
         // FUEL INTAKE ARM
 		fuelIntakeArm_solenoid = new DoubleSolenoid(0, 0, 1); 

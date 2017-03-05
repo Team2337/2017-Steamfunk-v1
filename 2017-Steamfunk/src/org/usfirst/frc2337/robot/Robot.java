@@ -83,12 +83,15 @@ public class Robot extends IterativeRobot {
 		//autonomousCommand = new _DoNothing();
 		
 		/* Create Camera (for vision) */
+		try {
 		cam0 = CameraServer.getInstance().startAutomaticCapture("cam0", "/dev/video0");
 		int exposure = (int) constants.kTargetingCamera_Exposure;
 		int brightness = (int) constants.kTargetingCamera_Brightness;
 		cam0.setBrightness(brightness);
 		cam0.setExposureManual(exposure);
-		
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 		 ///autonomousCommand = new Auton_turnGyro3(90);
 		
 		autonSelector = new SendableChooser <Command>();

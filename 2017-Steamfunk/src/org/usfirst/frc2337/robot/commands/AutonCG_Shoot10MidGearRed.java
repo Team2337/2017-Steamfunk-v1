@@ -13,7 +13,7 @@ public class AutonCG_Shoot10MidGearRed extends CommandGroup {
     public AutonCG_Shoot10MidGearRed() {
     	
     	
-    	addSequential(new Auton_driveForwardEncoderTwoWheel(-9620,-9620,3));
+    	//addSequential(new Auton_driveForwardEncoderTwoWheel(-9620,-9620,3));
     	
     	
     	/*

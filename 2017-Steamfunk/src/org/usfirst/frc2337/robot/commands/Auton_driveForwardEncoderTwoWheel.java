@@ -60,7 +60,7 @@ public class Auton_driveForwardEncoderTwoWheel extends Command {
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
     	return ( isTimedOut() || (Robot.chassis.RightController.onTarget() && Robot.chassis.LeftController.onTarget())); //|| Robot.chassis.isStopped());
-   
+    	
     }
 
     // Called once after isFinished returns true

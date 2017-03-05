@@ -28,7 +28,7 @@ public class AutonCG_40Baller extends CommandGroup {
     	}
     	
     	//addParallel(new Auton_driveRightWheel(.8, 1));
-    	addSequential(new Auton_wait(.5));
+    	addSequential(new Auton_wait(.8));
     	addSequential(new HopperWings_extend());
     	addSequential(new Auton_wait(.5));
     	addParallel(new Chassis_targetWithGyro());
