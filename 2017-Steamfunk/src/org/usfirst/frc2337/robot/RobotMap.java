@@ -1,5 +1,6 @@
 package org.usfirst.frc2337.robot;
 
+import org.opencv.videoio.VideoCapture;
 import org.usfirst.frc2337.libraries.VisionProcessing;
 
 import com.ctre.CANTalon;
@@ -7,6 +8,8 @@ import com.kauailabs.navx.frc.AHRS;
 import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
 
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -15,7 +18,6 @@ import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SerialPort;
-
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 /**
@@ -53,12 +55,16 @@ public class RobotMap {
     public static CANTalon fuelShooter_motorRight;
     
     public static Solenoid hopperTrigger_solenoid;
-    public static CANTalon ropeClimberscaleMotor;
+    
+    public static CANTalon ropeClimberscaleMotorLeft;
+    public static CANTalon ropeClimberscaleMotorRight;
     
     public static CANTalon fuelFeederRight;
     public static CANTalon fuelFeederLeft;
     
+	public static UsbCamera cam0;
 	public static VisionProcessing boilerVision;
+	
 	
 	public static MotionProfileManagerRight rightManager;
 	public static MotionProfileManagerLeft leftManager;
@@ -153,9 +159,15 @@ public class RobotMap {
 		rightLed = new Solenoid(1, 3);
 		
 		//ROPE CLIMBER
-        ropeClimberscaleMotor = new CANTalon(10);
-        ropeClimberscaleMotor.enableBrakeMode(true);
+        ropeClimberscaleMotorLeft = new CANTalon(10);
+        ropeClimberscaleMotorLeft.enableBrakeMode(true);
 
+
+        ropeClimberscaleMotorRight = new CANTalon(11);
+        ropeClimberscaleMotorRight.enableBrakeMode(true);
+        ropeClimberscaleMotorRight.reverseOutput(true);
+
+		
 		
 		//FUEL INTAKE
 		fuelIntake_motor = new CANTalon(3);
@@ -204,4 +216,28 @@ public class RobotMap {
 		//chassisPID_gyro.setPIDSourceType(PIDSourceType.kRate);
         
     }
+    /**
+     * Starts the Camera
+     */
+    public static void startCamera() {
+    	Constants con = Robot.constants;
+		try {
+			cam0 = CameraServer.getInstance().startAutomaticCapture("cam0", "/dev/video0");
+			int exposure = (int) con.kTargetingCamera_Exposure;
+			int brightness = (int) con.kTargetingCamera_Brightness;
+			cam0.setBrightness(brightness);
+			cam0.setExposureManual(exposure);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+    }
+    /**
+     * Restarts Camera 
+     */
+    public static void restartCamera() {
+    	startCamera();
+    }
+    
+    
 }
+

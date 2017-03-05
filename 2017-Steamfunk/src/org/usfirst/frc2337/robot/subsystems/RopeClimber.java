@@ -15,7 +15,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class RopeClimber extends Subsystem {
 
-    private final CANTalon climbMotor = RobotMap.ropeClimberscaleMotor;
+    private final CANTalon climbMotorL = RobotMap.ropeClimberscaleMotorLeft;
+    private final CANTalon climbMotorR = RobotMap.ropeClimberscaleMotorRight;
 
     double speed = Robot.constants.kRopeClimber_defaultSpeed;
 
@@ -28,20 +29,22 @@ public class RopeClimber extends Subsystem {
      */
     public void startClimber(){
     	//Robot.chassisPID.arcadeDrive(1, 0);
-    	climbMotor.set(-1.0);
+    	climbMotorL.set(-1.0);
+    	climbMotorR.set(-1.0);
     }
     /**
      * Stops the climber
      */
     public void stopClimber(){
-    	climbMotor.set(0);
+    	climbMotorL.set(0);
+    	climbMotorR.set(0);
     }
     /**
      * Enable Brake Mode
      */
     public void enableBrakeMode() {
-    	climbMotor.enableBrakeMode(true);
-    	
+    	climbMotorL.enableBrakeMode(true);
+    	climbMotorR.enableBrakeMode(true);
     }
 }
 

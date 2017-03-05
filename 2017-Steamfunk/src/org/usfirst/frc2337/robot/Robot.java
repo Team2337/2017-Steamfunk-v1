@@ -39,9 +39,7 @@ public class Robot extends IterativeRobot {
 	public static FuelIntake fuelIntake;
 	public static FuelShooter fuelShooter;
 	public static HopperWings hopperWings;
-	public static UsbCamera cam0;
 	public static GripPipeline trackerObj;
-	public static VideoCapture videoCapture;
 	public static Mat matOriginalObj;
 	public static FuelFeeder fuelFeeder;
 	Command autonomousCommand;
@@ -58,6 +56,7 @@ public class Robot extends IterativeRobot {
 
 		/* Create all robot components*/
 		RobotMap.init();
+		RobotMap.startCamera();
 		
 		/* Create all Subsystems */
 		chassis = new Chassis();
@@ -68,7 +67,6 @@ public class Robot extends IterativeRobot {
 		fuelShooter = new FuelShooter();
 		hopperWings = new HopperWings();
 		fuelShooter = new FuelShooter();
-		videoCapture = new VideoCapture();
 		trackerObj = new GripPipeline();
 		matOriginalObj = new Mat();
 		fuelFeeder = new FuelFeeder();
@@ -83,15 +81,6 @@ public class Robot extends IterativeRobot {
 		//autonomousCommand = new _DoNothing();
 		
 		/* Create Camera (for vision) */
-		try {
-		cam0 = CameraServer.getInstance().startAutomaticCapture("cam0", "/dev/video0");
-		int exposure = (int) constants.kTargetingCamera_Exposure;
-		int brightness = (int) constants.kTargetingCamera_Brightness;
-		cam0.setBrightness(brightness);
-		cam0.setExposureManual(exposure);
-		} catch (Exception e) {
-			System.out.println(e);
-		}
 		 ///autonomousCommand = new Auton_turnGyro3(90);
 		
 		autonSelector = new SendableChooser <Command>();
@@ -197,8 +186,7 @@ public class Robot extends IterativeRobot {
 	 * This function is called during all init functions except robotInit().
 	 */
 	public void allInit() {
-		
-
+		RobotMap.restartCamera();
 	}
 	/**
 	 * This function is called during all periodic functions.
