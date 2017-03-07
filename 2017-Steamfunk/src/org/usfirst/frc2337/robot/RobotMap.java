@@ -52,8 +52,6 @@ public class RobotMap {
     public static DoubleSolenoid fuelIntakeArm_solenoid;
     
     public static CANTalon fuelIntake_motor;
-    public static CANTalon fuelShooter_motorLeft;
-    public static CANTalon fuelShooter_motorRight;
     
     public static Solenoid hopperTrigger_solenoid;
     
@@ -227,7 +225,7 @@ public class RobotMap {
 			int exposure = (int) con.kTargetingCamera_Exposure;
 			int brightness = (int) con.kTargetingCamera_Brightness;
 			cam0.setBrightness(brightness);
-			cam0.setExposureManual(exposure);
+			//cam0.setExposureManual(exposure);
 		} catch (Exception e) {
 			System.out.println(e);
 		}

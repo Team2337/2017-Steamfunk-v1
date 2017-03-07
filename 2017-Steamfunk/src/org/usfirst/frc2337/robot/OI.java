@@ -145,7 +145,7 @@ public class OI {
 		operator_BumperLeft		.whenPressed(new FuelIntakeArm_extend());
 		operator_BumperRight	.whileHeld(new FuelIntake_enabledForward());
 		
-		operator_Back			.whileHeld(new FuelShooter_stopShooters());
+		operator_Back			.whenPressed(new FuelShooter_stopShooters());
 		operator_Start			.whileHeld(new _DoNothing());
 		
 		operator_LeftStick		.whenPressed(new _DoNothing());

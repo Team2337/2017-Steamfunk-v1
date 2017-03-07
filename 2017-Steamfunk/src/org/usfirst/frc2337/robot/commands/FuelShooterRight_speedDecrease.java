@@ -27,7 +27,7 @@ public class FuelShooterRight_speedDecrease extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.fuelShooter.decreaseRPMRight();
+    	Robot.fuelShooter.decreaseShooterRight();
     }
 
     // Called repeatedly when this Command is scheduled to run

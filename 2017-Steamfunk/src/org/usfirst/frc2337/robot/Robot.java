@@ -68,12 +68,11 @@ public class Robot extends IterativeRobot {
 		fuelIntakeArm = new FuelIntakeArm();
 		fuelIntake = new FuelIntake();
 		fuelShooter = new FuelShooter();
-		fuelShooterLED = new FuelShooterLED();
 		hopperWings = new HopperWings();
-		fuelShooter = new FuelShooter();
 		trackerObj = new GripPipeline();
 		matOriginalObj = new Mat();
 		fuelFeeder = new FuelFeeder();
+		fuelShooterLED = new FuelShooterLED();
 		
 		/* Create OI
 		 * - Must be done after ALL subsystems are init'ed, because they might use a commands

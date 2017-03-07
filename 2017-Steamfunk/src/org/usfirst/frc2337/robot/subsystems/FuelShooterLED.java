@@ -32,7 +32,7 @@ public class FuelShooterLED extends Subsystem {
 
     
     public void initDefaultCommand() {
-       //setDefaultCommand(new FuelShooterLED_main());
+       setDefaultCommand(new FuelShooterLED_main());
     }
     /**
      * Turn LEFT LED on/off
@@ -48,6 +48,7 @@ public class FuelShooterLED extends Subsystem {
     public void rightLEDState(boolean state) {
     	ledRight.set(state);
     }
+    
     /**
      * Turn VISION LED on/off
      * @param state true/false

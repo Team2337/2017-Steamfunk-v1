@@ -15,7 +15,7 @@ public class FuelShooter_stopShooters extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Robot.fuelShooter.zeroRPM();
+		Robot.fuelShooter.stopMotors();
 		Robot.fuelShooter.lightOff();
 	}
 		

@@ -18,7 +18,7 @@ public class FuelShooterLeft_speedIncrease extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	
-    Robot.fuelShooter.increaseRPMLeft();
+    Robot.fuelShooter.increaseShooterLeft();
     
     }
 

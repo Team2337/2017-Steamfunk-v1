@@ -5,6 +5,7 @@ import org.usfirst.frc2337.robot.commands.*;
 
 import com.ctre.CANTalon;
 
+
 import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -24,29 +25,16 @@ public class FuelShooter extends Subsystem {
 	private double currentSpeed = Robot.constants.kFuelShooter_DefaultSpeed;
 	//double incrementSpeed = Robot.constants.kFuelShooter_IncrementSpeed;
 	
-	double halfSpeed = 6.0;
-    double hopperShotSpeedLeft = 8.9;		//8.9
-    double hopperShotSpeedRight = 9.4;		//9.4
-    double airshipShotSpeedLeft = 10.15;
-    double airshipShotSpeedRight = 10.45;
-    double maxSpeed = 12.0;  //???
-    double curRPM;
-    double speed;
-	
 	public FuelShooter() {
 		shooterMotorLeft.enableBrakeMode(false);
 		shooterMotorRight.enableBrakeMode(false);
 	}
-	
-	// Put methods for controlling this subsystem
-	// here. Call these from Commands.
 
 	public void initDefaultCommand() {
-		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
 		
 	}
-	
+
 	/**
 	 * Updates Speed via SmartDashboard
 	 */
@@ -59,73 +47,47 @@ public class FuelShooter extends Subsystem {
 	 * Set speeds of shooter
 	 * @param speed Sets speed of shooter
 	 */
-	public void setRPM(double speedLeft, double speedRight) {
-		shooterMotorLeft.setSetpoint(speedLeft);
-		shooterMotorRight.setSetpoint(speedRight);
+	public void setVoltage(double speedLeft, double speedRight) {
+		shooterMotorLeft.set(speedLeft);
+		shooterMotorRight.set(speedRight);
 	}
 	    
 	/**
-	 * Sets the shooters to a max RPM          
-	 */
-	public void maxRPM() {
-		shooterMotorLeft.setSetpoint(maxSpeed);
-		shooterMotorRight.setSetpoint(maxSpeed);
-	}
-	/**
-	 * Far shot from constants for RPM speed
-	 */
-	public void longShotRPM() {
-		shooterMotorLeft.setSetpoint(hopperShotSpeedLeft);
-		shooterMotorRight.setSetpoint(hopperShotSpeedRight);
-	}
-	/**
-	 * Uses airship constants for RPM speed
-	 */
-	public void airshipShotRPM() {
-		shooterMotorLeft.setSetpoint(airshipShotSpeedLeft);
-		shooterMotorRight.setSetpoint(airshipShotSpeedRight);
-	}
-	/**
-	 * Set RPM to half of the speed it is
-	 */
-	public void halfRPM() {
-		shooterMotorLeft.setSetpoint(halfSpeed);
-		shooterMotorRight.setSetpoint(halfSpeed);
-	}
-	/**
 	 * Stop both shooters
 	 */    
-	public void zeroRPM() {
-		shooterMotorLeft.setSetpoint(0);
-		shooterMotorRight.setSetpoint(0);
+	public void stopMotors() {
+		shooterMotorLeft.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+		shooterMotorRight.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+		shooterMotorLeft.changeControlMode(CANTalon.TalonControlMode.Voltage);
+		shooterMotorRight.changeControlMode(CANTalon.TalonControlMode.Voltage);
 	}
 	/**
 	 * Increase RPM of Left Shooter
 	 */ 
-	public void increaseRPMLeft() {
+	public void increaseShooterLeft() {
     	//currentSpeed =+100;
-		shooterMotorLeft.setSetpoint(shooterMotorLeft.getSetpoint() + .1);
+		shooterMotorLeft.set(shooterMotorLeft.get() + .1);
 	}
 	/**
 	 * Decrease RPM of Left Shooter
 	 */
-	public void decreaseRPMLeft() {
+	public void decreaseShooterLeft() {
 	    	//currentSpeed =-100;
-		shooterMotorLeft.setSetpoint(shooterMotorLeft.getSetpoint() - .1);
+		shooterMotorLeft.set(shooterMotorLeft.get() - .1);
 	}
 	/**
 	 * Increase RPM of Right Shooter
 	 */    
-	public void increaseRPMRight() {
+	public void increaseShooterRight() {
 	    	//currentSpeed =+100;
-		shooterMotorRight.setSetpoint(shooterMotorRight.getSetpoint() + .25);
+		shooterMotorRight.set(shooterMotorRight.get() + .1);
 	}
 	/**
 	 * Decrease RPM of Right Shooter
 	 */
-	public void decreaseRPMRight() {
+	public void decreaseShooterRight() {
 	    	//currentSpeed =-100;
-		shooterMotorRight.setSetpoint(shooterMotorRight.getSetpoint() - .25);
+		shooterMotorRight.set(shooterMotorRight.get() - .1);	
 	}
 	/**
 	 * Turns relay on
