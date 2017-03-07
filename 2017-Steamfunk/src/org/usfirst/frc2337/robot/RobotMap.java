@@ -183,7 +183,7 @@ public class RobotMap {
 		boilerVision.setDistances(con.kTargetingCamera_DistanceInchesMin, con.kTargetingCamera_DistanceInchesMax);
 		boilerVision.setAreas(con.kTargetingCamera_AreaMin, con.kTargetingCamera_AreaMax);
 	
-		AllianceColor = DriverStation.getInstance().getAlliance();
+		
 		
 		
 		

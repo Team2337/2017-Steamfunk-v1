@@ -2,6 +2,7 @@ package org.usfirst.frc2337.robot;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.PIDCommand;
@@ -136,7 +137,7 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public void autonomousInit() {
-		//allInit();
+		allInit();
 		RobotMap.chassisPID_gyro.reset();
 		RobotMap.chassisPID_leftFront.setEncPosition(0);
 		RobotMap.chassisPID_rightFront.setEncPosition(0);
@@ -197,7 +198,7 @@ public class Robot extends IterativeRobot {
 	 * This function is called during all init functions except robotInit().
 	 */
 	public void allInit() {
-		
+		RobotMap.AllianceColor = DriverStation.getInstance().getAlliance();
 
 	}
 	/**
