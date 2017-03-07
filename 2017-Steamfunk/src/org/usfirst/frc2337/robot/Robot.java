@@ -69,6 +69,7 @@ public class Robot extends IterativeRobot {
 		fuelIntake = new FuelIntake();
 		fuelShooter = new FuelShooter();
 		hopperWings = new HopperWings();
+
 		trackerObj = new GripPipeline();
 		matOriginalObj = new Mat();
 		fuelFeeder = new FuelFeeder();
@@ -230,7 +231,12 @@ public class Robot extends IterativeRobot {
 		}
 		SmartDashboard.putData("Auton Selector", autonSelector);
 		
-		
+		if (OI.driverJoystick.getRawButton(3)) {
+			fuelShooterLED.visionLEDState(true);
+		}
+		if (OI.driverJoystick.getRawButton(2)) {
+			fuelShooterLED.visionLEDState(false);
+		}
 	}
 }
 

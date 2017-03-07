@@ -57,7 +57,7 @@ public class Constants {
 	public final double kTargetingCamera_ObjectHeight = 82;
 	public final double kTargetingCamera_WidthBetweenTarget = 8.4;
 	public final double kTargetingCamera_AngleConstant = 3.4;
-	public final double kTargetingCamera_CenterConstant = 78; //36		
+	public final double kTargetingCamera_CenterConstant = 83; //36		
 	
 	public final double kTargetingCamera_DistanceInchesMax = 75;
 	public final double kTargetingCamera_DistanceInchesMin = 131;

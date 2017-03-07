@@ -225,7 +225,7 @@ public class RobotMap {
 			int exposure = (int) con.kTargetingCamera_Exposure;
 			int brightness = (int) con.kTargetingCamera_Brightness;
 			cam0.setBrightness(brightness);
-			//cam0.setExposureManual(exposure);
+			cam0.setExposureManual(exposure);
 		} catch (Exception e) {
 			System.out.println(e);
 		}
