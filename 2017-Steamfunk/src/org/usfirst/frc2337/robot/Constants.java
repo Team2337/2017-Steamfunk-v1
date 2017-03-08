@@ -23,10 +23,15 @@ public class Constants {
 	public final double kFuelShooter_airshipShotSpeedLeft = 10.15;
 	public final double kFuelShooter_airshipShotSpeedRight = 10.45;
 	
+	
+	public final double kFuelShooter_autonRedHopperShotSpeedLeft = 8.6;
+	public final double kFuelShooter_autonRedHopperShotSpeedRight = 8.65;
+	
+	
 	public final double kFuelShooter_halfSpeed = 6.0;
     public final double kFuelShooter_maxSpeed = 12.0;  //???
 	/* Fuel Shooter LED*/
-    public final double kFuelShooterLED_triggerSpeed = 7.9;
+    public final double kFuelShooterLED_triggerSpeed = 8.1;
 	/* Fuel Intake */
 	public final double kFuelIntake_DefaultSpeed = 1.0;
 	public final double kFuelIntake_IncrementSpeed = 0.05;
@@ -45,7 +50,7 @@ public class Constants {
 	public final double kTargetingCamera_Kp = .003;
 	public final double kTargetingCamera_DegreeConversion = 0.04;
 	
-	public final double kTargetingCamera_CenterPoint = 78;
+	//public final double kTargetingCamera_CenterPoint = 78;
 	public final double kTargetingCamera_GyroConversion = 3.5;
 	
 	public final double kTargetingCamera_Exposure = 1.0;
@@ -57,7 +62,7 @@ public class Constants {
 	public final double kTargetingCamera_ObjectHeight = 82;
 	public final double kTargetingCamera_WidthBetweenTarget = 8.4;
 	public final double kTargetingCamera_AngleConstant = 3.4;
-	public final double kTargetingCamera_CenterConstant = 83; //36		
+	public final double kTargetingCamera_CenterConstant = 85; //36		
 	
 	public final double kTargetingCamera_DistanceInchesMax = 75;
 	public final double kTargetingCamera_DistanceInchesMin = 131;
@@ -67,6 +72,7 @@ public class Constants {
 	
 	/* Fuel Feeder */
 	public final double kFeeder_DefaultEnableSpeed = .5;
+	public final double kFeeder_AutonDefaultEnableSpeed = .5;
 	public final double kFeeder_DefaultReverseSpeed = .7; //Speed is reversed later in code, set absolute value of desired speed.
 	
 	public final boolean kFeeder_Detectjams = true;		// Determines whether or not to use jam prevention

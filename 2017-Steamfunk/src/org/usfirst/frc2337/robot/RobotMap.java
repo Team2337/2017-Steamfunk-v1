@@ -168,6 +168,8 @@ public class RobotMap {
         ropeClimberscaleMotorRight.enableBrakeMode(true);
         
 
+        
+        
 		
 		
 		//FUEL INTAKE
