@@ -197,6 +197,8 @@ public class Robot extends IterativeRobot {
 	 * This function is called during all periodic functions.
 	 */
 	public void allPeriodic() {
+		
+		
 		SmartDashboard.putNumber("leftEncoder", RobotMap.chassisPID_leftFront.getEncPosition());
 		SmartDashboard.putNumber("rightEncoder", RobotMap.chassisPID_rightFront.getEncPosition());
 		SmartDashboard.putNumber("leftEncoderPOS", RobotMap.chassisPID_leftFront.getPosition());
@@ -230,13 +232,14 @@ public class Robot extends IterativeRobot {
 			SmartDashboard.putBoolean("onTarget", false);
 		}
 		SmartDashboard.putData("Auton Selector", autonSelector);
-		
+		/*
 		if (OI.driverJoystick.getRawButton(3)) {
 			fuelShooterLED.visionLEDState(true);
 		}
 		if (OI.driverJoystick.getRawButton(2)) {
 			fuelShooterLED.visionLEDState(false);
 		}
+		*/
 	}
 }
 
