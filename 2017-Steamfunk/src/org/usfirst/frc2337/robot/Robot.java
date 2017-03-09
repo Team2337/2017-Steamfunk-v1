@@ -90,7 +90,7 @@ public class Robot extends IterativeRobot {
 		autonSelector = new SendableChooser <Command>();
 		autonSelector.addObject("Do Nothing", new _DoNothing());
 		autonSelector.addDefault("Shoot from wall", new AutonCG_Shootfromwall());
-		autonSelector.addObject("Mid gear with encoder", new AutonCG_midGearencoder());
+		//autonSelector.addObject("Mid gear with encoder", new AutonCG_midGearencoder());
 	
 		//autonSelector.addDefault("Turn 90", new Auton_DFGwE(0.5,20000,5));
 		autonSelector.addObject("mid Gear with motion pro ", new AutonCG_midGear());
@@ -98,21 +98,10 @@ public class Robot extends IterativeRobot {
 		autonSelector.addObject("40 ball blue ", new AutonCG_40Ballerblue());
 		autonSelector.addObject("shoot 10 and mid gear  ", new AutonCG_Shoot10MidGearRed());
 		
-	autonSelector.addObject("Cross The Line", new AutonCG_crossTheLine());
-		//autonSelector.addObject("mid gear",new AutonCG_midGear());
-	//	autonSelector.addObject("Red Gear Left", new _DoNothing());
-//		autonSelector.addObject("Red Gear Middle", new _DoNothing());
-		//autonSelector.addObject("Red Gear Right", new _DoNothing());
-	//	autonSelector.addObject("Shoot 40 Red", new _DoNothing());
-//		autonSelector.addObject("Blue Gear Left", new _DoNothing());
-		//autonSelector.addObject("Blue Gear Middle", new _DoNothing());
-		//autonSelector.addObject("Blue Gear Right", new _DoNothing());
-	//	autonSelector.addObject("Shoot 40 Blue", new _DoNothing());
-		
-		
-	//	autonomousCommand = (PIDCommand) autonSelector.getSelected();
-		
+		autonSelector.addObject("Cross The Line", new AutonCG_crossTheLine());
 	
+		autonSelector.addObject("Cross The Line Test", new AutonCG_CrossTest());
+
 	}
 	
 	/**
@@ -165,7 +154,9 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-	
+		Robot.fuelShooter.stopMotors();
+		Robot.hopperWings.retract();
+		Robot.fuelIntake.stopIntake();
 		if (autonomousCommand != null) autonomousCommand.cancel();
 		
 		allInit();
