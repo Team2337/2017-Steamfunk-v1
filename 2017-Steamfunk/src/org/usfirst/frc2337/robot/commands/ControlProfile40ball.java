@@ -40,7 +40,7 @@ public class ControlProfile40ball extends Command {
     protected void initialize() {
     	//talonLeft.enableBrakeMode(false);
     	//talonRight.enableBrakeMode(false);
-    /*
+    	/*
     	talonLeftMiddle.changeControlMode(TalonControlMode.PercentVbus);
     	//talonLeftMiddle.enableBrakeMode(false);
     	talonRightMiddle.changeControlMode(TalonControlMode.PercentVbus);

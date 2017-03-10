@@ -49,7 +49,7 @@ public class Chassis_targetWithGyro extends PIDCommand {
 		if(Math.abs(output) < turnDeadband) {
 			output = (output > 0 ? turnDeadband: -turnDeadband);
 		}
-		Robot.chassis.arcadeDrive(0, -output);
+		Robot.chassis.arcadeDrive(0, output);
 		//RobotMap.chassisPIDchassisLeft1.set(-output);
 	}
 	
@@ -62,7 +62,7 @@ public class Chassis_targetWithGyro extends PIDCommand {
 		double angle = -boilerVision.getAngle(); //Get angle from VisionProcessing class (with defined object)
 		this.hasCon = boilerVision.hasContours(); //Does it have any contours? (just making sure so we don't in circles)
 		if (Math.abs(angle) <  7 ) { //Change pid because lower angle needs more power
-			this.getPIDController().setPID(0.08, 0.00025, 0.002);
+			this.getPIDController().setPID(0.08, 0.00025, 0.002);   //0.08, 0.00025, 0.002
 			System.out.println("VISION:");
 		} else {
 			this.getPIDController().setPID(0.035, 0.00025, 0.002); 
