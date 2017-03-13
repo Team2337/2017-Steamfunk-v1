@@ -24,8 +24,11 @@ public class Constants {
 	public final double kFuelShooter_airshipShotSpeedRight = 10.45;
 	
 	
-	public final double kFuelShooter_autonRedHopperShotSpeedLeft = 8.6;
-	public final double kFuelShooter_autonRedHopperShotSpeedRight = 8.65;
+	public final double kFuelShooter_autonRedHopperShotSpeedLeft = 8.875;		//First Kettering Match = 8.6  //8.75 // 8.825
+	public final double kFuelShooter_autonRedHopperShotSpeedRight = 8.975;	//First Kettering Match = 8.65    //8.85 // was 8.9 //8.925
+	
+	public final double kFuelShooter_autonBlueHopperShotSpeedLeft = 8.925;		//First Kettering Match = 8.6  //8.75
+	public final double kFuelShooter_autonBlueHopperShotSpeedRight = 9.075;	//First Kettering Match = 8.85
 	
 	
 	public final double kFuelShooter_halfSpeed = 6.0;
@@ -43,7 +46,7 @@ public class Constants {
 	public final double kFuelIntakeArm_RetractTime = 1.0;
 	
 	/* Targeting/Vision */
-	public final double kTargetingCamera_UpdaterTimeout = 5;
+	public final double kTargetingCamera_UpdaterTimeout = 3;
 	public final double kTargetingCamera_Deadband = 10;
 	public final double kTargetingCamera_TurnSpeed = 0.4;
 	
@@ -62,7 +65,7 @@ public class Constants {
 	public final double kTargetingCamera_ObjectHeight = 82;
 	public final double kTargetingCamera_WidthBetweenTarget = 8.4;
 	public final double kTargetingCamera_AngleConstant = 3.4;
-	public final double kTargetingCamera_CenterConstant = 85; //36		
+	public final double kTargetingCamera_CenterConstant = 77; //36		
 	
 	public final double kTargetingCamera_DistanceInchesMax = 86;
 	public final double kTargetingCamera_DistanceInchesMin = 131;
@@ -72,7 +75,7 @@ public class Constants {
 	
 	/* Fuel Feeder */
 	public final double kFeeder_DefaultEnableSpeed = .5;
-	public final double kFeeder_AutonDefaultEnableSpeed = .5;
+	public final double kFeeder_AutonDefaultEnableSpeed = .7; 
 	public final double kFeeder_DefaultReverseSpeed = .7; //Speed is reversed later in code, set absolute value of desired speed.
 	
 	public final boolean kFeeder_Detectjams = true;		// Determines whether or not to use jam prevention

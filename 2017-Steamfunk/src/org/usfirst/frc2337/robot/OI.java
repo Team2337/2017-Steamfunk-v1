@@ -108,7 +108,7 @@ public class OI {
 	Joystick				operatorControls		= new Joystick(2);
 	
 	
-	public OI() {
+	public OI() {														
 
 		driver_GreenA			.whenPressed(new _DoNothing()); //Near give maneuver
 		driver_RedB				.whenPressed(new _DoNothing()); //Far gear maneuver

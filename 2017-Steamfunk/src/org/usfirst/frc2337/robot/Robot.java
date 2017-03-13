@@ -224,6 +224,7 @@ public class Robot extends IterativeRobot {
 			SmartDashboard.putBoolean("onTarget", false);
 		}
 		SmartDashboard.putData("Auton Selector", autonSelector);
+		SmartDashboard.putNumber("joystick power", Robot.oi.driverJoystick.getRawAxis(4));
 		/*
 		if (OI.driverJoystick.getRawButton(3)) {
 			fuelShooterLED.visionLEDState(true);

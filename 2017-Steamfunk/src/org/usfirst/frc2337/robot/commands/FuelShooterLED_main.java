@@ -43,7 +43,7 @@ public class FuelShooterLED_main extends Command {
 			
 			//If both shooters are off, disable all LED's running
 			if(Math.abs(RobotMap.shooterCANTalonRight.getOutputVoltage()) < 0.1 && Math.abs(RobotMap.shooterCANTalonLeft.getOutputVoltage()) < 0.1)
-				Robot.fuelShooterLED.visionLEDState(false);//Make false 
+				Robot.fuelShooterLED.visionLEDState(true);//Make false 
 			
 		} catch (Exception e) {
 			System.out.println(e);

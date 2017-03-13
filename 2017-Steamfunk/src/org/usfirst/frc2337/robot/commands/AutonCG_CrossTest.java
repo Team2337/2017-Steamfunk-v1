@@ -15,9 +15,9 @@ public class AutonCG_CrossTest extends CommandGroup {
 	
     public AutonCG_CrossTest() {
    
-    	
+    	addParallel(new FuelShooter_speedSet(-Robot.constants.kFuelShooter_autonRedHopperShotSpeedLeft, Robot.constants.kFuelShooter_autonRedHopperShotSpeedRight));
     	addSequential(new ControlProfile40ball());
-
+    	
     	
     }
 }

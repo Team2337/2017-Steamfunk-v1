@@ -18,10 +18,10 @@ public class AutonCG_40Ballerblue extends CommandGroup {
     	
     	addSequential(new ControlProfile40ball());
     	addSequential(new FuelIntakeArm_extend());
-    	addParallel(new FuelShooter_speedSet(-Robot.constants.kFuelShooter_autonRedHopperShotSpeedLeft, Robot.constants.kFuelShooter_autonRedHopperShotSpeedRight));
+    	addParallel(new FuelShooter_speedSet(-Robot.constants.kFuelShooter_autonBlueHopperShotSpeedLeft, Robot.constants.kFuelShooter_autonBlueHopperShotSpeedRight));
     	//Driverstation.Alliance CurrentSide = ;
     	//if (Robot.AllianceColor == DriverStation.Alliance.Blue) {
-    		addSequential(new Auton_driveRightWheel(-.8, 1.5));
+    		addSequential(new Auton_driveRightWheel(-.8, 1.3)); // was 1.5 
     		System.out.println("Blue");
     		SmartDashboard.putString("Side:", "blue");
     	//} else { 
@@ -34,20 +34,20 @@ public class AutonCG_40Ballerblue extends CommandGroup {
     	//addSequential(new Auton_wait(.8));
     	
     	addSequential(new Auton_wait(.2));
-    	
-    	addSequential(new Auton_driveForTime(-.5,0, .5));
-    	addSequential(new HopperWings_extend());
-    	addSequential(new Auton_wait(.2));
+    	addParallel(new AutonHopperWings_extend());
+    	addSequential(new Auton_driveForTime(-.5, 0, 0.5));
+    	//addSequential(new HopperWings_extend());
+    	//addSequential(new Auton_wait(.2));
     	//addParallel(new Chassis_targetWithGyro()); // need 
     	
-    	addSequential(new Auton_wait(.5));
+    	//addSequential(new Auton_wait(.5));
     	addParallel(new FuelIntake_enabledReverse()); //XXX using Reverse on practicerobot, switch back to Forward, use Reverse for comp bot
     	addParallel(new FuelFeeder_setSpeedTimed(-Robot.constants.kFeeder_DefaultEnableSpeed,7));
     	//
     	   	
-    	addSequential(new Auton_wait(6));
+    	addSequential(new Auton_wait(5.5));
     	addSequential(new FuelIntakeArm_retract());
-    	addSequential(new Auton_wait(3));
+    	//addSequential(new Auton_wait(3));
     	//addSequential(new FuelShooter_stopShooters());
     	 
     	//addSequential(new HopperWings_retract());

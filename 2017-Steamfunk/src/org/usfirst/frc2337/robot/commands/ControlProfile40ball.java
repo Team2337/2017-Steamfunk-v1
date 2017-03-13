@@ -28,7 +28,7 @@ public class ControlProfile40ball extends Command {
 	 public CANTalon talonRightRear = RobotMap.chassisPID_rightRear;
 	 public MotionProfileManagerLeft40ball leftTalonManager = RobotMap.leftManager40ball;
 	 public MotionProfileManagerRight40ball rightTalonManager = RobotMap.rightManager40ball;
-	 double timeout = 3.5;
+	 double timeout = 2.9; // was 3.5 DATE 3-10-17 KETTERING MATCH 2 was 3 kettering match 6 
 
     public ControlProfile40ball() {
 
@@ -62,7 +62,7 @@ public class ControlProfile40ball extends Command {
     	//talonLeft.setP(.0338);
     	//talonLeft.setP(.1);
     	talonLeft.setP(.018);
-    	
+    
     	
     	talonRight.changeControlMode(TalonControlMode.MotionProfile);
     	rightTalonManager.startMotionProfile();
