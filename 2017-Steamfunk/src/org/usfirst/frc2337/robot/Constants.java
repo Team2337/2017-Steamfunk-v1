@@ -19,6 +19,9 @@ public class Constants {
 	public final double kFuelShooter_DefaultSpeed = 0.7;
 	public final double kFuelShooter_IncrementSpeed = 0.05;
 	
+	public final double kFuelShooterLeft_RPMHopperShot = 50;
+	public final double kFuelShooterRight_RPMHopperShot = 50;
+	
 	/* Fuel Intake */
 	public final double kFuelIntake_DefaultSpeed = 1.0;
 	public final double kFuelIntake_IncrementSpeed = 0.05;

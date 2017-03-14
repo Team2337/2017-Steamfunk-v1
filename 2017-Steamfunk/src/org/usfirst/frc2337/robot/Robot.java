@@ -204,5 +204,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Encoder position1", RobotMap.chassisPID_leftFront.getPosition());
 		SmartDashboard.putNumber("Encoder position2", RobotMap.chassisPID_rightFront.getPosition());
 		
+		SmartDashboard.putNumber("Shooter Encoder", RobotMap.fuelShooter_motorLeft.getEncVelocity());
+		
 	}
 }

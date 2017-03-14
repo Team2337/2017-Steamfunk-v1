@@ -59,6 +59,7 @@ public class RobotMap {
     public static DigitalInput ballSensor;
     public static MotionProfileManagerLeft leftManager;
     public static MotionProfileManagerRight rightManager;
+    public static Encoder dualShooterEncoder;
 
     public static void init() {
     	
@@ -145,6 +146,7 @@ public class RobotMap {
         fuelShooter_motorRight.setInverted(true);
         LiveWindow.addActuator("FuelShooter", "fuelShooterRight", fuelShooter_motorRight);
         
+        dualShooterEncoder = new Encoder(1,1);
         
         //Fuel Sensor
         ballSensor = new DigitalInput(1);
