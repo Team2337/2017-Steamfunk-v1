@@ -29,6 +29,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class FuelFeeder extends Subsystem {
    private final CANTalon fuelFeederLeft = RobotMap.fuelFeederLeft;
    private final CANTalon fuelFeederRight = RobotMap.fuelFeederRight;
+   private final CANTalon fuelShooterRight = RobotMap.shooterCANTalonRight;
+   private final CANTalon fuelShooterLeft = RobotMap.shooterCANTalonLeft;
    
    double currentSpeed = Robot.constants.kFeeder_DefaultEnableSpeed;
    double speed = Robot.constants.kFeeder_DefaultEnableSpeed;
@@ -69,5 +71,10 @@ public class FuelFeeder extends Subsystem {
 		fuelFeederLeft.getBusVoltage();
     	fuelFeederRight.getBusVoltage();
 	}
-}
+	
+	public void lockFeeder(){
+		fuelFeederRight.set(0);
+		fuelFeederLeft.set(0)
+	}
+	}
 
