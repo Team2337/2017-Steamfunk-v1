@@ -37,10 +37,10 @@ public class FuelShooterLED_main extends Command {
 				//Turn everything for that side on & vision
 				Robot.fuelShooterLED.rightLEDState(true);
 				Robot.fuelShooterLED.visionLEDState(true);
-				Robot.fuelFeeder.lockFeeder();
+				Robot.fuelFeeder.lockFeeder(false);
 			} else {
 				Robot.fuelShooterLED.rightLEDState(false);
-				Robot.fuelFeeder.unlockFeeder();
+				Robot.fuelFeeder.unlockFeeder(true);
 			}
 			
 			//If both shooters are off, disable all LED's running

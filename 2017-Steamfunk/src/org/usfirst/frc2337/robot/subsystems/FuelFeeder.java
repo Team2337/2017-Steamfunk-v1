@@ -35,6 +35,7 @@ public class FuelFeeder extends Subsystem {
    double currentSpeed = Robot.constants.kFeeder_DefaultEnableSpeed;
    double speed = Robot.constants.kFeeder_DefaultEnableSpeed;
    double reverseSpeed = Robot.constants.kFeeder_DefaultReverseSpeed;
+   boolean lockingFeeder = false;
    
 
     
@@ -72,9 +73,15 @@ public class FuelFeeder extends Subsystem {
     	fuelFeederRight.getBusVoltage();
 	}
 	
-	public void lockFeeder(){
-		fuelFeederRight.set(0);
-		fuelFeederLeft.set(0)
+	public void lockFeeder(boolean state){
+		lockingFeeder = false;
+		
 	}
+	
+	public void unlockFeeder(boolean state){
+	lockingFeeder = true;
+	
+	}
+	
 	}
 
