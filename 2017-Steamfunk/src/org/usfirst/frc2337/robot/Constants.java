@@ -23,6 +23,7 @@ public class Constants {
 	public final double kFuelShooter_airshipShotSpeedLeft = 10.15;
 	public final double kFuelShooter_airshipShotSpeedRight = 10.45;
 	
+    public final double kFuelShooterFeeder_triggerSpeed = 8.1;
 	
 	public final double kFuelShooter_autonRedHopperShotSpeedLeft = 8.875;		//First Kettering Match = 8.6  //8.75 // 8.825
 	public final double kFuelShooter_autonRedHopperShotSpeedRight = 8.975;	//First Kettering Match = 8.65    //8.85 // was 8.9 //8.925

@@ -3,6 +3,7 @@ package org.usfirst.frc2337.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc2337.robot.OI;
 import org.usfirst.frc2337.robot.Robot;
 import org.usfirst.frc2337.robot.RobotMap;
 
@@ -59,13 +60,12 @@ public class FuelFeeder_forward extends Command {
 					augerLeft.set(-speed);
 
 					if (augerLeft.getOutputCurrent() > preventJamCurrentTolerance) {
-						//System.out.println("LEFT === I'M JAMMED");
+						// System.out.println("LEFT === I'M JAMMED");
 						noJamsLeft = false;
 						i = 0;
 					}
 				} else {
-					augerLeft.set(-
-							preventJamSpeed);
+					augerLeft.set(-preventJamSpeed);
 					System.out.println(i + "\t I'M JAMMED");
 					if (i > (50 * preventJamDuration)) {
 						noJamsLeft = true;
@@ -78,7 +78,7 @@ public class FuelFeeder_forward extends Command {
 					augerRight.set(speed);
 
 					if (augerRight.getOutputCurrent() > preventJamCurrentTolerance) {
-						//System.out.println("RIGHT === I'M JAMMED");
+						// System.out.println("RIGHT === I'M JAMMED");
 						noJamsRight = false;
 						f = 0;
 					}
@@ -95,8 +95,11 @@ public class FuelFeeder_forward extends Command {
 				// output the current
 			}
 		} else {
-			augerRight.set(speed);
-			augerLeft.set(-speed);
+			if (RobotMap.shooterCANTalonRight.getOutputVoltage() > Robot.constants.kFuelShooterFeeder_triggerSpeed
+					|| !OI.operatorControls.getRawButton(18)) {
+				augerRight.set(speed);
+				augerLeft.set(-speed);
+			}
 		}
 	}
 

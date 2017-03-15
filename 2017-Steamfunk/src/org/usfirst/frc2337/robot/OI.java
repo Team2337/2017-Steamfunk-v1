@@ -105,7 +105,17 @@ public class OI {
 	//drivers station
 	
 	
-	Joystick				operatorControls		= new Joystick(2);
+	public static Joystick				operatorControls		= new Joystick(2);
+	/*
+	JoystickButton 			BlackButton 			= new JoystickButton(operatorJoystick, 11);
+	JoystickButton 			BlueButton				= new JoystickButton(operatorJoystick, 12);
+    JoystickButton 			yellowButton			= new JoystickButton(operatorJoystick, 13);
+    JoystickButton 			whiteButton				= new JoystickButton(operatorJoystick, 14);
+    JoystickButton 			clearSwitch				= new JoystickButton(operatorJoystick, 15);
+    JoystickButton 			blueSwitch				= new JoystickButton(operatorJoystick, 16);
+    JoystickButton 			blackSwitch				= new JoystickButton(operatorJoystick, 17);
+    */
+    JoystickButton 			yellowSwitch			= new JoystickButton(operatorJoystick, 18);
 	
 	
 	public OI() {														
