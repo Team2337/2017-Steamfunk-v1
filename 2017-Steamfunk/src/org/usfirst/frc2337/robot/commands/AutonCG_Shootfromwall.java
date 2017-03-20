@@ -14,13 +14,19 @@ public class AutonCG_Shootfromwall extends CommandGroup {
     	
     	
     	
-    	
-    	addParallel(new FuelShooter_speedSet(-Robot.constants.kFuelShooter_hopperShotSpeedLeft, Robot.constants.kFuelShooter_hopperShotSpeedRight));
-    	addSequential(new Auton_wait(1));
-    	addParallel(new FuelFeeder_setSpeedTimed(-Robot.constants.kFeeder_DefaultEnableSpeed,10));
-   
-    	addSequential(new Auton_wait(10));
+    	//addSequential(new Auton_wait(5));
+    	//addParallel(new FuelShooter_speedSet(0, Robot.constants.kFuelShooter_autonMidGearShotSpeedRight));
+    	addParallel(new FuelShooter_speedSet(Robot.constants.kFuelShooter_autonMidGearShotSpeedLeft,0));
+    	//Both Shooters
+    	//addParallel(new FuelShooter_speedSet(Robot.constants.kFuelShooter_autonMidGearShotSpeedLeft, Robot.constants.kFuelShooter_autonMidGearShotSpeedRight));
+    	addSequential(new Auton_wait4Shooter(10));
+    	//addParallel(new FuelFeeder_right(.5, .7));
+    	addParallel(new FuelFeeder_left(.5, .7));
+    	//Both SHooters
+    	//addParallel(new FuelFeeder_setSpeedTimed(-Robot.constants.kFeeder_AutonDefaultEnableSpeed,90));
+    	addSequential(new Auton_wait(90));
     	addSequential(new FuelShooter_stopShooters());
+    	
     	
     	//addSequential(new )
     	

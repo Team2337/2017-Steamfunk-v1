@@ -10,11 +10,11 @@ public class FuelShooter_speedSet extends Command {
 	
 	double speedLeft;
 	double speedRight;
-	
+	/*
 	public FuelShooter_speedSet() {
 		requires(Robot.fuelShooter);
     }
-	
+	*/
     public FuelShooter_speedSet(double speedLeft, double speedRight) {
 		requires(Robot.fuelShooter);
 		

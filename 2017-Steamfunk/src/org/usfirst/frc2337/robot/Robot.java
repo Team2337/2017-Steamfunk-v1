@@ -59,7 +59,8 @@ public class Robot extends IterativeRobot {
 
 		/* Create all robot components*/
 		RobotMap.init();
-		RobotMap.startCamera();
+		RobotMap.startCamera_Vision();
+		RobotMap.startCamera_Gear();
 		
 		/* Create all Subsystems */
 		chassis = new Chassis();
@@ -93,14 +94,17 @@ public class Robot extends IterativeRobot {
 		//autonSelector.addObject("Mid gear with encoder", new AutonCG_midGearencoder());
 	
 		//autonSelector.addDefault("Turn 90", new Auton_DFGwE(0.5,20000,5));
+		autonSelector.addObject("Shoot then Mid gear ", new Auton_shootThenMidGear());
 		autonSelector.addObject("mid Gear with motion pro ", new AutonCG_midGear());
 		autonSelector.addObject("40 ball red ", new AutonCG_40Baller());
 		autonSelector.addObject("40 ball blue ", new AutonCG_40Ballerblue());
-		autonSelector.addObject("shoot 10 and mid gear  ", new AutonCG_Shoot10MidGearRed());
+		//autonSelector.addObject("shoot 10 and mid gear  ", new AutonCG_Shoot10MidGearRed());
 		
 		autonSelector.addObject("Cross The Line", new AutonCG_crossTheLine());
 	
 		autonSelector.addObject("Cross The Line Test", new AutonCG_CrossTest());
+		
+
 
 	}
 	
@@ -183,7 +187,7 @@ public class Robot extends IterativeRobot {
 	 * This function is called during all init functions except robotInit().
 	 */
 	public void allInit() {
-		RobotMap.restartCamera();
+		RobotMap.setCamera_Vision();
 	}
 	/**
 	 * This function is called during all periodic functions.
@@ -213,6 +217,13 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("constant",  RobotMap.boilerVision.DISTANCE_CONSTANT);
 		SmartDashboard.putNumber("AverageCenter",  RobotMap.boilerVision.getAverageCenter());
 		SmartDashboard.putNumber("AverageArea",  RobotMap.boilerVision.getAverageArea());
+		
+        SmartDashboard.putNumber("Shooter 1 closedLoopError", RobotMap.shooterCANTalonLeft.getClosedLoopError());
+        SmartDashboard.putNumber("Shooter 2 closedLoopError", RobotMap.shooterCANTalonRight.getClosedLoopError());
+        SmartDashboard.putNumber("Shooter 1 Error", RobotMap.shooterCANTalonLeft.getError());
+        SmartDashboard.putNumber("Shooter 2 Error", RobotMap.shooterCANTalonRight.getError());
+        SmartDashboard.putNumber("Get Shooter1 Speed", RobotMap.shooterCANTalonLeft.getSpeed());
+        SmartDashboard.putNumber("Get Shooter2 Speed", RobotMap.shooterCANTalonRight.getSpeed());
 		
 		SmartDashboard.putNumber("yaw", RobotMap.chassisPID_gyro.getYaw());
 		if (OI.driverJoystick.getRawButton(3)) {

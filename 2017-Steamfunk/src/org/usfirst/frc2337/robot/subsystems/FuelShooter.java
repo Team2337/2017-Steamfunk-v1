@@ -39,8 +39,8 @@ public class FuelShooter extends Subsystem {
 	 * Updates Speed via SmartDashboard
 	 */
 	public void updateSpeed() {
-		shooterMotorLeft.set(currentSpeed);
-		shooterMotorRight.set(currentSpeed);
+		shooterMotorLeft.setSetpoint(currentSpeed);
+		shooterMotorRight.setSetpoint(currentSpeed);
 		SmartDashboard.putNumber("Shooter Speed:", currentSpeed);
 	}
 	/**
@@ -48,8 +48,8 @@ public class FuelShooter extends Subsystem {
 	 * @param speed Sets speed of shooter
 	 */
 	public void setVoltage(double speedLeft, double speedRight) {
-		shooterMotorLeft.set(speedLeft);
-		shooterMotorRight.set(speedRight);
+		shooterMotorLeft.setSetpoint(speedLeft);
+		shooterMotorRight.setSetpoint(speedRight);
 	}
 	    
 	/**
@@ -58,36 +58,36 @@ public class FuelShooter extends Subsystem {
 	public void stopMotors() {
 		shooterMotorLeft.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		shooterMotorRight.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
-		shooterMotorLeft.changeControlMode(CANTalon.TalonControlMode.Voltage);
-		shooterMotorRight.changeControlMode(CANTalon.TalonControlMode.Voltage);
+		shooterMotorLeft.changeControlMode(CANTalon.TalonControlMode.Speed);
+		shooterMotorRight.changeControlMode(CANTalon.TalonControlMode.Speed);
 	}
 	/**
 	 * Increase RPM of Left Shooter
 	 */ 
 	public void increaseShooterLeft() {
     	//currentSpeed =+100;
-		shooterMotorLeft.set(shooterMotorLeft.get() + .1);
+		shooterMotorLeft.setSetpoint(shooterMotorLeft.get() + 25);
 	}
 	/**
 	 * Decrease RPM of Left Shooter
 	 */
 	public void decreaseShooterLeft() {
 	    	//currentSpeed =-100;
-		shooterMotorLeft.set(shooterMotorLeft.get() - .1);
+		shooterMotorLeft.setSetpoint(shooterMotorLeft.get() - 25);
 	}
 	/**
 	 * Increase RPM of Right Shooter
 	 */    
 	public void increaseShooterRight() {
 	    	//currentSpeed =+100;
-		shooterMotorRight.set(shooterMotorRight.get() + .1);
+		shooterMotorRight.setSetpoint(shooterMotorRight.get() + 25);
 	}
 	/**
 	 * Decrease RPM of Right Shooter
 	 */
 	public void decreaseShooterRight() {
 	    	//currentSpeed =-100;
-		shooterMotorRight.set(shooterMotorRight.get() - .1);	
+		shooterMotorRight.setSetpoint(shooterMotorRight.get() - 25);	
 	}
 	/**
 	 * Turns relay on
