@@ -73,14 +73,14 @@ public class FuelShooter extends Subsystem {
 	 */
 	public void decreaseShooterLeft() {
 	    	//currentSpeed =-100;
-		shooterMotorLeft.setSetpoint(shooterMotorLeft.get() - 25);
+		shooterMotorLeft.setSetpoint(shooterMotorLeft.get() - 75);
 	}
 	/**
 	 * Increase RPM of Right Shooter
 	 */    
 	public void increaseShooterRight() {
 	    	//currentSpeed =+100;
-		shooterMotorRight.setSetpoint(shooterMotorRight.get() + 25);
+		shooterMotorRight.setSetpoint(shooterMotorRight.get() + 125);
 	}
 	/**
 	 * Decrease RPM of Right Shooter

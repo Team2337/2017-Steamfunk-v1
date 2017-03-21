@@ -19,11 +19,11 @@ public class Constants {
 	/* Fuel Shooter */
 	//public final double kFuelShooter_hopperShotSpeedLeft = 8.7;  //8.9  comp  //8.7 prac //9.0 pract //8.5
 	//public final double kFuelShooter_hopperShotSpeedRight = 8.95; //9.25 comp  //9.25 prac //9.5 pracc  //8.75
-	public final double kFuelShooter_hopperShotSpeedLeft = 3075;
-	public final double kFuelShooter_hopperShotSpeedRight =	3175;
+	public final double kFuelShooter_hopperShotSpeedLeft = 3075;   //  3075
+	public final double kFuelShooter_hopperShotSpeedRight =	3175;  //  3175
 	
-	public final double kFuelShooter_autonMidGearShotSpeedLeft = 3800;
-	public final double kFuelShooter_autonMidGearShotSpeedRight =	4300;
+	public final double kFuelShooter_autonMidGearShotSpeedLeft = 2990;
+	public final double kFuelShooter_autonMidGearShotSpeedRight =	3205;
 	
 	
 	public final double kFuelShooter_airshipShotSpeedLeft = 10.15;
@@ -71,7 +71,7 @@ public class Constants {
 	public final double kTargetingCamera_ObjectHeight = 82;
 	public final double kTargetingCamera_WidthBetweenTarget = 8.4;
 	public final double kTargetingCamera_AngleConstant = 3.4;
-	public final double kTargetingCamera_CenterConstant = 77; //36		
+	public final double kTargetingCamera_CenterConstant = 81; //36	// COMP BOT IS 77 	
 	
 	public final double kTargetingCamera_DistanceInchesMax = 86;
 	public final double kTargetingCamera_DistanceInchesMin = 131;

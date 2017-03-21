@@ -35,7 +35,7 @@ public class Chassis_targetWithGyro extends PIDCommand {
 		super("ChassisPID_gyroAngleTargeting", 0.035, 0.00035, 0.0022); //0.056, 0.00025, 0.002
 		getPIDController().setContinuous(true);
 		getPIDController().setAbsoluteTolerance(2);//0.5
-        getPIDController().setOutputRange(-1, 1); //0.6
+        getPIDController().setOutputRange(-.8, .8); //0.6
         getPIDController().setInputRange(-25, 25);
         requires(Robot.chassis);
        // LiveWindow.addActuator("TargetPID", "PIDSubsystem Controller", getPIDController());
@@ -70,6 +70,9 @@ public class Chassis_targetWithGyro extends PIDCommand {
 		}
 		this.setSetpoint(angle); //Go to that angle
 		//Use smartdashboard for P (to see)
+		getPIDController().enable();
+		
+		
 		SmartDashboard.putNumber("VISION:PID_P", this.getPIDController().getP());
 		SmartDashboard.putNumber("VISION:ANGLE", angle);
 		SmartDashboard.putBoolean("VISION:CONTOURS?", this.hasCon);
@@ -77,14 +80,16 @@ public class Chassis_targetWithGyro extends PIDCommand {
 
 	protected void execute() {
 		//DO NOTHING (ever)
+		SmartDashboard.putNumber("VISION:Error", this.getPIDController().getError());
 	}
 
 	protected boolean isFinished() {
 		//If it times out, gets on target or has NO contours, we end it
-		return (isTimedOut() || getPIDController().onTarget());
+		return (isTimedOut() || getPIDController().onTarget() || !this.hasCon);
 	}
 
 	protected void end() {
+		
 		if (!hasCon) {
 			System.out.println("[Vision] Failed: No contours");
 		} else {

@@ -60,7 +60,7 @@ public class Robot extends IterativeRobot {
 		/* Create all robot components*/
 		RobotMap.init();
 		RobotMap.startCamera_Vision();
-		RobotMap.startCamera_Gear();
+		//RobotMap.startCamera_Gear();
 		
 		/* Create all Subsystems */
 		chassis = new Chassis();
@@ -123,7 +123,7 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public void autonomousInit() {
-		//allInit();
+		allInit();
 		AllianceColor = DriverStation.getInstance().getAlliance();
 		RobotMap.chassisPID_gyro.reset();
 		RobotMap.chassisPID_leftFront.setEncPosition(0);
