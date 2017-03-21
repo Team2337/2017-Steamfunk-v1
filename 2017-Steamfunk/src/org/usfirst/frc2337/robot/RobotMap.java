@@ -9,6 +9,7 @@ import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
 
 import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoSink;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -62,6 +63,8 @@ public class RobotMap {
     public static CANTalon fuelFeederLeft;
     
 	public static UsbCamera cam0;
+	public static UsbCamera cam1;
+	public static VideoSink server;
 	public static VisionProcessing boilerVision;
 	public static Relay shooterLight;
 	
@@ -71,6 +74,8 @@ public class RobotMap {
 	public static MotionProfileManagerRight40ball rightManager40ball;
 	public static MotionProfileManagerLeft40ball leftManager40ball;
 	public static DriverStation.Alliance AllianceColor;
+	
+	public static boolean camera_toggle = false;
 	
     public static void init() {
     	//CONSTANTS FILE
@@ -218,27 +223,42 @@ public class RobotMap {
         
     }
     /**
-     * Starts the Camera
+     * Starts the Camera for Vision
      */
-    public static void startCamera() {
-    	Constants con = Robot.constants;
+    public static void startCameras() {
 		try {
 			cam0 = CameraServer.getInstance().startAutomaticCapture("cam0", "/dev/video0");
-			int exposure = (int) con.kTargetingCamera_Exposure;
-			int brightness = (int) con.kTargetingCamera_Brightness;
-			cam0.setBrightness(brightness);
-			cam0.setExposureManual(exposure);
+			cam1 = CameraServer.getInstance().startAutomaticCapture("cam1", "/dev/video1");
+			server = CameraServer.getInstance().getVideo();
+			
 		} catch (Exception e) {
-			System.out.println(e);
+			//System.out.println(e);
 		}
     }
     /**
-     * Restarts Camera 
+     * Sets Camera parameters for Vision
      */
-    public static void restartCamera() {
-    	startCamera();
-    }
+    public static void setCameraParameters() {
+    	Constants con = Robot.constants;
+    	int exposure = (int) con.kTargetingCamera_Exposure;
+		int brightness = (int) con.kTargetingCamera_Brightness;
+		cam0.setBrightness(brightness);
+		cam0.setExposureManual(exposure);
+	}
     
+    public static void switchCameras() {
+    	if (camera_toggle == false) {
+    		camera_toggle = true;
+    		server.setSource(cam0);
+    		System.out.println("CAMERA 0 ");
+    	} else {
+    	   camera_toggle = false;
+    	   server.setSource(cam1);
+    	   System.out.println("CAMERA 1");
+    	}
+    	
+    }
+   
     
 }
 

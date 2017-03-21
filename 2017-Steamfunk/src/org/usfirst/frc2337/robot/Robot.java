@@ -59,7 +59,9 @@ public class Robot extends IterativeRobot {
 
 		/* Create all robot components*/
 		RobotMap.init();
-		RobotMap.startCamera();
+		RobotMap.startCameras();
+
+
 		
 		/* Create all Subsystems */
 		chassis = new Chassis();
@@ -183,7 +185,8 @@ public class Robot extends IterativeRobot {
 	 * This function is called during all init functions except robotInit().
 	 */
 	public void allInit() {
-		RobotMap.restartCamera();
+		//RobotMap.restartCamera_Vision();
+		RobotMap.setCameraParameters();
 	}
 	/**
 	 * This function is called during all periodic functions.
@@ -225,14 +228,14 @@ public class Robot extends IterativeRobot {
 		}
 		SmartDashboard.putData("Auton Selector", autonSelector);
 		SmartDashboard.putNumber("joystick power", Robot.oi.driverJoystick.getRawAxis(4));
-		/*
+		
 		if (OI.driverJoystick.getRawButton(3)) {
-			fuelShooterLED.visionLEDState(true);
+			RobotMap.switchCameras();
 		}
 		if (OI.driverJoystick.getRawButton(2)) {
-			fuelShooterLED.visionLEDState(false);
+			RobotMap.setCameraParameters();
 		}
-		*/
+		
 	}
 }
 

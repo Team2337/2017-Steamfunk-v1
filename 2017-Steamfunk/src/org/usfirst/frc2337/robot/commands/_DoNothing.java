@@ -1,5 +1,6 @@
 package org.usfirst.frc2337.robot.commands;
 
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -13,6 +14,7 @@ public class _DoNothing extends Command {
 
 	// Called just before this Command runs the first time
     protected void initialize() {
+    	CameraServer.getInstance().removeServer("cam0");
     }
 
     // Called repeatedly when this Command is scheduled to run
