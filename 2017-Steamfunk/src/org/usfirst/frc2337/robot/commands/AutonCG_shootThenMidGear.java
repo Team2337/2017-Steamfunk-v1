@@ -4,9 +4,9 @@ import org.usfirst.frc2337.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class Auton_shootThenMidGear extends CommandGroup {
+public class AutonCG_shootThenMidGear extends CommandGroup {
 	
-	public Auton_shootThenMidGear() {
+	public AutonCG_shootThenMidGear() {
 		
 		addSequential(new Auton_resetGyro());
 		//shoot on
