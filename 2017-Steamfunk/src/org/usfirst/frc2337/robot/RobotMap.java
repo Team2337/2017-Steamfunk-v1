@@ -298,11 +298,15 @@ public class RobotMap {
     	Constants con = Robot.constants;
     	int exposure = (int) con.kGearCamera_Exposure;
 		int brightness = (int) con.kGearCamera_Brightness;
-		cameraGear.setResolution(320, 240);
-		cameraGear.setFPS(15);
+		cameraGear.setResolution(160, 120);
+		cameraGear.setFPS(25);
+		//cameraGear.setWhiteBalanceManual(value);
 		
-		//cameraGear.setBrightness(brightness);
-		//cameraGear.setExposureManual(exposure);
+		cameraGear.setBrightness(70);
+		cameraGear.setExposureManual(150);
+		//contrast = 200
+		//sharpness = 50
+		//saturation = 255
     }
     
     

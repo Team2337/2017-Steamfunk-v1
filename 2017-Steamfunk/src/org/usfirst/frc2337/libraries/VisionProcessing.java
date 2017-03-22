@@ -41,6 +41,7 @@ public class VisionProcessing {
 	public static double[] defaultValue = new double[0];	
 
 	public NetworkTable table;
+	
 	/*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
 	
 	/**
@@ -50,6 +51,7 @@ public class VisionProcessing {
 	 */
 	public VisionProcessing(String table) {
 		this.table = NetworkTable.getTable(table);
+		
 	}
 	/**
 	 * Set the offset of camera from ground (in inches)

@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * @author Team 2337
  *
  */
-public class Chassis_targetWithGyro extends PIDCommand {
+public class Auton_targetWithGyro extends PIDCommand {
 	double[] defaultValue = new double[0];	
 
 	double deadband = Robot.constants.kTargetingCamera_Deadband;
@@ -29,7 +29,7 @@ public class Chassis_targetWithGyro extends PIDCommand {
 	public VisionProcessing boilerVision = RobotMap.boilerVision;
 	public boolean hasCon = false;
 	
-	public Chassis_targetWithGyro() {
+	public Auton_targetWithGyro() {
 		//chassis_TargetWithGyroPID(String name, double p, double i, double d)
 		
 		super("ChassisPID_gyroAngleTargeting", 0.035, 0.00035, 0.0022); //0.056, 0.00025, 0.002
