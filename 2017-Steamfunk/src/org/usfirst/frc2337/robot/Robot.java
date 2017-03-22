@@ -94,7 +94,7 @@ public class Robot extends IterativeRobot {
 		//autonSelector.addObject("Mid gear with encoder", new AutonCG_midGearencoder());
 	
 		//autonSelector.addDefault("Turn 90", new Auton_DFGwE(0.5,20000,5));
-		autonSelector.addObject("Shoot then Mid gear ", new Auton_shootThenMidGear());
+		autonSelector.addObject("Shoot then Mid gear ", new AutonCG_shootThenMidGear());
 		autonSelector.addObject("mid Gear with motion pro ", new AutonCG_midGear());
 		autonSelector.addObject("40 ball red ", new AutonCG_40Baller());
 		autonSelector.addObject("40 ball blue ", new AutonCG_40Ballerblue());
