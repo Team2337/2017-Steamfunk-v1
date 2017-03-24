@@ -144,14 +144,15 @@ public class RobotMap {
 		shooterCANTalonLeft.reverseOutput(true);  ///????
 		shooterCANTalonLeft.setInverted(false);    //uncommented
 		shooterCANTalonLeft.enableBrakeMode(false);
-		shooterCANTalonLeft.changeMotionControlFramePeriod(5);
+		//shooterCANTalonLeft.changeMotionControlFramePeriod(5);
 		shooterCANTalonLeft.configNominalOutputVoltage(+0.0f, -0.0f);  //changed from 9, 0
 		shooterCANTalonLeft.configPeakOutputVoltage(0, -12.0f);  //changed from 12, 0
 		shooterCANTalonLeft.setProfile(0);
-		shooterCANTalonLeft.setP(0.1662);
+		shooterCANTalonLeft.setP(0.21372);		//Was 40%, shot low with dual shot
 		shooterCANTalonLeft.setI(0); 
 		shooterCANTalonLeft.setD(0); 
-		shooterCANTalonLeft.setF(0.035764566369491); 
+		shooterCANTalonLeft.setF(0.034833); 		//  0.035764566369491,  034533
+		shooterCANTalonLeft.setAllowableClosedLoopErr(10);
 		
 		/*		
         shooterCANTalonRight = new CANTalon(9);
@@ -170,10 +171,12 @@ public class RobotMap {
         shooterCANTalonRight.configPeakOutputVoltage(12.0, 0);  //changed from 12, 0
         shooterCANTalonRight.enableBrakeMode(false);
         shooterCANTalonRight.setProfile(0);
-        shooterCANTalonRight.setP(0.0474);
+        shooterCANTalonRight.setP(0.21372);		//was 40%, shot low with dual shot
         shooterCANTalonRight.setI(0); 
         shooterCANTalonRight.setD(0); 
-        shooterCANTalonRight.setF(0.030764566369491); //0.035764566369491
+        shooterCANTalonRight.setF(0.034664566369491); //0.035764566369491 (Over),  0.030764566369491 (Under), 0.033764566369491(Over by 20), 0.033364566369491(Recover Bad), 0.033564566369491(Pretty good)
+        shooterCANTalonRight.setAllowableClosedLoopErr(10);
+        
         
 		//SHOOTER LIGHT
         shooterLight = new Relay(0, Relay.Direction.kForward);
