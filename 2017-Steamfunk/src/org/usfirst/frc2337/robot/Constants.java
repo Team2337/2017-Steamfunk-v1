@@ -82,7 +82,7 @@ public class Constants {
 	public final double kGearCamera_Exposure = 1.0;
 	public final double kGearCamera_Brightness = 1.0;
 	/* Fuel Feeder */
-	public final double kFeeder_DefaultEnableSpeed = .7;
+	public final double kFeeder_DefaultEnableSpeed = .5;
 	public final double kFeeder_AutonDefaultEnableSpeed = .7; 
 	public final double kFeeder_DefaultReverseSpeed = .7; //Speed is reversed later in code, set absolute value of desired speed.
 	
