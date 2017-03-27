@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.command.PIDCommand;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -48,6 +49,9 @@ public class Robot extends IterativeRobot {
 	Command autonomousCommand;
 	SendableChooser<Command> autonSelector; //<Command> autonSelector;//
 
+	
+
+	
 	public static Alliance AllianceColor;
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -59,8 +63,7 @@ public class Robot extends IterativeRobot {
 
 		/* Create all robot components*/
 		RobotMap.init();
-		RobotMap.startCamera_Vision();
-		RobotMap.startCamera_Gear();
+		RobotMap.cameraStart();
 		
 		/* Create all Subsystems */
 		chassis = new Chassis();
@@ -124,6 +127,7 @@ public class Robot extends IterativeRobot {
 	
 	public void autonomousInit() {
 		allInit();
+		RobotMap.switchToCamVision();
 		AllianceColor = DriverStation.getInstance().getAlliance();
 		RobotMap.chassisPID_gyro.reset();
 		RobotMap.chassisPID_leftFront.setEncPosition(0);
@@ -164,6 +168,8 @@ public class Robot extends IterativeRobot {
 		if (autonomousCommand != null) autonomousCommand.cancel();
 		
 		allInit();
+		RobotMap.switchToCamGear();
+		
 	}
 	
 	/**'
@@ -175,6 +181,7 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 		RobotMap.leftManager.control();
 		RobotMap.rightManager.control();
+
 	}
 	/**
 	 * This function is called periodically during test mode
@@ -224,6 +231,7 @@ public class Robot extends IterativeRobot {
         SmartDashboard.putNumber("Shooter 2 Error", RobotMap.shooterCANTalonRight.getError());
         SmartDashboard.putNumber("Get Shooter1 Speed", RobotMap.shooterCANTalonLeft.getSpeed());
         SmartDashboard.putNumber("Get Shooter2 Speed", RobotMap.shooterCANTalonRight.getSpeed());
+
 		
 		SmartDashboard.putNumber("yaw", RobotMap.chassisPID_gyro.getYaw());
 		if (OI.driverJoystick.getRawButton(3)) {

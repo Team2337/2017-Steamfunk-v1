@@ -19,8 +19,8 @@ public class Constants {
 	/* Fuel Shooter */
 	//public final double kFuelShooter_hopperShotSpeedLeft = 8.7;  //8.9  comp  //8.7 prac //9.0 pract //8.5
 	//public final double kFuelShooter_hopperShotSpeedRight = 8.95; //9.25 comp  //9.25 prac //9.5 pracc  //8.75
-	public final double kFuelShooter_hopperShotSpeedLeft = 3090;   //  3075
-	public final double kFuelShooter_hopperShotSpeedRight =	3175;  //  3175
+	public final double kFuelShooter_hopperShotSpeedLeft = 3065;   //  3075
+	public final double kFuelShooter_hopperShotSpeedRight =	3150;  //  3175
 	
 	public final double kFuelShooter_autonMidGearShotSpeedLeft = 2990;
 	public final double kFuelShooter_autonMidGearShotSpeedRight =	3205;

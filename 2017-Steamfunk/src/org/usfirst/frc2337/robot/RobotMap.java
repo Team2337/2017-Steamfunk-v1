@@ -10,6 +10,7 @@ import com.ctre.CANTalon.TalonControlMode;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoMode;
+import edu.wpi.cscore.VideoSink;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -21,6 +22,7 @@ import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -64,6 +66,7 @@ public class RobotMap {
     
 	public static UsbCamera cameraVision;
 	public static UsbCamera cameraGear;
+	public static VideoSink camServer;
 	public static VisionProcessing boilerVision;
 	public static Relay shooterLight;
 	
@@ -147,12 +150,17 @@ public class RobotMap {
 		//shooterCANTalonLeft.changeMotionControlFramePeriod(5);
 		shooterCANTalonLeft.configNominalOutputVoltage(+0.0f, -0.0f);  //changed from 9, 0
 		shooterCANTalonLeft.configPeakOutputVoltage(0, -12.0f);  //changed from 12, 0
+		shooterCANTalonLeft.DisableNominalClosedLoopVoltage();
+		shooterCANTalonLeft.setNominalClosedLoopVoltage(12);
 		shooterCANTalonLeft.setProfile(0);
-		shooterCANTalonLeft.setP(0.21372);		//Was 40%, shot low with dual shot
+		shooterCANTalonLeft.setP(0.2137);		//Was 40%, shot low with dual shot
 		shooterCANTalonLeft.setI(0); 
 		shooterCANTalonLeft.setD(0); 
-		shooterCANTalonLeft.setF(0.034833); 		//  0.035764566369491,  034533
+		shooterCANTalonLeft.setF(0.033633); 		//  0.035764566369491,  034533,  0.034533
 		shooterCANTalonLeft.setAllowableClosedLoopErr(10);
+
+		
+		
 		
 		/*		
         shooterCANTalonRight = new CANTalon(9);
@@ -169,13 +177,16 @@ public class RobotMap {
         //shooterCANTalon2.setInverted(false);    //uncommented
         shooterCANTalonRight.configNominalOutputVoltage(+0.0f, -0.0f);  //changed from 9, 0
         shooterCANTalonRight.configPeakOutputVoltage(12.0, 0);  //changed from 12, 0
+        shooterCANTalonRight.DisableNominalClosedLoopVoltage();
+        shooterCANTalonRight.setNominalClosedLoopVoltage(12);
         shooterCANTalonRight.enableBrakeMode(false);
         shooterCANTalonRight.setProfile(0);
-        shooterCANTalonRight.setP(0.21372);		//was 40%, shot low with dual shot
+        shooterCANTalonRight.setP(0.2137);		//was 40%, shot low with dual shot
         shooterCANTalonRight.setI(0); 
         shooterCANTalonRight.setD(0); 
-        shooterCANTalonRight.setF(0.034664566369491); //0.035764566369491 (Over),  0.030764566369491 (Under), 0.033764566369491(Over by 20), 0.033364566369491(Recover Bad), 0.033564566369491(Pretty good)
+        shooterCANTalonRight.setF(0.033164); //0.035764566369491 (Over),  0.030764566369491 (Under), 0.033764566369491(Over by 20), 0.033364566369491(Recover Bad), 0.033564566369491(Pretty good) ,  034664566369491  crap
         shooterCANTalonRight.setAllowableClosedLoopErr(10);
+
         
         
 		//SHOOTER LIGHT
@@ -262,20 +273,29 @@ public class RobotMap {
     /**
      * Starts the Camera
      */
-    public static void startCamera_Vision() {
+    public static void cameraStart() {
 		try {
-			cameraVision = CameraServer.getInstance().startAutomaticCapture("cam0", "/dev/video0");			RobotMap.setCamera_Vision();
-	    	Constants con = Robot.constants;
-	    	int exposure = (int) con.kTargetingCamera_Exposure;
-			int brightness = (int) con.kTargetingCamera_Brightness;
-			cameraVision.setBrightness(brightness);
-			cameraVision.setExposureManual(exposure);
+			cameraVision = CameraServer.getInstance().startAutomaticCapture("cam0", "/dev/video0");	
+			cameraGear = CameraServer.getInstance().startAutomaticCapture("cam1", "/dev/video1");
+			camServer  = CameraServer.getInstance().getVideo();
+			
+			
+			//RobotMap.setCamera_Vision();
+			//RobotMap.setCamera_Gear();
 		} catch (Exception e) {
 			System.out.println(e);
 		}
     }
-    /**
-     * Restarts Camera 
+    public static void switchToCamGear() {
+    	RobotMap.setCamera_Gear();
+    	camServer.setSource(cameraGear);
+    }
+    public static void switchToCamVision() {
+    	RobotMap.setCamera_Vision();
+    	camServer.setSource(cameraVision);
+    }
+    /** 
+     * Set Vision Camera Params
      */
     public static void setCamera_Vision() {
     	Constants con = Robot.constants;
@@ -284,18 +304,8 @@ public class RobotMap {
 		cameraVision.setBrightness(brightness);
 		cameraVision.setExposureManual(exposure);
     }
-    
-    public static void startCamera_Gear() {
-    	Constants con = Robot.constants;
-		try {
-			cameraGear = CameraServer.getInstance().startAutomaticCapture("cam1", "/dev/video1");
-			
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-    }
     /**
-     * Restarts Camera 
+     * Set Gear Camera params 
      */
     public static void setCamera_Gear() {
     	Constants con = Robot.constants;
@@ -304,7 +314,8 @@ public class RobotMap {
 		cameraGear.setResolution(160, 120);
 		cameraGear.setFPS(25);
 		//cameraGear.setWhiteBalanceManual(value);
-		
+		NetworkTable gearTable = NetworkTable.getTable("CameraPublisher/cam1/RawProperty/");
+		gearTable.putNumber("exposure_absolute", 200);
 		cameraGear.setBrightness(70);
 		cameraGear.setExposureManual(150);
 		//contrast = 200

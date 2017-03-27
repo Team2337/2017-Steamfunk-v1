@@ -1,6 +1,7 @@
 package org.usfirst.frc2337.robot.commands;
 
 import org.usfirst.frc2337.robot.Robot;
+import org.usfirst.frc2337.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -17,6 +18,7 @@ public class FuelShooter_stopShooters extends Command {
 	protected void initialize() {
 		Robot.fuelShooter.stopMotors();
 		Robot.fuelShooter.lightOff();
+		RobotMap.switchToCamGear();
 	}
 		
 	// Called repeatedly when this Command is scheduled to run

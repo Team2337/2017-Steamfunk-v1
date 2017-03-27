@@ -211,16 +211,16 @@ public class VisionProcessing {
 			    double thiscenter = getAverageCenter();
 				if (thiscenter > CENTER_OF_CONTOURS) {
 				 turnAngle = (thiscenter - CENTER_OF_CONTOURS) * -1;
-				 System.out.println("thiscenter: " + thiscenter + " Minus " + CENTER_OF_CONTOURS + " Times -1 = " + turnAngle);
+				// System.out.println("thiscenter: " + thiscenter + " Minus " + CENTER_OF_CONTOURS + " Times -1 = " + turnAngle);
 				 
 				} else {
 				 turnAngle = (CENTER_OF_CONTOURS - thiscenter) * 1;	
-				 System.out.println("thiscenter: " + CENTER_OF_CONTOURS + " Minus " + thiscenter + " Times 1 = " + turnAngle);
+				// System.out.println("thiscenter: " + CENTER_OF_CONTOURS + " Minus " + thiscenter + " Times 1 = " + turnAngle);
 				}
 					
 				angleToGoal = turnAngle/ANGLE_CONSTANT;
 				
-				System.out.println("turnAngle: " + turnAngle + "divided by " + ANGLE_CONSTANT + " equals angle to goal " + -angleToGoal);
+				//System.out.println("turnAngle: " + turnAngle + "divided by " + ANGLE_CONSTANT + " equals angle to goal " + -angleToGoal);
 				//System.out.println("ANGLE TO GOAL:" + angleToGoal);
 				//System.out.println("TURN ANGLE:" + turnAngle);
 				//System.out.println("AVG CENTER" + getAverageCenter() + "    |    CENTER OF CONTOURS:" + CENTER_OF_CONTOURS);

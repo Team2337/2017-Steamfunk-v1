@@ -91,7 +91,7 @@ public class Chassis_targetWithGyro extends PIDCommand {
 	protected void end() {
 		
 		if (!hasCon) {
-			System.out.println("[Vision] Failed: No contours");
+		//	System.out.println("[Vision] Failed: No contours");
 		} else {
 			System.out.println("[Vision] Done" + RobotMap.chassisPID_gyro.getYaw());	
 		}
