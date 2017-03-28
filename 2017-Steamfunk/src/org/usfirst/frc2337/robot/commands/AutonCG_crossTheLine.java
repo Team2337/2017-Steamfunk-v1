@@ -16,7 +16,7 @@ public class AutonCG_crossTheLine extends CommandGroup {
     addSequential(new Auton_wait(0));
     addSequential(new Auton_resetGyro());
     addSequential(new Auton_wait(0));
-   addSequential(new Auton_driveForwardGyroWithEncoderPID(26500,6));
+   addSequential(new Auton_driveForTime(.8,0,5));
     
     
     }
