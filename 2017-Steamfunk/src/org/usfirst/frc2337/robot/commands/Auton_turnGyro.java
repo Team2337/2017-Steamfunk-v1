@@ -1,6 +1,8 @@
 package org.usfirst.frc2337.robot.commands;
 
 import edu.wpi.first.wpilibj.command.PIDCommand;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.usfirst.frc2337.robot.Robot;
 import org.usfirst.frc2337.robot.RobotMap;
 
@@ -11,8 +13,8 @@ import org.usfirst.frc2337.robot.RobotMap;
 public class Auton_turnGyro extends PIDCommand {
 	
 	double turnValue, targetAngle, leftJoystick;
-	private static double timeout = 3;
-	private static double turnDeadBand = 0.32;   ///maybe 0 for this drivetrain?
+	private static double timeout = 1.5;
+	private static double turnDeadBand = 0.34;   ///maybe 0 for this drivetrain?
 	/**
 	 *  turn to an angle 
 	 *  @param angle 
@@ -20,17 +22,22 @@ public class Auton_turnGyro extends PIDCommand {
 	 */
     public Auton_turnGyro(double angle) {
 
-        super("Auton_turnGyro3", 0.015, 0.0, 0.007);
+        
+        super("Auton_turnGyro", 0.012, 0.0000, 0.0); // d was 0.007 p was 0.01 for 80
         getPIDController().setContinuous(true);
-        getPIDController().setAbsoluteTolerance(1);
-        getPIDController().setOutputRange(-.7, .7);
+        getPIDController().setAbsoluteTolerance(.3);
+        getPIDController().setOutputRange(-1, 1);
+        getPIDController().setInputRange(-179.9, 179.9);
+
 
        requires(Robot.chassis);
-       
+       this.targetAngle = angle;
+       /*
        targetAngle = RobotMap.chassisPID_gyro.getYaw()+angle;
        if (targetAngle > 360) {
     	   targetAngle = targetAngle - 360;
        }
+       */
 
     }
     
@@ -42,12 +49,13 @@ public class Auton_turnGyro extends PIDCommand {
         getPIDController().setOutputRange(-.5, .5);
 
        requires(Robot.chassis);
-       
+       this.targetAngle = angle;
+       /*
        targetAngle = RobotMap.chassisPID_gyro.getYaw()+angle;
        if (targetAngle > 360) {
     	   targetAngle = targetAngle - 360;
        }
-       
+       */
        this.timeout = time;
 
     }
@@ -72,6 +80,8 @@ public class Auton_turnGyro extends PIDCommand {
 		//RobotMap.chassisPID_RobotDrive.arcadeDrive(0,output);
 		Robot.chassis.arcadeDrive(0, output);
 		//Robot.chassis.arcadeDrive(0, output);	
+		SmartDashboard.putNumber("Turn PID Error", getPIDController().getError() );
+		 
     }
 
     // Called just before this Command runs the first time

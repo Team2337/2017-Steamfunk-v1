@@ -46,6 +46,10 @@ public class Constants {
 	 
 	  public final double kFuelShooter_airshipShotSpeedLeftRPM = 3400;
 	  public final double kFuelShooter_airshipShotSpeedRightRPM = 3480;
+	  
+	  public final double kFuelShooter_autonMidGearShotSpeedLeft = 2990;
+	  public final double kFuelShooter_autonMidGearShotSpeedRight =  3205;
+	 
 	
 	
 	public final double kFuelShooter_halfSpeed = 6.0;

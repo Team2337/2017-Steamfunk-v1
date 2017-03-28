@@ -88,19 +88,15 @@ public class Robot extends IterativeRobot {
 		 ///autonomousCommand = new Auton_turnGyro3(90);
 		
 		autonSelector = new SendableChooser <Command>();
-		autonSelector.addObject("Do Nothing", new _DoNothing());
-		autonSelector.addDefault("Shoot from wall", new AutonCG_Shootfromwall());
-		//autonSelector.addObject("Mid gear with encoder", new AutonCG_midGearencoder());
-	
-		//autonSelector.addDefault("Turn 90", new Auton_DFGwE(0.5,20000,5));
-		autonSelector.addObject("mid Gear with motion pro ", new AutonCG_midGear());
+		autonSelector.addDefault("Do Nothing", new _DoNothing());
+		//autonSelector.addDefault("Shoot from wall", new AutonCG_Shootfromwall());
+		autonSelector.addObject("Mid Gear then shoot Blue ", new AutonCG_midGearThenShotBlueSide());
+		autonSelector.addObject("Mid Gear then shoot Red ", new AutonCG_midGearThenShotRedSide());
 		autonSelector.addObject("40 ball red ", new AutonCG_40Baller());
 		autonSelector.addObject("40 ball blue ", new AutonCG_40Ballerblue());
-		autonSelector.addObject("shoot 10 and mid gear  ", new AutonCG_Shoot10MidGearRed());
-		
+		//autonSelector.addObject("Shoot 10 and mid gear  ", new AutonCG_Shoot10MidGearRed());
 		autonSelector.addObject("Cross The Line", new AutonCG_crossTheLine());
 	
-		autonSelector.addObject("Cross The Line Test", new AutonCG_CrossTest());
 
 	}
 	
