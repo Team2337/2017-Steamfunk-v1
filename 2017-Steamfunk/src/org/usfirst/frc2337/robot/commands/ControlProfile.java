@@ -26,7 +26,7 @@ public class ControlProfile extends Command {
 	 public CANTalon talonRightRear = RobotMap.chassisPID_rightRear;
 	 public MotionProfileManagerLeft leftTalonManager = RobotMap.leftManager;
 	 public MotionProfileManagerRight rightTalonManager = RobotMap.rightManager;
-	 double timeout = 4;
+	 double timeout = 3;
 
     public ControlProfile() {
 
@@ -56,14 +56,14 @@ public class ControlProfile extends Command {
     	talonLeft.changeControlMode(TalonControlMode.MotionProfile);
     	leftTalonManager.startMotionProfile();
     	talonLeft.setF(0.1023);
-    	talonLeft.setP(.2);
+    	talonLeft.setP(.08);  ///  was .2
     	
     	
     	
     	talonRight.changeControlMode(TalonControlMode.MotionProfile);
     	rightTalonManager.startMotionProfile();
     	talonRight.setF(0.1023);
-    	talonRight.setP(.2);
+    	talonRight.setP(.08);///  was .2
 	
 
     	
@@ -96,12 +96,12 @@ public class ControlProfile extends Command {
     	//RobotMap.shooterCANTalon1.set(0);
     	talonLeft.changeControlMode(TalonControlMode.PercentVbus);
     	talonLeft.setVoltageCompensationRampRate(24.0);
-    	talonLeft.set(0);// change for - .20
+    	//talonLeft.set(0);// change for - .20
     	talonLeft.enableBrakeMode(true);
     	
     	talonRight.changeControlMode(TalonControlMode.PercentVbus);
     	talonRight.setVoltageCompensationRampRate(24.0);
-    	talonRight.set(0);// change for - .20
+    	//talonRight.set(0);// change for - .20
     	talonRight.enableBrakeMode(true);
     	talonLeftMiddle.changeControlMode(TalonControlMode.Follower);
     	talonLeftMiddle.set(talonLeft.getDeviceID());

@@ -34,6 +34,8 @@ public class FuelIntake extends Subsystem {
 
 
     public void initDefaultCommand() {
+    	//setDefaultCommand(new FuelIntake_setSpeedwithTrigger());
+    
        
     }
     /**

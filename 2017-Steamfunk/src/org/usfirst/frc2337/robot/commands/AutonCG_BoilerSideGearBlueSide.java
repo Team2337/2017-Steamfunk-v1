@@ -8,15 +8,19 @@ import org.usfirst.frc2337.robot.Robot;
 /**
  *
  */
-public class AutonCG_midGear extends CommandGroup {
+public class AutonCG_BoilerSideGearBlueSide extends CommandGroup {
 	
-    public AutonCG_midGear() {
+    public AutonCG_BoilerSideGearBlueSide() {
     	
     	addSequential(new Auton_resetGyro());
     	addSequential(new ControlProfile());
     	addSequential(new Auton_wait(.2));
+    	//addSequential()
+    	addSequential(new Auton_wait(1));
     	addSequential(new GearLoader_extend());
     	addSequential(new Auton_wait(1));
+    	
+    	/*
     	addParallel(new FuelShooter_speedSet(Robot.constants.kFuelShooter_autonMidGearShotSpeedLeft, Robot.constants.kFuelShooter_autonMidGearShotSpeedRight));
     	
     	addSequential(new Auton_wait(.4));
@@ -41,7 +45,7 @@ public class AutonCG_midGear extends CommandGroup {
     	addParallel(new FuelFeeder_setSpeedTimed(-Robot.constants.kFeeder_AutonDefaultEnableSpeed,10));
     	addSequential(new Auton_driveForTime(0, 0, .5));
     	//addSequential(new Auton_wait(1));
-    	
+    	*/
     	
     	
     	

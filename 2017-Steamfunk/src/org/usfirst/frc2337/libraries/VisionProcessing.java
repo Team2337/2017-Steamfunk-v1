@@ -41,6 +41,7 @@ public class VisionProcessing {
 	public static double[] defaultValue = new double[0];	
 
 	public NetworkTable table;
+	
 	/*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
 	
 	/**
@@ -50,6 +51,7 @@ public class VisionProcessing {
 	 */
 	public VisionProcessing(String table) {
 		this.table = NetworkTable.getTable(table);
+		
 	}
 	/**
 	 * Set the offset of camera from ground (in inches)
@@ -172,6 +174,7 @@ public class VisionProcessing {
 			}
 		}
 		return center;
+		
 	}
 	/**
 	 * Gets distance from calculating the length between contours
@@ -205,20 +208,23 @@ public class VisionProcessing {
 			//Do we have two contours? (top/bottom or left/right)
 			if(center.length == 2){ 
 				double turnAngle;
-				if (getAverageCenter() > CENTER_OF_CONTOURS) {
-				 turnAngle = (getAverageCenter() - CENTER_OF_CONTOURS) * -1;			
-				} else {
-				 turnAngle = (CENTER_OF_CONTOURS - getAverageCenter()) * 1;	
+			    double thiscenter = getAverageCenter();
+				if (thiscenter > CENTER_OF_CONTOURS) {
+				 turnAngle = (thiscenter - CENTER_OF_CONTOURS) * -1;
+				// System.out.println("thiscenter: " + thiscenter + " Minus " + CENTER_OF_CONTOURS + " Times -1 = " + turnAngle);
 				 
+				} else {
+				 turnAngle = (CENTER_OF_CONTOURS - thiscenter) * 1;	
+				// System.out.println("thiscenter: " + CENTER_OF_CONTOURS + " Minus " + thiscenter + " Times 1 = " + turnAngle);
 				}
 					
 				angleToGoal = turnAngle/ANGLE_CONSTANT;
-				/*
 				
-				System.out.println("ANGLE TO GOAL:" + angleToGoal);
-				System.out.println("TURN ANGLE:" + turnAngle);
-				System.out.println("AVG CENTER" + getAverageCenter() + "    |    CENTER OF CONTOURS:" + CENTER_OF_CONTOURS);
-			*/
+				//System.out.println("turnAngle: " + turnAngle + "divided by " + ANGLE_CONSTANT + " equals angle to goal " + -angleToGoal);
+				//System.out.println("ANGLE TO GOAL:" + angleToGoal);
+				//System.out.println("TURN ANGLE:" + turnAngle);
+				//System.out.println("AVG CENTER" + getAverageCenter() + "    |    CENTER OF CONTOURS:" + CENTER_OF_CONTOURS);
+			
 			}
 		}
 		

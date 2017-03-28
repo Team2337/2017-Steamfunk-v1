@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * @author Team 2337
  *
  */
-public class Chassis_targetWithGyro extends PIDCommand {
+public class Chassis_targetWithGyroAndDrive extends PIDCommand {
 	double[] defaultValue = new double[0];	
 
 	double deadband = Robot.constants.kTargetingCamera_Deadband;
@@ -23,22 +23,24 @@ public class Chassis_targetWithGyro extends PIDCommand {
 	
 	double setPoint, turnValue, targetAngle;
 	public double mainCenter;
-
-	
+	double speed;
+	double output;
 	public double turnDeadband = 0.5;//32-38-  //0.4
 	public VisionProcessing boilerVision = RobotMap.boilerVision;
 	public boolean hasCon = false;
 	
-	public Chassis_targetWithGyro() {
+	public Chassis_targetWithGyroAndDrive(double speed, double timeout) {
 		//chassis_TargetWithGyroPID(String name, double p, double i, double d)
 		
-		super("ChassisPID_gyroAngleTargeting", 0.035, 0.00035, 0.0022); //0.056, 0.00025, 0.002
+		super("ChassisPID_gyroAngleTargeting", 0.004, 0.000, 0.0022); //0.056, 0.00025, 0.002  /0.035 for p  //0.00035 for i
 		getPIDController().setContinuous(true);
 		getPIDController().setAbsoluteTolerance(2);//0.5
         getPIDController().setOutputRange(-1, 1); //0.6
         getPIDController().setInputRange(-25, 25);
         requires(Robot.chassis);
        // LiveWindow.addActuator("TargetPID", "PIDSubsystem Controller", getPIDController());
+        this.speed = speed;
+        this.timeout = timeout;
         
 	}
 	
@@ -50,8 +52,9 @@ public class Chassis_targetWithGyro extends PIDCommand {
 		if(Math.abs(output) < turnDeadband) {
 			output = (output > 0 ? turnDeadband: -turnDeadband);
 		}
-		Robot.chassis.arcadeDrive(0, output);
+		this.output = output;
 		//RobotMap.chassisPIDchassisLeft1.set(-output);
+		Robot.chassis.arcadeDrive(speed, output);
 	}
 	
 	protected void initialize() {
@@ -70,28 +73,24 @@ public class Chassis_targetWithGyro extends PIDCommand {
 		}
 		this.setSetpoint(angle); //Go to that angle
 		//Use smartdashboard for P (to see)
-		getPIDController().enable();
-		
-		
 		SmartDashboard.putNumber("VISION:PID_P", this.getPIDController().getP());
 		SmartDashboard.putNumber("VISION:ANGLE", angle);
 		SmartDashboard.putBoolean("VISION:CONTOURS?", this.hasCon);
 	}
 
 	protected void execute() {
+		
 		//DO NOTHING (ever)
-		SmartDashboard.putNumber("VISION:Error", this.getPIDController().getError());
 	}
 
 	protected boolean isFinished() {
 		//If it times out, gets on target or has NO contours, we end it
-		return (isTimedOut() || getPIDController().onTarget() || !this.hasCon);
+		return (isTimedOut() );
 	}
 
 	protected void end() {
-		
 		if (!hasCon) {
-		//	System.out.println("[Vision] Failed: No contours");
+			System.out.println("[Vision] Failed: No contours");
 		} else {
 			System.out.println("[Vision] Done" + RobotMap.chassisPID_gyro.getYaw());	
 		}

@@ -9,6 +9,8 @@ import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
 
 import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoMode;
+import edu.wpi.cscore.VideoSink;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -20,6 +22,7 @@ import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -61,7 +64,9 @@ public class RobotMap {
     public static CANTalon fuelFeederRight;
     public static CANTalon fuelFeederLeft;
     
-	public static UsbCamera cam0;
+	public static UsbCamera cameraVision;
+	public static UsbCamera cameraGear;
+	public static VideoSink camServer;
 	public static VisionProcessing boilerVision;
 	public static Relay shooterLight;
 	
@@ -128,17 +133,61 @@ public class RobotMap {
 		rightManager40ball = new MotionProfileManagerRight40ball(chassisPID_rightFront);
 		
 		//FUEL SHOOTERS
+		/*
 		shooterCANTalonLeft = new CANTalon(8);  //8 
 		shooterCANTalonLeft.changeControlMode(TalonControlMode.Voltage);
 		shooterCANTalonLeft.setVoltageCompensationRampRate(24.0);
 		shooterCANTalonLeft.reverseOutput(true);
 		shooterCANTalonLeft.getBusVoltage();
-				
+		*/
+		shooterCANTalonLeft = new CANTalon(8);
+		shooterCANTalonLeft.changeControlMode(TalonControlMode.Speed);
+		shooterCANTalonLeft.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+		shooterCANTalonLeft.reverseSensor(true);  
+		shooterCANTalonLeft.reverseOutput(true);  ///????
+		shooterCANTalonLeft.setInverted(false);    //uncommented
+		shooterCANTalonLeft.enableBrakeMode(false);
+		//shooterCANTalonLeft.changeMotionControlFramePeriod(5);
+		shooterCANTalonLeft.configNominalOutputVoltage(+0.0f, -0.0f);  //changed from 9, 0
+		shooterCANTalonLeft.configPeakOutputVoltage(0, -12.0f);  //changed from 12, 0
+		shooterCANTalonLeft.DisableNominalClosedLoopVoltage();
+		shooterCANTalonLeft.setNominalClosedLoopVoltage(12);
+		shooterCANTalonLeft.setProfile(0);
+		shooterCANTalonLeft.setP(0.2137);		//Was 40%, shot low with dual shot
+		shooterCANTalonLeft.setI(0); 
+		shooterCANTalonLeft.setD(0); 
+		shooterCANTalonLeft.setF(0.033633); 		//  0.035764566369491,  034533,  0.034533
+		shooterCANTalonLeft.setAllowableClosedLoopErr(10);
+
+		
+		
+		
+		/*		
         shooterCANTalonRight = new CANTalon(9);
         shooterCANTalonRight.changeControlMode(TalonControlMode.Voltage);
         shooterCANTalonRight.setVoltageCompensationRampRate(24.0);
         shooterCANTalonRight.getBusVoltage();
         shooterCANTalonRight.reverseOutput(false);
+        */
+		
+        shooterCANTalonRight = new CANTalon(9);
+        shooterCANTalonRight.changeControlMode(TalonControlMode.Speed);
+        shooterCANTalonRight.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+        shooterCANTalonRight.reverseSensor(true);  
+        //shooterCANTalon2.setInverted(false);    //uncommented
+        shooterCANTalonRight.configNominalOutputVoltage(+0.0f, -0.0f);  //changed from 9, 0
+        shooterCANTalonRight.configPeakOutputVoltage(12.0, 0);  //changed from 12, 0
+        shooterCANTalonRight.DisableNominalClosedLoopVoltage();
+        shooterCANTalonRight.setNominalClosedLoopVoltage(12);
+        shooterCANTalonRight.enableBrakeMode(false);
+        shooterCANTalonRight.setProfile(0);
+        shooterCANTalonRight.setP(0.2137);		//was 40%, shot low with dual shot
+        shooterCANTalonRight.setI(0); 
+        shooterCANTalonRight.setD(0); 
+        shooterCANTalonRight.setF(0.033164); //0.035764566369491 (Over),  0.030764566369491 (Under), 0.033764566369491(Over by 20), 0.033364566369491(Recover Bad), 0.033564566369491(Pretty good) ,  034664566369491  crap
+        shooterCANTalonRight.setAllowableClosedLoopErr(10);
+
+        
         
 		//SHOOTER LIGHT
         shooterLight = new Relay(0, Relay.Direction.kForward);
@@ -152,12 +201,16 @@ public class RobotMap {
         // FUEL INTAKE ARM
 		fuelIntakeArm_solenoid = new DoubleSolenoid(0, 0, 1); 
 		
+		shooterCANTalonLeft.setCloseLoopRampRate(3);
+		shooterCANTalonRight.setCloseLoopRampRate(3);
+		
+		
 		//ON-TARGET LED's
 		//VISION LED
         visionLED = new Solenoid(1, 0);
-		shooterLeftLed = new Solenoid(1, 1);
+        shooterRightLed = new Solenoid(1, 1);
 		shooterCenterLed = new Solenoid(1, 2);
-		shooterRightLed = new Solenoid(1, 3);
+		shooterLeftLed = new Solenoid(1, 3);
 		
 		//ROPE CLIMBER
         ropeClimberscaleMotorLeft = new CANTalon(10);
@@ -220,23 +273,54 @@ public class RobotMap {
     /**
      * Starts the Camera
      */
-    public static void startCamera() {
-    	Constants con = Robot.constants;
+    public static void cameraStart() {
 		try {
-			cam0 = CameraServer.getInstance().startAutomaticCapture("cam0", "/dev/video0");
-			int exposure = (int) con.kTargetingCamera_Exposure;
-			int brightness = (int) con.kTargetingCamera_Brightness;
-			cam0.setBrightness(brightness);
-			cam0.setExposureManual(exposure);
+			cameraVision = CameraServer.getInstance().startAutomaticCapture("cam0", "/dev/video0");	
+			cameraGear = CameraServer.getInstance().startAutomaticCapture("cam1", "/dev/video1");
+			camServer  = CameraServer.getInstance().getVideo();
+			
+			
+			//RobotMap.setCamera_Vision();
+			//RobotMap.setCamera_Gear();
 		} catch (Exception e) {
 			System.out.println(e);
 		}
     }
-    /**
-     * Restarts Camera 
+    public static void switchToCamGear() {
+    	RobotMap.setCamera_Gear();
+    	camServer.setSource(cameraGear);
+    }
+    public static void switchToCamVision() {
+    	RobotMap.setCamera_Vision();
+    	camServer.setSource(cameraVision);
+    }
+    /** 
+     * Set Vision Camera Params
      */
-    public static void restartCamera() {
-    	startCamera();
+    public static void setCamera_Vision() {
+    	Constants con = Robot.constants;
+    	int exposure = (int) con.kTargetingCamera_Exposure;
+		int brightness = (int) con.kTargetingCamera_Brightness;
+		cameraVision.setBrightness(brightness);
+		cameraVision.setExposureManual(exposure);
+    }
+    /**
+     * Set Gear Camera params 
+     */
+    public static void setCamera_Gear() {
+    	Constants con = Robot.constants;
+    	int exposure = (int) con.kGearCamera_Exposure;
+		int brightness = (int) con.kGearCamera_Brightness;
+		cameraGear.setResolution(160, 120);
+		cameraGear.setFPS(25);
+		//cameraGear.setWhiteBalanceManual(value);
+		NetworkTable gearTable = NetworkTable.getTable("CameraPublisher/cam1/RawProperty/");
+		gearTable.putNumber("exposure_absolute", 200);
+		cameraGear.setBrightness(70);
+		cameraGear.setExposureManual(150);
+		//contrast = 200
+		//sharpness = 50
+		//saturation = 255
     }
     
     

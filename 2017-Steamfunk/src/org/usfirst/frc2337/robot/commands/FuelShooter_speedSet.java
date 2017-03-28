@@ -1,5 +1,6 @@
 package org.usfirst.frc2337.robot.commands;
 import org.usfirst.frc2337.robot.Robot;
+import org.usfirst.frc2337.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -10,11 +11,11 @@ public class FuelShooter_speedSet extends Command {
 	
 	double speedLeft;
 	double speedRight;
-	
+	/*
 	public FuelShooter_speedSet() {
 		requires(Robot.fuelShooter);
     }
-	
+	*/
     public FuelShooter_speedSet(double speedLeft, double speedRight) {
 		requires(Robot.fuelShooter);
 		
@@ -26,6 +27,7 @@ public class FuelShooter_speedSet extends Command {
     protected void initialize() {
     	Robot.fuelShooter.setVoltage(speedLeft, speedRight);
     	Robot.fuelShooter.lightOn();
+    	RobotMap.switchToCamVision();
     }
 
     // Called repeatedly when this Command is scheduled to run
