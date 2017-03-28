@@ -42,7 +42,7 @@ public class Chassis_driveMain extends Command {
 		
 		if (driverJoystick.getRawButton(5)) {
 			moveSpeed = moveSpeed/2;
-			turnSpeed = turnSpeed/2;
+			turnSpeed = turnSpeed/1.7;
 		}
 		
     	Robot.chassis.arcadeDrive(moveSpeed, turnSpeed);

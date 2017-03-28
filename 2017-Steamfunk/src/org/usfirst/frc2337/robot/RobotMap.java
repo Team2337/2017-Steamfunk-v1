@@ -129,16 +129,46 @@ public class RobotMap {
 		
 		//FUEL SHOOTERS
 		shooterCANTalonLeft = new CANTalon(8);  //8 
-		shooterCANTalonLeft.changeControlMode(TalonControlMode.Voltage);
-		shooterCANTalonLeft.setVoltageCompensationRampRate(24.0);
+		// Change to Voltage
+		shooterCANTalonLeft.changeControlMode(TalonControlMode.Speed);
+	    shooterCANTalonLeft.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative); 
 		shooterCANTalonLeft.reverseOutput(true);
-		shooterCANTalonLeft.getBusVoltage();
-				
+		shooterCANTalonLeft.reverseSensor(true);  ////????
+		shooterCANTalonLeft.setInverted(false);
+		shooterCANTalonLeft.enableBrakeMode(false);
+		shooterCANTalonLeft.configNominalOutputVoltage(+0.0f,  -0.0f);
+		shooterCANTalonLeft.configPeakOutputVoltage(0, -12.0f);
+		shooterCANTalonLeft.DisableNominalClosedLoopVoltage();
+		shooterCANTalonLeft.setNominalClosedLoopVoltage(12);
+		shooterCANTalonLeft.setProfile(0);
+		shooterCANTalonLeft.setP(0.2137);
+		shooterCANTalonLeft.setI(0);
+		shooterCANTalonLeft.setD(0);
+		shooterCANTalonLeft.setF(0.033633);   //  0.035764566369491,  034533,  0.034533 
+		shooterCANTalonLeft.setAllowableClosedLoopErr(10);
+        shooterCANTalonLeft.setCloseLoopRampRate(3); 
+        
+        
         shooterCANTalonRight = new CANTalon(9);
-        shooterCANTalonRight.changeControlMode(TalonControlMode.Voltage);
-        shooterCANTalonRight.setVoltageCompensationRampRate(24.0);
+        // Change to Voltage
+        shooterCANTalonRight.changeControlMode(TalonControlMode.Speed);
+        shooterCANTalonRight.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative); 
         shooterCANTalonRight.getBusVoltage();
         shooterCANTalonRight.reverseOutput(false);
+        shooterCANTalonRight.reverseSensor(true);   
+        //shooterCANTalon2.setInverted(false);    //uncommented 
+        shooterCANTalonRight.configNominalOutputVoltage(+0.0f, -0.0f);  //changed from 9, 0 
+        shooterCANTalonRight.configPeakOutputVoltage(12.0, 0);  //changed from 12, 0 
+        shooterCANTalonRight.DisableNominalClosedLoopVoltage(); 
+        shooterCANTalonRight.setNominalClosedLoopVoltage(12); 
+        shooterCANTalonRight.enableBrakeMode(false); 
+        shooterCANTalonRight.setProfile(0); 
+        shooterCANTalonRight.setP(0.2137);    //was 40%, shot low with dual shot 
+        shooterCANTalonRight.setI(0);  
+        shooterCANTalonRight.setD(0);  
+        shooterCANTalonRight.setF(0.033164); //0.035764566369491 (Over),  0.030764566369491 (Under), 0.033764566369491(Over by 20), 0.033364566369491(Recover Bad), 0.033564566369491(Pretty good) ,  034664566369491  crap 
+        shooterCANTalonRight.setAllowableClosedLoopErr(10); 
+        shooterCANTalonRight.setCloseLoopRampRate(3); 
         
 		//SHOOTER LIGHT
         shooterLight = new Relay(0, Relay.Direction.kForward);

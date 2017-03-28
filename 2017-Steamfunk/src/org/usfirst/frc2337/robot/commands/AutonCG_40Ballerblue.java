@@ -18,7 +18,7 @@ public class AutonCG_40Ballerblue extends CommandGroup {
     	
     	addSequential(new ControlProfile40ball());
     	addSequential(new FuelIntakeArm_extend());
-    	addParallel(new FuelShooter_speedSet(-Robot.constants.kFuelShooter_autonBlueHopperShotSpeedLeft, Robot.constants.kFuelShooter_autonBlueHopperShotSpeedRight));
+    	addParallel(new FuelShooter_speedSetRPM(-Robot.constants.kFuelShooter_autonBlueHopperShotSpeedLeftRPM, Robot.constants.kFuelShooter_autonBlueHopperShotSpeedRightRPM));
     	//Driverstation.Alliance CurrentSide = ;
     	//if (Robot.AllianceColor == DriverStation.Alliance.Blue) {
     		addSequential(new Auton_driveRightWheel(-.8, 1.3)); // was 1.5 

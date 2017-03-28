@@ -43,6 +43,13 @@ public class FuelShooter extends Subsystem {
 		shooterMotorRight.set(currentSpeed);
 		SmartDashboard.putNumber("Shooter Speed:", currentSpeed);
 	}
+	
+	public void updateSpeedRPM() {
+		shooterMotorLeft.setSetpoint(currentSpeed);
+		shooterMotorRight.setSetpoint(currentSpeed);
+		SmartDashboard.putNumber("Shooter Speed:", currentSpeed);
+	}
+	
 	/**
 	 * Set speeds of shooter
 	 * @param speed Sets speed of shooter
@@ -50,6 +57,11 @@ public class FuelShooter extends Subsystem {
 	public void setVoltage(double speedLeft, double speedRight) {
 		shooterMotorLeft.set(speedLeft);
 		shooterMotorRight.set(speedRight);
+	}
+	
+	public void setRPM(double speedLeft, double speedRight) {
+		shooterMotorLeft.setSetpoint(speedLeft);
+		shooterMotorRight.setSetpoint(speedRight);
 	}
 	    
 	/**
@@ -61,6 +73,14 @@ public class FuelShooter extends Subsystem {
 		shooterMotorLeft.changeControlMode(CANTalon.TalonControlMode.Voltage);
 		shooterMotorRight.changeControlMode(CANTalon.TalonControlMode.Voltage);
 	}
+	
+	public void stopMotorsRPM() {
+		shooterMotorLeft.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+		shooterMotorRight.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+		shooterMotorLeft.changeControlMode(CANTalon.TalonControlMode.Speed);
+		shooterMotorRight.changeControlMode(CANTalon.TalonControlMode.Speed);
+	}
+	
 	/**
 	 * Increase RPM of Left Shooter
 	 */ 
@@ -68,6 +88,12 @@ public class FuelShooter extends Subsystem {
     	//currentSpeed =+100;
 		shooterMotorLeft.set(shooterMotorLeft.get() + .1);
 	}
+	
+	public void increaseShooterLeftRPM() {
+    	//currentSpeed =+100;
+		shooterMotorLeft.set(shooterMotorLeft.get() + 25);
+	}
+	
 	/**
 	 * Decrease RPM of Left Shooter
 	 */
@@ -75,6 +101,12 @@ public class FuelShooter extends Subsystem {
 	    	//currentSpeed =-100;
 		shooterMotorLeft.set(shooterMotorLeft.get() - .1);
 	}
+	
+	public void decreaseShooterLeftRPM() {
+    	//currentSpeed =-100;
+	shooterMotorLeft.set(shooterMotorLeft.get() - 25);
+	}
+	
 	/**
 	 * Increase RPM of Right Shooter
 	 */    
@@ -82,12 +114,22 @@ public class FuelShooter extends Subsystem {
 	    	//currentSpeed =+100;
 		shooterMotorRight.set(shooterMotorRight.get() + .1);
 	}
+	
+	public void increaseShooterRightRPM() {
+    	//currentSpeed =+100;
+	shooterMotorRight.set(shooterMotorRight.get() + 25);
+	}
 	/**
 	 * Decrease RPM of Right Shooter
 	 */
 	public void decreaseShooterRight() {
 	    	//currentSpeed =-100;
 		shooterMotorRight.set(shooterMotorRight.get() - .1);	
+	}
+	
+	public void decreaseShooterRightRPM() {
+    	//currentSpeed =-100;
+	shooterMotorRight.set(shooterMotorRight.get() - 25);	
 	}
 	/**
 	 * Turns relay on

@@ -41,13 +41,7 @@ public class OI {
 	// Start the command when the button is released  and let it run the command
 	// until it is finished as determined by it's isFinished method.
 	// button.whenReleased(new ExampleCommand());
-	
-	static double hopperShotSpeedLeft = Robot.constants.kFuelShooter_hopperShotSpeedLeft;
-	static double hopperShotSpeedRight = Robot.constants.kFuelShooter_hopperShotSpeedRight;
-	static double airshipShotSpeedLeft = Robot.constants.kFuelShooter_airshipShotSpeedLeft;
-	static double airshipShotSpeedRight = Robot.constants.kFuelShooter_airshipShotSpeedRight;
-	
-	public static Joystick improvedJoystick;
+
 	
 	public static Joystick				driverJoystick			= new Joystick(0);
 	JoystickButton			driver_GreenA			= new JoystickButton(driverJoystick, 1);
@@ -127,20 +121,30 @@ public class OI {
 		driver_TriggerLeft		.whileHeld(new FuelFeeder_forward(Robot.constants.kFeeder_DefaultSlowSpeed)); //Shoot all Fuel
 		driver_TriggerRight		.whileHeld(new FuelFeeder_forward(Robot.constants.kFeeder_DefaultEnableSpeed)); //Shoot one Fuel 
 		
-		driver_POVUp			.whenPressed(new FuelShooterLeft_speedIncrease());  
+		
+		
+		//       Remove RPM to switch to Voltage
+		driver_POVUp			.whenPressed(new FuelShooterLeft_speedIncreaseRPM());  
 	   // driver_POVUpRight		.whenPressed(new _DoNothing()); 
-	    driver_POVRight			.whenPressed(new FuelShooterRight_speedIncrease()); 
+	    driver_POVRight			.whenPressed(new FuelShooterRight_speedIncreaseRPM()); 
 	   // driver_POVDownRight		.whenPressed(new _DoNothing()); 
-	    driver_POVDown			.whenPressed(new FuelShooterRight_speedDecrease()); 
+	    driver_POVDown			.whenPressed(new FuelShooterRight_speedDecreaseRPM()); 
 	   // driver_POVDownLeft		.whenPressed(new _DoNothing()); 
-	    driver_POVLeft			.whenPressed(new FuelShooterLeft_speedDecrease()); 
+	    driver_POVLeft			.whenPressed(new FuelShooterLeft_speedDecreaseRPM()); 
 	   // driver_POVUpLeft		.whenPressed(new _DoNothing()); 
+
 	    
 		/* =========================================================*/
+
+		
+		//      Change to FuelShooter_speedSet to Switch to Voltage
+		operator_BlueX			.whenPressed(new FuelShooter_speedSetRPM(-Robot.constants.kFuelShooter_hopperShotSpeedLeftRPM, Robot.constants.kFuelShooter_hopperShotSpeedRightRPM)); //Far shot
+		operator_YellowY		.whenPressed(new FuelShooter_speedSetRPM(-Robot.constants.kFuelShooter_airshipShotSpeedLeftRPM, Robot.constants.kFuelShooter_airshipShotSpeedRightRPM)); //Boiler shot
+		//      Change to FuelShooter_stopShooters to Switch to Voltage
+		operator_Back			.whenPressed(new FuelShooter_stopShootersRPM());
+		
 		operator_GreenA			.whileHeld(new RopeClimber_runWhileHeld()); //Climber run
 		operator_RedB			.whileHeld(new GearLoader_extendWhileHeld()); //Raise Gear fingers
-		operator_BlueX			.whenPressed(new FuelShooter_speedSet(-hopperShotSpeedLeft, hopperShotSpeedRight)); //Far shot
-		operator_YellowY		.whenPressed(new FuelShooter_speedSet(-airshipShotSpeedLeft, airshipShotSpeedRight)); //Boiler shot
 		
 		operator_BumperLeft		.whenPressed(new FuelIntakeArm_extend());
 		operator_BumperRight	.whileHeld(new FuelIntake_enabledForward());
