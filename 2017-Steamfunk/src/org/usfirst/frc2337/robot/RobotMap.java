@@ -20,6 +20,7 @@ import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -61,7 +62,7 @@ public class RobotMap {
     public static CANTalon fuelFeederRight;
     public static CANTalon fuelFeederLeft;
     
-	public static UsbCamera cam0;
+	public static UsbCamera cam0, cam1;
 	public static VisionProcessing boilerVision;
 	public static Relay shooterLight;
 	
@@ -71,6 +72,9 @@ public class RobotMap {
 	public static MotionProfileManagerRight40ball rightManager40ball;
 	public static MotionProfileManagerLeft40ball leftManager40ball;
 	public static DriverStation.Alliance AllianceColor;
+	
+	public static boolean RPMandVoltageSwitch = false;
+	public static boolean ShooterUpToSpeed = false;
 	
     public static void init() {
     	//CONSTANTS FILE
@@ -251,24 +255,31 @@ public class RobotMap {
      * Starts the Camera
      */
     public static void startCamera() {
-    	Constants con = Robot.constants;
-		try {
+    	try {
 			cam0 = CameraServer.getInstance().startAutomaticCapture("cam0", "/dev/video0");
-			int exposure = (int) con.kTargetingCamera_Exposure;
-			int brightness = (int) con.kTargetingCamera_Brightness;
-			cam0.setBrightness(brightness);
-			cam0.setExposureManual(exposure);
+			cam1 = CameraServer.getInstance().startAutomaticCapture("cam1", "/dev/video1");
 		} catch (Exception e) {
-			System.out.println(e);
+			DriverStation.reportWarning("[Camera] Could not init the cameras!", true);
 		}
     }
-    /**
-     * Restarts Camera 
-     */
-    public static void restartCamera() {
-    	startCamera();
-    }
     
-    
+
+    public static void updateCameras() {
+		/* Vision Camera */
+    	Constants con = Robot.constants;
+    	cam0.setExposureManual((int) con.kTargetingCamera_Exposure);
+    	
+    	/* Gear Camera */
+		cameraSettings("cam1", "exposure_absolute", 50.0);
+		cameraSettings("cam1", "sharpness", 128.0);
+		cameraSettings("cam1", "contrast", 100.0);
+		cameraSettings("cam1", "gain", 0.0);
+		cam1.setBrightness(150);
+		
+	}
+	public static void cameraSettings(String cam, String key, double value) {
+		NetworkTable j = NetworkTable.getTable("CameraPublisher/" + cam + "/" + key);
+		j.putNumber(key, value);
+	}
 }
 

@@ -1,5 +1,6 @@
 package org.usfirst.frc2337.robot.commands;
 import org.usfirst.frc2337.robot.Robot;
+import org.usfirst.frc2337.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -24,7 +25,12 @@ public class FuelShooter_speedSet extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.fuelShooter.setVoltage(speedLeft, speedRight);
+    	if(RobotMap.RPMandVoltageSwitch) {
+    		Robot.fuelShooter.setVoltage(speedLeft, speedRight);
+    	} else {
+    		Robot.fuelShooter.setRPM(speedLeft, speedRight);
+    	}
+    	
     	Robot.fuelShooter.lightOn();
     }
 

@@ -55,6 +55,7 @@ public class FuelShooter extends Subsystem {
 	 * @param speed Sets speed of shooter
 	 */
 	public void setVoltage(double speedLeft, double speedRight) {
+		System.out.println("YOU ARE IN VOLTAGE MODE");
 		shooterMotorLeft.set(speedLeft);
 		shooterMotorRight.set(speedRight);
 	}
@@ -67,7 +68,7 @@ public class FuelShooter extends Subsystem {
 	/**
 	 * Stop both shooters
 	 */    
-	public void stopMotors() {
+	public void stopMotorsVoltage() {
 		shooterMotorLeft.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		shooterMotorRight.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 		shooterMotorLeft.changeControlMode(CANTalon.TalonControlMode.Voltage);

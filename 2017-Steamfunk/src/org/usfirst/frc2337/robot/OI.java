@@ -65,7 +65,7 @@ public class OI {
 	JoystickPOVButton		driver_POVLeft			= new JoystickPOVButton(driverJoystick, 270);
 	JoystickPOVButton		driver_POVUpLeft		= new JoystickPOVButton(driverJoystick, 315);
 	
-	Joystick				operatorJoystick		= new Joystick(1);
+	public static Joystick				operatorJoystick		= new Joystick(1);
 	JoystickButton			operator_GreenA			= new JoystickButton(operatorJoystick, 1);
 	JoystickButton			operator_RedB			= new JoystickButton(operatorJoystick, 2);
 	JoystickButton			operator_BlueX			= new JoystickButton(operatorJoystick, 3);
@@ -86,20 +86,22 @@ public class OI {
 	JoystickPOVButton		operator_POVDownLeft	= new JoystickPOVButton(operatorJoystick, 225);
 	JoystickPOVButton		operator_POVLeft		= new JoystickPOVButton(operatorJoystick, 270);
 	JoystickPOVButton		operator_POVUpLeft		= new JoystickPOVButton(operatorJoystick, 315);
-	/*
-	JoystickButton 			BlackButton 			= new JoystickButton(operatorJoystick, 11);
-	JoystickButton 			BlueButton				= new JoystickButton(operatorJoystick, 12);
-    JoystickButton 			yellowButton			= new JoystickButton(operatorJoystick, 13);
-    JoystickButton 			whiteButton				= new JoystickButton(operatorJoystick, 14);
-    JoystickButton 			clearSwitch				= new JoystickButton(operatorJoystick, 15);
-    JoystickButton 			blueSwitch				= new JoystickButton(operatorJoystick, 16);
-    JoystickButton 			blackSwitch				= new JoystickButton(operatorJoystick, 17);
-  //  JoystickButton 			yellowSwitch			= new JoystickButton(operatorJoystick, 18);
-	*/
+	
+	public static Joystick				operatorControls		= new Joystick(2);
+	
+	JoystickButton 			BlackButton 			= new JoystickButton(operatorControls, 7);
+	JoystickButton 			BlueButton				= new JoystickButton(operatorControls, 8);
+    JoystickButton 			yellowButton			= new JoystickButton(operatorControls, 6);
+    JoystickButton 			whiteButton				= new JoystickButton(operatorControls, 5);
+    JoystickButton 			clearSwitch				= new JoystickButton(operatorControls, 1);
+    JoystickButton 			blueSwitch				= new JoystickButton(operatorControls, 4);
+    JoystickButton 			blackSwitch				= new JoystickButton(operatorControls, 3);
+    JoystickButton 			yellowSwitch			= new JoystickButton(operatorControls, 2);
+	
 	//drivers station
 	
 	
-	Joystick				operatorControls		= new Joystick(2);
+	
 	
 	
 	public OI() {														
@@ -137,11 +139,8 @@ public class OI {
 		/* =========================================================*/
 
 		
-		//      Change to FuelShooter_speedSet to Switch to Voltage
-		operator_BlueX			.whenPressed(new FuelShooter_speedSetRPM(-Robot.constants.kFuelShooter_hopperShotSpeedLeftRPM, Robot.constants.kFuelShooter_hopperShotSpeedRightRPM)); //Far shot
-		operator_YellowY		.whenPressed(new FuelShooter_speedSetRPM(-Robot.constants.kFuelShooter_airshipShotSpeedLeftRPM, Robot.constants.kFuelShooter_airshipShotSpeedRightRPM)); //Boiler shot
-		//      Change to FuelShooter_stopShooters to Switch to Voltage
-		operator_Back			.whenPressed(new FuelShooter_stopShootersRPM());
+		operator_BlueX			.whenPressed(new FuelShooter_speedSet(-Robot.constants.kFuelShooter_hopperShotSpeedLeftRPM, Robot.constants.kFuelShooter_hopperShotSpeedRightRPM)); //Far shot
+		operator_YellowY		.whenPressed(new FuelShooter_speedSet(-Robot.constants.kFuelShooter_airshipShotSpeedLeftRPM, Robot.constants.kFuelShooter_airshipShotSpeedRightRPM)); //Boiler shot
 		
 		operator_GreenA			.whileHeld(new RopeClimber_runWhileHeld()); //Climber run
 		operator_RedB			.whileHeld(new GearLoader_extendWhileHeld()); //Raise Gear fingers
@@ -164,16 +163,17 @@ public class OI {
 		operator_POVLeft		.whenPressed(new FuelFeeder_setSpeedTimed(Robot.constants.kFeeder_DefaultEnableSpeed, 3));
 	
 		/* =========================================================*/
-		/*
+		
 		BlackButton				.whenPressed(new _DoNothing()); //Right Wings
 		BlueButton				.whenPressed(new _DoNothing());	//Left Wings
 		yellowButton			.whenPressed(new _DoNothing());
 		whiteButton				.whenPressed(new _DoNothing());
-		clearSwitch				.whenPressed(new _DoNothing());
+		clearSwitch				.whileHeld(new FuelShooter_RPMToVoltage());
+		clearSwitch				.whenReleased(new FuelShooter_VoltageToRPM());
 		blueSwitch				.whenPressed(new _DoNothing());
 		blackSwitch				.whenPressed(new _DoNothing());
-		//yellowSwitch			.whenPressed(new _DoNothing());
-		*/
+		yellowSwitch			.whenPressed(new _DoNothing());
+		
 		
 		
 	}

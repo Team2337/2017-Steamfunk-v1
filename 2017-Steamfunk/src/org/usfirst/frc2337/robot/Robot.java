@@ -60,7 +60,7 @@ public class Robot extends IterativeRobot {
 		/* Create all robot components*/
 		RobotMap.init();
 		RobotMap.startCamera();
-		
+		RobotMap.updateCameras();
 		/* Create all Subsystems */
 		chassis = new Chassis();
 		ropeClimber = new RopeClimber();
@@ -150,7 +150,7 @@ public class Robot extends IterativeRobot {
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
-		Robot.fuelShooter.stopMotors();
+		Robot.fuelShooter.stopMotorsRPM();
 		Robot.hopperWings.retract();
 		Robot.fuelIntake.stopIntake();
 		if (autonomousCommand != null) autonomousCommand.cancel();
@@ -179,7 +179,7 @@ public class Robot extends IterativeRobot {
 	 * This function is called during all init functions except robotInit().
 	 */
 	public void allInit() {
-		RobotMap.restartCamera();
+		
 	}
 	/**
 	 * This function is called during all periodic functions.
@@ -221,14 +221,6 @@ public class Robot extends IterativeRobot {
 		}
 		SmartDashboard.putData("Auton Selector", autonSelector);
 		SmartDashboard.putNumber("joystick power", Robot.oi.driverJoystick.getRawAxis(4));
-		/*
-		if (OI.driverJoystick.getRawButton(3)) {
-			fuelShooterLED.visionLEDState(true);
-		}
-		if (OI.driverJoystick.getRawButton(2)) {
-			fuelShooterLED.visionLEDState(false);
-		}
-		*/
 	}
 }
 

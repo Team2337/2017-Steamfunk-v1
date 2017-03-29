@@ -28,6 +28,7 @@ public class FuelShooterLED_main extends Command {
 				//Turn everything for that side on & vision
 				Robot.fuelShooterLED.leftLEDState(true);
 				Robot.fuelShooterLED.visionLEDState(true);
+				
 			} else {
 				Robot.fuelShooterLED.leftLEDState(false);
 			}
@@ -37,6 +38,8 @@ public class FuelShooterLED_main extends Command {
 				//Turn everything for that side on & vision
 				Robot.fuelShooterLED.rightLEDState(true);
 				Robot.fuelShooterLED.visionLEDState(true);
+				RobotMap.ShooterUpToSpeed = true;
+				
 			} else {
 				Robot.fuelShooterLED.rightLEDState(false);
 			}

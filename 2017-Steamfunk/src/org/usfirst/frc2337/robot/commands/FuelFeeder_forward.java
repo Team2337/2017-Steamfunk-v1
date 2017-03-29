@@ -3,6 +3,7 @@ package org.usfirst.frc2337.robot.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc2337.robot.OI;
 import org.usfirst.frc2337.robot.Robot;
 import org.usfirst.frc2337.robot.RobotMap;
 
@@ -39,11 +40,16 @@ public class FuelFeeder_forward extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		augerRight.set(speed);
-		augerLeft.set(-speed);
-		isDone = false;
-		noJamsLeft = true;
-		noJamsRight = true;
+		if((RobotMap.ShooterUpToSpeed && !OI.operatorControls.getRawButton(2)) || OI.operatorControls.getRawButton(2)){
+			augerRight.set(speed);
+			augerLeft.set(-speed);
+			isDone = false;
+			noJamsLeft = true;
+			noJamsRight = true;
+    		System.out.println(OI.operatorControls.getRawButton(2));
+    		System.out.println(RobotMap.ShooterUpToSpeed);
+    	}
+		
 	}
 
 	// Called repeatedly when this Command is scheduled to run

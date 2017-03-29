@@ -2,7 +2,9 @@ package org.usfirst.frc2337.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+import org.usfirst.frc2337.robot.OI;
 import org.usfirst.frc2337.robot.Robot;
+import org.usfirst.frc2337.robot.RobotMap;
 
 /**
  * Fuel Intake ENABLE - Turns on the Intake
@@ -33,6 +35,7 @@ public class FuelIntake_enabledReverse extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.fuelIntake.stopIntake();
+    	RobotMap.ShooterUpToSpeed = false;
     }
 
     // Called when another command which requires one or more of the same
