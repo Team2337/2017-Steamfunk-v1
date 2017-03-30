@@ -139,8 +139,8 @@ public class OI {
 		/* =========================================================*/
 
 		
-		operator_BlueX			.whenPressed(new FuelShooter_speedSet(-Robot.constants.kFuelShooter_hopperShotSpeedLeftRPM, Robot.constants.kFuelShooter_hopperShotSpeedRightRPM)); //Far shot
-		operator_YellowY		.whenPressed(new FuelShooter_speedSet(-Robot.constants.kFuelShooter_airshipShotSpeedLeftRPM, Robot.constants.kFuelShooter_airshipShotSpeedRightRPM)); //Boiler shot
+		operator_BlueX			.whenPressed(new FuelShooter_speedSet(Robot.constants.kFuelShooter_hopperShotSpeedLeftRPM, Robot.constants.kFuelShooter_hopperShotSpeedRightRPM)); //Far shot
+		operator_YellowY		.whenPressed(new FuelShooter_speedSet(Robot.constants.kFuelShooter_airshipShotSpeedLeftRPM, Robot.constants.kFuelShooter_airshipShotSpeedRightRPM)); //Boiler shot
 		
 		operator_GreenA			.whileHeld(new RopeClimber_runWhileHeld()); //Climber run
 		operator_RedB			.whileHeld(new GearLoader_extendWhileHeld()); //Raise Gear fingers

@@ -17,11 +17,11 @@ public class Constants {
 	public final double kChassisPID_ReverseDrive = -1.0;
 	
 	/* Fuel Shooter Voltage */
-	public final double kFuelShooter_hopperShotSpeedLeft = 8.7;  //8.9  comp  //8.7 prac //9.0 pract //8.5
-	public final double kFuelShooter_hopperShotSpeedRight = 8.95; //9.25 comp  //9.25 prac //9.5 pracc  //8.75
+	public final double kFuelShooter_hopperShotSpeedLeft = -8.25;  //8.9  comp  //8.7 prac //9.0 pract //8.5
+	public final double kFuelShooter_hopperShotSpeedRight = 8.55; //9.25 comp  //9.25 prac //9.5 pracc  //8.75
 	
-	public final double kFuelShooter_airshipShotSpeedLeft = 10.15;
-	public final double kFuelShooter_airshipShotSpeedRight = 10.45;
+	public final double kFuelShooter_airshipShotSpeedLeft = -9.26;
+	public final double kFuelShooter_airshipShotSpeedRight = 9.51;
 	
 	
 	public final double kFuelShooter_autonRedHopperShotSpeedLeft = 8.875;		//First Kettering Match = 8.6  //8.75 // 8.825
@@ -32,19 +32,19 @@ public class Constants {
 	
 	
 	/* Fuel Shooter RPM */
-	  public final double kFuelShooter_hopperShotSpeedLeftRPM = 3065;   //  3075
-	  public final double kFuelShooter_hopperShotSpeedRightRPM =  3150;  //  3175
+	  public final double kFuelShooter_hopperShotSpeedLeftRPM = 3090;   //  3075   ///  3065
+	  public final double kFuelShooter_hopperShotSpeedRightRPM =  3140;  //  3175    ///3150
 	 
 	  public final double kFuelShooter_autonMidGearShotSpeedLeftRPM = 2990;
 	  public final double kFuelShooter_autonMidGearShotSpeedRightRPM =  3205;
 	  
-	  public final double kFuelShooter_autonRedHopperShotSpeedLeftRPM = 3075;    //First Kettering Match = 8.6  //8.75 // 8.825
-	  public final double kFuelShooter_autonRedHopperShotSpeedRightRPM = 3175;  //First Kettering Match = 8.65    //8.85 // was 8.9 //8.925
+	  public final double kFuelShooter_autonRedHopperShotSpeedLeftRPM = 3090;    //First Kettering Match = 8.6  //8.75 // 8.825
+	  public final double kFuelShooter_autonRedHopperShotSpeedRightRPM = 3140;  //First Kettering Match = 8.65    //8.85 // was 8.9 //8.925
 	 
-	  public final double kFuelShooter_autonBlueHopperShotSpeedLeftRPM = 3075;    //First Kettering Match = 8.6  //8.75
-	  public final double kFuelShooter_autonBlueHopperShotSpeedRightRPM = 3175;  //First Kettering Match = 8.85
+	  public final double kFuelShooter_autonBlueHopperShotSpeedLeftRPM = 3090;    //First Kettering Match = 8.6  //8.75
+	  public final double kFuelShooter_autonBlueHopperShotSpeedRightRPM = 3140;  //First Kettering Match = 8.85
 	 
-	  public final double kFuelShooter_airshipShotSpeedLeftRPM = 3400;
+	  public final double kFuelShooter_airshipShotSpeedLeftRPM = 3480;
 	  public final double kFuelShooter_airshipShotSpeedRightRPM = 3480;
 	  
 	  public final double kFuelShooter_autonMidGearShotSpeedLeft = 2990;

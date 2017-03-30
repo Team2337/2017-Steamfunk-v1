@@ -56,7 +56,7 @@ public class FuelShooter extends Subsystem {
 	 */
 	public void setVoltage(double speedLeft, double speedRight) {
 		System.out.println("YOU ARE IN VOLTAGE MODE");
-		shooterMotorLeft.set(speedLeft);
+		shooterMotorLeft.set(-speedLeft);
 		shooterMotorRight.set(speedRight);
 	}
 	

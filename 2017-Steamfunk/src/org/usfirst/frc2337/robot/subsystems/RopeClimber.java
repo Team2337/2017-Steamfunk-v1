@@ -29,13 +29,13 @@ public class RopeClimber extends Subsystem {
      */
     public void startClimber(){
     	//Robot.chassisPID.arcadeDrive(1, 0);
-    	climbMotorL.set(-1.0);
-    	climbMotorR.set(1.0);
+    	climbMotorL.set(1.0);
+    	climbMotorR.set(-1.0); //1.0
     }
     public void joystickClimber(double joystick){
     	if(joystick < -0.2){
-    		climbMotorL.set(joystick);
-    		climbMotorR.set(-joystick);
+    		climbMotorL.set(-joystick);
+    		climbMotorR.set(joystick);
     	} else {
     		climbMotorL.set(0);
         	climbMotorR.set(0);

@@ -137,7 +137,7 @@ public class RobotMap {
 		shooterCANTalonLeft.changeControlMode(TalonControlMode.Speed);
 	    shooterCANTalonLeft.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative); 
 		shooterCANTalonLeft.reverseOutput(true);
-		shooterCANTalonLeft.reverseSensor(true);  ////????
+		shooterCANTalonLeft.reverseSensor(false);  ////????
 		shooterCANTalonLeft.setInverted(false);
 		shooterCANTalonLeft.enableBrakeMode(false);
 		shooterCANTalonLeft.configNominalOutputVoltage(+0.0f,  -0.0f);
@@ -145,10 +145,10 @@ public class RobotMap {
 		shooterCANTalonLeft.DisableNominalClosedLoopVoltage();
 		shooterCANTalonLeft.setNominalClosedLoopVoltage(12);
 		shooterCANTalonLeft.setProfile(0);
-		shooterCANTalonLeft.setP(0.2137);
+		shooterCANTalonLeft.setP(0.1662);
 		shooterCANTalonLeft.setI(0);
 		shooterCANTalonLeft.setD(0);
-		shooterCANTalonLeft.setF(0.033633);   //  0.035764566369491,  034533,  0.034533 
+		shooterCANTalonLeft.setF(0.033233);   //  0.035764566369491,  034533,  0.034533 
 		shooterCANTalonLeft.setAllowableClosedLoopErr(10);
         shooterCANTalonLeft.setCloseLoopRampRate(3); 
         
@@ -167,10 +167,10 @@ public class RobotMap {
         shooterCANTalonRight.setNominalClosedLoopVoltage(12); 
         shooterCANTalonRight.enableBrakeMode(false); 
         shooterCANTalonRight.setProfile(0); 
-        shooterCANTalonRight.setP(0.2137);    //was 40%, shot low with dual shot 
+        shooterCANTalonRight.setP(0.1662);    //was 40%, shot low with dual shot 
         shooterCANTalonRight.setI(0);  
         shooterCANTalonRight.setD(0);  
-        shooterCANTalonRight.setF(0.033164); //0.035764566369491 (Over),  0.030764566369491 (Under), 0.033764566369491(Over by 20), 0.033364566369491(Recover Bad), 0.033564566369491(Pretty good) ,  034664566369491  crap 
+        shooterCANTalonRight.setF(0.033964); //0.035764566369491 (Over),  0.030764566369491 (Under), 0.033764566369491(Over by 20), 0.033364566369491(Recover Bad), 0.033564566369491(Pretty good) ,  034664566369491  crap 
         shooterCANTalonRight.setAllowableClosedLoopErr(10); 
         shooterCANTalonRight.setCloseLoopRampRate(3); 
         
@@ -266,19 +266,20 @@ public class RobotMap {
 
     public static void updateCameras() {
 		/* Vision Camera */
-    	Constants con = Robot.constants;
-    	cam0.setExposureManual((int) con.kTargetingCamera_Exposure);
-    	
+    	//Constants con = Robot.constants;
+    	cam0.setExposureManual(1);
+    	cam0.setBrightness(0);
     	/* Gear Camera */
 		cameraSettings("cam1", "exposure_absolute", 50.0);
 		cameraSettings("cam1", "sharpness", 128.0);
-		cameraSettings("cam1", "contrast", 100.0);
+		cameraSettings("cam1", "contrast", 125.0);
+		cameraSettings("cam1", "saturation", 150.0);
 		cameraSettings("cam1", "gain", 0.0);
-		cam1.setBrightness(150);
+		cameraSettings("cam1", "brightness", 100.0);
 		
 	}
 	public static void cameraSettings(String cam, String key, double value) {
-		NetworkTable j = NetworkTable.getTable("CameraPublisher/" + cam + "/" + key);
+		NetworkTable j = NetworkTable.getTable("CameraPublisher/" + cam + "/RawProperty");
 		j.putNumber(key, value);
 	}
 }

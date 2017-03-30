@@ -38,14 +38,14 @@ public class FuelShooterLED extends Subsystem {
      * Turn LEFT LED on/off
      * @param state true/false
      */
-    public void leftLEDState(boolean state) {
+    public void rightLEDState(boolean state) {
     	ledLeft.set(state);
     }
     /**
      * Turn RIGHT LED on/off
      * @param state true/false
      */
-    public void rightLEDState(boolean state) {
+    public void leftLEDState(boolean state) {
     	ledRight.set(state);
     }
     

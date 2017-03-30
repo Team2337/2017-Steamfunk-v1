@@ -46,7 +46,8 @@ public class Robot extends IterativeRobot {
 	public static Mat matOriginalObj;
 	public static FuelFeeder fuelFeeder;
 	Command autonomousCommand;
-	SendableChooser<Command> autonSelector; //<Command> autonSelector;//
+
+	SendableChooser<Command> autoselect;
 
 	public static Alliance AllianceColor;
 	/**
@@ -87,15 +88,15 @@ public class Robot extends IterativeRobot {
 		/* Create Camera (for vision) */
 		 ///autonomousCommand = new Auton_turnGyro3(90);
 		
-		autonSelector = new SendableChooser <Command>();
-		autonSelector.addDefault("Do Nothing", new _DoNothing());
+		autoselect = new SendableChooser <Command>();
+		autoselect.addObject("Do Nothing", new _DoNothing());
 		//autonSelector.addDefault("Shoot from wall", new AutonCG_Shootfromwall());
-		autonSelector.addObject("Mid Gear then shoot Blue ", new AutonCG_midGearThenShotBlueSide());
-		autonSelector.addObject("Mid Gear then shoot Red ", new AutonCG_midGearThenShotRedSide());
-		autonSelector.addObject("40 ball red ", new AutonCG_40Baller());
-		autonSelector.addObject("40 ball blue ", new AutonCG_40Ballerblue());
+		autoselect.addObject("Mid Gear then shoot Blue ", new AutonCG_midGearThenShotBlueSide());
+		autoselect.addObject("Mid Gear then shoot Red ", new AutonCG_midGearThenShotRedSide());
+		autoselect.addDefault("40 ball red ", new AutonCG_40Baller());
+		autoselect.addObject("40 ball blue ", new AutonCG_40Ballerblue());
 		//autonSelector.addObject("Shoot 10 and mid gear  ", new AutonCG_Shoot10MidGearRed());
-		autonSelector.addObject("Cross The Line", new AutonCG_crossTheLine());
+		autoselect.addObject("Cross The Line", new AutonCG_crossTheLine());
 	
 
 	}
@@ -115,7 +116,7 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public void autonomousInit() {
-		//allInit();
+		allInit();
 		AllianceColor = DriverStation.getInstance().getAlliance();
 		RobotMap.chassisPID_gyro.reset();
 		RobotMap.chassisPID_leftFront.setEncPosition(0);
@@ -125,7 +126,7 @@ public class Robot extends IterativeRobot {
 		RobotMap.leftManager40ball.reset();
 		RobotMap.rightManager40ball.reset();
 		// schedule the autonomous command (example)
-		autonomousCommand = (Command) autonSelector.getSelected();//(Command) autonSelector.getSelected();//
+		autonomousCommand = (Command) autoselect.getSelected();//(Command) autonSelector.getSelected();//
 		//autonomousCommand= new Auton_turnGyro(90);
 		if (autonomousCommand != null) autonomousCommand.start();
 		
@@ -179,48 +180,58 @@ public class Robot extends IterativeRobot {
 	 * This function is called during all init functions except robotInit().
 	 */
 	public void allInit() {
-		
+		RobotMap.updateCameras();
 	}
 	/**
 	 * This function is called during all periodic functions.
 	 */
 	public void allPeriodic() {
 		
-		
+		SmartDashboard.putData("Auton Select", autoselect);
 		SmartDashboard.putNumber("leftEncoder", RobotMap.chassisPID_leftFront.getEncPosition());
 		SmartDashboard.putNumber("rightEncoder", RobotMap.chassisPID_rightFront.getEncPosition());
 		SmartDashboard.putNumber("leftEncoderPOS", RobotMap.chassisPID_leftFront.getPosition());
 		SmartDashboard.putNumber("rightEncoderPOS", RobotMap.chassisPID_rightFront.getPosition());
 		
 		//Displays the voltage values for both shooters
-		SmartDashboard.putNumber("Output Voltage Left", RobotMap.shooterCANTalonLeft.getOutputVoltage());
-        SmartDashboard.putNumber("Output Voltage RIght", RobotMap.shooterCANTalonRight.getOutputVoltage());
+		SmartDashboard.putNumber("Shooter Output Voltage Left", RobotMap.shooterCANTalonLeft.getOutputVoltage());
+        SmartDashboard.putNumber("Shooter Output Voltage Right", RobotMap.shooterCANTalonRight.getOutputVoltage());
 
 		SmartDashboard.putNumber("Current of left feeder", RobotMap.fuelFeederLeft.getOutputCurrent());
 		SmartDashboard.putNumber("Current of right feeder", RobotMap.fuelFeederRight.getOutputCurrent());
 
-		SmartDashboard.putNumber("leftEncoder", RobotMap.chassisPID_leftFront.getEncPosition());
-		SmartDashboard.putNumber("rightEncoder", RobotMap.chassisPID_rightFront.getEncPosition());
+		//SmartDashboard.putNumber("leftEncoder", RobotMap.chassisPID_leftFront.getEncPosition());
+		//SmartDashboard.putNumber("rightEncoder", RobotMap.chassisPID_rightFront.getEncPosition());
 		
 		/* All vision SmartDashboard numbers */
 		SmartDashboard.putNumber("angle", RobotMap.boilerVision.getAngle());
-		SmartDashboard.putNumber("lengthFromWall",  RobotMap.boilerVision.getDistanceFromWall());
-		SmartDashboard.putNumber("lengthFromTape",  RobotMap.boilerVision.getDistanceFromTarget());
-		SmartDashboard.putNumber("constant",  RobotMap.boilerVision.DISTANCE_CONSTANT);
+		//SmartDashboard.putNumber("lengthFromWall",  RobotMap.boilerVision.getDistanceFromWall());
+		//SmartDashboard.putNumber("lengthFromTape",  RobotMap.boilerVision.getDistanceFromTarget());
+		//SmartDashboard.putNumber("constant",  RobotMap.boilerVision.DISTANCE_CONSTANT);
 		SmartDashboard.putNumber("AverageCenter",  RobotMap.boilerVision.getAverageCenter());
-		SmartDashboard.putNumber("AverageArea",  RobotMap.boilerVision.getAverageArea());
+		//SmartDashboard.putNumber("AverageArea",  RobotMap.boilerVision.getAverageArea());
+		
+        SmartDashboard.putNumber("Shooter 1 closedLoopError", RobotMap.shooterCANTalonLeft.getClosedLoopError()); 
+        SmartDashboard.putNumber("Shooter 2 closedLoopError", RobotMap.shooterCANTalonRight.getClosedLoopError()); 
+        SmartDashboard.putNumber("Shooter 1 Error", RobotMap.shooterCANTalonLeft.getError()); 
+        SmartDashboard.putNumber("Shooter 2 Error", RobotMap.shooterCANTalonRight.getError()); 
+        SmartDashboard.putNumber("Get Shooter1 Speed", RobotMap.shooterCANTalonLeft.getSpeed()); 
+        SmartDashboard.putNumber("Get Shooter2 Speed", RobotMap.shooterCANTalonRight.getSpeed());
 		
 		SmartDashboard.putNumber("yaw", RobotMap.chassisPID_gyro.getYaw());
+		/*
 		if (OI.driverJoystick.getRawButton(3)) {
 			RobotMap.chassisPID_gyro.reset();
 		}
+		*/
 		if (RobotMap.boilerVision.getAverageCenter() > 76 && RobotMap.boilerVision.getAverageCenter() < 81) {
 			SmartDashboard.putBoolean("onTarget", true);
 		} else {
 			SmartDashboard.putBoolean("onTarget", false);
 		}
-		SmartDashboard.putData("Auton Selector", autonSelector);
-		SmartDashboard.putNumber("joystick power", Robot.oi.driverJoystick.getRawAxis(4));
+		
+		
+		//SmartDashboard.putNumber("joystick power", Robot.oi.driverJoystick.getRawAxis(4));
 	}
 }
 

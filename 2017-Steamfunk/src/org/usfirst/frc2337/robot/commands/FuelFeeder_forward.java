@@ -46,10 +46,7 @@ public class FuelFeeder_forward extends Command {
 			isDone = false;
 			noJamsLeft = true;
 			noJamsRight = true;
-    		System.out.println(OI.operatorControls.getRawButton(2));
-    		System.out.println(RobotMap.ShooterUpToSpeed);
     	}
-		
 	}
 
 	// Called repeatedly when this Command is scheduled to run
