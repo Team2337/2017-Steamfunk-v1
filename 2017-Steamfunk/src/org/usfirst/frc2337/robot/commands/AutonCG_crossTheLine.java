@@ -11,13 +11,8 @@ import org.usfirst.frc2337.robot.Robot;
 public class AutonCG_crossTheLine extends CommandGroup {
 	
     public AutonCG_crossTheLine() {
-    	
-    addSequential(new Auton_resetEncoders());
-    addSequential(new Auton_wait(0));
-    addSequential(new Auton_resetGyro());
-    addSequential(new Auton_wait(0));
-   addSequential(new Auton_driveForTime(.8,0,5));
-    
+    addSequential(new ControlProfile40ball());
+    	//addSequential(new Auton_driveForTime(.7,0,3)); // need to change back motion pro
     
     }
 }

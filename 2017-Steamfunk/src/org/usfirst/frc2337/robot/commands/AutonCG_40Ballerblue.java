@@ -21,9 +21,9 @@ public class AutonCG_40Ballerblue extends CommandGroup {
     	addParallel(new FuelShooter_speedSetRPM(Robot.constants.kFuelShooter_autonBlueHopperShotSpeedLeftRPM, Robot.constants.kFuelShooter_autonBlueHopperShotSpeedRightRPM));
     	//Driverstation.Alliance CurrentSide = ;
     	//if (Robot.AllianceColor == DriverStation.Alliance.Blue) {
-    		addSequential(new Auton_driveRightWheel(-.8, 1.3)); // was 1.5 
-    		System.out.println("Blue");
-    		SmartDashboard.putString("Side:", "blue");
+    		addSequential(new Auton_driveRightWheel(-.8, 1.5)); // was 1.5 was 1.3 before change at troy 
+    	//	System.out.println("Blue");
+    	//	SmartDashboard.putString("Side:", "blue");
     	//} else { 
     	//	addSequential(new Auton_driveLeftWheel(.8, 1.5));
     		//System.out.println("Red");
@@ -42,7 +42,7 @@ public class AutonCG_40Ballerblue extends CommandGroup {
     	
     	//addSequential(new Auton_wait(.5));
     	addParallel(new FuelIntake_enabledReverse()); //XXX using Reverse on practicerobot, switch back to Forward, use Reverse for comp bot
-    	addParallel(new FuelFeeder_setSpeedTimed(-Robot.constants.kFeeder_DefaultEnableSpeed,7));
+    	addParallel(new FuelFeeder_setSpeedTimed(-Robot.constants.kFeeder_DefaultEnableSpeed, 10));
     	//
     	   	
     	addSequential(new Auton_wait(5.5));

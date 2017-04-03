@@ -258,6 +258,8 @@ public class RobotMap {
     	try {
 			cam0 = CameraServer.getInstance().startAutomaticCapture("cam0", "/dev/video0");
 			cam1 = CameraServer.getInstance().startAutomaticCapture("cam1", "/dev/video1");
+			cam0.setBrightness(0);
+	    	cam0.setExposureManual(1);
 		} catch (Exception e) {
 			DriverStation.reportWarning("[Camera] Could not init the cameras!", true);
 		}
@@ -267,8 +269,12 @@ public class RobotMap {
     public static void updateCameras() {
 		/* Vision Camera */
     	//Constants con = Robot.constants;
+    	//cameraSettings("cam0", "exposure_absolute", 1.0);
+    	//cameraSettings("cam0", "brightness", 0.0);
+		cam0.setBrightness(0);
     	cam0.setExposureManual(1);
-    	cam0.setBrightness(0);
+    	//scam0.setBrightness(0);
+    	//cam0.setExposureManual(1);
     	/* Gear Camera */
 		cameraSettings("cam1", "exposure_absolute", 50.0);
 		cameraSettings("cam1", "sharpness", 128.0);

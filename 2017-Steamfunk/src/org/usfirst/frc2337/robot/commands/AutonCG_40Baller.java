@@ -9,7 +9,7 @@ import org.usfirst.frc2337.robot.Robot;
 import org.usfirst.frc2337.robot.RobotMap;
 
 /**
- *
+ * 40 BALL - It shooter 40 balls from triggering the hopper.
  */
 public class AutonCG_40Baller extends CommandGroup {
 	
@@ -17,18 +17,18 @@ public class AutonCG_40Baller extends CommandGroup {
    
     	
     	addSequential(new ControlProfile40ball());
-    	
+    	addSequential(new Auton_driveForTime(.7, 0, 0.12));// added at troy after #2  match
     	addSequential(new FuelIntakeArm_extend());
     	addParallel(new FuelShooter_speedSetRPM(Robot.constants.kFuelShooter_autonRedHopperShotSpeedLeftRPM, Robot.constants.kFuelShooter_autonRedHopperShotSpeedRightRPM));
     	//Driverstation.Alliance CurrentSide = ;
     	if (Robot.AllianceColor == DriverStation.Alliance.Blue) {
     		addSequential(new Auton_driveRightWheel(.8, 1.5));
-    		System.out.println("Blue");
-    		SmartDashboard.putString("Side:", "blue");
+    	//	System.out.println("Blue");
+    	//	SmartDashboard.putString("Side:", "blue");
     	} else { 
-    		addSequential(new Auton_driveLeftWheel(.8, 1.4));
-    		System.out.println("Red");
-    		SmartDashboard.putString("Side:", "Red");
+    		addSequential(new Auton_driveLeftWheel(1.0, 1.6));// was 1.4 troy p match was .8 before #3 of troy
+    	//	System.out.println("Red");
+    	//	SmartDashboard.putString("Side:", "Red");
     	}
     	
     	//addParallel(new Auton_driveRightWheel(.8, 1));
@@ -36,7 +36,7 @@ public class AutonCG_40Baller extends CommandGroup {
     	
     	addSequential(new Auton_wait(.2));
     	addParallel(new AutonHopperWings_extend()); //  added  at kettering after match 3 
-    	addSequential(new Auton_driveForTime(-.5, 0, 0.5));
+    	addSequential(new Auton_driveForTime(-.5, 0, 0.5)); //changed from .5 after qual 25 at Troy
     	//addSequential(new HopperWings_extend());
     	//addSequential(new Auton_wait(.2));
     	//addParallel(new Chassis_targetWithGyro()); // need 

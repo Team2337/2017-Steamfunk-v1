@@ -63,7 +63,7 @@ public class Chassis_targetWithGyro extends PIDCommand {
 		double angle = -boilerVision.getAngle(); //Get angle from VisionProcessing class (with defined object)
 		this.hasCon = boilerVision.hasContours(); //Does it have any contours? (just making sure so we don't in circles)
 		if (Math.abs(angle) <  8 ) { //Change pid because lower angle needs more power
-			this.getPIDController().setPID(0.09, 0, 0);   //FRIDAY KET 0.08, 0.00025, 0.002 //SATURDAY KET 0.09, 0.0004, 0.002
+			this.getPIDController().setPID(0.035, 0, 0);   //FRIDAY KET 0.08, 0.00025, 0.002 //SATURDAY KET 0.09, 0.0004, 0.002
 			//System.out.println("VISION:");
 		} else {
 			this.getPIDController().setPID(0.01, 0, 0); //FRIDAY KET 0.035, 0.00025, 0.002 //SATURDAY KET 0.04, 0.0003, 0

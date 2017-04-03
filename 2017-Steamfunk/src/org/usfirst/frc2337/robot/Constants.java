@@ -38,11 +38,11 @@ public class Constants {
 	  public final double kFuelShooter_autonMidGearShotSpeedLeftRPM = 2990;
 	  public final double kFuelShooter_autonMidGearShotSpeedRightRPM =  3205;
 	  
-	  public final double kFuelShooter_autonRedHopperShotSpeedLeftRPM = 3090;    //First Kettering Match = 8.6  //8.75 // 8.825
-	  public final double kFuelShooter_autonRedHopperShotSpeedRightRPM = 3140;  //First Kettering Match = 8.65    //8.85 // was 8.9 //8.925
+	  public final double kFuelShooter_autonRedHopperShotSpeedLeftRPM = 3050;    //First Kettering Match = 8.6  //8.75 // 8.825  //3070
+	  public final double kFuelShooter_autonRedHopperShotSpeedRightRPM = 3090;  //First Kettering Match = 8.65    //8.85 // was 8.9 //8.925 //3120
 	 
-	  public final double kFuelShooter_autonBlueHopperShotSpeedLeftRPM = 3090;    //First Kettering Match = 8.6  //8.75
-	  public final double kFuelShooter_autonBlueHopperShotSpeedRightRPM = 3140;  //First Kettering Match = 8.85
+	  public final double kFuelShooter_autonBlueHopperShotSpeedLeftRPM = 3110;    // was 3090 before match 55 of troy
+	  public final double kFuelShooter_autonBlueHopperShotSpeedRightRPM = 3130;  //was 3140  before match 60 of troy
 	 
 	  public final double kFuelShooter_airshipShotSpeedLeftRPM = 3480;
 	  public final double kFuelShooter_airshipShotSpeedRightRPM = 3480;
@@ -86,7 +86,7 @@ public class Constants {
 	public final double kTargetingCamera_ObjectHeight = 82;
 	public final double kTargetingCamera_WidthBetweenTarget = 8.4;
 	public final double kTargetingCamera_AngleConstant = 3.4;
-	public final double kTargetingCamera_CenterConstant = 77; //36		
+	public final double kTargetingCamera_CenterConstant = 81; //36		//77  //84
 	
 	public final double kTargetingCamera_DistanceInchesMax = 86;
 	public final double kTargetingCamera_DistanceInchesMin = 131;
@@ -95,16 +95,17 @@ public class Constants {
 	public final double kTargetingCamera_AreaMin = 7;
 	
 	/* Fuel Feeder */
-	public final double kFeeder_DefaultEnableSpeed = .5;
+	public final double kFeeder_DefaultEnableSpeed = 0.7;
 	public final double kFeeder_AutonDefaultEnableSpeed = .7; 
 	public final double kFeeder_DefaultReverseSpeed = .7; //Speed is reversed later in code, set absolute value of desired speed.
-	
+	public final double kFeeder_DefaultSlowSpeed = 0.4;
+	//Jamming Code
 	public final boolean kFeeder_Detectjams = true;		// Determines whether or not to use jam prevention
 	public final double kFeeder_ReverseVoltageTolerance = 10.0; //When this current is reached, reverse the motors. This is in Amps. Higher numbers means more resistance needed to trigger reverse.
 	public final double kFeeder_ReverseDuration = 0.5;	//Amount of time (seconds) to reverse once a jam is detected
 	public final double kFeeder_ReverseSpeed = 0.7;		//Speed is reversed later in code, set absolute value of desired speed.		//Speed to reverse at once a jam is detected
 	
-	public final double kFeeder_DefaultSlowSpeed = 0.3;
+	
 	/* Rope Climber */
 	public final double kRopeClimber_defaultSpeed = 1.0;
 }

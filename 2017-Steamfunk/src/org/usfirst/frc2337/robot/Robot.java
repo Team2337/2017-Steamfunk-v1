@@ -46,7 +46,7 @@ public class Robot extends IterativeRobot {
 	public static Mat matOriginalObj;
 	public static FuelFeeder fuelFeeder;
 	Command autonomousCommand;
-
+	SendableChooser <Command> autonSelector; //<Command> autonSelector;//
 	SendableChooser<Command> autoselect;
 
 	public static Alliance AllianceColor;
@@ -224,7 +224,7 @@ public class Robot extends IterativeRobot {
 			RobotMap.chassisPID_gyro.reset();
 		}
 		*/
-		if (RobotMap.boilerVision.getAverageCenter() > 76 && RobotMap.boilerVision.getAverageCenter() < 81) {
+		if (RobotMap.boilerVision.getAverageCenter() > 77 && RobotMap.boilerVision.getAverageCenter() < 85) {
 			SmartDashboard.putBoolean("onTarget", true);
 		} else {
 			SmartDashboard.putBoolean("onTarget", false);
