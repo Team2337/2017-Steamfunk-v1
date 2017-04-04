@@ -164,8 +164,9 @@ public class OI {
 	
 		/* =========================================================*/
 		
-		BlackButton				.whenPressed(new _DoNothing()); //Right Wings
-		BlueButton				.whenPressed(new _DoNothing());	//Left Wings
+		BlackButton				.whenPressed(new _DoNothing()); 
+		BlueButton				.whenPressed(new Lockdown(0));
+		BlueButton				.whenReleased(new UnLockdown());
 		yellowButton			.whenPressed(new _DoNothing());
 		whiteButton				.whenPressed(new _DoNothing());
 		clearSwitch				.whileHeld(new FuelShooter_RPMToVoltage());

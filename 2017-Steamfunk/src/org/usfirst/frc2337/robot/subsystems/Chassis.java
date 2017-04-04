@@ -106,7 +106,10 @@ public class Chassis extends Subsystem {
 	public void stopMotors() {
 		robotDrive.stopMotor();
 	}
-	
+	public void setMotionMagic() {
+		RobotMap.chassisPID_rightFront.changeControlMode(TalonControlMode.MotionMagic);
+		RobotMap.chassisPID_leftFront.changeControlMode(TalonControlMode.MotionMagic);
+	}
 	public void changeFollowerToVbus(){
 		
 		RobotMap.chassisPID_leftRearMiddle.changeControlMode(TalonControlMode.PercentVbus);
@@ -117,7 +120,8 @@ public class Chassis extends Subsystem {
 	}
 	public void changeVbusToFollower() {
 		
-		
+		RobotMap.chassisPID_rightFront.changeControlMode(TalonControlMode.PercentVbus);
+		RobotMap.chassisPID_leftFront.changeControlMode(TalonControlMode.PercentVbus);
 		RobotMap.chassisPID_leftRearMiddle.changeControlMode(TalonControlMode.Follower);
 		RobotMap.chassisPID_leftRearMiddle.set(RobotMap.chassisPID_leftFront.getDeviceID());
 		RobotMap.chassisPID_rightRearMiddle.changeControlMode(TalonControlMode.Follower);
