@@ -108,7 +108,7 @@ public class OI {
 
 		driver_GreenA			.whenPressed(new _DoNothing()); //Near give maneuver
 		driver_RedB				.whenPressed(new _DoNothing()); //Far gear maneuver
-		driver_BlueX			.whenPressed(new _DoNothing()); 
+		driver_BlueX			.whenPressed(new Chassis_targetWithMotionRev()); 
 		driver_YellowY			.whenPressed(new _DoNothing()); //THIS NEEDS TO REVERT THE SHOOTER AND THE AUGER FOR X SECONDS
 		
 		//driver_BumperLeft		.whileHeld(new Chassis_nerdyDrive()); //DONE IN CHASSIS DRIVE 

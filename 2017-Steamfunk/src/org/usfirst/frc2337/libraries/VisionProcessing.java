@@ -31,12 +31,16 @@ public class VisionProcessing {
 			
 	public double CENTER_OF_CONTOURS = 0;
 	
+	/* Distance */
 	public double DISTANCE_INCHES_MIN = 31;
 	public double DISTANCE_INCHES_MAX = 131;
 	
 	public double AREA_MIN = 337;
 	public double AREA_MAX = 7;
 	
+	/* Motion Magic */
+	public double DERGREE_PER_REVOLUTION = 56;
+	public double DEGREE_PER_PIXEL = 0.375;
 	
 	public static double[] defaultValue = new double[0];	
 
@@ -133,6 +137,25 @@ public class VisionProcessing {
 		this.AREA_MIN = min;
 		this.AREA_MAX = max;
 	}
+	
+	/**
+	 * This is the degree per one pixel via vision
+	 * 	- Step 1: Find the FOV (Field of View) on your camera, then divide it by the total width in pixel your camera is.
+	 *  - Step 2: You should divide the FOV / PIXEL_WIDTH
+	 * @paracm degree
+	 */
+	public void setDegreePerPixel(double degree) {
+		this.DEGREE_PER_PIXEL = degree;
+	}
+	
+	/**
+	 * This is the degree per one revolution for motion magic
+	 * @paracm degree
+	 */
+	public void setDegreePerRevolution(double degree) {
+		this.DERGREE_PER_REVOLUTION = degree;
+	}
+	
 	/*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
 	/**
 	 * Do we have contours?
@@ -173,6 +196,22 @@ public class VisionProcessing {
 		}
 		return center;
 	}
+	public double getPixelsToRevolutions(double pixel_const, double deg_const, double pixels) {
+		
+		/* This convets the pixels to degrees then to revolutions
+		 *  For this method we keep 1 pixel constant and 1 revolution contant.
+		 *  Let's say you going to use this method, you need to first:
+		 *  	- Step 1: Get the FOV of the camera and then divide it by the total amount of pixels you are grabbing
+		 *  	  (for us it was a 60 degree lens with 160 pixels wide, so 0.375 degree per pixel)
+		 *  	- Step 2: Grab the degrees for 1 revolution on the wheels.
+		 *		  (for use it was 56 degrees for around a revolution on our wheels. This may change if the wheel is changed)
+		 *  */
+		
+		double pixel_output = pixels * pixel_const;
+		double rev_output = pixel_output / deg_const;
+		
+		return rev_output;
+	}
 	/**
 	 * Gets distance from calculating the length between contours
 	 * @param z The type, so 0 is X, and 1 is Y
@@ -180,10 +219,9 @@ public class VisionProcessing {
 	 */
 	public double getDistanceFromTarget(){
 		double area = getAverageArea();
-		SmartDashboard.putNumber("distanceFromTargetMath", 0);
 		double distanceFromTarget = (DISTANCE_INCHES_MIN - area) * ((DISTANCE_INCHES_MAX - 
 				DISTANCE_INCHES_MIN) / (AREA_MAX - AREA_MIN));
-		
+
 		//System.out.println("distanceFromTarget: " + distanceFromTarget);
 		return distanceFromTarget - OFFSET_HORIZONTAL_CAMERA; 
 	}
@@ -204,21 +242,56 @@ public class VisionProcessing {
 		if(hasContours()){
 			//Do we have two contours? (top/bottom or left/right)
 			if(center.length == 2){ 
-				double turnAngle;
+				double turnPixel;
 				if (getAverageCenter() > CENTER_OF_CONTOURS) {
-				 turnAngle = (getAverageCenter() - CENTER_OF_CONTOURS) * -1;			
+				 turnPixel = (getAverageCenter() - CENTER_OF_CONTOURS) * -1;			
 				} else {
-				 turnAngle = (CENTER_OF_CONTOURS - getAverageCenter()) * 1;	
+				 turnPixel = (CENTER_OF_CONTOURS - getAverageCenter()) * 1;	
 				 
 				}
-					
-				angleToGoal = turnAngle/ANGLE_CONSTANT;
+				angleToGoal = turnPixel/ANGLE_CONSTANT;
+				
 				/*
 				
 				System.out.println("ANGLE TO GOAL:" + angleToGoal);
 				System.out.println("TURN ANGLE:" + turnAngle);
 				System.out.println("AVG CENTER" + getAverageCenter() + "    |    CENTER OF CONTOURS:" + CENTER_OF_CONTOURS);
 			*/
+			}
+		}
+		
+		return angleToGoal;
+	}
+	/**
+	 * EXPLAIN LATER
+	 * 
+	 * @return revolutions
+	 */
+	public double getRevAngle() {
+		double center[];
+		center = table.getNumberArray("centerX", defaultValue);
+		//Set angle to nothing
+		double angleToGoal = 0;
+		
+		//If GRIP hasContours
+		if(hasContours()){
+			//Do we have two contours? (top/bottom or left/right)
+			if(center.length == 2) { 
+				double turnPixel;
+				if (getAverageCenter() > CENTER_OF_CONTOURS) {
+					turnPixel = (getAverageCenter() - CENTER_OF_CONTOURS) * -1;			
+				} else {
+					turnPixel = (CENTER_OF_CONTOURS - getAverageCenter()) * 1;					 
+				}
+				
+				
+				/* This converts pixels to revolutions.
+				 * x is the FOV of the camera (we check ours online and by testing it by moving the robot with a fixed object and using a NAVx or a protractor)
+				 */
+				// 0.375 = FOV TO CAMERA RESOLUTION (PIXELS TO DEGREES)
+				//DEGREE_PER_PIXEL
+				//DERGREE_PER_REVOLUTION
+				angleToGoal = getPixelsToRevolutions(DEGREE_PER_PIXEL, DERGREE_PER_REVOLUTION, turnPixel);
 			}
 		}
 		
@@ -239,6 +312,7 @@ public class VisionProcessing {
 		
 		return (Math.sqrt(floor_distance) - OFFSET_HORIZONTAL_CAMERA); //Remove the distance from front of robot where camera is located
 	}
-
+	
+	
 	
 }

@@ -92,7 +92,7 @@ public class Constants {
 	public final double kTargetingCamera_ObjectHeight = 82;
 	public final double kTargetingCamera_WidthBetweenTarget = 8.4;
 	public final double kTargetingCamera_AngleConstant = 3.4;
-	public final double kTargetingCamera_CenterConstant = 81; //36		//77  //84
+	public final double kTargetingCamera_CenterConstant = 83; //36		//77  //84
 	
 	public final double kTargetingCamera_DistanceInchesMax = 86;
 	public final double kTargetingCamera_DistanceInchesMin = 131;
@@ -100,6 +100,8 @@ public class Constants {
 	public final double kTargetingCamera_AreaMax = 24;
 	public final double kTargetingCamera_AreaMin = 7;
 	
+	public final double kTargetingCamera_PixelDegree = 0.375; //0.375 degree(s) per 1 pixel
+	public final double kTargetingCamera_RevDegree = 56; //56 degree(s) per 1 revolution
 	/* Fuel Feeder */
 	public final double kFeeder_DefaultEnableSpeed = .7;
 	public final double kFeeder_AutonDefaultEnableSpeed = .7; 
