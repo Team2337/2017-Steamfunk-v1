@@ -16,6 +16,12 @@ public class Constants {
 	public final double kChassisPID_TurnSensitivity = 0.9;
 	public final double kChassisPID_ReverseDrive = -1.0;
 	
+	public final double kChassisLockdownForwardDistance = .25;
+	public final double kChassisLockdownReverseDistance = .25;
+	public final double kChassisLockdownLeftDistance = .025;
+	public final double kChassisLockdownRightDistance = .025;
+	
+	
 	/* Fuel Shooter Voltage */
 	public final double kFuelShooter_hopperShotSpeedLeft = -8.25;  //8.9  comp  //8.7 prac //9.0 pract //8.5
 	public final double kFuelShooter_hopperShotSpeedRight = 8.55; //9.25 comp  //9.25 prac //9.5 pracc  //8.75
@@ -32,8 +38,8 @@ public class Constants {
 	
 	
 	/* Fuel Shooter RPM */
-	  public final double kFuelShooter_hopperShotSpeedLeftRPM = 3090;   //  3075   ///  3065
-	  public final double kFuelShooter_hopperShotSpeedRightRPM =  3140;  //  3175    ///3150
+	  public final double kFuelShooter_hopperShotSpeedLeftRPM = 2975;//2975;   //  3075   ///  3065
+	  public final double kFuelShooter_hopperShotSpeedRightRPM =  2985; //2985;  //  3175    ///3150
 	 
 	  public final double kFuelShooter_autonMidGearShotSpeedLeftRPM = 2990;
 	  public final double kFuelShooter_autonMidGearShotSpeedRightRPM =  3205;
@@ -95,14 +101,14 @@ public class Constants {
 	public final double kTargetingCamera_AreaMin = 7;
 	
 	/* Fuel Feeder */
-	public final double kFeeder_DefaultEnableSpeed = 0.7;
+	public final double kFeeder_DefaultEnableSpeed = .7;
 	public final double kFeeder_AutonDefaultEnableSpeed = .7; 
 	public final double kFeeder_DefaultReverseSpeed = .7; //Speed is reversed later in code, set absolute value of desired speed.
 	public final double kFeeder_DefaultSlowSpeed = 0.4;
 	//Jamming Code
 	public final boolean kFeeder_Detectjams = true;		// Determines whether or not to use jam prevention
 	public final double kFeeder_ReverseVoltageTolerance = 10.0; //When this current is reached, reverse the motors. This is in Amps. Higher numbers means more resistance needed to trigger reverse.
-	public final double kFeeder_ReverseDuration = 0.5;	//Amount of time (seconds) to reverse once a jam is detected
+	public final double kFeeder_ReverseDuration = 0.25;	//Amount of time (seconds) to reverse once a jam is detected
 	public final double kFeeder_ReverseSpeed = 0.7;		//Speed is reversed later in code, set absolute value of desired speed.		//Speed to reverse at once a jam is detected
 	
 	

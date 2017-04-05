@@ -230,7 +230,7 @@ public class Robot extends IterativeRobot {
 			SmartDashboard.putBoolean("onTarget", false);
 		}
 		
-		
+		SmartDashboard.putNumber("setpoint", RobotMap.chassisPID_leftFront.getSetpoint());
 		//SmartDashboard.putNumber("joystick power", Robot.oi.driverJoystick.getRawAxis(4));
 	}
 }
