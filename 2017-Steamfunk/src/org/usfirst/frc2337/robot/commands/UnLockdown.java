@@ -33,6 +33,7 @@ public class UnLockdown extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.chassis.changeVbusToFollower();
+
     	Robot.chassis.setBrakeMode(true);
 
     }

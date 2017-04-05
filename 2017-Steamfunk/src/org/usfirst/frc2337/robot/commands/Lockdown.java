@@ -11,6 +11,7 @@ import com.ctre.CANTalon;
 import com.ctre.CANTalon.SetValueMotionProfile;
 import com.ctre.CANTalon.TalonControlMode;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -18,30 +19,43 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class Lockdown extends Command {
 
-    private double targetPos;
+    private double targetPosLeft;
+    private double targetPosRight;
     public static double driveF;
     public static double driveP;
     public static double driveD;
+    boolean amsetfwd = false;
+    boolean amsetback = false;
+    boolean amsetleft = false;
+    boolean amsetright = false;
+    
 	
 
     public Lockdown() {
         requires(Robot.chassis);
-        targetPos = 0; //revolutions
+        targetPosLeft = 0; //revolutions
+        targetPosRight = 0; //revolutions
     }
     
     public Lockdown(double revolutions) {
         requires(Robot.chassis);
-        targetPos = 0; //revolutions
+        targetPosLeft = 0; //revolutions
+        targetPosRight = 0; //revolutions
     }
     
     public Lockdown(double revolutions, double timeout) {
         requires(Robot.chassis);
-        targetPos = 0; //revolutions
+        targetPosLeft = 0; //revolutions
+        targetPosRight = 0; //revolutions
         setTimeout(timeout);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	
+    	targetPosLeft = 0; //revolutions
+        targetPosRight = 0; //revolutions
+        
     	RobotMap.chassisPID_rightFront.setEncPosition(0);
     	RobotMap.chassisPID_leftFront.setEncPosition(0);
         driveF = .2;
@@ -81,40 +95,57 @@ public class Lockdown extends Command {
 		/* set acceleration and vcruise velocity - see documentation */
 
 
-
+		RobotMap.chassisPID_leftFront.set(0); /* Rotations in either direction */
+		RobotMap.chassisPID_rightFront.set(0);
 
 
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	/*
-		
-		double motorOutput = RobotMap.chassisCANTalonFrontLeft.getOutputVoltage() / RobotMap.chassisCANTalonFrontLeft.getBusVoltage();
-		
-		RobotMap._sb.append("\tout:");
-		RobotMap._sb.append(motorOutput);
-		RobotMap._sb.append("\tspd:");
-		RobotMap._sb.append(RobotMap.chassisCANTalonFrontLeft.getSpeed());
-		    	*/
-		
-	
-		RobotMap.chassisPID_leftFront.set(this.targetPos); /* Rotations in either direction */
-		RobotMap.chassisPID_rightFront.set(this.targetPos);
 
-		/* append more signals to print when in speed mode. */
-		/*
-		RobotMap._sb.append("\terr:");
-		RobotMap._sb.append(RobotMap.chassisCANTalonFrontLeft.getClosedLoopError());
-		RobotMap._sb.append("\ttrg:");
-		RobotMap._sb.append(targetPos);
-		*/
+		if (Robot.oi.getDriverJoystick().getRawButton(4) && !amsetfwd) {
+			targetPosLeft = this.targetPosLeft + Robot.constants.kChassisLockdownForwardDistance;
+			targetPosRight = this.targetPosRight + Robot.constants.kChassisLockdownForwardDistance;
+			//System.out.println(targetPos + " " + this.targetPos);
+			amsetfwd = true;
+		} else if (!Robot.oi.getDriverJoystick().getRawButton(4)) {
+			amsetfwd = false;
+		}
+		
+		if (Robot.oi.getDriverJoystick().getRawButton(1) && !amsetback) {
+			targetPosLeft = this.targetPosLeft + -Robot.constants.kChassisLockdownReverseDistance;
+			targetPosRight = this.targetPosRight + -Robot.constants.kChassisLockdownReverseDistance;
+			//System.out.println(targetPos + " " + this.targetPos);
+			amsetback = true;
+		} else if (!Robot.oi.getDriverJoystick().getRawButton(1)) {
+			amsetback = false;
+		}
+		
+		if (Robot.oi.getDriverJoystick().getRawButton(3) && !amsetleft) {
+			targetPosLeft = this.targetPosLeft + -Robot.constants.kChassisLockdownLeftDistance;
+			targetPosRight = this.targetPosRight + Robot.constants.kChassisLockdownLeftDistance;
+			//System.out.println(targetPos + " " + this.targetPos);
+			amsetleft = true;
+		} else if (!Robot.oi.getDriverJoystick().getRawButton(3)) {
+			amsetleft = false;
+		}
+		
+		if (Robot.oi.getDriverJoystick().getRawButton(2) && !amsetright) {
+			targetPosLeft = this.targetPosLeft + Robot.constants.kChassisLockdownRightDistance;
+			targetPosRight = this.targetPosRight + -Robot.constants.kChassisLockdownRightDistance;
+			//System.out.println(targetPos + " " + this.targetPos);
+			amsetright = true;
+		} else if (!Robot.oi.getDriverJoystick().getRawButton(2)) {
+			amsetright = false;
+		}
 		
 		
-		/* instrumentation */
-		//Instrum.Process(RobotMap.chassisCANTalonFrontLeft, RobotMap._sb);
-		
-		
+
+		RobotMap.chassisPID_leftFront.set(this.targetPosLeft); /* Rotations in either direction */
+		RobotMap.chassisPID_rightFront.set(this.targetPosRight);
+
+
 		//  not implemented yet...
 		//SmartDashboard.putNumber("ActTrajVelocity", RobotMap.chassisCANTalonFrontLeft.getMotionMagicActTrajVelocity());
 		//SmartDashboard.putNumber("ActTrajPosition", RobotMap.chassisCANTalonFrontLeft.getMotionMagicActTrajPosition());
