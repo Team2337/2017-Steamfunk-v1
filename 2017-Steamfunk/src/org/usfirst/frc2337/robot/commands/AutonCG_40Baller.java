@@ -16,7 +16,7 @@ public class AutonCG_40Baller extends CommandGroup {
     public AutonCG_40Baller() {
    
     	
-    	addSequential(new ControlProfile40ball());
+    	addSequential(new ControlProfile40ballRed());
     	addSequential(new Auton_driveForTime(.7, 0, 0.12));// added at troy after #2  match
     	addSequential(new FuelIntakeArm_extend());
     	addParallel(new FuelShooter_speedSetRPM(Robot.constants.kFuelShooter_autonRedHopperShotSpeedLeftRPM, Robot.constants.kFuelShooter_autonRedHopperShotSpeedRightRPM));

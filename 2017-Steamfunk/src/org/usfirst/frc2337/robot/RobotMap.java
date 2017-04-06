@@ -71,6 +71,8 @@ public class RobotMap {
 	public static MotionProfileManagerLeft leftManager;
 	public static MotionProfileManagerRight40ball rightManager40ball;
 	public static MotionProfileManagerLeft40ball leftManager40ball;
+	public static MotionProfileManagerRight40ballRed rightManager40ballRed;
+	public static MotionProfileManagerLeft40ballRed leftManager40ballRed;
 	public static DriverStation.Alliance AllianceColor;
 	
 	public static boolean RPMandVoltageSwitch = false;
@@ -130,6 +132,9 @@ public class RobotMap {
 		
 		leftManager40ball = new MotionProfileManagerLeft40ball(chassisPID_leftFront);
 		rightManager40ball = new MotionProfileManagerRight40ball(chassisPID_rightFront);
+		
+		leftManager40ballRed = new MotionProfileManagerLeft40ballRed(chassisPID_leftFront);
+		rightManager40ballRed = new MotionProfileManagerRight40ballRed(chassisPID_rightFront);
 		
 		//FUEL SHOOTERS
 		shooterCANTalonLeft = new CANTalon(8);  //8 

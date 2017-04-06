@@ -125,6 +125,8 @@ public class Robot extends IterativeRobot {
 		RobotMap.rightManager.reset();
 		RobotMap.leftManager40ball.reset();
 		RobotMap.rightManager40ball.reset();
+		RobotMap.leftManager40ballRed.reset();
+		RobotMap.rightManager40ballRed.reset();
 		// schedule the autonomous command (example)
 		autonomousCommand = (Command) autoselect.getSelected();//(Command) autonSelector.getSelected();//
 		//autonomousCommand= new Auton_turnGyro(90);
@@ -144,6 +146,8 @@ public class Robot extends IterativeRobot {
 		RobotMap.rightManager.control();
 		RobotMap.leftManager40ball.control();
 		RobotMap.rightManager40ball.control();
+		RobotMap.leftManager40ballRed.control();
+		RobotMap.rightManager40ballRed.control();
 	}
 	
 	public void teleopInit() {
