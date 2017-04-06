@@ -91,7 +91,7 @@ public class Chassis_targetWithMotionRev extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return isTimedOut() || getBetween(rev, RobotMap.chassisPID_leftFront.getPosition(), 0.01);
+        return isTimedOut() || getBetween(rev, RobotMap.chassisPID_leftFront.getPosition(), 0.002) || Robot.oi.getOperatorControls().getRawButton(3);
     }
 
     // Called once after isFinished returns true

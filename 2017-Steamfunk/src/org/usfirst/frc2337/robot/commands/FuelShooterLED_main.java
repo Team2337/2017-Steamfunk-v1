@@ -24,7 +24,7 @@ public class FuelShooterLED_main extends Command {
 	protected void execute() {
 		try {
 			//If LEFT shooter voltage is greater than 0.1
-			if (Math.abs(RobotMap.shooterCANTalonLeft.getOutputVoltage()) >= Robot.constants.kFuelShooterLED_triggerSpeed) { //Breaks, lets fix it!
+			if (Math.abs(RobotMap.shooterCANTalonLeft.getSpeed()) >= Robot.constants.kFuelShooterLED_triggerSpeed) { //Breaks, lets fix it!
 				//Turn everything for that side on & vision
 				Robot.fuelShooterLED.leftLEDState(true);
 				Robot.fuelShooterLED.visionLEDState(true);
@@ -34,7 +34,7 @@ public class FuelShooterLED_main extends Command {
 			}
 			
 			//If RIGHT shooter voltage is greater than 0.1
-			if (Math.abs(RobotMap.shooterCANTalonRight.getOutputVoltage()) >= Robot.constants.kFuelShooterLED_triggerSpeed) {
+			if (Math.abs(RobotMap.shooterCANTalonRight.getSpeed()) >= Robot.constants.kFuelShooterLED_triggerSpeed) {
 				//Turn everything for that side on & vision
 				Robot.fuelShooterLED.rightLEDState(true);
 				Robot.fuelShooterLED.visionLEDState(true);
@@ -45,7 +45,7 @@ public class FuelShooterLED_main extends Command {
 			}
 			
 			//If both shooters are off, disable all LED's running
-			if(Math.abs(RobotMap.shooterCANTalonRight.getOutputVoltage()) < 0.1 && Math.abs(RobotMap.shooterCANTalonLeft.getOutputVoltage()) < 0.1)
+			if(Math.abs(RobotMap.shooterCANTalonRight.getOutputVoltage()) < 10 && Math.abs(RobotMap.shooterCANTalonLeft.getOutputVoltage()) < 10)
 				Robot.fuelShooterLED.visionLEDState(true);//Make false 
 			
 		} catch (Exception e) {

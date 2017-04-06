@@ -61,7 +61,7 @@ public class Constants {
 	public final double kFuelShooter_halfSpeed = 6.0;
     public final double kFuelShooter_maxSpeed = 12.0;  //???
 	/* Fuel Shooter LED*/
-    public final double kFuelShooterLED_triggerSpeed = 8.1;
+    public final double kFuelShooterLED_triggerSpeed = 2500;
 	/* Fuel Intake */
 	public final double kFuelIntake_DefaultSpeed = 1.0;
 	public final double kFuelIntake_IncrementSpeed = 0.05;
@@ -100,8 +100,9 @@ public class Constants {
 	public final double kTargetingCamera_AreaMax = 24;
 	public final double kTargetingCamera_AreaMin = 7;
 	
-	public final double kTargetingCamera_PixelDegree = 0.375; //0.375 degree(s) per 1 pixel
-	public final double kTargetingCamera_RevDegree = 56; //56 degree(s) per 1 revolution
+	public final double kTargetingCamera_PixelDegree = 0.375; //0.375 degree(s) per 1 pixel //0.2875
+	public final double kTargetingCamera_RevDegree = 0.0155; //0.017845 rev(s) per 1 degree
+	
 	/* Fuel Feeder */
 	public final double kFeeder_DefaultEnableSpeed = .7;
 	public final double kFeeder_AutonDefaultEnableSpeed = .7; 

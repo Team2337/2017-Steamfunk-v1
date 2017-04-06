@@ -27,20 +27,21 @@ public class VisionProcessing {
 	public double DISTANCE_CONSTANT = 0; //Distance constant;
   	public double ANGLE_CONSTANT = 0;
 	
-	public double WIDTH_BETWEEN_TARGET = 0;
+	public double WIDTH_BETWEEN_TARGET;
 			
-	public double CENTER_OF_CONTOURS = 0;
+	public double CENTER_OF_CONTOURS;
 	
 	/* Distance */
-	public double DISTANCE_INCHES_MIN = 31;
-	public double DISTANCE_INCHES_MAX = 131;
+	public double DISTANCE_INCHES_MIN;
+	public double DISTANCE_INCHES_MAX;
 	
-	public double AREA_MIN = 337;
-	public double AREA_MAX = 7;
+	public double AREA_MIN;
+	public double AREA_MAX;
 	
 	/* Motion Magic */
-	public double DERGREE_PER_REVOLUTION = 56;
-	public double DEGREE_PER_PIXEL = 0.375;
+	public double DERGREE_PER_REVOLUTION;
+	public double DEGREE_PER_PIXEL;
+	
 	
 	public static double[] defaultValue = new double[0];	
 
@@ -175,7 +176,7 @@ public class VisionProcessing {
 		double[] contoursAREA = table.getNumberArray("area", defaultValue);
 		double area = 0;
 		if (hasContours()) {
-			if(contoursAREA.length >= 2) { //TODO Remove: DUPLICATE STATMENT AS hasContours()
+			if(contoursAREA.length >= 1) { //TODO Remove: DUPLICATE STATMENT AS hasContours()
 			 area = (contoursAREA[0] + contoursAREA[1]) / 2;
 			}
 		}
@@ -190,8 +191,8 @@ public class VisionProcessing {
 		double[] contoursX = table.getNumberArray("centerX", defaultValue);
 		double center = 0;
 		if (hasContours()) {
-			if(contoursX.length >= 2) { //TODO Remove: DUPLICATE STATMENT AS hasContours()
-				center = (contoursX[0] + contoursX[1]) / 2;
+			if(contoursX.length >= 1) { //TODO Remove: DUPLICATE STATMENT AS hasContours()
+				center = contoursX[0];
 			}
 		}
 		return center;
@@ -208,7 +209,7 @@ public class VisionProcessing {
 		 *  */
 		
 		double pixel_output = pixels * pixel_const;
-		double rev_output = pixel_output / deg_const;
+		double rev_output = pixel_output * deg_const;
 		
 		return rev_output;
 	}
@@ -241,7 +242,7 @@ public class VisionProcessing {
 		//If GRIP hasContours
 		if(hasContours()){
 			//Do we have two contours? (top/bottom or left/right)
-			if(center.length == 2){ 
+			if(center.length >= 1){ 
 				double turnPixel;
 				if (getAverageCenter() > CENTER_OF_CONTOURS) {
 				 turnPixel = (getAverageCenter() - CENTER_OF_CONTOURS) * -1;			
@@ -276,7 +277,7 @@ public class VisionProcessing {
 		//If GRIP hasContours
 		if(hasContours()){
 			//Do we have two contours? (top/bottom or left/right)
-			if(center.length == 2) { 
+			if(center.length >= 1) { 
 				double turnPixel;
 				if (getAverageCenter() > CENTER_OF_CONTOURS) {
 					turnPixel = (getAverageCenter() - CENTER_OF_CONTOURS) * -1;			

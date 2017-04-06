@@ -95,7 +95,7 @@ public class OI {
     JoystickButton 			whiteButton				= new JoystickButton(operatorControls, 5);
     JoystickButton 			clearSwitch				= new JoystickButton(operatorControls, 1);
     JoystickButton 			blueSwitch				= new JoystickButton(operatorControls, 4);
-    JoystickButton 			blackSwitch				= new JoystickButton(operatorControls, 3);
+    JoystickButton 			blackSwitch				= new JoystickButton(operatorControls, 3);                     
     JoystickButton 			yellowSwitch			= new JoystickButton(operatorControls, 2);
 	
 	//drivers station
@@ -108,7 +108,7 @@ public class OI {
 
 		driver_GreenA			.whenPressed(new _DoNothing()); //Near give maneuver
 		driver_RedB				.whenPressed(new _DoNothing()); //Far gear maneuver
-		driver_BlueX			.whenPressed(new Chassis_targetWithMotionRev()); 
+		driver_BlueX			.whenPressed(new _DoNothing()); 
 		driver_YellowY			.whenPressed(new _DoNothing()); //THIS NEEDS TO REVERT THE SHOOTER AND THE AUGER FOR X SECONDS
 		
 		//driver_BumperLeft		.whileHeld(new Chassis_nerdyDrive()); //DONE IN CHASSIS DRIVE 
@@ -174,7 +174,7 @@ public class OI {
 		clearSwitch				.whileHeld(new FuelShooter_RPMToVoltage());
 		clearSwitch				.whenReleased(new FuelShooter_VoltageToRPM());
 		blueSwitch				.whenPressed(new _DoNothing());
-		blackSwitch				.whenPressed(new _DoNothing());
+		blackSwitch				.whenPressed(new _DoNothing()); //USED IN Chassis_targetingWithMotionRev
 		yellowSwitch			.whenPressed(new _DoNothing());
 		
 		

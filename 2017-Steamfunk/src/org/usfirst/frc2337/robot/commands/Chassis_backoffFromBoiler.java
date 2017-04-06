@@ -39,8 +39,9 @@ public class Chassis_backoffFromBoiler extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	
-    	targetPosLeft = -4.1274; //revolutions
-        targetPosRight = -4.1274; //revolutions
+        targetPosLeft = -4.1618; //revolutions
+        targetPosRight = -4.1618; //revolutions
+ 
         
     	RobotMap.chassisPID_rightFront.setEncPosition(0);
     	RobotMap.chassisPID_leftFront.setEncPosition(0);
