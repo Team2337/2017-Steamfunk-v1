@@ -7,6 +7,7 @@ import com.ctre.CANTalon;
 import com.kauailabs.navx.frc.AHRS;
 import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
+import com.ctre.CANTalon.VelocityMeasurementPeriod;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
@@ -156,7 +157,8 @@ public class RobotMap {
 		shooterCANTalonLeft.setF(0.033233);   //  0.035764566369491,  034533,  0.034533 
 		shooterCANTalonLeft.setAllowableClosedLoopErr(10);
         shooterCANTalonLeft.setCloseLoopRampRate(3); 
-        
+       // shooterCANTalonLeft.SetVelocityMeasurementPeriod(VelocityMeasurementPeriod.Period_1Ms);
+       // shooterCANTalonLeft.SetVelocityMeasurementWindow(64);
         
         shooterCANTalonRight = new CANTalon(9);
         // Change to Voltage
@@ -178,6 +180,9 @@ public class RobotMap {
         shooterCANTalonRight.setF(0.033964); //0.035764566369491 (Over),  0.030764566369491 (Under), 0.033764566369491(Over by 20), 0.033364566369491(Recover Bad), 0.033564566369491(Pretty good) ,  034664566369491  crap 
         shooterCANTalonRight.setAllowableClosedLoopErr(10); 
         shooterCANTalonRight.setCloseLoopRampRate(3); 
+       // shooterCANTalonRight.SetVelocityMeasurementPeriod(VelocityMeasurementPeriod.Period_1Ms);
+       // shooterCANTalonRight.SetVelocityMeasurementWindow(64);
+        
         
 		//SHOOTER LIGHT
         shooterLight = new Relay(0, Relay.Direction.kForward);

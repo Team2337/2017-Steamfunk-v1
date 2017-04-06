@@ -39,7 +39,7 @@ public class Constants {
 	
 	/* Fuel Shooter RPM */
 	  public final double kFuelShooter_hopperShotSpeedLeftRPM = 2975;//2975;   //  3075   ///  3065
-	  public final double kFuelShooter_hopperShotSpeedRightRPM =  2985; //2985;  //  3175    ///3150
+	  public final double kFuelShooter_hopperShotSpeedRightRPM =  2985; //2985;  //  3175    ///3150  ////3110
 	 
 	  public final double kFuelShooter_autonMidGearShotSpeedLeftRPM = 2990;
 	  public final double kFuelShooter_autonMidGearShotSpeedRightRPM =  3205;
@@ -101,7 +101,7 @@ public class Constants {
 	public final double kTargetingCamera_AreaMin = 7;
 	
 	public final double kTargetingCamera_PixelDegree = 0.375; //0.375 degree(s) per 1 pixel //0.2875
-	public final double kTargetingCamera_RevDegree = 0.0155; //0.017845 rev(s) per 1 degree
+	public final double kTargetingCamera_RevDegree = 0.0169; //0.017845 rev(s) per 1 degree
 	
 	/* Fuel Feeder */
 	public final double kFeeder_DefaultEnableSpeed = .7;

@@ -77,7 +77,7 @@ public class Chassis_targetWithMotionRev extends Command {
 		RobotMap.chassisPID_rightFront.set(rev);
 		
     	
-		setTimeout(5);
+		setTimeout(1.1);
 
 
     }
