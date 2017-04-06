@@ -132,7 +132,8 @@ public class OI {
 	   // driver_POVUpRight		.whenPressed(new _DoNothing()); 
 	    driver_POVRight			.whenPressed(new FuelShooterRight_speedIncreaseRPM()); 
 	   // driver_POVDownRight		.whenPressed(new _DoNothing()); 
-	    driver_POVDown			.whenPressed(new FuelShooterRight_speedDecreaseRPM()); 
+	    driver_POVDown			.whileHeld(new Chassis_backupVisionLockdownCG()); 
+	    driver_POVDown			.whenReleased(new UnLockdown());
 	   // driver_POVDownLeft		.whenPressed(new _DoNothing()); 
 	    driver_POVLeft			.whenPressed(new FuelShooterLeft_speedDecreaseRPM()); 
 	   // driver_POVUpLeft		.whenPressed(new _DoNothing()); 

@@ -2,8 +2,7 @@ package org.usfirst.frc2337.robot.commands;
 
 
 
-import org.usfirst.frc2337.robot.MotionProfileManagerLeft;
-import org.usfirst.frc2337.robot.MotionProfileManagerRight;
+
 import org.usfirst.frc2337.robot.Robot;
 import org.usfirst.frc2337.robot.RobotMap;
 
@@ -24,7 +23,7 @@ public class Chassis_backoffFromBoiler extends Command {
     public static double driveF;
     public static double driveP;
     public static double driveD;
-    double timeout = 3;
+    double timeout = 2;
 
     
 	
@@ -38,7 +37,7 @@ public class Chassis_backoffFromBoiler extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	
+    	setTimeout(timeout);
         targetPosLeft = -4.1618; //revolutions
         targetPosRight = -4.1618; //revolutions
  
