@@ -66,9 +66,6 @@ public class Chassis_targetWithMotionRev extends Command {
     	RobotMap.chassisCANTalonRearLeft.enableBrakeMode(false);
     	RobotMap.chassisCANTalonRearRight.enableBrakeMode(false);
 		*/
-    	
-		// IN ROBOR MAP OR INDIVIDUALLY??? XXX
-		/* set acceleration and vcruise velocity - see documentation */
 
     	rev = boilerVision.getRevAngle();
     	System.out.println(rev);

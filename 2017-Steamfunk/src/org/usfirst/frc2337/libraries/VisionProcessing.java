@@ -39,7 +39,7 @@ public class VisionProcessing {
 	public double AREA_MAX;
 	
 	/* Motion Magic */
-	public double DERGREE_PER_REVOLUTION;
+	public double REVOLUTION_PER_DEGREE;
 	public double DEGREE_PER_PIXEL;
 	
 	
@@ -150,11 +150,11 @@ public class VisionProcessing {
 	}
 	
 	/**
-	 * This is the degree per one revolution for motion magic
-	 * @paracm degree
+	 * This is the revolution per one degree for motion magic
+	 * @paracm revoluution
 	 */
-	public void setDegreePerRevolution(double degree) {
-		this.DERGREE_PER_REVOLUTION = degree;
+	public void setRevolutionPerDegree(double revolution) {
+		this.REVOLUTION_PER_DEGREE = revolution;
 	}
 	
 	/*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
@@ -163,7 +163,7 @@ public class VisionProcessing {
 	 * @return TRUE or FALSE if we do
 	 */
 	public boolean hasContours() {
-		if (table.getNumberArray("centerX", defaultValue).length >= 1) //What is returned?
+		if (table.getNumberArray("centerX", defaultValue).length >= 1) 
 			return true;
 		return false;
 	}	
@@ -204,8 +204,7 @@ public class VisionProcessing {
 		 *  Let's say you going to use this method, you need to first:
 		 *  	- Step 1: Get the FOV of the camera and then divide it by the total amount of pixels you are grabbing
 		 *  	  (for us it was a 60 degree lens with 160 pixels wide, so 0.375 degree per pixel)
-		 *  	- Step 2: Grab the degrees for 1 revolution on the wheels.
-		 *		  (for use it was 56 degrees for around a revolution on our wheels. This may change if the wheel is changed)
+		 *  	- Step 2: Grab the revolution per 1 degree (turn 360, grab left and right revolution, average them, divide by 360)
 		 *  */
 		
 		double pixel_output = pixels * pixel_const;
@@ -228,8 +227,8 @@ public class VisionProcessing {
 	}
 	
 	/**
-	 * Gets angle from calculating the pixel length, converting it to inches with a tan
-	 * 	-PS: I don't fully understand the math as well.
+	 * Gets angle from calculating the degrees per pixel (about)
+	 * 	
 	 * @param z The type, so 0 is X, and 1 is Y
 	 * @return getAngle
 	 */
@@ -250,7 +249,7 @@ public class VisionProcessing {
 				 turnPixel = (CENTER_OF_CONTOURS - getAverageCenter()) * 1;	
 				 
 				}
-				angleToGoal = turnPixel/ANGLE_CONSTANT;
+				angleToGoal = turnPixel/ANGLE_CONSTANT; //This is the degrees per pixel
 				
 				/*
 				
@@ -292,7 +291,7 @@ public class VisionProcessing {
 				// 0.375 = FOV TO CAMERA RESOLUTION (PIXELS TO DEGREES)
 				//DEGREE_PER_PIXEL
 				//DERGREE_PER_REVOLUTION
-				angleToGoal = getPixelsToRevolutions(DEGREE_PER_PIXEL, DERGREE_PER_REVOLUTION, turnPixel);
+				angleToGoal = getPixelsToRevolutions(DEGREE_PER_PIXEL, REVOLUTION_PER_DEGREE, turnPixel);
 			}
 		}
 		

@@ -16,7 +16,8 @@ public class AutonCG_40Ballerblue extends CommandGroup {
     public AutonCG_40Ballerblue() {
    
     	
-    	addSequential(new ControlProfile40ball());
+    	addSequential(new ControlProfile40ball()); // new p motion before 68 // new p motion is 2.88acc10 was 2.68acc10
+    	//addSequential(new Auton_driveForTime(.7, 0, 0.08)); //was .12 before 63 for shepherd
     	addSequential(new FuelIntakeArm_extend());
     	addParallel(new FuelShooter_speedSetRPM(Robot.constants.kFuelShooter_autonBlueHopperShotSpeedLeftRPM, Robot.constants.kFuelShooter_autonBlueHopperShotSpeedRightRPM));
     	//Driverstation.Alliance CurrentSide = ;
@@ -35,15 +36,16 @@ public class AutonCG_40Ballerblue extends CommandGroup {
     	
     	addSequential(new Auton_wait(.2));
     	addParallel(new AutonHopperWings_extend());
-    	addSequential(new Auton_driveForTime(-.5, 0, 0.5));
+    	addSequential(new Auton_driveForTime(-.5, 0, 0.6));
     	//addSequential(new HopperWings_extend());
     	//addSequential(new Auton_wait(.2));
     	//addParallel(new Chassis_targetWithGyro()); // need 
     	
     	//addSequential(new Auton_wait(.5));
     	addParallel(new FuelIntake_enabledReverse()); //XXX using Reverse on practicerobot, switch back to Forward, use Reverse for comp bot
-    	addParallel(new FuelFeeder_setSpeedTimed(-Robot.constants.kFeeder_DefaultEnableSpeed, 10));
+    	addParallel(new FuelFeeder_setSpeedTimed(-Robot.constants.kFeeder_AutonDefaultEnableSpeed, 10));
     	//
+    	
     	   	
     	addSequential(new Auton_wait(5.5));
     	addSequential(new FuelIntakeArm_retract());

@@ -17,7 +17,7 @@ public class AutonCG_40Baller extends CommandGroup {
    
     	
     	addSequential(new ControlProfile40ballRed());
-    	addSequential(new Auton_driveForTime(.7, 0, 0.12));// added at troy after #2  match
+    	//addSequential(new Auton_driveForTime(.7, 0, 0.12));// added at troy after #2  match
     	addSequential(new FuelIntakeArm_extend());
     	addParallel(new FuelShooter_speedSetRPM(Robot.constants.kFuelShooter_autonRedHopperShotSpeedLeftRPM, Robot.constants.kFuelShooter_autonRedHopperShotSpeedRightRPM));
     	//Driverstation.Alliance CurrentSide = ;
@@ -26,12 +26,13 @@ public class AutonCG_40Baller extends CommandGroup {
     	//	System.out.println("Blue");
     	//	SmartDashboard.putString("Side:", "blue");
     	} else { 
-    		addSequential(new Auton_driveLeftWheel(1.0, 1.6));// was 1.4 troy p match was .8 before #3 of troy
+    		addSequential(new Auton_driveLeftWheel(1.0, 1.5));// was 1.4 troy p match was .8 before #3 of troy  p 5 match s was 1.6
     	//	System.out.println("Red");
     	//	SmartDashboard.putString("Side:", "Red");
     	}
     	
     	//addParallel(new Auton_driveRightWheel(.8, 1));
+    
     	//addSequential(new Auton_wait(.8));
     	
     	addSequential(new Auton_wait(.2));

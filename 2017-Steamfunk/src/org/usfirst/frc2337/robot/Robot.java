@@ -228,7 +228,7 @@ public class Robot extends IterativeRobot {
 			RobotMap.chassisPID_gyro.reset();
 		}
 		*/
-		if (RobotMap.boilerVision.getAverageCenter() > 77 && RobotMap.boilerVision.getAverageCenter() < 85) {
+		if (RobotMap.boilerVision.getAverageCenter() > (Robot.constants.kTargetingCamera_CenterConstant - 4) && RobotMap.boilerVision.getAverageCenter() < (Robot.constants.kTargetingCamera_CenterConstant + 4)) {
 			SmartDashboard.putBoolean("onTarget", true);
 		} else {
 			SmartDashboard.putBoolean("onTarget", false);

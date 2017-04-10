@@ -242,7 +242,7 @@ public class RobotMap {
 		boilerVision.setDistances(con.kTargetingCamera_DistanceInchesMin, con.kTargetingCamera_DistanceInchesMax);
 		boilerVision.setAreas(con.kTargetingCamera_AreaMin, con.kTargetingCamera_AreaMax);
 		boilerVision.setDegreePerPixel(con.kTargetingCamera_PixelDegree);
-		boilerVision.setDegreePerRevolution(con.kTargetingCamera_RevDegree);
+		boilerVision.setRevolutionPerDegree(con.kTargetingCamera_RevDegree);
 		
 		
 		

@@ -116,8 +116,10 @@ public class OI {
 		driver_BumperRight		.whenPressed(new Chassis_visionLockdownCG());
 		driver_BumperRight		.whenReleased(new UnLockdown());
 		
-		driver_Back				.whenPressed(new FuelFeeder_reverse()); 
-		driver_Start			.whileHeld(new Chassis_backoffFromBoiler());
+		driver_Back				.whileHeld(new Chassis_backupVisionLockdownCG()); 
+		driver_Back				.whenReleased(new UnLockdown());
+		
+		driver_Start			.whileHeld(new _DoNothing());
 		
 		driver_LeftStick		.whenPressed(new _DoNothing()); 
 		driver_RightStick		.whenPressed(new _DoNothing()); 
@@ -167,11 +169,11 @@ public class OI {
 	
 		/* =========================================================*/
 		
-		BlackButton				.whenPressed(new _DoNothing()); 
+		BlackButton				.whenPressed(new _DoNothing() ); 
 		BlueButton				.whenPressed(new Lockdown(0));
 		BlueButton				.whenReleased(new UnLockdown());
-		yellowButton			.whenPressed(new _DoNothing());
-		whiteButton				.whenPressed(new _DoNothing());
+		yellowButton			.whenPressed(new Chassis_targetWithMotionRev());
+		whiteButton				.whenPressed(new  _DoNothing() );
 		clearSwitch				.whileHeld(new FuelShooter_RPMToVoltage());
 		clearSwitch				.whenReleased(new FuelShooter_VoltageToRPM());
 		blueSwitch				.whenPressed(new _DoNothing());
