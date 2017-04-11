@@ -48,8 +48,8 @@ public class Auton_MMMoveForward extends Command {
         
     	RobotMap.chassisPID_rightFront.setEncPosition(0);
     	RobotMap.chassisPID_leftFront.setEncPosition(0);
-        driveF = .08;
-        driveP = 1; //.0077;//0.04508;  
+        driveF = .8; //0.4
+        driveP = 2.0; // 1.0 //.0077;//0.04508;  
         driveD = 50;
     	RobotMap.chassisPID_rightFront.setF(driveF); //0.399931
     	RobotMap.chassisPID_rightFront.setP(driveP); //0.09869
@@ -61,15 +61,15 @@ public class Auton_MMMoveForward extends Command {
     	RobotMap.chassisPID_leftFront.setI(0);
     	RobotMap.chassisPID_leftFront.setD(0);
     	
-		RobotMap.chassisPID_leftFront.setMotionMagicCruiseVelocity(702);  //75% of 937
-		RobotMap.chassisPID_rightFront.setMotionMagicCruiseVelocity(702);
+		RobotMap.chassisPID_leftFront.setMotionMagicCruiseVelocity(500);  //75% of 937.. 602
+		RobotMap.chassisPID_rightFront.setMotionMagicCruiseVelocity(500);
 		
-		RobotMap.chassisPID_leftFront.setMotionMagicAcceleration(500); // was 600
-		RobotMap.chassisPID_rightFront.setMotionMagicAcceleration(500);
+		RobotMap.chassisPID_leftFront.setMotionMagicAcceleration(200); // 400 was 600
+		RobotMap.chassisPID_rightFront.setMotionMagicAcceleration(200);
 		
     	Robot.chassis.setMotionMagic();
-    	RobotMap.chassisPID_leftFront.enableBrakeMode(false);
-    	RobotMap.chassisPID_rightFront.enableBrakeMode(false);
+    	RobotMap.chassisPID_leftFront.enableBrakeMode(true); //false
+    	RobotMap.chassisPID_rightFront.enableBrakeMode(true);
 
 
 		RobotMap.chassisPID_leftFront.set(targetPosLeft); /* Rotations in either direction */

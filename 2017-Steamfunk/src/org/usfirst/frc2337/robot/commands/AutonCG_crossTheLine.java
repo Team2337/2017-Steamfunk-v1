@@ -13,6 +13,7 @@ public class AutonCG_crossTheLine extends CommandGroup {
     public AutonCG_crossTheLine() {
     //addSequential(new ControlProfile40ballRed());
     	addSequential(new Auton_MMMoveForward(-7.361));
+    	/*
     	addSequential(new Auton_MMTurnRed());
     	addSequential(new Chassis_targetWithMotionRev());
     	
@@ -24,6 +25,8 @@ public class AutonCG_crossTheLine extends CommandGroup {
     	addSequential(new Auton_wait(1.1));
     	addSequential(new FuelIntakeArm_retract());
     	//addSequential(new Auton_driveForTime(.7,0,3)); // need to change back motion pro
+    	 */
+    	 
     
     }
 }
