@@ -92,7 +92,7 @@ public class Constants {
 	public final double kTargetingCamera_ObjectHeight = 82;
 	public final double kTargetingCamera_WidthBetweenTarget = 8.4;
 	public final double kTargetingCamera_AngleConstant = 3.4;
-	public final double kTargetingCamera_CenterConstant = 80; //36		//77  //84
+	public final double kTargetingCamera_CenterConstant = 88; //80 FOR COMP BOT !!!
 	
 	public final double kTargetingCamera_DistanceInchesMax = 86;
 	public final double kTargetingCamera_DistanceInchesMin = 131;
@@ -117,4 +117,9 @@ public class Constants {
 	
 	/* Rope Climber */
 	public final double kRopeClimber_defaultSpeed = 1.0;
+	
+	/* AUTON COSTANTS */
+	
+	public final double kAuton_TurnDegreeRed = 24;
+	public final double kAuton_TurnDegreeBlue = 24;
 }

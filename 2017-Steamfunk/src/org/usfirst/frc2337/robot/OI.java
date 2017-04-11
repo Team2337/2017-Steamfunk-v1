@@ -169,16 +169,16 @@ public class OI {
 	
 		/* =========================================================*/
 		
-		BlackButton				.whenPressed(new _DoNothing() ); 
+		BlackButton				.whenPressed(new Chassis_targetWithMotionRev() ); 
 		BlueButton				.whenPressed(new Lockdown(0));
 		BlueButton				.whenReleased(new UnLockdown());
-		yellowButton			.whenPressed(new Chassis_targetWithMotionRev());
+		yellowButton			.whenPressed(new _DoNothing());
 		whiteButton				.whenPressed(new  _DoNothing() );
 		clearSwitch				.whileHeld(new FuelShooter_RPMToVoltage());
 		clearSwitch				.whenReleased(new FuelShooter_VoltageToRPM());
-		blueSwitch				.whenPressed(new _DoNothing());
+		blueSwitch				.whenPressed(new _DoNothing()); //USED IN FuelShooterLED_main
 		blackSwitch				.whenPressed(new _DoNothing()); //USED IN Chassis_targetingWithMotionRev
-		yellowSwitch			.whenPressed(new _DoNothing());
+		yellowSwitch			.whenPressed(new _DoNothing()); 
 		
 		
 		
