@@ -43,7 +43,7 @@ public class Auton_DFGwE extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
 
-    	Robot.chassis.arcadeDrive(m_speed,0);//baseAngle-yaw*Kp);
+    	Robot.chassis.arcadeDrive(m_speed,Robot.chassis.getGyroYaw());//baseAngle-yaw*Kp);
     	
        	
     }
