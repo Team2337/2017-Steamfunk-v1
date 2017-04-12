@@ -118,8 +118,16 @@ public class Constants {
 	/* Rope Climber */
 	public final double kRopeClimber_defaultSpeed = 1.0;
 	
-	/* AUTON COSTANTS */
-	
+	/* AUTON CONSTANTS */
+	/* Turn Values */
 	public final double kAuton_TurnDegreeRed = 24;
 	public final double kAuton_TurnDegreeBlue = 24;
+	
+	/* Distance Values */
+	public final double kAuton_InitialDistanceRed = -7.251;
+	public final double kAuton_InitialDistanceBlue = -7.251;
+	
+	public final double kAuton_DriveToHopperDistanceRed = 0.820;
+	public final double kAuton_DriveToHopperDistanceBlue = 0.820;
+	
 }

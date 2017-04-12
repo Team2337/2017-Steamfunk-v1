@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Auton_MMMoveForward extends Command {
+public class Auton_MMMoveForwardTest extends Command {
 
     private double targetPosLeft;
     private double targetPosRight;
@@ -27,12 +27,12 @@ public class Auton_MMMoveForward extends Command {
 
     
 
-    public Auton_MMMoveForward(double distance) {
+    public Auton_MMMoveForwardTest(double distance) {
         requires(Robot.chassis);
         targetPosLeft = distance; //revolutions
         targetPosRight = distance; //revolutions
     }
-    public Auton_MMMoveForward(double distance, double Pval ) {
+    public Auton_MMMoveForwardTest(double distance, double Pval ) {
         requires(Robot.chassis);
         targetPosLeft = distance; //revolutions
         targetPosRight = distance; //revolutions
@@ -49,7 +49,7 @@ public class Auton_MMMoveForward extends Command {
     	RobotMap.chassisPID_rightFront.setEncPosition(0);
     	RobotMap.chassisPID_leftFront.setEncPosition(0);
         driveF = .2; //0.4
-        driveP = 1.0; // 1.0 //.0077;//0.04508;  
+        driveP = 2.0; // 1.0 //.0077;//0.04508;  
         driveD = 50;
     	RobotMap.chassisPID_rightFront.setF(driveF); //0.399931
     	RobotMap.chassisPID_rightFront.setP(driveP); //0.09869
@@ -61,11 +61,11 @@ public class Auton_MMMoveForward extends Command {
     	RobotMap.chassisPID_leftFront.setI(0);
     	RobotMap.chassisPID_leftFront.setD(0);
     	
-		RobotMap.chassisPID_leftFront.setMotionMagicCruiseVelocity(200);  //75% of 937.. 602
-		RobotMap.chassisPID_rightFront.setMotionMagicCruiseVelocity(200);
+		RobotMap.chassisPID_leftFront.setMotionMagicCruiseVelocity(702);  //75% of 937.. 602
+		RobotMap.chassisPID_rightFront.setMotionMagicCruiseVelocity(702);
 		
-		RobotMap.chassisPID_leftFront.setMotionMagicAcceleration(250); // 400 was 600
-		RobotMap.chassisPID_rightFront.setMotionMagicAcceleration(250);
+		RobotMap.chassisPID_leftFront.setMotionMagicAcceleration(600); // 400 was 600
+		RobotMap.chassisPID_rightFront.setMotionMagicAcceleration(600);
 		
     	Robot.chassis.setMotionMagic();
     	RobotMap.chassisPID_leftFront.enableBrakeMode(false); //false

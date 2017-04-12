@@ -109,6 +109,18 @@ public class Chassis extends Subsystem {
 	public void setMotionMagic() {
 		RobotMap.chassisPID_rightFront.changeControlMode(TalonControlMode.MotionMagic);
 		RobotMap.chassisPID_leftFront.changeControlMode(TalonControlMode.MotionMagic);
+		/*
+		RobotMap.chassisPID_rightFront.changeControlMode(TalonControlMode.Follower);
+		RobotMap.chassisPID_rightFront.set(RobotMap.chassisPID_leftFront.getDeviceID());
+		RobotMap.chassisPID_rightFront.reverseOutput(true);
+		
+		RobotMap.chassisPID_rightRearMiddle.changeControlMode(TalonControlMode.Follower);
+		RobotMap.chassisPID_rightRearMiddle.set(RobotMap.chassisPID_leftFront.getDeviceID());
+		RobotMap.chassisPID_rightRearMiddle.reverseOutput(true);
+		RobotMap.chassisPID_rightRear.changeControlMode(TalonControlMode.Follower);
+		RobotMap.chassisPID_rightRear.set(RobotMap.chassisPID_leftFront.getDeviceID());
+		RobotMap.chassisPID_rightRear.reverseOutput(true);
+		*/
 	}
 	public void changeFollowerToVbus(){
 		

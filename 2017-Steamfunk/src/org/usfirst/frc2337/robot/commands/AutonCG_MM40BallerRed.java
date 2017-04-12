@@ -11,18 +11,20 @@ import org.usfirst.frc2337.robot.Robot;
 public class AutonCG_MM40BallerRed extends CommandGroup {
 	
     public AutonCG_MM40BallerRed() {
-
-    	addSequential(new Auton_MMMoveForward(-7.251));//, 1)); was -6.971
-    	addSequential(new FuelIntakeArm_extend()); // arm out then below is the shooters
     	addParallel(new FuelShooter_speedSetRPM(Robot.constants.kFuelShooter_autonRedHopperShotSpeedLeftRPM, Robot.constants.kFuelShooter_autonRedHopperShotSpeedRightRPM));
+    	addSequential(new Auton_MMMoveForward(Robot.constants.kAuton_InitialDistanceRed));//, 1)); was -6.971
+    	addSequential(new FuelIntakeArm_extend()); // arm out then below is the shooters
     	addSequential(new Auton_MMTurnRed());
+    	
     	addSequential(new Chassis_targetWithMotionRev());
     	
+    	
+    	addSequential(new Auton_MMMoveForward(Robot.constants.kAuton_DriveToHopperDistanceRed));//, .8));
     	addSequential(new HopperWings_extend());
-    	addSequential(new Auton_MMMoveForward(0.820));//, .8));
     	
     	addParallel(new FuelIntake_enabledReverse()); //XXX using Reverse on practicerobot, switch back to Forward, use Reverse for comp bot
     	addParallel(new FuelFeeder_setSpeedTimed(-Robot.constants.kFeeder_AutonDefaultEnableSpeed,15));
+    	addParallel(new Chassis_targetWithMotionRev());
     	addSequential(new Auton_wait(5.5));
     	addSequential(new FuelIntakeArm_retract());
     	
