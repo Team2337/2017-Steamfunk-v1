@@ -62,14 +62,16 @@ public class Lockdown extends Command {
         driveP = 3; //.0077;//0.04508;  
         driveD = 50;
     	RobotMap.chassisPID_rightFront.setF(driveF); //0.399931
-    	RobotMap.chassisPID_rightFront.setP(driveP); //0.09869
+    	RobotMap.chassisPID_rightFront.setP(5); //0.09869
     	RobotMap.chassisPID_rightFront.setI(0);
     	RobotMap.chassisPID_rightFront.setD(0);
+    	RobotMap.chassisPID_rightFront.clearIAccum();
     	
     	RobotMap.chassisPID_leftFront.setF(driveF); //0.399931
     	RobotMap.chassisPID_leftFront.setP(driveP); //0.09869
     	RobotMap.chassisPID_leftFront.setI(0);
     	RobotMap.chassisPID_leftFront.setD(0);
+    	RobotMap.chassisPID_leftFront.clearIAccum();
     	
 		RobotMap.chassisPID_leftFront.setMotionMagicCruiseVelocity(702);  //75% of 937
 		RobotMap.chassisPID_rightFront.setMotionMagicCruiseVelocity(702);

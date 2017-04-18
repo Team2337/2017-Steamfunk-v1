@@ -172,7 +172,7 @@ public class OI {
 		BlackButton				.whenPressed(new Chassis_targetWithMotionRev() ); 
 		BlueButton				.whenPressed(new Lockdown(0));
 		BlueButton				.whenReleased(new UnLockdown());
-		yellowButton			.whenPressed(new _DoNothing());
+		yellowButton			.whenPressed(new Auton_FuelFeeder_forwardTimed(.8, 30));
 		whiteButton				.whenPressed(new  _DoNothing() );
 		clearSwitch				.whileHeld(new FuelShooter_RPMToVoltage());
 		clearSwitch				.whenReleased(new FuelShooter_VoltageToRPM());

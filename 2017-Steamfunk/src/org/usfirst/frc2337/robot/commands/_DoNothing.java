@@ -1,5 +1,9 @@
 package org.usfirst.frc2337.robot.commands;
 
+import org.usfirst.frc2337.robot.RobotMap;
+
+import com.ctre.CANTalon.TalonControlMode;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -13,6 +17,9 @@ public class _DoNothing extends Command {
 
 	// Called just before this Command runs the first time
     protected void initialize() {
+    	RobotMap.chassisPID_rightFront.changeControlMode(TalonControlMode.PercentVbus);
+    	RobotMap.chassisPID_rightRearMiddle.changeControlMode(TalonControlMode.PercentVbus);
+    	RobotMap.chassisPID_rightFront.set(.5);
     }
 
     // Called repeatedly when this Command is scheduled to run

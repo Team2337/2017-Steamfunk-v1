@@ -23,7 +23,7 @@ public class Auton_MMMoveForward extends Command {
     public static double driveF;
     public static double driveP = 1;
     public static double driveD;
-    double timeout = 10;
+    double timeout = 1.1;
 
     
 
@@ -61,15 +61,15 @@ public class Auton_MMMoveForward extends Command {
     	RobotMap.chassisPID_leftFront.setI(0);
     	RobotMap.chassisPID_leftFront.setD(0);
     	
-		RobotMap.chassisPID_leftFront.setMotionMagicCruiseVelocity(200);  //75% of 937.. 602
-		RobotMap.chassisPID_rightFront.setMotionMagicCruiseVelocity(200);
+		RobotMap.chassisPID_leftFront.setMotionMagicCruiseVelocity(500);  //75% of 937.. 602
+		RobotMap.chassisPID_rightFront.setMotionMagicCruiseVelocity(500);
 		
-		RobotMap.chassisPID_leftFront.setMotionMagicAcceleration(250); // 400 was 600
-		RobotMap.chassisPID_rightFront.setMotionMagicAcceleration(250);
+		RobotMap.chassisPID_leftFront.setMotionMagicAcceleration(400); // 400 was 600
+		RobotMap.chassisPID_rightFront.setMotionMagicAcceleration(400);
 		
     	Robot.chassis.setMotionMagic();
-    	RobotMap.chassisPID_leftFront.enableBrakeMode(false); //false
-    	RobotMap.chassisPID_rightFront.enableBrakeMode(false);
+    	RobotMap.chassisPID_leftFront.enableBrakeMode(true); //false
+    	RobotMap.chassisPID_rightFront.enableBrakeMode(true);
 
 
 		RobotMap.chassisPID_leftFront.set(targetPosLeft); /* Rotations in either direction */
@@ -81,9 +81,15 @@ public class Auton_MMMoveForward extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	
-		RobotMap.chassisPID_leftFront.set(this.targetPosLeft); /* Rotations in either direction */
-		RobotMap.chassisPID_rightFront.set(this.targetPosRight);
 
+    	
+    	
+    	
+    	
+    	/*
+		RobotMap.chassisPID_leftFront.set(this.targetPosLeft); /* Rotations in either direction 
+		RobotMap.chassisPID_rightFront.set(this.targetPosRight);
+    	 */
 		//  not implemented yet...
 		//SmartDashboard.putNumber("ActTrajVelocity", RobotMap.chassisCANTalonFrontLeft.getMotionMagicActTrajVelocity());
 		//SmartDashboard.putNumber("ActTrajPosition", RobotMap.chassisCANTalonFrontLeft.getMotionMagicActTrajPosition());

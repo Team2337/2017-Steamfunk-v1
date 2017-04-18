@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *  using the encoder(reset to 0) for distance and gyro to drive straight.
  *  Can also inout a timeout, otherwise it will default to 5 seconds.
  */
-public class Auton_DFGwE extends Command {
+public class Auton_DFGwE2 extends Command {
 	
 
 	public double m_target;
@@ -25,7 +25,7 @@ public class Auton_DFGwE extends Command {
 
 
 		 
-	  public Auton_DFGwE(double speed, double encoderTarget, double timeout) {
+	  public Auton_DFGwE2(double speed, double encoderTarget, double timeout) {
 	   	requires(Robot.chassis);
 	   	m_timeout = timeout;
     	m_target = encoderTarget;
@@ -45,17 +45,23 @@ public class Auton_DFGwE extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	//variable speed based on encoder position with  minimum speed
+    	
     	//Beginning acceleration
     	if(RobotMap.chassisPID_leftFront.getEncPosition() <(m_target * .3)){
-    		m2_speed = m_speed * .5;
+    		m2_speed = m_speed * (RobotMap.chassisPID_leftFront.getEncPosition()/(0.3 * m_target));
     	}
     	//cruising velocity
     	else if(RobotMap.chassisPID_leftFront.getEncPosition() <(m_target * .7)){
-    		m2_speed = m_speed;
+    		m2_speed = m_speed ;
     	}
     	//Ending Deceleration
     	else{
-    		m2_speed = m_speed * .5;
+    		m2_speed = m_speed *(1- ((RobotMap.chassisPID_leftFront.getEncPosition()-(0.7 * m_target))/(0.3 * m_target)));
+    	}
+    	// minimum speed check
+    	if (m2_speed < 0.1){
+    		m2_speed = 0.1;
     	}
     	
 

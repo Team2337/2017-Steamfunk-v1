@@ -45,7 +45,7 @@ public class Constants {
 	  public final double kFuelShooter_autonMidGearShotSpeedRightRPM =  3205;
 	  
 	  public final double kFuelShooter_autonRedHopperShotSpeedLeftRPM = 3050;    //First Kettering Match = 8.6  //8.75 // 8.825  //3070
-	  public final double kFuelShooter_autonRedHopperShotSpeedRightRPM = 3090;  //First Kettering Match = 8.65    //8.85 // was 8.9 //8.925 //3120
+	  public final double kFuelShooter_autonRedHopperShotSpeedRightRPM = 3050;  // 3090 after q57 msc//First Kettering Match = 8.65    //8.85 // was 8.9 //8.925 //3120
 	 
 	  public final double kFuelShooter_autonBlueHopperShotSpeedLeftRPM = 3050;    // was 3090 before match 55 of troy
 	  public final double kFuelShooter_autonBlueHopperShotSpeedRightRPM = 3070;  //was 3140  before match 60 of troy
@@ -92,7 +92,7 @@ public class Constants {
 	public final double kTargetingCamera_ObjectHeight = 82;
 	public final double kTargetingCamera_WidthBetweenTarget = 8.4;
 	public final double kTargetingCamera_AngleConstant = 3.4;
-	public final double kTargetingCamera_CenterConstant = 88; //80 FOR COMP BOT !!!
+	public final double kTargetingCamera_CenterConstant = 80; //80 FOR COMP BOT !!!
 	
 	public final double kTargetingCamera_DistanceInchesMax = 86;
 	public final double kTargetingCamera_DistanceInchesMin = 131;
@@ -111,8 +111,10 @@ public class Constants {
 	//Jamming Code
 	public final boolean kFeeder_Detectjams = true;		// Determines whether or not to use jam prevention
 	public final double kFeeder_ReverseVoltageTolerance = 10.0; //When this current is reached, reverse the motors. This is in Amps. Higher numbers means more resistance needed to trigger reverse.
-	public final double kFeeder_ReverseDuration = 0.25;	//Amount of time (seconds) to reverse once a jam is detected
-	public final double kFeeder_ReverseSpeed = 0.7;		//Speed is reversed later in code, set absolute value of desired speed.		//Speed to reverse at once a jam is detected
+	public final double kFeeder_AutoReverseVoltageTolerance = 20.0; 
+	public final double kFeeder_ReverseDuration = 0.20;	//Amount of time (seconds) to reverse once a jam is detected. was .25 Sheperd
+	public final double kFeeder_ReverseSpeed = 0.7;		
+	//Speed is reversed later in code, set absolute value of desired speed.		//Speed to reverse at once a jam is detected
 	
 	
 	/* Rope Climber */
@@ -120,14 +122,14 @@ public class Constants {
 	
 	/* AUTON CONSTANTS */
 	/* Turn Values */
-	public final double kAuton_TurnDegreeRed = 24;
-	public final double kAuton_TurnDegreeBlue = 24;
+	public final double kAuton_TurnDegreeRed = 35; // was  24 at MSC before qs 
+	public final double kAuton_TurnDegreeBlue = 35; // was 24
 	
 	/* Distance Values */
 	public final double kAuton_InitialDistanceRed = -7.251;
 	public final double kAuton_InitialDistanceBlue = -7.251;
 	
-	public final double kAuton_DriveToHopperDistanceRed = 0.820;
-	public final double kAuton_DriveToHopperDistanceBlue = 0.820;
+	public final double kAuton_DriveToHopperDistanceRed = 0.35; //was .820 before qs
+	public final double kAuton_DriveToHopperDistanceBlue = 0.35;
 	
 }
