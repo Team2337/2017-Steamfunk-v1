@@ -26,7 +26,7 @@ public class ControlProfile extends Command {
 	 public CANTalon talonRightRear = RobotMap.chassisPID_rightRear;
 	 public MotionProfileManagerLeft leftTalonManager = RobotMap.leftManager;
 	 public MotionProfileManagerRight rightTalonManager = RobotMap.rightManager;
-	 double timeout = 4;
+	 double timeout = 3;
 
     public ControlProfile() {
 
@@ -38,7 +38,7 @@ public class ControlProfile extends Command {
     protected void initialize() {
     	//talonLeft.enableBrakeMode(false);
     	//talonRight.enableBrakeMode(false);
-    	
+    	/*
     	talonLeftMiddle.changeControlMode(TalonControlMode.PercentVbus);
     	//talonLeftMiddle.enableBrakeMode(false);
     	talonRightMiddle.changeControlMode(TalonControlMode.PercentVbus);
@@ -47,7 +47,7 @@ public class ControlProfile extends Command {
     	//talonLeftRear.enableBrakeMode(false);
     	talonRightRear.changeControlMode(TalonControlMode.PercentVbus);
     	//talonRightRear.enableBrakeMode(false);
-    	
+    	*/
     	talonLeft.setEncPosition(0);
     	talonRight.setEncPosition(0);
     	setTimeout(timeout);
@@ -56,14 +56,14 @@ public class ControlProfile extends Command {
     	talonLeft.changeControlMode(TalonControlMode.MotionProfile);
     	leftTalonManager.startMotionProfile();
     	talonLeft.setF(0.1023);
-    	talonLeft.setP(.2);
+    	talonLeft.setP(.018);
     	
     	
     	
     	talonRight.changeControlMode(TalonControlMode.MotionProfile);
     	rightTalonManager.startMotionProfile();
     	talonRight.setF(0.1023);
-    	talonRight.setP(.2);
+    	talonRight.setP(.018);
 	
 
     	

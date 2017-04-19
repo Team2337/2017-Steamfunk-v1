@@ -54,14 +54,14 @@ public class MotionProfileInstrumentation {
 		return ((double)whole) * 0.000001;
 	}
 	public static void process(CANTalon.MotionProfileStatus status1) {
-		double now = edu.wpi.first.wpilibj.Timer.getFPGATimestamp();
+///		double now = edu.wpi.first.wpilibj.Timer.getFPGATimestamp();
 
-		if((now-timeout) > 0.2){
-			timeout = now;
+//		if((now-timeout) > 0.2){
+//			timeout = now;
 			/* fire a loop every 200ms */
 
-			if(--count <= 0){
-				count = 8;
+//			if(--count <= 0){
+//				count = 8;
 				/* every 8 loops, print our columns */
 				/*
 				System.out.format("%-9s\t", "topCnt");
@@ -77,7 +77,7 @@ public class MotionProfileInstrumentation {
 
 				System.out.format("\n");
 				*/
-			}
+//			}
 			/* every loop, print our values */
 			/*
 			System.out.format("%-9s\t", status1.topBufferCnt);
@@ -93,6 +93,6 @@ public class MotionProfileInstrumentation {
 
 			System.out.format("\n");
 			*/
-		}
+//		}
 	}
 }

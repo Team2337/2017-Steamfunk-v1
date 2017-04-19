@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.command.PIDCommand;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -45,10 +46,13 @@ public class Robot extends IterativeRobot {
 	public static GripPipeline trackerObj;
 	public static Mat matOriginalObj;
 	public static FuelFeeder fuelFeeder;
+	public static NetworkTable logger;
+	
 	Command autonomousCommand;
 	SendableChooser <Command> autonSelector; //<Command> autonSelector;//
 	SendableChooser<Command> autoselect;
 
+	
 	public static Alliance AllianceColor;
 	/**
 	 * This function is run when the robot is first started up and should be
@@ -90,7 +94,8 @@ public class Robot extends IterativeRobot {
 		
 		autoselect = new SendableChooser <Command>();
 		autoselect.addObject("Do Nothing", new _DoNothing());
-		//autonSelector.addDefault("Shoot from wall", new AutonCG_Shootfromwall());
+		autoselect.addObject("SideGear Shoot Red", new Auton_sideGearThenShootRed());
+		autoselect.addObject("SideGear Shoot Blue", new Auton_sideGearThenShootBlue());
 		autoselect.addObject("Mid Gear then shoot Blue ", new AutonCG_midGearThenShotBlueSide());
 		autoselect.addObject("Mid Gear then shoot Red ", new AutonCG_midGearThenShotRedSide());
 		//autoselect.addDefault("40 ball red ", new AutonCG_40Baller()); 
@@ -101,7 +106,7 @@ public class Robot extends IterativeRobot {
 		//autonSelector.addObject("Shoot 10 and mid gear  ", new AutonCG_Shoot10MidGearRed());
 		autoselect.addObject("Cross The Line", new AutonCG_crossTheLine());
 	
-
+		logger = NetworkTable.getTable("logger");
 	}
 	
 	/**
@@ -109,6 +114,7 @@ public class Robot extends IterativeRobot {
 	 * You can use it to reset subsystems before shutting down.
 	 */
 	public void disabledInit(){
+		logger.putBoolean("status", false);
 		allInit();
 	}
 	
@@ -119,6 +125,7 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public void autonomousInit() {
+		logger.putBoolean("status", true);
 		allInit();
 		AllianceColor = DriverStation.getInstance().getAlliance();
 		RobotMap.chassisPID_gyro.reset();
@@ -162,7 +169,7 @@ public class Robot extends IterativeRobot {
 		Robot.hopperWings.retract();
 		Robot.fuelIntake.stopIntake();
 		if (autonomousCommand != null) autonomousCommand.cancel();
-		
+		logger.putBoolean("status", true);
 		allInit();
 	}
 	
@@ -238,6 +245,8 @@ public class Robot extends IterativeRobot {
 		}
 		
 		SmartDashboard.putNumber("setpoint", RobotMap.chassisPID_leftFront.getSetpoint());
+		
+		SmartDashboard.putBoolean("Left Shooter Encoder", RobotMap.shooterLeftStatusLight);
 		//SmartDashboard.putNumber("joystick power", Robot.oi.driverJoystick.getRawAxis(4));
 	}
 }

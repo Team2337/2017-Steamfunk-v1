@@ -6,6 +6,7 @@ import org.usfirst.frc2337.libraries.VisionProcessing;
 import com.ctre.CANTalon;
 import com.kauailabs.navx.frc.AHRS;
 import com.ctre.CANTalon.FeedbackDevice;
+import com.ctre.CANTalon.FeedbackDeviceStatus;
 import com.ctre.CANTalon.TalonControlMode;
 import com.ctre.CANTalon.VelocityMeasurementPeriod;
 
@@ -37,7 +38,9 @@ public class RobotMap {
     public static CANTalon chassisPID_leftRear;
     public static CANTalon chassisPID_leftRearMiddle;
     
-    public static CANTalon shooterCANTalonLeft;		 	
+    public static CANTalon shooterCANTalonLeft;	
+    public static boolean shooterLeftStatusLight;
+    public static FeedbackDeviceStatus shooterCANTalonLeftStatus;
     public static CANTalon shooterCANTalonRight;		//CANtalon 2 in separate shooter project
     
     public static RobotDrive chassisPID_RobotDrive;
@@ -159,6 +162,10 @@ public class RobotMap {
         shooterCANTalonLeft.setCloseLoopRampRate(3); 
        // shooterCANTalonLeft.SetVelocityMeasurementPeriod(VelocityMeasurementPeriod.Period_1Ms);
        // shooterCANTalonLeft.SetVelocityMeasurementWindow(64);
+        
+        
+        
+
         
         shooterCANTalonRight = new CANTalon(9);
         // Change to Voltage

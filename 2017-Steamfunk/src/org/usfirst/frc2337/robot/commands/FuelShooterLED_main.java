@@ -3,6 +3,9 @@ package org.usfirst.frc2337.robot.commands;
 import org.usfirst.frc2337.robot.Robot;
 import org.usfirst.frc2337.robot.RobotMap;
 
+import com.ctre.CANTalon.FeedbackDevice;
+import com.ctre.CANTalon.FeedbackDeviceStatus;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -10,8 +13,13 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class FuelShooterLED_main extends Command {
 	
+	
+	FeedbackDeviceStatus shooterLeftStatus = RobotMap.shooterCANTalonLeftStatus;
+	
 	public FuelShooterLED_main() {
 		requires(Robot.fuelShooterLED);
+		
+	
 	}
 	
 	// Called just before this Command runs the first time
@@ -51,6 +59,25 @@ public class FuelShooterLED_main extends Command {
 				} else {
 					Robot.fuelShooterLED.visionLEDState(false);//Make false 
 				}
+			/*
+			shooterLeftStatus = RobotMap.shooterCANTalonLeft.isSensorPresent(FeedbackDevice.CtreMagEncoder_Relative);
+	         
+	        switch(shooterLeftStatus) {
+	         case FeedbackStatusNotPresent:
+	             RobotMap.shooterLeftStatusLight = false;
+	             break;
+	         case FeedbackStatusPresent:
+	        	 RobotMap.shooterLeftStatusLight = true;
+	             break;
+	         case FeedbackStatusUnknown:
+	        	 RobotMap.shooterLeftStatusLight = false;
+	             break;
+	         default:
+	             break;
+	         
+	        }
+	        
+	        */
 		} catch (Exception e) {
 			System.out.println(e);
 		}

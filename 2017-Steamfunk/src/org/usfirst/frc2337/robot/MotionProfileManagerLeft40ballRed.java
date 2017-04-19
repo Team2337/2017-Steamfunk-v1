@@ -73,7 +73,7 @@ public class MotionProfileManagerLeft40ballRed {
 	 * How many trajectory points do we wait for before firing the motion
 	 * profile.
 	 */
-	private static final int kMinPointsInTalon = 5;
+	private static final int kMinPointsInTalon = 1;
 	/**
 	 * Just a state timeout to make sure we don't get stuck anywhere. Each loop
 	 * is about 20ms.
