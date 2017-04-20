@@ -146,7 +146,7 @@ public class RobotMap {
 		shooterCANTalonLeft.changeControlMode(TalonControlMode.Speed);
 	    shooterCANTalonLeft.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative); 
 		shooterCANTalonLeft.reverseOutput(true);
-		shooterCANTalonLeft.reverseSensor(false);  ////????
+		shooterCANTalonLeft.reverseSensor(true);  ////changed for practice change back
 		shooterCANTalonLeft.setInverted(false);
 		shooterCANTalonLeft.enableBrakeMode(false);
 		shooterCANTalonLeft.configNominalOutputVoltage(+0.0f,  -0.0f);

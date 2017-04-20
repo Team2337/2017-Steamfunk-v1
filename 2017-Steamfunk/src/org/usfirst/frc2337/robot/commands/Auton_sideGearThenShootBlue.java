@@ -19,11 +19,11 @@ public class Auton_sideGearThenShootBlue extends CommandGroup {
           addSequential (new Auton_turnMotionMagic(-53));
           addSequential(new Auton_MMMoveForward(Robot.constants.kAuton_DriveToSideGearBlue));
           addParallel(new FuelShooter_speedSetRPM(Robot.constants.kFuelShooter_autonRedHopperShotSpeedLeftRPM, Robot.constants.kFuelShooter_autonRedHopperShotSpeedRightRPM));
-          addSequential(new Auton_wait(2));
+          addSequential(new Auton_wait(3));
           addSequential(new Auton_MMMoveForward(2.0));
           addSequential(new Chassis_targetWithMotionRev());
           addSequential(new Auton_MMMoveForward(2.8));
-          
+          addSequential(new Chassis_targetWithMotionRev());
           addParallel(new FuelFeeder_setSpeedTimed(-Robot.constants.kFeeder_AutonDefaultEnableSpeed,10));
           
           /*

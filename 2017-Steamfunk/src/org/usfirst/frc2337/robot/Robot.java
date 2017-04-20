@@ -98,12 +98,8 @@ public class Robot extends IterativeRobot {
 		autoselect.addObject("SideGear Shoot Blue", new Auton_sideGearThenShootBlue());
 		autoselect.addObject("Mid Gear then shoot Blue ", new AutonCG_midGearThenShotBlueSide());
 		autoselect.addObject("Mid Gear then shoot Red ", new AutonCG_midGearThenShotRedSide());
-		//autoselect.addDefault("40 ball red ", new AutonCG_40Baller()); 
 		autoselect.addDefault("40 ball red ", new AutonCG_MM40BallerRed());
-		//autoselect.addObject("40 ball blue ", new AutonCG_40Ballerblue());
 		autoselect.addDefault("40 ball blue ", new AutonCG_MM40BallerBlue());
-		
-		//autonSelector.addObject("Shoot 10 and mid gear  ", new AutonCG_Shoot10MidGearRed());
 		autoselect.addObject("Cross The Line", new AutonCG_crossTheLine());
 	
 		logger = NetworkTable.getTable("logger");

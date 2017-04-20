@@ -173,7 +173,7 @@ public class OI {
 		BlueButton				.whenPressed(new Lockdown(0));
 		BlueButton				.whenReleased(new UnLockdown());
 		yellowButton			.whenPressed(new Auton_FuelFeeder_forwardTimed(.8, 30));
-		whiteButton				.whenPressed(new  _DoNothing() );
+		whiteButton				.whenPressed(new FuelFeeder_setSpeedTimed(-Robot.constants.kFeeder_AutonDefaultEnableSpeed,30) );
 		clearSwitch				.whileHeld(new FuelShooter_RPMToVoltage());
 		clearSwitch				.whenReleased(new FuelShooter_VoltageToRPM());
 		blueSwitch				.whenPressed(new _DoNothing()); //USED IN FuelShooterLED_main
