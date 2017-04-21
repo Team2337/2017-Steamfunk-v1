@@ -120,6 +120,19 @@ public class Constants {
 	/* Rope Climber */
 	public final double kRopeClimber_defaultSpeed = 1.0;
 	
+	/* Current Monitor */
+	
+	//PRIORITY LIST (Lowest to highest)
+	// Intake
+	// Feeder
+	// Shooter
+	// Chassis/ Drive
+	public final double kTotalSystemCurrentCap = 105.0; //Current draw cap so that the breaker doesn't break again
+	public final double kTotalSystemAllowanceMin = 95.0; //If current drops below this value, start restoring systems in reverse priority of them being turned off
+	
+	public double currentTimeout = 20; //Time, in command itterations (20ms each), that the command waits before turning a system back on (or stopping the limiting of the current)
+	
+	
 	/* AUTON CONSTANTS */
 	/* Turn Values */
 	public final double kAuton_TurnDegreeRed = 35; // was  24 at MSC before qs 
@@ -134,5 +147,6 @@ public class Constants {
 	
 	public final double kAuton_DriveToSideGearBlue = -2.5;
 	public final double kAuton_DriveToSideGearRed = -3.0;
+	
 	
 }

@@ -47,6 +47,7 @@ public class Robot extends IterativeRobot {
 	public static Mat matOriginalObj;
 	public static FuelFeeder fuelFeeder;
 	public static NetworkTable logger;
+	public static CurrentMonitor currentMonitor;
 	
 	Command autonomousCommand;
 	SendableChooser <Command> autonSelector; //<Command> autonSelector;//
@@ -79,6 +80,7 @@ public class Robot extends IterativeRobot {
 		matOriginalObj = new Mat();
 		fuelFeeder = new FuelFeeder();
 		fuelShooterLED = new FuelShooterLED();
+		currentMonitor = new CurrentMonitor();
 		
 		/* Create OI
 		 * - Must be done after ALL subsystems are init'ed, because they might use a commands

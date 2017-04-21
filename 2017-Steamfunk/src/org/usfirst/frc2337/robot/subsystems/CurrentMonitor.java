@@ -8,7 +8,6 @@
 // update. Deleting the comments indicating the section will prevent
 // it from being updated in the future.
 
-
 package org.usfirst.frc2337.robot.subsystems;
 
 import org.usfirst.frc2337.robot.Robot;
@@ -18,23 +17,108 @@ import org.usfirst.frc2337.robot.commands.*;
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
+import org.usfirst.frc2337.robot.Constants;
 
 /**
  *
  */
 public class CurrentMonitor extends Subsystem {
-   private final CANTalon fuelFeederLeft = RobotMap.fuelFeederLeft;
-   private final CANTalon fuelFeederRight = RobotMap.fuelFeederRight;
-   
-   
-    public void initDefaultCommand() {
+	public static int systemsLimited = 0;
+
+	public void initDefaultCommand() {
+		setDefaultCommand(new CurrentMonitor_StatueCheck());
+	}
+
+	public int isOverdrawn() {
+		PowerDistributionPanel pdp = RobotMap.pdp;
+		if (pdp.getTotalCurrent() > Robot.constants.kTotalSystemCurrentCap) {
+			return 1;
+		}
+		if (pdp.getTotalCurrent() < Robot.constants.kTotalSystemAllowanceMin) {
+			return 2; // This value is for when the system is reasonable
+							// underdrawn and systems can start turning back on
+		}
+		return 0;
 		
-    }
-    
+	}
 
+	public void currentDrawGaurd() {
+		switch (systemsLimited) {
+		case 0:		//Intake Stop
+			RobotMap.fuelIntake_motor.setCurrentLimit(0);
+			RobotMap.fuelIntake_motor.EnableCurrentLimit(true);
+			System.out.println("Intake DISABLED TO PRESERVE AMPRAGE");
+			break;
+		case 1:		//Feeder Stop
+			RobotMap.fuelFeederLeft.setCurrentLimit(0);
+			RobotMap.fuelFeederLeft.EnableCurrentLimit(true);
+			
+			RobotMap.fuelFeederRight.setCurrentLimit(0);
+			RobotMap.fuelFeederRight.EnableCurrentLimit(true);
+			System.out.println("FEEDER DISABLED TO PRESERVE AMPRAGE");
+			break;
+		case 2:		//Shooter Stop
+			RobotMap.shooterCANTalonRight.setCurrentLimit(0);
+			RobotMap.shooterCANTalonRight.EnableCurrentLimit(true);
+			
+			RobotMap.shooterCANTalonLeft.setCurrentLimit(0);
+			RobotMap.shooterCANTalonLeft.EnableCurrentLimit(true);
+			System.out.println("SHOOTER DISABLED TO PRESERVE AMPRAGE");
+			break;
+		case 3:		//Chassis Back Stop
+			RobotMap.chassisPID_leftRear.setCurrentLimit(0);
+			RobotMap.chassisPID_leftRear.EnableCurrentLimit(true);
+			
+			RobotMap.chassisPID_rightRear.setCurrentLimit(0);
+			RobotMap.chassisPID_rightRear.EnableCurrentLimit(true);
+			System.out.println("CHASSIS BACK DISABLED TO PRESERVE AMPRAGE");
+			break;
+		case 4:		//Chassis Front Stop
+			RobotMap.chassisPID_leftFront.setCurrentLimit(0);
+			RobotMap.chassisPID_leftFront.EnableCurrentLimit(true);
+			
+			RobotMap.chassisPID_rightRear.setCurrentLimit(0);
+			RobotMap.chassisPID_rightFront.EnableCurrentLimit(true);
+			System.out.println("CHASSIS BACK DISABLED TO PRESERVE AMPRAGE");
+			break;
+		}
+		systemsLimited++;
+	}
+	public void currentSystemReenable() {
+		switch (systemsLimited) {
+		case 9:		//Intake Stop
+			RobotMap.fuelIntake_motor.EnableCurrentLimit(false);
+			System.out.println("Intake ENABLED");
+			break;
+		case 8:		//Feeder Stop
+			RobotMap.fuelFeederLeft.EnableCurrentLimit(false);
+			
+			RobotMap.fuelFeederRight.EnableCurrentLimit(false);
+			System.out.println("FEEDER ENABLED");
+			break;
+		case 7:		//Shooter Stop
+			RobotMap.shooterCANTalonRight.EnableCurrentLimit(false);
+			
+			RobotMap.shooterCANTalonLeft.EnableCurrentLimit(false);
+			System.out.println("SHOOTER ENABLED");
+			break;
+		case 6:		//Chassis Back Stop
+			RobotMap.chassisPID_leftRear.EnableCurrentLimit(false);
+			
+			RobotMap.chassisPID_rightRear.EnableCurrentLimit(false);
+			System.out.println("CHASSIS ENABLED");
+			break;
+		case 5:		//Chassis Front Stop
+			RobotMap.chassisPID_leftFront.EnableCurrentLimit(false);
+			
+			RobotMap.chassisPID_rightFront.EnableCurrentLimit(false);
+			System.out.println("CHASSIS ENABLED");
+			break;
+		}
+		systemsLimited++;
+	}
 }
-
