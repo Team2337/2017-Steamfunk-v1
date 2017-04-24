@@ -38,8 +38,8 @@ public class Constants {
 	
 	
 	/* Fuel Shooter RPM */
-	  public final double kFuelShooter_hopperShotSpeedLeftRPM = 2995; // comp  3035;//2975;   //  3075   ///  3065
-	  public final double kFuelShooter_hopperShotSpeedRightRPM = 3020; //comp  3045; //2985;  //  3175    ///3150  ////3110
+	  public final double kFuelShooter_hopperShotSpeedLeftRPM = 3035; // comp  3035;//2975;   //  3075   ///  3065
+	  public final double kFuelShooter_hopperShotSpeedRightRPM = 3045; //comp  3045; //2985;  //  3175    ///3150  ////3110
 	 
 	  public final double kFuelShooter_autonMidGearShotSpeedLeftRPM = 2990;
 	  public final double kFuelShooter_autonMidGearShotSpeedRightRPM =  3205;
@@ -92,7 +92,7 @@ public class Constants {
 	public final double kTargetingCamera_ObjectHeight = 82;
 	public final double kTargetingCamera_WidthBetweenTarget = 8.4;
 	public final double kTargetingCamera_AngleConstant = 3.4;
-	public final double kTargetingCamera_CenterConstant = 83; //80 FOR COMP BOT !!!
+	public final double kTargetingCamera_CenterConstant = 80; 
 	
 	public final double kTargetingCamera_DistanceInchesMax = 86;
 	public final double kTargetingCamera_DistanceInchesMin = 131;
@@ -105,7 +105,7 @@ public class Constants {
 	
 	/* Fuel Feeder */
 	public final double kFeeder_DefaultEnableSpeed = .7;
-	public final double kFeeder_AutonDefaultEnableSpeed = 1.0; 
+	public final double kFeeder_AutonDefaultEnableSpeed = .8; 
 	public final double kFeeder_DefaultReverseSpeed = .7; //Speed is reversed later in code, set absolute value of desired speed.
 	public final double kFeeder_DefaultSlowSpeed = 0.4;
 	//Jamming Code
