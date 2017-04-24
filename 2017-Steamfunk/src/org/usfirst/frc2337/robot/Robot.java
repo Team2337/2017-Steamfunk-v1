@@ -19,6 +19,7 @@ import org.opencv.videoio.VideoCapture;
 import org.usfirst.frc2337.robot.RobotMap;
 import org.usfirst.frc2337.libraries.GripPipeline;
 import org.usfirst.frc2337.libraries.VisionProcessing;
+import org.usfirst.frc2337.libraries.ZLogger;
 import org.usfirst.frc2337.robot.commands.*;
 import org.usfirst.frc2337.robot.subsystems.*;
 
@@ -46,7 +47,7 @@ public class Robot extends IterativeRobot {
 	public static GripPipeline trackerObj;
 	public static Mat matOriginalObj;
 	public static FuelFeeder fuelFeeder;
-	public static NetworkTable logger;
+	public static ZLogger logger;
 	public static CurrentMonitor currentMonitor;
 	
 	Command autonomousCommand;
@@ -104,7 +105,7 @@ public class Robot extends IterativeRobot {
 		autoselect.addDefault("40 ball blue ", new AutonCG_MM40BallerBlue());
 		autoselect.addObject("Cross The Line", new AutonCG_crossTheLine());
 	
-		logger = NetworkTable.getTable("logger");
+		logger = new ZLogger();
 	}
 	
 	/**
@@ -112,7 +113,7 @@ public class Robot extends IterativeRobot {
 	 * You can use it to reset subsystems before shutting down.
 	 */
 	public void disabledInit(){
-		logger.putBoolean("status", false);
+		logger.setDisabled();
 		allInit();
 	}
 	
@@ -123,7 +124,7 @@ public class Robot extends IterativeRobot {
 	}
 	
 	public void autonomousInit() {
-		logger.putBoolean("status", true);
+		logger.setAutonEnabled();
 		allInit();
 		AllianceColor = DriverStation.getInstance().getAlliance();
 		RobotMap.chassisPID_gyro.reset();
@@ -167,7 +168,7 @@ public class Robot extends IterativeRobot {
 		Robot.hopperWings.retract();
 		Robot.fuelIntake.stopIntake();
 		if (autonomousCommand != null) autonomousCommand.cancel();
-		logger.putBoolean("status", true);
+		logger.setTelopEnabled();
 		allInit();
 	}
 	

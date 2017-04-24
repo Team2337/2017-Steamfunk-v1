@@ -51,7 +51,7 @@ public class CurrentMonitor extends Subsystem {
 		case 0:		//Intake Stop
 			RobotMap.fuelIntake_motor.setCurrentLimit(0);
 			RobotMap.fuelIntake_motor.EnableCurrentLimit(true);
-			System.out.println("Intake DISABLED TO PRESERVE AMPRAGE");
+			System.out.println("INTAKE DISABLED TO PRESERVE AMPRAGE");
 			break;
 		case 1:		//Feeder Stop
 			RobotMap.fuelFeederLeft.setCurrentLimit(0);
@@ -75,7 +75,7 @@ public class CurrentMonitor extends Subsystem {
 			
 			RobotMap.chassisPID_rightRear.setCurrentLimit(0);
 			RobotMap.chassisPID_rightRear.EnableCurrentLimit(true);
-			System.out.println("CHASSIS BACK DISABLED TO PRESERVE AMPRAGE");
+			System.out.println("CHASSIS REAR DISABLED TO PRESERVE AMPRAGE");
 			break;
 		case 4:		//Chassis Front Stop
 			RobotMap.chassisPID_leftFront.setCurrentLimit(0);
@@ -83,42 +83,42 @@ public class CurrentMonitor extends Subsystem {
 			
 			RobotMap.chassisPID_rightRear.setCurrentLimit(0);
 			RobotMap.chassisPID_rightFront.EnableCurrentLimit(true);
-			System.out.println("CHASSIS BACK DISABLED TO PRESERVE AMPRAGE");
+			System.out.println("CHASSIS FRONT DISABLED TO PRESERVE AMPRAGE");
 			break;
 		}
 		systemsLimited++;
 	}
 	public void currentSystemReenable() {
 		switch (systemsLimited) {
-		case 9:		//Intake Stop
+		case 5:		//Intake Stop
 			RobotMap.fuelIntake_motor.EnableCurrentLimit(false);
-			System.out.println("Intake ENABLED");
+			System.out.println("INTAKE RE-ENABLED");
 			break;
-		case 8:		//Feeder Stop
+		case 4:		//Feeder Stop
 			RobotMap.fuelFeederLeft.EnableCurrentLimit(false);
 			
 			RobotMap.fuelFeederRight.EnableCurrentLimit(false);
-			System.out.println("FEEDER ENABLED");
+			System.out.println("FEEDER RE-ENABLED");
 			break;
-		case 7:		//Shooter Stop
+		case 3:		//Shooter Stop
 			RobotMap.shooterCANTalonRight.EnableCurrentLimit(false);
 			
 			RobotMap.shooterCANTalonLeft.EnableCurrentLimit(false);
-			System.out.println("SHOOTER ENABLED");
+			System.out.println("SHOOTER RE-ENABLED");
 			break;
-		case 6:		//Chassis Back Stop
+		case 2:		//Chassis Back Stop
 			RobotMap.chassisPID_leftRear.EnableCurrentLimit(false);
 			
 			RobotMap.chassisPID_rightRear.EnableCurrentLimit(false);
-			System.out.println("CHASSIS ENABLED");
+			System.out.println("CHASSIS REAR RE-ENABLED");
 			break;
-		case 5:		//Chassis Front Stop
+		case 1:		//Chassis Front Stop
 			RobotMap.chassisPID_leftFront.EnableCurrentLimit(false);
 			
 			RobotMap.chassisPID_rightFront.EnableCurrentLimit(false);
-			System.out.println("CHASSIS ENABLED");
+			System.out.println("CHASSIS FRONT RE-ENABLED");
 			break;
 		}
-		systemsLimited++;
+		systemsLimited--; //Decremented to better keep track of systems
 	}
 }
