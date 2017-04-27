@@ -129,8 +129,8 @@ public class Constants {
 	public final double kAuton_InitialDistanceRed = -7.251;
 	public final double kAuton_InitialDistanceBlue = -7.251;
 	
-	public final double kAuton_DriveToHopperDistanceRed = 0.35; //was .820 before qs
-	public final double kAuton_DriveToHopperDistanceBlue = 0.35;
+	public final double kAuton_DriveToHopperDistanceRed = 0.48; //0.35 change after 39 cmp
+	public final double kAuton_DriveToHopperDistanceBlue = 0.48; //0.35 change after 39 cmp
 	
 	public final double kAuton_DriveToSideGearBlue = -2.5;
 	public final double kAuton_DriveToSideGearRed = -3.0;
