@@ -7,16 +7,16 @@ import org.usfirst.frc2337.robot.Robot;
 /**
  * Hopper Trigger EXTEND - Moves out the solenoid
  */
-public class AutonHopperWings_extend extends Command {
-	double time = .3;
-	public AutonHopperWings_extend() {
+public class HopperWings_extendTestBoth extends Command {
+	
+	public HopperWings_extendTestBoth() {
 		requires(Robot.hopperWings);
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		setTimeout(time);
-		
+		Robot.hopperWings.extendRed(); //Calls 'retract' method form hopperTrigger subsystem
+		Robot.hopperWings.extendBlue(); //Calls 'retract' method form hopperTrigger subsystem
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -25,17 +25,18 @@ public class AutonHopperWings_extend extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		return isTimedOut();
+		return false;
 	}
 
 	// Called once after isFinished returns true
 	protected void end() {
-		Robot.hopperWings.extendRed(); //Calls 'retract' method form hopperTrigger subsystem
+		Robot.hopperWings.retract(); //Calls 'retract' method form hopperTrigger subsystem
+		Robot.hopperWings.retractBlue(); //Calls 'retract' method form hopperTrigger subsystem
 	}
 
 	// Called when another command which requires one or more of the same
 	// subsystems is scheduled to run
 	protected void interrupted() {
-		this.end();
+		end();
 	}
 }

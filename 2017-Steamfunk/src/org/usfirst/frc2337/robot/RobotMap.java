@@ -59,6 +59,7 @@ public class RobotMap {
     public static CANTalon fuelIntake_motor;
     
     public static Solenoid hopperTrigger_solenoid;
+    public static Solenoid hopperTrigger_solenoidBlue;
     
     public static CANTalon ropeClimberscaleMotorLeft;
     public static CANTalon ropeClimberscaleMotorRight;
@@ -199,7 +200,7 @@ public class RobotMap {
         
         // HOPPER TRIGGER
         hopperTrigger_solenoid = new Solenoid(0, 6);  // needs to be 6
-        
+        hopperTrigger_solenoidBlue = new Solenoid(0, 7);
         // FUEL INTAKE ARM
 		fuelIntakeArm_solenoid = new DoubleSolenoid(0, 0, 1); 
 		

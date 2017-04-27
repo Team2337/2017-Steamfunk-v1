@@ -16,7 +16,7 @@ public class AutonCG_MM40BallerBlue extends CommandGroup {
     	addSequential(new ControlProfile40ball()); 
     	addSequential(new FuelIntakeArm_extend()); // arm out then below is the shooters
     	addSequential(new Auton_MMTurnBlue());
-    	addSequential(new HopperWings_extend());
+    	addSequential(new HopperWings_extendBlue());
     	//addSequential(new Chassis_targetWithMotionRev());
     	
     	

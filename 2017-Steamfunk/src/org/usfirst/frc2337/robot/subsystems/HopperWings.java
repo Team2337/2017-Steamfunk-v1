@@ -13,6 +13,7 @@ public class HopperWings extends Subsystem {
 	
 	
 	public final Solenoid trigger = RobotMap.hopperTrigger_solenoid;
+	public final Solenoid triggerBlue = RobotMap.hopperTrigger_solenoidBlue;
 	
 	public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -28,10 +29,24 @@ public class HopperWings extends Subsystem {
 	}
 	
 	/**
+	 * Is trigger hopper extended
+	 */
+	public boolean isExtendedBlue() {
+		return triggerBlue.get();
+	}
+	
+	/**
 	 * Extends Hopper Trigger
 	 */
-	public void extend() {
+	public void extendRed() {
 		trigger.set(true);
+	}
+	
+	/**
+	 * Extends Hopper Trigger
+	 */
+	public void extendBlue() {
+		triggerBlue.set(true);
 	}
 	
 	/**
@@ -39,5 +54,12 @@ public class HopperWings extends Subsystem {
 	 */
 	public void retract() {
 		trigger.set(false);
+	}
+	
+	/**
+	 * Retracts Hopper Trigger
+	 */
+	public void retractBlue() {
+		triggerBlue.set(false);
 	}
 }

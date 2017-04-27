@@ -15,7 +15,7 @@ public class HopperWings_extendWhileHeld extends Command {
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		Robot.hopperWings.extend(); //Calls 'extend' method form hopperTrigger subsystem
+		Robot.hopperWings.extendRed(); //Calls 'extend' method form hopperTrigger subsystem
 	}
 
 	// Called repeatedly when this Command is scheduled to run

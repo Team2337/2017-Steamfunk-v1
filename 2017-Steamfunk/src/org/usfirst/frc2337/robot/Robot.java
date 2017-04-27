@@ -112,6 +112,8 @@ public class Robot extends IterativeRobot {
 	public void disabledInit(){
 		logger.putBoolean("status", false);
 		allInit();
+		Robot.hopperWings.retract();
+		Robot.hopperWings.retractBlue();
 	}
 	
 	public void disabledPeriodic() {
@@ -162,7 +164,8 @@ public class Robot extends IterativeRobot {
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
 		Robot.fuelShooter.stopMotorsRPM();
-		Robot.hopperWings.retract();
+		//Robot.hopperWings.retract();
+		//Robot.hopperWings.retractBlue();
 		Robot.fuelIntake.stopIntake();
 		if (autonomousCommand != null) autonomousCommand.cancel();
 		logger.putBoolean("status", true);

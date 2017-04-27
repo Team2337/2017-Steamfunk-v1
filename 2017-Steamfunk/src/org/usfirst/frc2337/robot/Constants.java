@@ -47,8 +47,8 @@ public class Constants {
 	  public final double kFuelShooter_autonRedHopperShotSpeedLeftRPM = 3050;    //First Kettering Match = 8.6  //8.75 // 8.825  //3070
 	  public final double kFuelShooter_autonRedHopperShotSpeedRightRPM = 3050;  // 3090 after q57 msc//First Kettering Match = 8.65    //8.85 // was 8.9 //8.925 //3120
 	 
-	  public final double kFuelShooter_autonBlueHopperShotSpeedLeftRPM = 3050;    // was 3090 before match 55 of troy
-	  public final double kFuelShooter_autonBlueHopperShotSpeedRightRPM = 3070;  //was 3140  before match 60 of troy
+	  public final double kFuelShooter_autonBlueHopperShotSpeedLeftRPM = 3080;    // was 3090 before match 55 of troy
+	  public final double kFuelShooter_autonBlueHopperShotSpeedRightRPM = 3100;  //was 3140  before match 60 of troy
 	 
 	  public final double kFuelShooter_airshipShotSpeedLeftRPM = 3480;
 	  public final double kFuelShooter_airshipShotSpeedRightRPM = 3480;
@@ -105,7 +105,7 @@ public class Constants {
 	
 	/* Fuel Feeder */
 	public final double kFeeder_DefaultEnableSpeed = .7;
-	public final double kFeeder_AutonDefaultEnableSpeed = .8; 
+	public final double kFeeder_AutonDefaultEnableSpeed = 0.9; 
 	public final double kFeeder_DefaultReverseSpeed = .7; //Speed is reversed later in code, set absolute value of desired speed.
 	public final double kFeeder_DefaultSlowSpeed = 0.4;
 	//Jamming Code
