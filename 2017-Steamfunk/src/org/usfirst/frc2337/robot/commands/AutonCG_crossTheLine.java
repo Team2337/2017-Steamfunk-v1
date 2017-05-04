@@ -16,8 +16,8 @@ public class AutonCG_crossTheLine extends CommandGroup {
     	//addSequential(new Auton_MMMoveForward(-7.361));
     	//addSequential(new Auton_DFGwE(-.5, -7.361, 4));
     	//addSequential(new Auton_MMMoveForwardTest(-7.361));
-    	
-
+    //	addSequential(new HopperWings_extend());
+    	//addSequential(new HopperWings_retractTimed());
     	addSequential(new ControlProfile40ball()); 
     //	addSequential(new Auton_MMTurnBlue());
    // 	addSequential(new HopperWings_extendBlue());
