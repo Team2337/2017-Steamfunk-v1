@@ -47,7 +47,7 @@ public class Constants {
 	  public final double kFuelShooter_autonRedHopperShotSpeedLeftRPM = 3050;    //First Kettering Match = 8.6  //8.75 // 8.825  //3070
 	  public final double kFuelShooter_autonRedHopperShotSpeedRightRPM = 3050;  // 3090 after q57 msc//First Kettering Match = 8.65    //8.85 // was 8.9 //8.925 //3120
 	 
-	  public final double kFuelShooter_autonBlueHopperShotSpeedLeftRPM = 3065;    // was 3090 before match 55 of troy
+	  public final double kFuelShooter_autonBlueHopperShotSpeedLeftRPM = 3080;    // was 3090 before match 55 of troy
 	  public final double kFuelShooter_autonBlueHopperShotSpeedRightRPM = 3100;  //was 3140  before match 60 of troy
 	 
 	  public final double kFuelShooter_airshipShotSpeedLeftRPM = 3480;
@@ -129,7 +129,7 @@ public class Constants {
 	public final double kAuton_InitialDistanceRed = -7.251;
 	public final double kAuton_InitialDistanceBlue = -7.251;
 	
-	public final double kAuton_DriveToHopperDistanceRed = 0.55; //0.35 change after 39 cmp change from .48 to .55 after Q 76
+	public final double kAuton_DriveToHopperDistanceRed = 0.48; //0.35 change after 39 cmp
 	public final double kAuton_DriveToHopperDistanceBlue = 0.48; //0.35 change after 39 cmp
 	
 	public final double kAuton_DriveToSideGearBlue = -2.5;
