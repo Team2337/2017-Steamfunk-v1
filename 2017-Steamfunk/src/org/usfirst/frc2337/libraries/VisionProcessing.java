@@ -35,8 +35,8 @@ public class VisionProcessing {
 	public double DISTANCE_INCHES_MIN;
 	public double DISTANCE_INCHES_MAX;
 	
-	public double AREA_MIN;
-	public double AREA_MAX;
+	public double HEIGHT_MIN;
+	public double HEIGHT_MAX;
 	
 	/* Motion Magic */
 	public double REVOLUTION_PER_DEGREE;
@@ -135,8 +135,8 @@ public class VisionProcessing {
 	 * @paracm center center of it.
 	 */
 	public void setAreas(double min, double max) {
-		this.AREA_MIN = min;
-		this.AREA_MAX = max;
+		this.HEIGHT_MIN = min;
+		this.HEIGHT_MAX = max;
 	}
 	
 	/**
@@ -169,6 +169,20 @@ public class VisionProcessing {
 	}	
 	
 	/**
+	 * Gets height from GRIP
+ 	 * @return Height
+	 */
+	public double getHeight() {
+		double[] contoursHEIGHT = table.getNumberArray("height", defaultValue);
+		double height = 0;
+		if (hasContours()) {
+			height = (contoursHEIGHT[0]);
+		}
+		return height;
+	}
+	
+	
+	/**
 	 * Gets average area from GRIP
  	 * @return Area
 	 */
@@ -197,6 +211,7 @@ public class VisionProcessing {
 		}
 		return center;
 	}
+	
 	public double getPixelsToRevolutions(double pixel_const, double deg_const, double pixels) {
 		
 		/* This convets the pixels to degrees then to revolutions
@@ -218,9 +233,9 @@ public class VisionProcessing {
 	 * @return distanceFromTarget
 	 */
 	public double getDistanceFromTarget(){
-		double area = getAverageArea();
-		double distanceFromTarget = (DISTANCE_INCHES_MIN - area) * ((DISTANCE_INCHES_MAX - 
-				DISTANCE_INCHES_MIN) / (AREA_MAX - AREA_MIN));
+		double height = getHeight();
+		double distanceFromTarget = (DISTANCE_INCHES_MIN - height) * ((DISTANCE_INCHES_MAX - 
+				DISTANCE_INCHES_MIN) / (HEIGHT_MAX - HEIGHT_MIN));
 
 		//System.out.println("distanceFromTarget: " + distanceFromTarget);
 		return distanceFromTarget - OFFSET_HORIZONTAL_CAMERA; 
@@ -312,7 +327,53 @@ public class VisionProcessing {
 		
 		return (Math.sqrt(floor_distance) - OFFSET_HORIZONTAL_CAMERA); //Remove the distance from front of robot where camera is located
 	}
-	
+	/**
+	 * EXPLAIN LATER
+	 * 
+	 * @return revolutions
+	 * */
+	/*
+	 *public double getRevDistance() {
+		double height[];
+		height = table.getNumberArray("height", defaultValue);
+		//Set angle to nothing
+		double distanceToGoal = 0;
+		
+		//If GRIP hasContours
+		if(hasContours()){
+			//Do we have two contours? (top/bottom or left/right)
+			if(height.length >= 1) { 
+				double turnPixel;
+				if (getAverageCenter() > CENTER_OF_CONTOURS) {
+					turnPixel = (getAverageCenter() - CENTER_OF_CONTOURS) * -1;			
+				} else {
+					turnPixel = (CENTER_OF_CONTOURS - getAverageCenter()) * 1;					 
+				}
+				
+				
+				/* This converts pixels to revolutions.
+				 * x is the FOV of the camera (we check ours online and by testing it by moving the robot with a fixed object and using a NAVx or a protractor)
+				 
+				// 0.375 = FOV TO CAMERA RESOLUTION (PIXELS TO DEGREES)
+				//DEGREE_PER_PIXEL
+				//DERGREE_PER_REVOLUTION
+				angleToGoal = getPixelsToRevolutions(DEGREE_PER_PIXEL, REVOLUTION_PER_DEGREE, turnPixel);
+			}
+		}
+		
+		return angleToGoal;
+	}
+	*/
+	public double getCenterHeight() {
+		double[] contoursX = table.getNumberArray("centerX", defaultValue);
+		double center = 0;
+		if (hasContours()) {
+			if(contoursX.length >= 1) { //TODO Remove: DUPLICATE STATMENT AS hasContours()
+				center = contoursX[0];
+			}
+		}
+		return center;
+	}
 	
 	
 }

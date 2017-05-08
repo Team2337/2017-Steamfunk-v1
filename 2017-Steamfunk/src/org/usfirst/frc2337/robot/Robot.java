@@ -222,7 +222,7 @@ public class Robot extends IterativeRobot {
 		//SmartDashboard.putNumber("lengthFromTape",  RobotMap.boilerVision.getDistanceFromTarget());
 		//SmartDashboard.putNumber("constant",  RobotMap.boilerVision.DISTANCE_CONSTANT);
 		SmartDashboard.putNumber("AverageCenter",  RobotMap.boilerVision.getAverageCenter());
-		//SmartDashboard.putNumber("AverageArea",  RobotMap.boilerVision.getAverageArea());
+		SmartDashboard.putNumber("Height",  RobotMap.boilerVision.getHeight());
 		
         SmartDashboard.putNumber("Shooter 1 closedLoopError", RobotMap.shooterCANTalonLeft.getClosedLoopError()); 
         SmartDashboard.putNumber("Shooter 2 closedLoopError", RobotMap.shooterCANTalonRight.getClosedLoopError()); 
