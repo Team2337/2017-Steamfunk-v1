@@ -56,7 +56,8 @@ public class RobotMap {
     
     public static DoubleSolenoid fuelIntakeArm_solenoid;
     
-    public static CANTalon fuelIntake_motor;
+    public static CANTalon fuelIntake_motorLeft;
+    public static CANTalon fuelIntake_motorRight;
     
     public static Solenoid hopperTrigger_solenoid;
     public static Solenoid hopperTrigger_solenoidBlue;
@@ -225,8 +226,13 @@ public class RobotMap {
 		
 		
 		//FUEL INTAKE
-		fuelIntake_motor = new CANTalon(3);
+		fuelIntake_motorLeft = new CANTalon(3);
 		
+		fuelIntake_motorRight = new CANTalon(12);
+		fuelIntake_motorRight.changeControlMode(TalonControlMode.Follower);
+        fuelIntake_motorRight.set(fuelIntake_motorLeft.getDeviceID());
+		fuelIntake_motorRight.reverseOutput(true);
+        
         
         //FUEL FEEDER's
         fuelFeederLeft = new CANTalon(5);	//Change to 4

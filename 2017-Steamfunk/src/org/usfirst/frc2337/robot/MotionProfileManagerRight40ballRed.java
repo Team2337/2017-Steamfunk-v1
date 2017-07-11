@@ -239,7 +239,7 @@ public class MotionProfileManagerRight40ballRed {
 	/** Start filling the MPs to all of the involved Talons. */
 	private void startFilling() {
 		/* since this example only has one talon, just update that one */
-		startFilling(MotionProfilePointsRight40ballAcc278.Points, MotionProfilePointsRight40ballAcc278.kNumPoints);  // was Ac10Red change after match 39
+		startFilling(MotionProfilePointsRight40ballAcc288.Points, MotionProfilePointsRight40ballAcc288.kNumPoints);  // was Ac10Red change after match 39
 	}
 
 	private void startFilling(double[][] profile, int totalCnt) {

@@ -44,14 +44,14 @@ public class Constants {
 	  public final double kFuelShooter_autonMidGearShotSpeedLeftRPM = 2990;
 	  public final double kFuelShooter_autonMidGearShotSpeedRightRPM =  3205;
 	  
-	  public final double kFuelShooter_autonRedHopperShotSpeedLeftRPM = 3050;    //First Kettering Match = 8.6  //8.75 // 8.825  //3070
-	  public final double kFuelShooter_autonRedHopperShotSpeedRightRPM = 3050;  // 3090 after q57 msc//First Kettering Match = 8.65    //8.85 // was 8.9 //8.925 //3120
+	  public final double kFuelShooter_autonRedHopperShotSpeedLeftRPM = 3000;    // was 3050 at marc day 2 was 2980 before marc semi 1
+	  public final double kFuelShooter_autonRedHopperShotSpeedRightRPM = 2980;  // was 3050 at marc day 2
 	 
-	  public final double kFuelShooter_autonBlueHopperShotSpeedLeftRPM = 3080;    // was 3090 before match 55 of troy
-	  public final double kFuelShooter_autonBlueHopperShotSpeedRightRPM = 3100;  //was 3140  before match 60 of troy
+	  public final double kFuelShooter_autonBlueHopperShotSpeedLeftRPM = 3000;    // was 3100 at marc day 2 was 3020 before f 3 
+	  public final double kFuelShooter_autonBlueHopperShotSpeedRightRPM = 2990;  //was 3100 at marc day 2 was 3010 before f 3 
 	 
-	  public final double kFuelShooter_airshipShotSpeedLeftRPM = 3480;
-	  public final double kFuelShooter_airshipShotSpeedRightRPM = 3480;
+	  public final double kFuelShooter_airshipShotSpeedLeftRPM = 3480; // needs to be 3480
+	  public final double kFuelShooter_airshipShotSpeedRightRPM = 3480; // needs to be 3480
 	  
 	  public final double kFuelShooter_autonMidGearShotSpeedLeft = 2990;
 	  public final double kFuelShooter_autonMidGearShotSpeedRight =  3205;
@@ -92,7 +92,8 @@ public class Constants {
 	public final double kTargetingCamera_ObjectHeight = 82;
 	public final double kTargetingCamera_WidthBetweenTarget = 8.4;
 	public final double kTargetingCamera_AngleConstant = 3.4;
-	public final double kTargetingCamera_CenterConstant = 80; 
+	//Center X
+	public final double kTargetingCamera_CenterConstant = 83; 
 	
 	public final double kTargetingCamera_DistanceInchesMax = 86;
 	public final double kTargetingCamera_DistanceInchesMin = 131;
@@ -130,7 +131,7 @@ public class Constants {
 	public final double kAuton_InitialDistanceBlue = -7.251;
 	
 	public final double kAuton_DriveToHopperDistanceRed = 0.48; //0.35 change after 39 cmp
-	public final double kAuton_DriveToHopperDistanceBlue = 0.48; //0.35 change after 39 cmp
+	public final double kAuton_DriveToHopperDistanceBlue = 0.40; //0.35 change after 39 cmp
 	
 	public final double kAuton_DriveToSideGearBlue = -2.5;
 	public final double kAuton_DriveToSideGearRed = -3.0;

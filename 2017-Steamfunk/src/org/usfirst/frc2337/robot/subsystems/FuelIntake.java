@@ -25,12 +25,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * FUEL INTAKE - Picks the balls up off the floor
  */
 public class FuelIntake extends Subsystem {
-   private final CANTalon fuelIntake_motor = RobotMap.fuelIntake_motor;
+   private final CANTalon fuelIntake_motor = RobotMap.fuelIntake_motorLeft;
    double currentSpeed = Robot.constants.kFuelIntake_DefaultSpeed;
    double speed = Robot.constants.kFuelIntake_DefaultSpeed;
    double incrementSpeed = Robot.constants.kFuelIntake_IncrementSpeed;
 
-    private final CANTalon fuelIntake = RobotMap.fuelIntake_motor;
+    private final CANTalon fuelIntake = RobotMap.fuelIntake_motorLeft;
 
 
     public void initDefaultCommand() {

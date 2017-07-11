@@ -129,15 +129,15 @@ public class OI {
 		
 		
 		
-		//       Remove RPM to switch to Voltage
-		driver_POVUp			.whenPressed(new FuelShooterLeft_speedIncreaseRPM());  
+		//       Remove RPM to switch to Voltage                 // Change before IRI by CB
+		driver_POVUp			.whenPressed(new _DoNothing()); //(new FuelShooterLeft_speedIncreaseRPM());  
 	   // driver_POVUpRight		.whenPressed(new _DoNothing()); 
-	    driver_POVRight			.whenPressed(new FuelShooterRight_speedIncreaseRPM()); 
+	    driver_POVRight			.whenPressed(new _DoNothing());  //(new FuelShooterRight_speedIncreaseRPM()); 
 	   // driver_POVDownRight		.whenPressed(new _DoNothing()); 
 	    driver_POVDown			.whileHeld(new Chassis_backupVisionLockdownCG()); 
 	    driver_POVDown			.whenReleased(new UnLockdown());
 	   // driver_POVDownLeft		.whenPressed(new _DoNothing()); 
-	    driver_POVLeft			.whenPressed(new FuelShooterLeft_speedDecreaseRPM()); 
+	    driver_POVLeft			.whenPressed (new _DoNothing()); //(new FuelShooterLeft_speedDecreaseRPM()); 
 	   // driver_POVUpLeft		.whenPressed(new _DoNothing()); 
 
 	    
@@ -150,7 +150,7 @@ public class OI {
 		operator_GreenA			.whileHeld(new RopeClimber_runWhileHeld()); //Climber run
 		operator_RedB			.whileHeld(new GearLoader_extendWhileHeld()); //Raise Gear fingers
 		
-		operator_BumperLeft		.whenPressed(new FuelIntakeArm_extend());
+		operator_BumperLeft		.whenPressed(new FuelIntakeArm_retract()); // marc change was FuelIntakeArm_extend day 2
 		operator_BumperRight	.whileHeld(new FuelIntake_enabledForward());
 		
 		operator_Back			.whenPressed(new FuelShooter_stopShooters());
@@ -159,13 +159,13 @@ public class OI {
 		operator_LeftStick		.whenPressed(new _DoNothing());
 		operator_RightStick		.whenPressed(new _DoNothing());		//Turns off shooter
 		
-		operator_TriggerLeft	.whenPressed(new FuelIntakeArm_retract());
+		operator_TriggerLeft	.whenPressed(new FuelIntakeArm_extend()); // marc change was FuelIntakeArm_retract day 2
 		operator_TriggerRight	.whileHeld(new FuelIntake_enabledReverse());
 		
 		operator_POVUp			.whileHeld(new HopperWings_extendWhileHeld());
 		operator_POVRight		.whileHeld(new HopperWings_extendTestBoth()); 
 		operator_POVDown		.whenPressed(new HopperWings_retract());
-		operator_POVLeft		.whenPressed(new FuelFeeder_setSpeedTimed(Robot.constants.kFeeder_DefaultEnableSpeed, 3));
+		operator_POVLeft		.whenPressed(new _DoNothing()); //(new FuelFeeder_setSpeedTimed(Robot.constants.kFeeder_DefaultEnableSpeed, 3));
 	
 		/* =========================================================*/
 		
