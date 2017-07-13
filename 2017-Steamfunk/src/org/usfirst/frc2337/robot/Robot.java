@@ -169,6 +169,7 @@ public class Robot extends IterativeRobot {
 		Robot.fuelIntake.stopIntake();
 		if (autonomousCommand != null) autonomousCommand.cancel();
 		logger.putBoolean("status", true);
+		AllianceColor = DriverStation.getInstance().getAlliance();
 		allInit();
 	}
 	

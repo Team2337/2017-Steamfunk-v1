@@ -162,7 +162,7 @@ public class OI {
 		operator_TriggerLeft	.whenPressed(new FuelIntakeArm_extend()); // marc change was FuelIntakeArm_retract day 2
 		operator_TriggerRight	.whileHeld(new FuelIntake_enabledReverse());
 		
-		operator_POVUp			.whileHeld(new HopperWings_extendWhileHeld());
+		operator_POVUp			.whileHeld(new HopperWings_extendBothRedBlue()); // before IRI 
 		operator_POVRight		.whileHeld(new HopperWings_extendTestBoth()); 
 		operator_POVDown		.whenPressed(new HopperWings_retract());
 		operator_POVLeft		.whenPressed(new _DoNothing()); //(new FuelFeeder_setSpeedTimed(Robot.constants.kFeeder_DefaultEnableSpeed, 3));

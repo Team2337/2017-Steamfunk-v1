@@ -79,12 +79,13 @@ public class RobotMap {
 	public static MotionProfileManagerLeft40ball leftManager40ball;
 	public static MotionProfileManagerRight40ballRed rightManager40ballRed;
 	public static MotionProfileManagerLeft40ballRed leftManager40ballRed;
-	public static DriverStation.Alliance AllianceColor;
+	//public static DriverStation.Alliance AllianceColor;
 	
 	public static boolean RPMandVoltageSwitch = false;
 	public static boolean ShooterUpToSpeed = false;
 	
     public static void init() {
+    	
     	//CONSTANTS FILE
     	Constants con = Robot.constants;
 		// CHASSIS PID
